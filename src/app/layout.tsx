@@ -1,0 +1,41 @@
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import Providers from '@/src/providers';
+
+const geistSans = localFont({
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
+});
+
+const geistMono = localFont({
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900',
+});
+
+export const metadata: Metadata = {
+  title: 'Esoterrium',
+  description: 'Esoterrium - Духовное саморазвитие',
+  icons: { icon: '/favicon.png' },
+};
+
+export type ChildrenProps = {
+  children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: Readonly<ChildrenProps>) {
+  return (
+    <html lang="ru">
+      <Providers>
+        <head>
+          <link rel="icon" type="image/png" href="/favicon.png" />
+        </head>
+
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          {children}
+        </body>
+      </Providers>
+    </html>
+  );
+}
