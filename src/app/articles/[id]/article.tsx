@@ -17,7 +17,11 @@ const ArticlePage = async ({ params }: Props) => {
   const { id } = await params;
 
   try {
-    const article = await Article.findById(id).exec();
+    const article = await Article.findById(id).exec(); // Fetch article
+
+    if (!article) {
+      throw new Error('Article not found');
+    }
 
     return (
       <div>
