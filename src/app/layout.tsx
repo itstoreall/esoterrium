@@ -27,11 +27,11 @@ export type ChildrenProps = {
 export default function RootLayout({ children }: Readonly<ChildrenProps>) {
   return (
     <html lang="ru">
-      <Providers>
-        <head>
-          <link rel="icon" type="image/png" href="/favicon.png" />
-        </head>
+      <head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+      </head>
 
+      <Providers>
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
           {children}
         </body>
