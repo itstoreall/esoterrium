@@ -1,4 +1,5 @@
 import { Article } from '@/src/lib/mongoose';
+import { redirect } from 'next/navigation';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -15,24 +16,25 @@ const getArticleById = async (id: string) => {
 const ArticlePage = async ({ params }: Props) => {
   const { id } = await params;
 
-  const article = await Article.findById(id).exec(); // 67461eca11d202070efa0c33
+  try {
+    const article = await Article.findById(id).exec();
 
-  if (!article) {
-    return <div>Article not found</div>;
+    return (
+      <div>
+        <h1>{article.title}</h1>
+        <p>{article.content}</p>
+        <p>
+          <small>
+            Created on: {new Date(article.createdAt).toLocaleDateString()} |
+            Updated on: {new Date(article.updatedAt).toLocaleDateString()}
+          </small>
+        </p>
+      </div>
+    );
+  } catch (error) {
+    console.error(`Error fetching article: ${error}`);
+    redirect(`/articles/${id}/error`);
   }
-
-  return (
-    <div>
-      <h1>{article.title}</h1>
-      <p>{article.content}</p>
-      <p>
-        <small>
-          Created on: {new Date(article.createdAt).toLocaleDateString()} |
-          Updated on: {new Date(article.updatedAt).toLocaleDateString()}
-        </small>
-      </p>
-    </div>
-  );
 };
 
 export default ArticlePage;
