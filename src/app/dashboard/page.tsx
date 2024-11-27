@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
 import { DashboardPage } from '@/src/app/dashboard/dashboard';
 
-const Articles: React.FC = async () => {
+const Dashboard: React.FC = async () => {
   const isAuthenticated = await checkIsAuthenticated();
 
   if (!isAuthenticated) {
@@ -12,4 +12,4 @@ const Articles: React.FC = async () => {
   }
 };
 
-export default Articles;
+export default Dashboard;

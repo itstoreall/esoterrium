@@ -7,7 +7,7 @@ const articleSchema = new Schema(
     image: { type: String, required: true },
     author: { type: String, required: true },
     tags: { type: [String], default: [] },
-    views: { type: Number, default: 0 },
+    views: { type: Number, default: 1 },
     isPublished: { type: Boolean, default: false },
     publishedAt: { type: Date },
     createdAt: { type: Date, default: Date.now },
@@ -16,4 +16,4 @@ const articleSchema = new Schema(
   { timestamps: true }
 );
 
-export const Article = models.Article || model('Article', articleSchema);
+export default models.Article || model('Article', articleSchema);

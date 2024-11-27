@@ -1,9 +1,5 @@
 /* eslint-disable no-var */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ArticleModal from '@/src/lib/mongoose/models/ArticleModel';
-import connectToDatabase from '@/src/lib/mongoose/connect';
-
-/*
 import mongoose, { Mongoose } from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI!;
@@ -27,7 +23,7 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
-export const connectToDatabase = async () => {
+const connectToDatabase = async () => {
   if (cached.conn) {
     return cached.conn;
   }
@@ -44,7 +40,5 @@ export const connectToDatabase = async () => {
   cached.conn = await cached.promise;
   return cached.conn;
 };
-*/
 
-export const connect = connectToDatabase;
-export const Article = ArticleModal;
+export default connectToDatabase;
