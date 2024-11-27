@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectToDatabase } from '@/src/lib/mongoose';
+import { connect } from '@/src/lib/mongoose';
 import { Article } from '@/src/lib/mongoose/models/Article';
 
 export async function GET() {
-  await connectToDatabase();
+  await connect();
   try {
     const articles = await Article.find();
     return NextResponse.json(articles);
@@ -16,7 +16,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  await connectToDatabase();
+  await connect();
   try {
     const data = await req.json();
     const article = await Article.create(data);

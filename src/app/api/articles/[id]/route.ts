@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectToDatabase } from '@/src/lib/mongoose';
+import { connect } from '@/src/lib/mongoose';
 import { Article } from '@/src/lib/mongoose/models/Article';
 
 function getParamsFromUrl(url: string): { id: string } | null {
@@ -9,7 +9,7 @@ function getParamsFromUrl(url: string): { id: string } | null {
 }
 
 export async function GET(req: NextRequest) {
-  await connectToDatabase();
+  await connect();
   const params = getParamsFromUrl(req.url);
 
   if (!params || !params.id) {
