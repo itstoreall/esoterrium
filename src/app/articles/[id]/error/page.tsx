@@ -8,7 +8,7 @@ const ErrorPage = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      router.push('/dashboard');
+      router.push('/articles');
     }, 5000);
 
     return () => clearTimeout(timeout);

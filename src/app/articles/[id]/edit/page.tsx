@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
-import { redirect } from 'next/navigation';
+import EditArticleForm from '@/src/components/Form/EditArticleForm';
 import { Article } from '@/src/lib/mongoose/models/Article';
+import { redirect } from 'next/navigation';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -9,10 +10,10 @@ const getArticleById = async (id: string) => {
   if (!mongoose.connection.readyState) {
     await mongoose.connect(process.env.MONGODB_URI || '');
   }
-  return await Article.findById(id).exec();
+  return await Article.findById(id).lean();
 };
 
-const ArticlePage = async ({ params }: Props) => {
+const EditArticlePage = async ({ params }: Props) => {
   const { id } = await params;
 
   try {
@@ -24,20 +25,14 @@ const ArticlePage = async ({ params }: Props) => {
 
     return (
       <div>
-        <h1>{article.title}</h1>
-        <p>{article.content}</p>
-        <p>
-          <small>
-            Created on: {new Date(article.createdAt).toLocaleDateString()} |
-            Updated on: {new Date(article.updatedAt).toLocaleDateString()}
-          </small>
-        </p>
+        <h1>Edit Article</h1>
+        <EditArticleForm article={JSON.parse(JSON.stringify(article))} />
       </div>
     );
   } catch (error) {
-    console.error(`Error fetching article: ${error}`);
+    console.error(`Error editing an article: ${error}`);
     redirect(`/articles/${id}/error`);
   }
 };
 
-export default ArticlePage;
+export default EditArticlePage;

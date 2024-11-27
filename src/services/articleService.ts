@@ -1,18 +1,21 @@
-import api from '@/src/lib/axios';
+import api from '@/src/lib/axios/client';
 
-export const createArticle = async (data: {
+type Article = {
+  _id?: string;
   title: string;
   content: string;
-  author: string;
-}) => {
+  image?: string;
+  author?: string;
+  tags?: string[];
+  isPublished?: boolean;
+};
+
+export const createArticle = async (data: Article) => {
   const response = await api.post('/articles', data);
   return response.data;
 };
 
-export const updateArticle = async (
-  id: string,
-  data: { title: string; content: string }
-) => {
+export const updateArticle = async (id: string, data: Article) => {
   const response = await api.put(`/articles/${id}`, data);
   return response.data;
 };

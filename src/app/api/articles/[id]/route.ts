@@ -31,3 +31,37 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
+export async function PUT(
+  req: NextRequest
+  // { params }: { params: { id: string } }
+) {
+  await connectToDatabase();
+
+  const params = getParamsFromUrl(req.url);
+
+  if (!params || !params.id) {
+    return NextResponse.json({ error: 'Missing article ID' }, { status: 400 });
+  }
+
+  try {
+    // const id = params.id;
+    const data = await req.json();
+
+    const updatedArticle = await Article.findByIdAndUpdate(params.id, data, {
+      new: true,
+    });
+
+    if (!updatedArticle) {
+      return NextResponse.json({ error: 'Article not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(updatedArticle);
+  } catch (error) {
+    console.error('Error updating article:', error);
+    return NextResponse.json(
+      { error: 'Failed to update article' },
+      { status: 500 }
+    );
+  }
+}

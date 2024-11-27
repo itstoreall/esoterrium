@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import api from '@/src/lib/axios';
+import api from '@/src/lib/axios/client';
 
 export const useArticles = () => {
   return useQuery({

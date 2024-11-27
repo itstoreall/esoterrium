@@ -4,7 +4,7 @@ import ArticlePage from '@/src/app/articles/[id]/article';
 
 type Props = { params: Promise<{ id: string }> };
 
-const Articles = async ({ params }: Props) => {
+const Article = async ({ params }: Props) => {
   const isAuthenticated = await checkIsAuthenticated();
 
   if (!isAuthenticated) {
@@ -14,4 +14,4 @@ const Articles = async ({ params }: Props) => {
   }
 };
 
-export default Articles;
+export default Article;
