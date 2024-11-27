@@ -15,4 +15,5 @@ const articleSchema = new Schema(
   },
   { timestamps: true }
 );
+
 export const Article = models.Article || model('Article', articleSchema);

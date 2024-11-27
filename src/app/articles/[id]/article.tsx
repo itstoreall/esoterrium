@@ -1,27 +1,9 @@
-import { redirect } from 'next/navigation';
-import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
-import ArticlePage from '@/src/app/articles/[id]/article';
-
-type Props = { params: Promise<{ id: string }> };
-
-const Articles = async ({ params }: Props) => {
-  const isAuthenticated = await checkIsAuthenticated();
-
-  if (!isAuthenticated) {
-    redirect('/auth/sign-in');
-  } else {
-    return <ArticlePage params={params} />;
-  }
-};
-
-export default Articles;
-
-/*
 import { Article } from '@/src/lib/mongoose/models/Article';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 
 type Props = { params: Promise<{ id: string }> };
 
+/* remove later
 // Fetch the article on the server side
 const getArticleById = async (id: string) => {
   if (!mongoose.connection.readyState) {
@@ -29,12 +11,13 @@ const getArticleById = async (id: string) => {
   }
   return await Article.findById(id).exec();
 };
+// */
 
 const ArticlePage = async ({ params }: Props) => {
   const { id } = await params;
 
-  const article = await getArticleById(id); // 67461eca11d202070efa0c33
-  // const article = await Article.findById(id).exec(); // 67461eca11d202070efa0c33
+  // const article = await getArticleById(id); // 67461eca11d202070efa0c33
+  const article = await Article.findById(id).exec(); // 67461eca11d202070efa0c33
 
   if (!article) {
     return <div>Article not found 2</div>;
@@ -55,4 +38,3 @@ const ArticlePage = async ({ params }: Props) => {
 };
 
 export default ArticlePage;
-*/
