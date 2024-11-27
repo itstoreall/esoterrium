@@ -1,5 +1,5 @@
 import { Article } from '@/src/lib/mongoose';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -18,7 +18,11 @@ const ArticlePage = async ({ params }: Props) => {
 
   const article = await Article.findById(id).exec();
 
-  if (!article) redirect(`/articles/${id}/error`);
+  if (!article) {
+    return <div>Error article</div>;
+  }
+
+  // if (!article) redirect(`/articles/${id}/error`);
 
   return (
     <div>
