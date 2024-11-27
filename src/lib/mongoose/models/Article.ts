@@ -16,4 +16,4 @@ const articleSchema = new Schema(
   { timestamps: true }
 );
 
-export default models.Article || model('Article', articleSchema);
+export const Article = models.Article || model('Article', articleSchema);

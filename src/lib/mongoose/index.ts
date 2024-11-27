@@ -1,7 +1,6 @@
 /* eslint-disable no-var */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose, { Mongoose } from 'mongoose';
-import ArticleModal from '@/src/lib/mongoose/models/ArticleModel';
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
@@ -41,5 +40,3 @@ export const connectToDatabase = async () => {
   cached.conn = await cached.promise;
   return cached.conn;
 };
-
-export const Article = ArticleModal;

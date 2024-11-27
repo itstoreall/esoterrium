@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/src/lib/mongoose';
-import { Article } from '@/src/lib/mongoose';
+import { Article } from '@/src/lib/mongoose/models/Article';
 
 export async function GET() {
   await connectToDatabase();

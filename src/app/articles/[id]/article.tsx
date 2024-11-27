@@ -1,4 +1,4 @@
-import { Article } from '@/src/lib/mongoose';
+import { Article } from '@/src/lib/mongoose/models/Article';
 
 type Props = { params: Promise<{ id: string }> };
 

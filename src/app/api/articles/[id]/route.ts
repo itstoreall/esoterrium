@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/src/lib/mongoose';
-import { Article } from '@/src/lib/mongoose';
+import { Article } from '@/src/lib/mongoose/models/Article';
 
 function getParamsFromUrl(url: string): { id: string } | null {
   const urlSegments = url.split('/');
