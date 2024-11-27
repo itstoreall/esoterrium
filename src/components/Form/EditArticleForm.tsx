@@ -1,5 +1,3 @@
-// src/app/articles/[id]/edit/EditArticleForm.tsx
-
 'use client';
 
 import { useState, useTransition } from 'react';

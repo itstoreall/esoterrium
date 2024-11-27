@@ -32,10 +32,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function PUT(
-  req: NextRequest
-  // { params }: { params: { id: string } }
-) {
+export async function PUT(req: NextRequest) {
   await connectToDatabase();
 
   const params = getParamsFromUrl(req.url);
@@ -45,7 +42,6 @@ export async function PUT(
   }
 
   try {
-    // const id = params.id;
     const data = await req.json();
 
     const updatedArticle = await Article.findByIdAndUpdate(params.id, data, {
