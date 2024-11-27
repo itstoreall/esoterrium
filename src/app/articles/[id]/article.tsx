@@ -16,29 +16,22 @@ const getArticleById = async (id: string) => {
 const ArticlePage = async ({ params }: Props) => {
   const { id } = await params;
 
-  try {
-    const article = await Article.findById(id).exec(); // Fetch article
+  const article = await Article.findById(id).exec();
 
-    if (!article) {
-      throw new Error('Article not found');
-    }
+  if (!article) redirect(`/articles/${id}/error`);
 
-    return (
-      <div>
-        <h1>{article.title}</h1>
-        <p>{article.content}</p>
-        <p>
-          <small>
-            Created on: {new Date(article.createdAt).toLocaleDateString()} |
-            Updated on: {new Date(article.updatedAt).toLocaleDateString()}
-          </small>
-        </p>
-      </div>
-    );
-  } catch (error) {
-    console.error(`Error fetching article: ${error}`);
-    redirect(`/articles/${id}/error`);
-  }
+  return (
+    <div>
+      <h1>{article.title}</h1>
+      <p>{article.content}</p>
+      <p>
+        <small>
+          Created on: {new Date(article.createdAt).toLocaleDateString()} |
+          Updated on: {new Date(article.updatedAt).toLocaleDateString()}
+        </small>
+      </p>
+    </div>
+  );
 };
 
 export default ArticlePage;
