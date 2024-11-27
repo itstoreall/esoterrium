@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connect } from '@/src/lib/mongoose';
+import { connectToDatabase } from '@/src/lib/mongoose';
 import { Article } from '@/src/lib/mongoose/models/Article';
 
 function getParamsFromUrl(url: string): { id: string } | null {
@@ -9,7 +9,8 @@ function getParamsFromUrl(url: string): { id: string } | null {
 }
 
 export async function GET(req: NextRequest) {
-  await connect();
+  await connectToDatabase();
+
   const params = getParamsFromUrl(req.url);
 
   if (!params || !params.id) {
@@ -18,8 +19,10 @@ export async function GET(req: NextRequest) {
 
   try {
     const article = await Article.findById(params.id);
+
     if (!article)
       return NextResponse.json({ error: 'Article not found' }, { status: 404 });
+
     return NextResponse.json(article);
   } catch (error) {
     return NextResponse.json(

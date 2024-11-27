@@ -23,7 +23,7 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
-export const connect = async () => {
+export const connectToDatabase = async () => {
   if (cached.conn) {
     return cached.conn;
   }
@@ -32,11 +32,12 @@ export const connect = async () => {
     const opts = {
       bufferCommands: false,
     };
-
     cached.promise = mongoose
       .connect(MONGODB_URI, opts)
       .then((mongoose) => mongoose);
   }
+
   cached.conn = await cached.promise;
+
   return cached.conn;
 };

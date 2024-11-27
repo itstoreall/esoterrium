@@ -1,8 +1,9 @@
 import { Article } from '@/src/lib/mongoose/models/Article';
+import mongoose from 'mongoose';
 
 type Props = { params: Promise<{ id: string }> };
 
-/* remove later
+// /* remove later
 // Fetch the article on the server side
 const getArticleById = async (id: string) => {
   if (!mongoose.connection.readyState) {
@@ -10,12 +11,13 @@ const getArticleById = async (id: string) => {
   }
   return await Article.findById(id).exec();
 };
-*/
+// */
 
 const ArticlePage = async ({ params }: Props) => {
   const { id } = await params;
 
-  const article = await Article.findById(id).exec(); // 67461eca11d202070efa0c33
+  const article = await getArticleById(id); // 67461eca11d202070efa0c33
+  // const article = await Article.findById(id).exec(); // 67461eca11d202070efa0c33
 
   if (!article) {
     return <div>Article not found 2</div>;
