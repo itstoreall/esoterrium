@@ -17,6 +17,9 @@ const ArticlesPage = () => {
       <Link href="/dashboard">
         <button>Dashboard</button>
       </Link>
+      <Link href="/articles/create">
+        <button>Create</button>
+      </Link>
 
       <h1>Articles</h1>
 
