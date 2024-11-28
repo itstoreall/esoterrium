@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
-import ArticlePage from '@/src/app/articles/[id]/article';
+import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -10,7 +10,7 @@ const Article = async ({ params }: Props) => {
   if (!isAuthenticated) {
     redirect('/auth/sign-in');
   } else {
-    return <ArticlePage params={params} />;
+    return <ArticleDetailPage params={params} />;
   }
 };
 

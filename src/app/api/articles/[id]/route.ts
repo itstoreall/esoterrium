@@ -61,3 +61,28 @@ export async function PUT(req: NextRequest) {
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  await connectToDatabase();
+
+  const params = getParamsFromUrl(req.url);
+
+  if (!params || !params.id) {
+    return NextResponse.json({ error: 'Missing article ID' }, { status: 400 });
+  }
+
+  try {
+    const deletedArticle = await Article.findByIdAndDelete(params.id);
+
+    if (!deletedArticle) {
+      return NextResponse.json({ error: 'Article not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: 'Article deleted successfully' });
+  } catch (error) {
+    return NextResponse.json(
+      { error: `Failed to delete article: ${error}` },
+      { status: 500 }
+    );
+  }
+}
