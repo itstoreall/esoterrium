@@ -22,7 +22,6 @@ const CreateArticlePage = () => {
     e.preventDefault();
     try {
       const res = await createArticle(form);
-      console.log('res ---->', res);
       if (res) {
         router.push('/articles');
       }

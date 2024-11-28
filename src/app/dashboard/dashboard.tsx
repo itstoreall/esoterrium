@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
 import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
@@ -49,6 +50,9 @@ export const DashboardPage: React.FC = () => {
   return (
     <div>
       <SignOutButton title={'Sign Out'} />
+      <Link href="/articles">
+        <button>Articles</button>
+      </Link>
 
       <div>
         <p>Role: {role}</p>

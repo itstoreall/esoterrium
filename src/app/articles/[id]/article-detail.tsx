@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
 import DeleteArticleButton from '@/src/components/Button/DeleteArticleButton';
@@ -16,6 +17,16 @@ const ArticleDetailPage = async ({ params }: Props) => {
 
     return (
       <div>
+        <Link href="/dashboard">
+          <button>Dashboard</button>
+        </Link>
+        <Link href="/articles">
+          <button>Articles</button>
+        </Link>
+        <Link href={`/articles/${article.id}/edit`}>
+          <button>Edit</button>
+        </Link>
+
         <h1>{article.title}</h1>
         <p>{article.content}</p>
         <p>

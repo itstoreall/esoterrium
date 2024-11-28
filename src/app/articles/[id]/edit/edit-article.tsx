@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
 import EditArticleForm from '@/src/components/Form/EditArticleForm';
@@ -16,6 +17,16 @@ const EditArticlePage = async ({ params }: Props) => {
 
     return (
       <div>
+        <Link href="/dashboard">
+          <button>Dashboard</button>
+        </Link>
+        <Link href="/articles">
+          <button>Articles</button>
+        </Link>
+        <Link href={`/articles/${id}`}>
+          <button>Cancel</button>
+        </Link>
+
         <h1>Edit Article</h1>
         <EditArticleForm article={JSON.parse(JSON.stringify(article))} />
       </div>

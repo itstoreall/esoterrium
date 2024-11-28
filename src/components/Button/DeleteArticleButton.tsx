@@ -33,7 +33,7 @@ const DeleteArticleButton = ({ id }: Props) => {
 
   return (
     <button onClick={handleDelete} disabled={isPending}>
-      {isPending ? 'Deleting...' : 'Delete Article'}
+      {isPending ? 'Deleting...' : 'Delete'}
     </button>
   );
 };
