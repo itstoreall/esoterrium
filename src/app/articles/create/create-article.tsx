@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createArticle } from '@/src/services/articleService';
 
@@ -32,6 +33,13 @@ const CreateArticlePage = () => {
 
   return (
     <div>
+      <Link href="/dashboard">
+        <button>Dashboard</button>
+      </Link>
+      <Link href="/articles">
+        <button>Articles</button>
+      </Link>
+
       <h1>Add Article</h1>
       <form onSubmit={handleSubmit}>
         <input
