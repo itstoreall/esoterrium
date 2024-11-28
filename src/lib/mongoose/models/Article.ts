@@ -4,7 +4,7 @@ const articleSchema = new Schema(
   {
     title: { type: String, required: true, trim: true },
     content: { type: String, required: true },
-    image: { type: String, required: true },
+    image: { type: String },
     author: { type: String, required: true },
     tags: { type: [String], default: [] },
     views: { type: Number, default: 0 },
