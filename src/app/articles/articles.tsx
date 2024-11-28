@@ -1,11 +1,13 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { useState } from 'react';
 import { useArticles } from '@/src/hooks/useArticles';
 import { createArticle } from '@/src/services/articleService';
-import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { ArticleData } from '@/src/types';
 
 const ArticlesPage = () => {
+  const queryClient = useQueryClient();
   const { data: articles, isLoading, isError } = useArticles();
   const [form, setForm] = useState({
     title: '',
@@ -16,12 +18,24 @@ const ArticlesPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await createArticle(form);
-    setForm({ title: '', content: '', author: '', image: '444' });
+    try {
+      await createArticle(form);
+      setForm({
+        title: '',
+        content: '',
+        author: '',
+        image: '444',
+      });
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
+    } catch (error) {
+      console.error('Failed to create article:', error);
+    }
   };
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error fetching articles</p>;
+
+  console.log('articles:', articles);
 
   return (
     <div>
@@ -47,7 +61,7 @@ const ArticlesPage = () => {
         <button type="submit">Create Article</button>
       </form>
       <ul>
-        {articles.map((article: any) => (
+        {articles.map((article: ArticleData) => (
           <li key={article._id}>
             <h2>{article.title}</h2>
             <p>{article.content}</p>

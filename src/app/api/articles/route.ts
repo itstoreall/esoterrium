@@ -5,7 +5,7 @@ import { Article } from '@/src/lib/mongoose/models/Article';
 export async function GET() {
   await connectToDatabase();
   try {
-    const articles = await Article.find();
+    const articles = await Article.find().sort({ updatedAt: -1 });
     return NextResponse.json(articles);
   } catch (error) {
     return NextResponse.json(
