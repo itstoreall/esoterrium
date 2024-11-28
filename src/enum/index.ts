@@ -1,7 +1,7 @@
 export enum AuthRoleEnum {
   Admin = 'ADMIN',
-  editor = 'EDITOR',
-  guest = 'GUEST',
-  user = 'USER',
-  ban = 'BAN',
+  Editor = 'EDITOR',
+  Guest = 'GUEST',
+  User = 'USER',
+  Ban = 'BAN',
 }

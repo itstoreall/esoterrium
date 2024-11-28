@@ -14,8 +14,13 @@ import SignOutButton from '@/src/components/Button/SignOutButton';
 
 export const DashboardPage: React.FC = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
+  const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState<AuthRoleEnum>();
+
+  const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(
+    AuthRoleEnum.Guest
+  );
 
   const session = useSession();
 
@@ -29,7 +34,20 @@ export const DashboardPage: React.FC = () => {
   const handleUserRole = async () => {
     const role = await getUserRole();
     if (role) {
-      setRole(role);
+      setRole(role as AuthRoleEnum);
+    }
+  };
+
+  const handleChangeUserRole = async () => {
+    if (!userId) {
+      console.error('User ID is missing or invalid:', userId);
+      return;
+    }
+    try {
+      await setUserRole(userId, selectedRole);
+      await handleUserRole();
+    } catch (error) {
+      console.error('Failed to update role:', error);
     }
   };
 
@@ -46,6 +64,13 @@ export const DashboardPage: React.FC = () => {
     handleUserRole();
     accountLinkStatus();
   }, []);
+
+  useEffect(() => {
+    const id = session.data?.user?.id;
+    if (id) {
+      setUserId(id);
+    }
+  }, [session]);
 
   return (
     <div>
@@ -76,13 +101,21 @@ export const DashboardPage: React.FC = () => {
           Update Name
         </button>
 
-        <button
-          className="update-field-button"
-          onClick={async () => {
-            await setUserRole('cm3xcmlg60001w7wc8khhz67w', AuthRoleEnum.Admin);
-            await handleUserRole();
-          }}
+        <select
+          value={selectedRole}
+          onChange={(event) =>
+            setSelectedRole(event.target.value as AuthRoleEnum)
+          }
+          className="field-input"
         >
+          {Object.values(AuthRoleEnum).map((role) => (
+            <option key={role} value={role}>
+              {role}
+            </option>
+          ))}
+        </select>
+
+        <button className="update-field-button" onClick={handleChangeUserRole}>
           Update Role
         </button>
       </div>
