@@ -15,6 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  manifest: '/manifest.json',
   title: 'Esoterrium',
   description: 'Esoterrium - Духовное саморазвитие',
   icons: { icon: '/favicon.png' },
