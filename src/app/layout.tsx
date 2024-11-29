@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Providers from '@/src/providers';
+import FacebookSDKLoader from '../components/Layout/FacebookSDKLoader';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Readonly<ChildrenProps>) {
 
       <Providers>
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <FacebookSDKLoader />
           {children}
         </body>
       </Providers>
