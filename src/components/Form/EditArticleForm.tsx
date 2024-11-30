@@ -2,25 +2,13 @@
 
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateArticle } from '@/src/services/articleService';
 import { AxiosError } from 'axios';
+import { updateArticle } from '@/src/services/articleService';
 import { ArticleData } from '@/src/types';
 
 type EditArticleFormProps = {
   article: ArticleData;
 };
-
-// type EditArticleFormProps = {
-//   article: {
-//     _id: string;
-//     title: string;
-//     content: string;
-//     image: string;
-//     author: string;
-//     tags: string[];
-//     isPublished: boolean;
-//   };
-// };
 
 type InputEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
@@ -32,7 +20,6 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
     content: article.content,
     image: article.image ?? '',
     tags: article.tags.join(', '), // Tags as a comma-separated string
-    // isPublished: article.isPublished,
   });
 
   const router = useRouter();
@@ -54,7 +41,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
       startTransition(async () => {
         const res = await updateArticle(article._id, payload);
         if (res && res._id === article._id) {
-          router.push(`/articles/${article._id}`);
+          router.push('/articles');
         }
       });
     } catch (err: unknown) {

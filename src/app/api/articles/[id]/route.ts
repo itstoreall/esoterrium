@@ -35,6 +35,8 @@ export async function GET(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   await connectToDatabase();
 
+  console.log(33333333);
+
   const params = getParamsFromUrl(req.url);
 
   if (!params || !params.id) {
