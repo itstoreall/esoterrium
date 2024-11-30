@@ -4,9 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createArticle } from '@/src/services/articleService';
+import { getLatestArticleIdx } from '@/src/lib/mongoose/getLatestArticleIdxServerAction';
 
-const defaultImage =
-  'https://res.cloudinary.com/dsxdnz1hq/image/upload/v1732806735/cld-sample-2.jpg';
+// const defaultImage = 'https://res.cloudinary.com/dsxdnz1hq/image/upload/v1732806735/cld-sample-2.jpg';
+
 const defaultAuthor = 'Mila';
 
 const CreateArticlePage = () => {
@@ -14,7 +15,8 @@ const CreateArticlePage = () => {
     title: '',
     content: '',
     author: defaultAuthor,
-    image: defaultImage,
+    tags: ['magic'],
+    views: 1,
   });
 
   const router = useRouter();
@@ -22,7 +24,9 @@ const CreateArticlePage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await createArticle(form);
+      const latestArticle = await getLatestArticleIdx();
+      const idx = latestArticle ? latestArticle.idx + 1 : 1;
+      const res = await createArticle({ ...form, idx });
       if (res) {
         router.push('/articles');
       }

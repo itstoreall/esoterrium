@@ -4,18 +4,23 @@ import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { updateArticle } from '@/src/services/articleService';
 import { AxiosError } from 'axios';
+import { ArticleData } from '@/src/types';
 
 type EditArticleFormProps = {
-  article: {
-    _id: string;
-    title: string;
-    content: string;
-    image: string;
-    author: string;
-    tags: string[];
-    isPublished: boolean;
-  };
+  article: ArticleData;
 };
+
+// type EditArticleFormProps = {
+//   article: {
+//     _id: string;
+//     title: string;
+//     content: string;
+//     image: string;
+//     author: string;
+//     tags: string[];
+//     isPublished: boolean;
+//   };
+// };
 
 type InputEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
@@ -25,10 +30,9 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
   const [formData, setFormData] = useState({
     title: article.title,
     content: article.content,
-    image: article.image,
-    author: article.author,
+    image: article.image ?? '',
     tags: article.tags.join(', '), // Tags as a comma-separated string
-    isPublished: article.isPublished,
+    // isPublished: article.isPublished,
   });
 
   const router = useRouter();
@@ -89,10 +93,10 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
           name="image"
           value={formData.image}
           onChange={handleChange}
-          required
+          // required
         />
       </div>
-      <div>
+      {/* <div>
         <label htmlFor="author">Author</label>
         <input
           type="text"
@@ -102,7 +106,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
           onChange={handleChange}
           required
         />
-      </div>
+      </div> */}
       <div>
         <label htmlFor="tags">Tags (comma-separated)</label>
         <input
@@ -113,7 +117,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
           onChange={handleChange}
         />
       </div>
-      <div>
+      {/* <div>
         <label>
           <input
             type="checkbox"
@@ -128,7 +132,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
           />
           Published
         </label>
-      </div>
+      </div> */}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button type="submit" disabled={isPending}>
         {isPending ? 'Updating...' : 'Update Article'}

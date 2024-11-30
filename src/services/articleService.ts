@@ -2,11 +2,14 @@ import api from '@/src/lib/axios/client';
 
 type Article = {
   _id?: string;
+  idx?: number;
   title: string;
   content: string;
   image?: string;
   author?: string;
+  views?: number;
   tags?: string[];
+  comments?: string[];
   isPublished?: boolean;
 };
 
