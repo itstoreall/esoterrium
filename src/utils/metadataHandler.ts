@@ -30,6 +30,11 @@ const metadataHandler: Handler = (label, article) => {
         ...imageSize,
       };
 
+  const fbAppId = {
+    property: 'fb:app_id',
+    content: process.env.FACEBOOK_APP_ID || '',
+  };
+
   const generalMetadata = {
     title: config.siteName,
     description: `${config.siteName} - ${config.baseDescription}`,
@@ -41,6 +46,7 @@ const metadataHandler: Handler = (label, article) => {
       images: [imageMetadata],
       type: 'article',
       authors: [config.siteName],
+      additionalMetaTags: [fbAppId],
     },
     twitter: {
       card: 'summary_large_image',
@@ -69,6 +75,7 @@ const metadataHandler: Handler = (label, article) => {
           images: [imageMetadata],
           type: 'article',
           authors: [config.siteName],
+          additionalMetaTags: [fbAppId],
         },
         twitter: {
           card: 'summary_large_image',
