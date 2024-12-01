@@ -14,7 +14,7 @@ export const getArticleById = async (id: string, purpose: purpose) => {
 
   switch (purpose) {
     case 'lean':
-      return await query.lean();
+      return await query.lean(); // Using 'lean' for minimal data
     case 'exec':
       return await query.exec();
     default:
