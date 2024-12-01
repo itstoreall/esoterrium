@@ -37,6 +37,7 @@ const metadataHandler: Handler = (label, article) => {
   const generalMetadata = {
     title: config.siteName,
     description: `${config.siteName} - ${config.baseDescription}`,
+    other: otherMetadata,
     openGraph: {
       title: config.siteName,
       description: config.baseDescription,
@@ -45,7 +46,6 @@ const metadataHandler: Handler = (label, article) => {
       images: [imageMetadata],
       type: 'article',
       authors: [config.siteName],
-      other: otherMetadata,
     },
     twitter: {
       card: 'summary_large_image',
@@ -66,6 +66,7 @@ const metadataHandler: Handler = (label, article) => {
       return {
         title: titleMetadata,
         description: descriptionMetadata,
+        other: otherMetadata,
         openGraph: {
           title: titleMetadata,
           description: descriptionMetadata,
@@ -74,7 +75,6 @@ const metadataHandler: Handler = (label, article) => {
           images: [imageMetadata],
           type: 'article',
           authors: [config.siteName],
-          other: otherMetadata,
         },
         twitter: {
           card: 'summary_large_image',
