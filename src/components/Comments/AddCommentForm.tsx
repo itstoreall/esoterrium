@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { postComment } from '@/src/services/commentsService';
+import { addComment } from '@/src/services/commentsService';
 
 type Props = {
   userName: string;
@@ -12,13 +12,24 @@ const AddCommentForm = (props: Props) => {
 
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
+  const [isPulling, setIsPulling] = useState(false);
 
-  const pull = () => {
-    setTimeout(() => {
-      console.log(1);
-      refetch();
-      pull();
-    }, 10000);
+  const checkNewComments = () => {
+    setIsPulling(true);
+    let count = 0;
+    const pull = () => {
+      setTimeout(() => {
+        count += 1;
+        if (count <= 5) {
+          console.log(count);
+          refetch();
+          pull();
+        }
+        return;
+      }, 5000);
+      if (count >= 5) setIsPulling(false);
+    };
+    pull();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -29,11 +40,11 @@ const AddCommentForm = (props: Props) => {
     }
 
     try {
-      await postComment(articleId, { userName, message: newComment });
+      await addComment(articleId, { userName, message: newComment });
       setNewComment('');
       setError('');
       refetch();
-      pull();
+      if (!isPulling) checkNewComments();
     } catch (err) {
       setError('Error posting comment');
       console.error(err);

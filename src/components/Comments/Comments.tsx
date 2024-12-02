@@ -8,7 +8,6 @@ import CommentList from '@/src/components/Comments/CommentList';
 import AddCommentForm from '@/src/components/Comments/AddCommentForm';
 import { CommentData } from '@/src/types';
 
-// const Comments = ({ id }: { id: string }) => {
 const Comments = ({
   articleId,
   initialComments,

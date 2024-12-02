@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const postComment = async (
+export const addComment = async (
   articleId: string,
   commentData: { userName: string; message: string }
 ) => {
