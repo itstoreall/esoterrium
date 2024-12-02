@@ -1,12 +1,13 @@
 -- CreateEnum
-CREATE TYPE "AuthRole" AS ENUM ('ADMIN', 'EDITOR', 'GUEST', 'USER', 'BAN');
+CREATE TYPE "AuthRole" AS ENUM ('ADMIN', 'MODERATOR', 'EDITOR', 'INFLUENCER', 'USER', 'GUEST', 'BAN');
 
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
-    "name" TEXT,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "emailVerified" TIMESTAMP(3),
+    "points" INTEGER NOT NULL DEFAULT 0,
     "image" TEXT,
     "role" "AuthRole" NOT NULL DEFAULT 'GUEST',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
