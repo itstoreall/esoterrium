@@ -5,42 +5,36 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import CommentList from '@/src/components/Comments/CommentList';
-import CommentForm from '@/src/components/Comments/CommentForm';
+import AddCommentForm from '@/src/components/Comments/AddCommentForm';
 import { CommentData } from '@/src/types';
 
-const Comments = ({ id }: { id: string }) => {
+// const Comments = ({ id }: { id: string }) => {
+const Comments = ({
+  articleId,
+  initialComments,
+}: {
+  articleId: string;
+  initialComments: CommentData[];
+}) => {
   const [comments, setComments] = useState<CommentData[]>([]);
   const [userName, setUserName] = useState('');
-  // const [isPolling, setIsPolling] = useState(false);
-  // const [count, setCount] = useState(0);
 
   const session = useSession();
 
   const fetchComments = async () => {
     try {
-      const response = await fetch(`/api/articles/${id}/comments`);
+      const response = await fetch(`/api/articles/${articleId}/comments`);
       const data = await response.json();
       setComments(data);
-      // setCount((prev) => prev + 1);
     } catch (err) {
       console.error('Error fetching comments:', err);
     }
   };
 
-  /*
-  const startPolling = () => {
-    setIsPolling(true);
-  };
-
-  const stopPolling = () => {
-    setIsPolling(false);
-  };
-  */
-
   console.log('comments:', comments);
 
   useEffect(() => {
-    fetchComments();
+    setComments(initialComments);
   }, []);
 
   useEffect(() => {
@@ -49,35 +43,22 @@ const Comments = ({ id }: { id: string }) => {
     }
   }, [session]);
 
-  /*
-  useEffect(() => {
-    fetchComments();
-    let interval: NodeJS.Timeout;
-    if (isPolling) {
-      interval = setInterval(fetchComments, 10000);
-    }
-    return () => clearInterval(interval);
-  }, [isPolling]);
-  */
-
   return userName && comments ? (
     <section>
       <h2>Comments</h2>
 
-      <CommentForm
+      <AddCommentForm
         userName={userName}
-        articleId={id}
+        articleId={articleId}
         refetch={fetchComments}
-        // onCommentCreated={startPolling}
       />
 
       <button onClick={fetchComments}>Refetch comments</button>
 
       <CommentList
-        articleId={id}
+        articleId={articleId}
         comments={comments}
         refetch={fetchComments}
-        // onStopPolling={stopPolling}
       />
     </section>
   ) : null;

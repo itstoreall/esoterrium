@@ -26,5 +26,3 @@ const articleSchema = new Schema(
 );
 
 export const Article = models.Article || model('Article', articleSchema);
-
-// comments: { type: [String], required: false },

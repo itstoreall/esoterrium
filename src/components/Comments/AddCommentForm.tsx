@@ -5,14 +5,21 @@ type Props = {
   userName: string;
   articleId: string;
   refetch: () => void;
-  // onCommentCreated: () => void;
 };
 
-const CommentForm = (props: Props) => {
+const AddCommentForm = (props: Props) => {
   const { userName, articleId, refetch } = props;
 
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
+
+  const pull = () => {
+    setTimeout(() => {
+      console.log(1);
+      refetch();
+      pull();
+    }, 10000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +33,7 @@ const CommentForm = (props: Props) => {
       setNewComment('');
       setError('');
       refetch();
-      // onCommentCreated();
+      pull();
     } catch (err) {
       setError('Error posting comment');
       console.error(err);
@@ -50,4 +57,4 @@ const CommentForm = (props: Props) => {
   );
 };
 
-export default CommentForm;
+export default AddCommentForm;
