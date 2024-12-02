@@ -21,7 +21,6 @@ const AddCommentForm = (props: Props) => {
       setTimeout(() => {
         count += 1;
         if (count <= 5) {
-          console.log(count);
           refetch();
           pull();
         }
