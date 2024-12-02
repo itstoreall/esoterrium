@@ -46,7 +46,6 @@ const CommentForm = (props: Props) => {
       </div>
       {error && <p>{error}</p>}
       <button type="submit">Post Comment</button>
-      <button type="submit">Post Comment</button>
     </form>
   );
 };
