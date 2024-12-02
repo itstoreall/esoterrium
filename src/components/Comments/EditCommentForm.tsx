@@ -1,25 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { updateComment } from '@/src/services/commentsService';
 import { CommentData } from '@/src/types';
 
 type EditCommentFormProps = {
   articleId: string;
   comment: CommentData;
-  // comment: { _id: string; user: string; message: string };
   refetch: () => void;
   onCancel: () => void;
 };
 
-const EditCommentForm = ({
-  articleId,
-  comment,
-  refetch,
-  onCancel,
-}: EditCommentFormProps) => {
-  const [updatedMessage, setUpdatedMessage] = useState(comment.message);
+const EditCommentForm = (props: EditCommentFormProps) => {
+  const { articleId, comment, refetch, onCancel } = props;
+
+  const [updatedMessage, setUpdatedMessage] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setUpdatedMessage(comment.message);
+  }, [comment]);
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();

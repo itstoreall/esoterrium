@@ -5,15 +5,16 @@ type Props = {
   userName: string;
   articleId: string;
   refetch: () => void;
+  onCommentCreated: () => void;
 };
 
-const CommentForm = ({ userName, articleId, refetch }: Props) => {
+const CommentForm = (props: Props) => {
+  const { userName, articleId, refetch, onCommentCreated } = props;
+
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
 
-  console.log('userName:', userName);
-
-  const handlePostComment = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newComment || !userName) {
       setError('Both user and comment are required');
@@ -24,7 +25,8 @@ const CommentForm = ({ userName, articleId, refetch }: Props) => {
       await postComment(articleId, { userName, message: newComment });
       setNewComment('');
       setError('');
-      refetch(); // Refresh comments
+      refetch();
+      onCommentCreated();
     } catch (err) {
       setError('Error posting comment');
       console.error(err);
@@ -32,7 +34,7 @@ const CommentForm = ({ userName, articleId, refetch }: Props) => {
   };
 
   return (
-    <form onSubmit={handlePostComment}>
+    <form onSubmit={handleSubmit}>
       <span>{userName}</span>
       <div>
         <textarea

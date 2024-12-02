@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { deleteComment } from '@/src/services/commentsService';
 import { CommentData } from '@/src/types';
 import EditCommentForm from '@/src/components/Comments/EditCommentForm';
 
@@ -8,12 +9,20 @@ type Props = {
   articleId: string;
   comments: CommentData[];
   refetch: () => void;
+  onStopPolling: () => void; // optionally
 };
 
 const CommentList = ({ articleId, comments, refetch }: Props) => {
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
 
-  // console.log('comments:', comments);
+  const handleDeleteClick = async (commentId: string) => {
+    try {
+      await deleteComment(articleId, commentId);
+      refetch();
+    } catch (err) {
+      console.error('Error deleting comment:', err);
+    }
+  };
 
   const handleEditClick = (commentId: string) => {
     setEditingCommentId(commentId);
@@ -38,6 +47,9 @@ const CommentList = ({ articleId, comments, refetch }: Props) => {
             <>
               <strong>{comment.userName}</strong>: {comment.message}
               <button onClick={() => handleEditClick(comment._id)}>Edit</button>
+              <button onClick={() => handleDeleteClick(comment._id)}>
+                Delete
+              </button>
             </>
           )}
         </li>
@@ -47,22 +59,3 @@ const CommentList = ({ articleId, comments, refetch }: Props) => {
 };
 
 export default CommentList;
-
-/*
-'use client';
-
-const CommentList = ({ comments }: { comments: any }) => {
-  console.log('comments:', comments);
-  return (
-    <ul>
-      {comments.map((comment: any, index: number) => (
-        <li key={index}>
-          <strong>{comment.user}</strong>: {comment.message}
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-export default CommentList;
-*/
