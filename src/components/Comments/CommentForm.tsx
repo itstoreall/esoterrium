@@ -5,11 +5,11 @@ type Props = {
   userName: string;
   articleId: string;
   refetch: () => void;
-  onCommentCreated: () => void;
+  // onCommentCreated: () => void;
 };
 
 const CommentForm = (props: Props) => {
-  const { userName, articleId, refetch, onCommentCreated } = props;
+  const { userName, articleId, refetch } = props;
 
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
@@ -26,7 +26,7 @@ const CommentForm = (props: Props) => {
       setNewComment('');
       setError('');
       refetch();
-      onCommentCreated();
+      // onCommentCreated();
     } catch (err) {
       setError('Error posting comment');
       console.error(err);
@@ -45,6 +45,7 @@ const CommentForm = (props: Props) => {
         />
       </div>
       {error && <p>{error}</p>}
+      <button type="submit">Post Comment</button>
       <button type="submit">Post Comment</button>
     </form>
   );

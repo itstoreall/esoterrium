@@ -11,8 +11,8 @@ import { CommentData } from '@/src/types';
 const Comments = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<CommentData[]>([]);
   const [userName, setUserName] = useState('');
-  const [isPolling, setIsPolling] = useState(false);
-  const [count, setCount] = useState(0);
+  // const [isPolling, setIsPolling] = useState(false);
+  // const [count, setCount] = useState(0);
 
   const session = useSession();
 
@@ -21,12 +21,13 @@ const Comments = ({ id }: { id: string }) => {
       const response = await fetch(`/api/articles/${id}/comments`);
       const data = await response.json();
       setComments(data);
-      setCount((prev) => prev + 1);
+      // setCount((prev) => prev + 1);
     } catch (err) {
       console.error('Error fetching comments:', err);
     }
   };
 
+  /*
   const startPolling = () => {
     setIsPolling(true);
   };
@@ -34,6 +35,7 @@ const Comments = ({ id }: { id: string }) => {
   const stopPolling = () => {
     setIsPolling(false);
   };
+  */
 
   console.log('comments:', comments);
 
@@ -47,6 +49,7 @@ const Comments = ({ id }: { id: string }) => {
     }
   }, [session]);
 
+  /*
   useEffect(() => {
     fetchComments();
     let interval: NodeJS.Timeout;
@@ -55,23 +58,26 @@ const Comments = ({ id }: { id: string }) => {
     }
     return () => clearInterval(interval);
   }, [isPolling]);
+  */
 
   return userName && comments ? (
     <section>
       <h2>Comments</h2>
-      <span>{count}</span>
 
       <CommentForm
         userName={userName}
         articleId={id}
         refetch={fetchComments}
-        onCommentCreated={startPolling}
+        // onCommentCreated={startPolling}
       />
+
+      <button onClick={fetchComments}>Refetch comments</button>
+
       <CommentList
         articleId={id}
         comments={comments}
         refetch={fetchComments}
-        onStopPolling={stopPolling}
+        // onStopPolling={stopPolling}
       />
     </section>
   ) : null;

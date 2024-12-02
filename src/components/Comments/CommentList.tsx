@@ -9,7 +9,6 @@ type Props = {
   articleId: string;
   comments: CommentData[];
   refetch: () => void;
-  onStopPolling: () => void; // optionally
 };
 
 const CommentList = ({ articleId, comments, refetch }: Props) => {
