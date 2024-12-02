@@ -3,6 +3,7 @@ import metadataHandler from '@/src/utils/metadataHandler';
 import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
 import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
+import Comments from '@/src/components/Comments/Comments';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -35,7 +36,12 @@ const Article = async ({ params }: Props) => {
   if (!isAuthenticated) {
     redirect('/auth/sign-in');
   } else {
-    return <ArticleDetailPage params={params} />;
+    return (
+      <>
+        <ArticleDetailPage params={params} />
+        <Comments id={(await params).id} />
+      </>
+    );
   }
 };
 

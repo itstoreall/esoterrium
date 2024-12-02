@@ -9,7 +9,14 @@ const articleSchema = new Schema(
     author: { type: String, required: true },
     tags: { type: [String], default: [] },
     views: { type: Number, default: 0 },
-    comments: { type: [String], required: false },
+    comments: [
+      {
+        userName: { type: String, required: true },
+        message: { type: String, required: true },
+        createdAt: { type: Date, default: Date.now },
+        updatedAt: { type: Date, default: Date.now },
+      },
+    ],
     isPublished: { type: Boolean, default: false },
     publishedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now },
@@ -19,3 +26,5 @@ const articleSchema = new Schema(
 );
 
 export const Article = models.Article || model('Article', articleSchema);
+
+// comments: { type: [String], required: false },
