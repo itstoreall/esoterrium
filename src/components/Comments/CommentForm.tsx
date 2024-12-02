@@ -2,26 +2,26 @@ import { useState } from 'react';
 import { postComment } from '@/src/services/commentsService';
 
 type Props = {
-  user: string;
+  userName: string;
   articleId: string;
   refetch: () => void;
 };
 
-const CommentForm = ({ user, articleId, refetch }: Props) => {
+const CommentForm = ({ userName, articleId, refetch }: Props) => {
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
 
-  console.log('user:', user);
+  console.log('userName:', userName);
 
   const handlePostComment = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newComment || !user) {
+    if (!newComment || !userName) {
       setError('Both user and comment are required');
       return;
     }
 
     try {
-      await postComment(articleId, { user, message: newComment });
+      await postComment(articleId, { userName, message: newComment });
       setNewComment('');
       setError('');
       refetch(); // Refresh comments
@@ -33,7 +33,7 @@ const CommentForm = ({ user, articleId, refetch }: Props) => {
 
   return (
     <form onSubmit={handlePostComment}>
-      <span>{user}</span>
+      <span>{userName}</span>
       <div>
         <textarea
           id="newComment"
@@ -42,10 +42,8 @@ const CommentForm = ({ user, articleId, refetch }: Props) => {
           required
         />
       </div>
-      {error && <p >{error}</p>}
-      <button type="submit">
-        Post Comment
-      </button>
+      {error && <p>{error}</p>}
+      <button type="submit">Post Comment</button>
     </form>
   );
 };

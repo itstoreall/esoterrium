@@ -27,9 +27,9 @@ export async function POST(
 ) {
   try {
     const { id } = params;
-    const { user, message } = await req.json();
+    const { userName, message } = await req.json();
 
-    if (!user || !message) {
+    if (!userName || !message) {
       return NextResponse.json(
         { error: 'User and message are required' },
         { status: 400 }
@@ -40,7 +40,7 @@ export async function POST(
     if (!article)
       return NextResponse.json({ error: 'Article not found' }, { status: 404 });
 
-    article.comments.push({ user, message });
+    article.comments.push({ userName, message });
     await article.save();
 
     return NextResponse.json(article.comments, { status: 201 });

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const postComment = async (
   articleId: string,
-  commentData: { user: string; message: string }
+  commentData: { userName: string; message: string }
 ) => {
   return axios.post(`/api/articles/${articleId}/comments`, commentData);
 };
