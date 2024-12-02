@@ -4,33 +4,21 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import CommentList from '@/src/components/Comments/CommentList';
-import AddCommentForm from '@/src/components/Comments/AddCommentForm';
+import { getComments } from '@/src/services/commentsService';
 import { CommentData } from '@/src/types';
+import AddCommentForm from '@/src/components/Comments/AddCommentForm';
+import CommentList from '@/src/components/Comments/CommentList';
 
-const Comments = ({
-  articleId,
-  initialComments,
-}: {
+type Props = {
   articleId: string;
   initialComments: CommentData[];
-}) => {
+};
+
+const Comments = ({ articleId, initialComments }: Props) => {
   const [comments, setComments] = useState<CommentData[]>([]);
   const [userName, setUserName] = useState('');
 
   const session = useSession();
-
-  const fetchComments = async () => {
-    try {
-      const response = await fetch(`/api/articles/${articleId}/comments`);
-      const data = await response.json();
-      setComments(data);
-    } catch (err) {
-      console.error('Error fetching comments:', err);
-    }
-  };
-
-  console.log('comments:', comments);
 
   useEffect(() => {
     setComments(initialComments);
@@ -41,6 +29,17 @@ const Comments = ({
       setUserName(session.data?.user?.name);
     }
   }, [session]);
+
+  // ---
+
+  const fetchComments = async () => {
+    try {
+      const response = await getComments(articleId);
+      setComments(response.data);
+    } catch (err) {
+      console.error('Error fetching comments:', err);
+    }
+  };
 
   return userName && comments ? (
     <section>

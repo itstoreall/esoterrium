@@ -13,26 +13,6 @@ const AddCommentForm = (props: Props) => {
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
 
-  /*
-  const [isPulling, setIsPulling] = useState(false);
-  const checkNewComments = () => {
-    setIsPulling(true);
-    let count = 0;
-    const pull = () => {
-      setTimeout(() => {
-        count += 1;
-        if (count <= 5) {
-          refetch();
-          pull();
-        }
-        return;
-      }, 5000);
-      if (count >= 5) setIsPulling(false);
-    };
-    pull();
-  };
-  */
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newComment || !userName) {
@@ -45,9 +25,6 @@ const AddCommentForm = (props: Props) => {
       setNewComment('');
       setError('');
       refetch();
-      /*
-      if (!isPulling) checkNewComments();
-      */
     } catch (err) {
       setError('Error posting comment');
       console.error(err);
