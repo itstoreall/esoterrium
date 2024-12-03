@@ -13,6 +13,7 @@ import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
 import { AuthRoleEnum } from '@/src/enum';
 import SignOutButton from '@/src/components/Button/SignOutButton';
+import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 
 export const DashboardPage: React.FC = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
@@ -30,7 +31,7 @@ export const DashboardPage: React.FC = () => {
     const { name: userName, email } = user;
     if (userName) {
       setName(userName);
-    } else if (userName === null && email) {
+    } else if (!userName && email) {
       const emailName = email.split('@')[0];
       session.update({ name: emailName });
     }
@@ -40,6 +41,9 @@ export const DashboardPage: React.FC = () => {
     const role = await getUserRole();
     if (role) {
       setRole(role as AuthRoleEnum);
+    } else {
+      console.log(`User role: ${role} => signed out...`);
+      handleSignOut();
     }
   };
 
