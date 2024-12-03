@@ -20,13 +20,14 @@ enum AuthRole {
  
 model User {
   id String @id @default(cuid())
-  name String
+  name String?
   email String @unique
   emailVerified DateTime?
+  role AuthRole @default(GUEST)
   points Int @default(0)
   image String?
   accounts Account[]
-  role AuthRole @default(GUEST)
+  accessedAt DateTime @default(now())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

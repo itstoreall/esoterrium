@@ -4,12 +4,13 @@ CREATE TYPE "AuthRole" AS ENUM ('ADMIN', 'MODERATOR', 'EDITOR', 'INFLUENCER', 'U
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "name" TEXT,
     "email" TEXT NOT NULL,
     "emailVerified" TIMESTAMP(3),
+    "role" "AuthRole" NOT NULL DEFAULT 'GUEST',
     "points" INTEGER NOT NULL DEFAULT 0,
     "image" TEXT,
-    "role" "AuthRole" NOT NULL DEFAULT 'GUEST',
+    "accessedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

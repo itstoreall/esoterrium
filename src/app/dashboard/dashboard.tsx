@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 'use client';
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { User } from 'next-auth';
 import Link from 'next/link';
 import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
 import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
-import { getUserName } from '@/src/lib/auth/getUserNameServerAction';
 import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
 import { AuthRoleEnum } from '@/src/enum';
@@ -24,10 +26,13 @@ export const DashboardPage: React.FC = () => {
 
   const session = useSession();
 
-  const handleUserName = async () => {
-    const name = await getUserName();
-    if (name) {
-      setName(name);
+  const handleUserName = async (user: User) => {
+    const { name: userName, email } = user;
+    if (userName) {
+      setName(userName);
+    } else if (userName === null && email) {
+      const emailName = email.split('@')[0];
+      session.update({ name: emailName });
     }
   };
 
@@ -60,15 +65,15 @@ export const DashboardPage: React.FC = () => {
         console.error('Failed to get account link status:', error);
       }
     };
-    handleUserName();
     handleUserRole();
     accountLinkStatus();
   }, []);
 
   useEffect(() => {
-    const id = session.data?.user?.id;
-    if (id) {
-      setUserId(id);
+    const user = session.data?.user;
+    if (user?.id) {
+      setUserId(user.id);
+      handleUserName(user);
     }
   }, [session]);
 
