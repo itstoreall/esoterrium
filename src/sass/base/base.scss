@@ -1,0 +1,13 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/_extends' as *;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  background-color: $black;
+}

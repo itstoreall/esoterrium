@@ -1,6 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import metadataHandler from '@/src/utils/metadataHandler';
+import Container from '../components/Container/Container';
+import Home from '../components/Page/Home';
 
 export async function generateMetadata() {
   return metadataHandler('general');
@@ -8,13 +9,9 @@ export async function generateMetadata() {
 
 const HomePage = () => {
   return (
-    <div>
-      <Link href="/dashboard">
-        <button>Dashboard</button>
-      </Link>
-
-      <main>Home</main>
-    </div>
+    <Container className={'page-wrapper'}>
+      <Home />
+    </Container>
   );
 };
 

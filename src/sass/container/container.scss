@@ -1,0 +1,13 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/extends' as *;
+
+div.container {
+  &.page-wrapper {
+    @extend %extends-hide-scrollbar;
+
+    background-color: tomato;
+
+    max-height: 100svh;
+    overflow-y: auto;
+  }
+}

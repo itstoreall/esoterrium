@@ -1,0 +1,10 @@
+@use '@/src/sass/mixins.scss';
+@use '@/src/sass/extends.scss';
+
+// Base:
+@use '@/src/sass/base/base.scss';
+@use '@/src/sass/base/reset.scss';
+@use '@/src/sass/base/typography.scss';
+
+// Conteiner:
+@use '@/src/sass/container/container.scss';

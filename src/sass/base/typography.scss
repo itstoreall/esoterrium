@@ -1,0 +1,63 @@
+@use '@/src/sass/base/vars' as *;
+
+/*
+* { color: red; }
+// */
+
+h1,
+h2,
+h3,
+p,
+span,
+button,
+input,
+select,
+ul,
+li,
+form,
+div,
+section {
+  font-family: var(--font-roboto);
+  font-size: 16px;
+  color: $white;
+
+  &.content-text {
+    font-family: var(--font-pt-serif);
+  }
+}
+
+/*
+h1 {
+  font-weight: 600;
+  text-transform: uppercase;
+
+  &.home-page-logo {
+    padding-left: 0.5rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.5rem;
+  }
+
+  &.header-logo {
+    font-size: 0.7rem;
+    letter-spacing: 0.15rem;
+  }
+}
+
+h3 {
+  &.form-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+  
+
+p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+*/

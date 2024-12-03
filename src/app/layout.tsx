@@ -1,17 +1,18 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { PT_Serif, Roboto } from 'next/font/google';
 import Providers from '@/src/providers';
+import '@/src/sass/globals.scss';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
+const roboto = Roboto({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '700', '900'],
+  variable: '--font-roboto',
 });
 
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const ptSerif = PT_Serif({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '700'],
+  variable: '--font-pt-serif',
 });
 
 export const metadata: Metadata = {
@@ -33,10 +34,19 @@ export default function RootLayout({ children }: Readonly<ChildrenProps>) {
       </head>
 
       <Providers>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className={`${roboto.variable} ${ptSerif.variable}`}>
           {children}
         </body>
       </Providers>
     </html>
   );
 }
+
+/*
+import localFont from 'next/font/local';
+const geistSans = localFont({
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
+});
+*/

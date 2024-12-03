@@ -1,0 +1,83 @@
+$min: 320px;
+$mobile: 390px;
+$tablet: 820px;
+$desktop: 1024px;
+$max: 1440px;
+
+// ---
+
+$ease03s: 0.3s ease;
+$ease03s03s: 0.3s ease 0.3s;
+$ease03s01s: 0.3s ease 0.1s;
+
+// --- Sizes:
+
+$headerHeight: 3rem;
+$footerHeight: 6rem;
+
+// ================== Colors:
+
+$googleGradient: linear-gradient(90deg, #34a853, #fbbc05, #ea4335, #4285f4);
+
+$white: white;
+$greyLightUltra: #dedede;
+$greyLight: #c2c4c5;
+$greyMiddle: #717a81;
+$greyDark: #3a3f46;
+$greyDeepDark: #1d2228;
+$greyDeepDarkPlus: #151a1e;
+$blackMiddle: #0f1114;
+$black: black;
+
+$googleGreen: #34a853;
+$googleYellow: #fbbc05;
+$googleRed: #ea4335;
+$googleBlue: #4285f4;
+
+$blue: #225695;
+$smokeBlue: #283950;
+$lightRed: #f25c5e;
+$violetLight: #a676a6;
+$violetDark: #80669d;
+
+// --- Panel:
+
+$bgDarkPanel: $greyDeepDark;
+$bgDarkPanelHover: $greyDeepDarkPlus;
+$colorLight: $greyLight;
+$colorAccent: $violetLight;
+
+// --- Button:
+
+$bgButtonActive: $blue;
+$bgButtonInactive: $violetDark;
+$bgButtonDesabled: $smokeBlue;
+$colorButton: $greyLight;
+$colorButtonDisabled: $greyMiddle;
+
+// ---
+
+// $ultraLightGray: #ebeaed;
+$middleLightGray: hsl(0, 0%, 70%);
+
+$middleDarkGray: #333333;
+
+// $blueDeepDark: #1d2228;
+// $blueDeepDarkHover: #151a1e;
+// $yellow: #76a7e8;
+// $blue: #5783db;
+// // $blue: hsl(208, 86%, 48%);
+// $blueHover: hsl(208, 86%, 58%);
+
+$q: #f4db7d;
+$qq: #fb8122;
+$qqq: #f25c5e;
+$qqqq: #ffbd03;
+$qqqqq: #5dbea3;
+// $qqqq: #a676a6;
+// $qqqq: #aa6aaa;
+$qqqqqq: #b9d9eb;
+
+// Shadow:
+
+$shadow: rgba(0, 0, 0, 0.5) 0px 2px 5px -1px;
