@@ -2,12 +2,29 @@
 @use '@/src/sass/extends' as *;
 
 div.container {
-  &.page-wrapper {
+  min-width: $min;
+  background-color: pink;
+
+  &.page-wrapper-container {
     @extend %extends-hide-scrollbar;
 
     background-color: tomato;
 
     max-height: 100svh;
     overflow-y: auto;
+  }
+
+  &.header-content-block-container,
+  &.main-content-block-container,
+  &.footer-content-block-container {
+    padding: 0 1rem;
+    margin: 0 auto;
+    max-width: $desktop;
+    background-color: green;
+  }
+
+  &.main-content-block-container {
+    background-color: $greyDark;
+    min-height: $mainHeight;
   }
 }

@@ -1,0 +1,20 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/extends' as *;
+
+nav.navigation {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+
+  > div.navigation-button-block,
+  > div.navigation-logo-block {
+    display: flex;
+    align-items: center;
+    background-color: black;
+
+    > a > button {
+      display: block;
+      height: 100%;
+    }
+  }
+}

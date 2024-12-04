@@ -8,3 +8,15 @@
 
 // Conteiner:
 @use '@/src/sass/container/container.scss';
+
+// Components:
+@use '@/src/sass/components/button.scss';
+
+// Layout:
+@use '@/src/sass/layout/header.scss';
+@use '@/src/sass/layout/navigation.scss';
+@use '@/src/sass/layout/main.scss';
+@use '@/src/sass/layout/footer.scss';
+
+// Section:
+@use '@/src/sass/section/section.scss';

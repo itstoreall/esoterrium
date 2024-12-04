@@ -1,0 +1,11 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/extends' as *;
+
+header.header {
+  background-color: grey;
+
+  div.footer-content-block {
+    height: $headerHeight;
+    background-color: red;
+  }
+}

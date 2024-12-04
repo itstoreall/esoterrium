@@ -1,0 +1,28 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/extends' as *;
+
+button.button {
+  padding: 0.74rem 1rem;
+  width: 100%;
+  letter-spacing: 0.025rem;
+  color: $colorButton;
+  background-color: $bgButtonActive;
+  border-radius: 0.2rem;
+  transition: background-color $ease03s, color $ease03s;
+  user-select: none;
+
+  &:hover {
+    color: $white;
+    background-color: $bgButtonInactive;
+  }
+
+  &.nav-link-button {
+    background-color: transparent;
+    border-radius: 0;
+
+    &:hover {
+      color: $white;
+      background-color: $bgButtonInactive;
+    }
+  }
+}

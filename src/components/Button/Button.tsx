@@ -32,7 +32,7 @@ const Button = (props: ButtonProps) => {
   };
 
   const disableStyle = disabled ? 'disabled' : '';
-  const btnStyle = `uni-button ${className || ''} ${disableStyle}`;
+  const btnStyle = `button ${className || ''} ${disableStyle}`;
 
   return (
     <button

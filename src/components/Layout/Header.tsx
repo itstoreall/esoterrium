@@ -1,19 +1,13 @@
-import { SessionContextValue } from 'next-auth/react';
-import Container from '../Container/Container';
-// import Navigation from '@/src/components/Layout/Navigation';
-// import Logo from '@/src/components/Layout/Logo';
+import { HeaderProps } from '@/src/types/header';
+import Container from '@/src/components/Container';
+import Navigation from '@/src/components/Layout/Navigation';
 
-type Props = { session: SessionContextValue };
-
-const Header = ({ session }: Props) => {
-  console.log('session ==>', session);
-
+const Header = ({ session }: HeaderProps) => {
   return (
     <header className="header">
-      <Container className={'header'}>
-        <div className="header-content">
-          {/* <Logo className="header-logo" />
-          <Navigation session={session} /> */}
+      <Container className={'header-content-block-container'}>
+        <div className="footer-content-block">
+          <Navigation session={session} />
         </div>
       </Container>
     </header>

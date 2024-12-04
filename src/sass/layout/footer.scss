@@ -1,0 +1,24 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/extends' as *;
+
+footer.footer {
+  background-color: grey;
+
+  div.footer-content-block {
+    height: $headerHeight;
+    background-color: red;
+
+    > div.copyright {
+      .copyright-content-block {
+        display: flex;
+        justify-content: center;
+        gap: 0.25rem;
+
+        > span,
+        time {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
