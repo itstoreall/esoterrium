@@ -12,9 +12,8 @@ nav.navigation {
     align-items: center;
     background-color: black;
 
-    > a > button {
-      display: block;
-      height: 100%;
-    }
+    /*
+    > a.navigation-link {}
+    */
   }
 }

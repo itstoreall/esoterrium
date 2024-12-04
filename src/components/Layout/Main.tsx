@@ -2,7 +2,7 @@ import { ChildrenProps } from '@/src/types';
 import Container from '@/src/components/Container';
 
 type MainProps = ChildrenProps & {
-  className?: 'home-page-main' | 'dashboard-page-main';
+  className?: 'home-page-main' | 'dashboard-page-main' | 'articles-page-main';
 };
 
 const Main = ({ children, className }: MainProps) => (

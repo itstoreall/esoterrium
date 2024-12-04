@@ -7,6 +7,7 @@ type ButtonProps = {
   style?: React.CSSProperties;
   className?: string;
   type?: 'submit' | 'button';
+  title?: string;
   clickContent?: (() => void) | string;
   disabled?: boolean;
 };
@@ -17,6 +18,7 @@ const Button = (props: ButtonProps) => {
     style,
     className,
     type = 'submit',
+    title,
     clickContent,
     disabled,
   } = props;
@@ -39,6 +41,7 @@ const Button = (props: ButtonProps) => {
       style={{ cursor: 'pointer', ...style }}
       className={btnStyle}
       type={type}
+      title={title}
       onClick={() => onClickHandler()}
       disabled={disabled}
     >

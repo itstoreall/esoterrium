@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Button from '@/src/components/Button/Button';
 import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 
 type Props = {
   className?: string;
-  title: string;
+  content: ReactNode;
+  title?: string;
   disabled?: boolean;
 };
 
-const SignOutButton = ({ className, title, disabled = false }: Props) => {
+const SignOutButton = ({ className, content, title, disabled = false }: Props) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = () => {
@@ -18,11 +19,12 @@ const SignOutButton = ({ className, title, disabled = false }: Props) => {
 
   return (
     <Button
-      className={`signout-button ${className}`}
+      className={className}
       clickContent={handleClick}
+      title={title}
       disabled={disabled || isDisabled}
     >
-      {title}
+      {content}
     </Button>
   );
 };

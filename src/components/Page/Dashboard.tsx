@@ -82,11 +82,6 @@ const Dashboard = () => {
   return (
     <Main className={'dashboard-page-main'}>
       <Section className={'dashboard-section'}>
-        {/* <SignOutButton title={'Sign Out'} />
-      <Link href="/articles">
-        <button>Articles</button>
-      </Link> */}
-
         <div>
           <p>Role: {role}</p>
         </div>

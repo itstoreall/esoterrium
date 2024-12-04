@@ -2,8 +2,13 @@
 @use '@/src/sass/extends' as *;
 
 button.button {
-  padding: 0.74rem 1rem;
+  // padding: 0.74rem 1rem;
+  // padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  // min-height: 40px;
   letter-spacing: 0.025rem;
   color: $colorButton;
   background-color: $bgButtonActive;
@@ -16,13 +21,49 @@ button.button {
     background-color: $bgButtonInactive;
   }
 
-  &.nav-link-button {
+  &.nav-link-react-icon-button,
+  &.nav-link-text-button {
     background-color: transparent;
     border-radius: 0;
+    height: 40px;
 
     &:hover {
       color: $white;
       background-color: $bgButtonInactive;
     }
   }
+
+  &.nav-link-react-icon-button {
+    width: 40px;
+  }
+
+  &.nav-link-text-button {
+    padding: 0 1rem;
+  }
+
+  // &.nav-link-button,
+  // &.signout-button {
+  //   background-color: transparent;
+  //   border-radius: 0;
+  //   height: 40px;
+
+  //   &:hover {
+  //     color: $white;
+  //     background-color: $bgButtonInactive;
+  //   }
+
+  //   &.react-icon-button {
+  //     // padding: 0;
+  //     width: 40px;
+
+  //     > svg {
+  //       display: block;
+  //     }
+  //   }
+  // }
+
+  // &.react-icon-button {
+  //   padding: 0;
+  //   width: 40px;
+  // }
 }

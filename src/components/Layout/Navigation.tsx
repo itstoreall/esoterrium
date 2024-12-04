@@ -1,10 +1,19 @@
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import { HeaderProps } from '@/src/types/header';
+import { GoSignIn } from 'react-icons/go';
+import { GoSignOut } from 'react-icons/go';
+// import { IconType } from 'react-icons';
 import Title from '@/src/components/Layout/Title';
-import Button from '@/src/components/Button/Button';
 import SignOutButton from '../Button/SignOutButton';
+import Button from '@/src/components/Button/Button';
 
-type NavLinkProps = { path: string; text: string };
+type NavLinkProps = {
+  path: string;
+  className?: 'nav-link-react-icon-button' | 'nav-link-text-button';
+  content: ReactNode;
+  title?: string;
+};
 
 const Logo = () => (
   <Link href={'/'}>
@@ -12,16 +21,18 @@ const Logo = () => (
   </Link>
 );
 
-const NavLink = ({ path, text }: NavLinkProps) => {
+const NavLinkButton = ({ path, className, content, title }: NavLinkProps) => {
   return (
-    <Link href={path}>
-      <Button className="nav-link-button">{text}</Button>
+    <Link className="navigation-link" href={path}>
+      <Button className={className} title={title}>
+        {content}
+      </Button>
     </Link>
   );
 };
 
 const Navigation = ({ session }: HeaderProps) => {
-  console.log('session ==>', session);
+  // console.log('session ==>', session);
 
   return (
     <nav className="navigation">
@@ -29,19 +40,29 @@ const Navigation = ({ session }: HeaderProps) => {
         <Logo />
       </div>
 
-      {session.status !== 'authenticated' ? (
-        <div className="navigation-button-block">
-          <NavLink path={'/dashboard'} text={'Вход'} />
-        </div>
-      ) : (
-        <div className="navigation-button-block">
-          <SignOutButton title={'Sign Out'} />
-
-          <Link href="/articles">
-            <button>Articles</button>
-          </Link>
-        </div>
-      )}
+      <div className="navigation-button-block">
+        {session.status !== 'authenticated' ? (
+          <NavLinkButton
+            path={'/dashboard'}
+            className="nav-link-react-icon-button"
+            content={<GoSignIn size={20} />}
+            title={'Вход'}
+          />
+        ) : (
+          <>
+            <NavLinkButton
+              path={'/articles'}
+              className="nav-link-text-button"
+              content={'Статьи'}
+            />
+            <SignOutButton
+              className="nav-link-react-icon-button"
+              content={<GoSignOut size={20} />}
+              title={'Вьіход'}
+            />
+          </>
+        )}
+      </div>
     </nav>
   );
 };
