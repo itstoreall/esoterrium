@@ -1,7 +1,7 @@
 import { ChildrenProps } from '@/src/types';
 
 type SectionProps = ChildrenProps & {
-  className?: 'home-section';
+  className?: 'home-section' | 'dashboard-section';
 };
 
 const Section = ({ children, className }: SectionProps) => {

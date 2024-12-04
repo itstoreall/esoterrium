@@ -6,7 +6,7 @@ const Header = ({ session }: HeaderProps) => {
   return (
     <header className="header">
       <Container className={'header-content-block-container'}>
-        <div className="footer-content-block">
+        <div className="header-content-block">
           <Navigation session={session} />
         </div>
       </Container>
