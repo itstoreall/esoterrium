@@ -12,6 +12,8 @@ import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 import { AuthRoleEnum } from '@/src/enum';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
+import SignOutButton from '../Button/SignOutButton';
+import { GoSignOut } from 'react-icons/go';
 
 const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
@@ -82,6 +84,12 @@ const Dashboard = () => {
   return (
     <Main className={'dashboard-page-main'}>
       <Section className={'dashboard-section'}>
+        <SignOutButton
+          className="nav-link-react-icon-button"
+          content={<GoSignOut size={20} />}
+          title={'Вьіход'}
+        />
+
         <div>
           <p>Role: {role}</p>
         </div>

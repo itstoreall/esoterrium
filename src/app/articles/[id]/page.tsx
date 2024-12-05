@@ -3,7 +3,6 @@ import metadataHandler from '@/src/utils/metadataHandler';
 import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
 import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
-import Comments from '@/src/components/Comments/Comments';
 import jsonParse from '@/src/utils/jsonParse';
 
 type Props = { params: Promise<{ id: string }> };
@@ -11,14 +10,12 @@ type Props = { params: Promise<{ id: string }> };
 const getArticle = async (id: string) => {
   try {
     const article = await getArticleById(id, 'lean');
-
     if (!article) {
       return {
         title: 'Article Not Found',
         description: 'The requested article could not be found.',
       };
     }
-
     return article;
   } catch (error) {
     throw error;
@@ -48,18 +45,7 @@ const Article = async ({ params }: Props) => {
       redirect('/auth/sign-in');
     } else {
       const article = await getArticle(id);
-
-      console.log('------:', article);
-
-      return (
-        <>
-          <ArticleDetailPage article={jsonParse(article)} />
-          <Comments
-            articleId={jsonParse(article._id)}
-            initialComments={jsonParse(article.comments)}
-          />
-        </>
-      );
+      return <ArticleDetailPage article={jsonParse(article)} />;
     }
   } catch (error) {
     console.error(`Error generating metadata: ${error}`);

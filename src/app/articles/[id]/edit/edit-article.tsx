@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
-import EditArticleForm from '@/src/components/Form/EditArticleForm';
+import Container from '@/src/components/Container';
+import EditArticle from '@/src/components/Page/EditArticle';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -16,20 +16,9 @@ const EditArticlePage = async ({ params }: Props) => {
     }
 
     return (
-      <div>
-        <Link href="/dashboard">
-          <button>Dashboard</button>
-        </Link>
-        <Link href="/articles">
-          <button>Articles</button>
-        </Link>
-        <Link href={`/articles/${id}`}>
-          <button>Cancel</button>
-        </Link>
-
-        <h1>Edit Article</h1>
-        <EditArticleForm article={JSON.parse(JSON.stringify(article))} />
-      </div>
+      <Container className={'page-wrapper-container'}>
+        <EditArticle article={article} />
+      </Container>
     );
   } catch (error) {
     console.error(`Error editing an article: ${error}`);

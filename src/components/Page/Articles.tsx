@@ -1,12 +1,24 @@
 import { useArticles } from '@/src/hooks/useArticles';
 import { ArticleData } from '@/src/types';
 import Main from '@/src/components/Layout/Main';
+import Link from 'next/link';
 
 const Articles = () => {
   const { data: articles, isLoading, isError } = useArticles();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error fetching articles</p>;
+  if (isLoading)
+    return (
+      <Main className={'articles-page-main'}>
+        <p>Loading...</p>
+      </Main>
+    );
+
+  if (isError)
+    return (
+      <Main className={'articles-page-main'}>
+        <p>Error fetching articles</p>
+      </Main>
+    );
 
   console.log('articles:', articles);
 
@@ -26,9 +38,9 @@ const Articles = () => {
           <li key={article._id} style={{ border: '1px solid #999999' }}>
             <h2>{article.title}</h2>
             <p>{article.content}</p>
-            {/* <Link href={`/articles/${article._id}`}>
+            <Link href={`/articles/${article._id}`}>
               <button>Open</button>
-            </Link> */}
+            </Link>
           </li>
         ))}
       </ul>
