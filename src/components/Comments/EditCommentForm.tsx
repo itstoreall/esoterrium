@@ -1,21 +1,23 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { updateComment } from '@/src/services/commentsService';
 import { CommentData } from '@/src/types';
 
 type EditCommentFormProps = {
   articleId: string;
   comment: CommentData;
-  refetch: () => void;
   onCancel: () => void;
 };
 
 const EditCommentForm = (props: EditCommentFormProps) => {
-  const { articleId, comment, refetch, onCancel } = props;
+  const { articleId, comment, onCancel } = props;
 
   const [updatedMessage, setUpdatedMessage] = useState('');
   const [error, setError] = useState('');
+
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     setUpdatedMessage(comment.message);
@@ -29,11 +31,15 @@ const EditCommentForm = (props: EditCommentFormProps) => {
     }
 
     try {
-      await updateComment(articleId, {
+      const res = await updateComment({
+        articleId,
         commentId: comment._id,
         message: updatedMessage,
       });
-      refetch();
+      console.log('res:', res.status);
+      if (res.status === 200) {
+        queryClient.invalidateQueries({ queryKey: ['comments'] });
+      }
       onCancel();
     } catch (err) {
       setError('Error updating comment');

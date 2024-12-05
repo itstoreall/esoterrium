@@ -1,26 +1,27 @@
-
 import apiClient from '@/src/lib/axios/client';
+import { CommentData } from '@/src/types';
+
+type CreatePayload = Pick<CommentData, 'articleId' | 'userName' | 'message'>;
+type UpdatePayload = Omit<CreatePayload, 'userName'> & { commentId: string };
+type DeletePayload = Omit<UpdatePayload, 'message'>;
 
 export const getComments = async (articleId: string) => {
-  return apiClient.get(`/articles/${articleId}/comments`);
+  return apiClient.get(`/comments/${articleId}`);
 };
 
-export const addComment = async (
-  articleId: string,
-  commentData: { userName: string; message: string }
-) => {
-  return apiClient.post(`/articles/${articleId}/comments`, commentData);
+export const createComment = async (payload: CreatePayload) => {
+  return apiClient.post(`/comments/${payload.articleId}`, payload);
 };
 
-export const updateComment = async (
-  articleId: string,
-  updateData: { commentId: string; message: string }
-) => {
-  return apiClient.put(`/articles/${articleId}/comments`, updateData);
-};
-
-export const deleteComment = async (articleId: string, commentId: string) => {
-  return apiClient.delete(`/articles/${articleId}/comments`, {
-    data: { commentId },
+export const updateComment = async (payload: UpdatePayload) => {
+  return apiClient.put(`/comments/${payload.articleId}`, {
+    commentId: payload.commentId,
+    message: payload.message,
   });
+};
+
+export const deleteComment = async (payload: DeletePayload) => {
+  return apiClient.delete(
+    `/comments/${payload.articleId}/${payload.commentId}`
+  );
 };

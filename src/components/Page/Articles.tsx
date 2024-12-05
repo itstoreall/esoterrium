@@ -20,8 +20,6 @@ const Articles = () => {
       </Main>
     );
 
-  console.log('articles:', articles);
-
   return (
     <Main className={'articles-page-main'}>
       {/* <Link href="/dashboard">

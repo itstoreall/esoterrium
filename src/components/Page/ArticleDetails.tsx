@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { ArticleData } from '@/src/types';
 import DeleteArticleButton from '@/src/components/Button/DeleteArticleButton';
-import Comments from '@/src/components/Comments';
+// import Comments from '@/src/components/Comments';
 import Main from '@/src/components/Layout/Main';
+import CommentBlock from '../Comments/CommentBlock';
 
 const ArticleDetails = ({ article }: { article: ArticleData }) => {
   return (
@@ -23,7 +24,8 @@ const ArticleDetails = ({ article }: { article: ArticleData }) => {
         <DeleteArticleButton id={article._id} />
       </div>
 
-      <Comments articleId={article._id} initialComments={article.comments} />
+      {/* <Comments articleId={article._id} initialComments={article.comments} /> */}
+      <CommentBlock articleId={article._id} />
     </Main>
   );
 };

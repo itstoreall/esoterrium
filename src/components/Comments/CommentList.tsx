@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { deleteComment } from '@/src/services/commentsService';
 import { CommentData } from '@/src/types';
 import EditCommentForm from '@/src/components/Comments/EditCommentForm';
@@ -8,16 +9,19 @@ import EditCommentForm from '@/src/components/Comments/EditCommentForm';
 type Props = {
   articleId: string;
   comments: CommentData[];
-  refetch: () => void;
 };
 
-const CommentList = ({ articleId, comments, refetch }: Props) => {
+const CommentList = ({ articleId, comments }: Props) => {
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
+
+  const queryClient = useQueryClient();
 
   const handleDeleteClick = async (commentId: string) => {
     try {
-      await deleteComment(articleId, commentId);
-      refetch();
+      const res = await deleteComment({ articleId, commentId });
+      if (res.status === 200) {
+        queryClient.invalidateQueries({ queryKey: ['comments'] });
+      }
     } catch (err) {
       console.error('Error deleting comment:', err);
     }
@@ -39,7 +43,6 @@ const CommentList = ({ articleId, comments, refetch }: Props) => {
             <EditCommentForm
               articleId={articleId}
               comment={comment}
-              refetch={refetch}
               onCancel={handleCancelEdit}
             />
           ) : (

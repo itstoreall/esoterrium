@@ -48,7 +48,7 @@ const Comments = ({ articleId, initialComments }: Props) => {
       <AddCommentForm
         userName={userName}
         articleId={articleId}
-        refetch={fetchComments}
+        // refetch={fetchComments}
       />
 
       <button onClick={fetchComments}>Refetch comments</button>
@@ -56,7 +56,7 @@ const Comments = ({ articleId, initialComments }: Props) => {
       <CommentList
         articleId={articleId}
         comments={comments}
-        refetch={fetchComments}
+        // refetch={fetchComments}
       />
     </section>
   ) : null;

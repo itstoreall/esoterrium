@@ -6,14 +6,6 @@ export type FormEvent = React.FormEvent<HTMLFormElement>;
 
 // ------ Article:
 
-export type CommentData = {
-  _id: string;
-  userName: string;
-  message: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
 export type ArticleData = {
   _id: string;
   idx: number;
@@ -23,9 +15,17 @@ export type ArticleData = {
   author: string;
   tags: string[];
   views: number;
-  comments: CommentData[];
   isPublished: boolean;
   publishedAt: Date;
   createdAt: Date;
   updatedAt: Date;
+};
+
+export type CommentData = {
+  _id: string;
+  articleId: string;
+  userName: string;
+  message: string;
+  updatedAt: Date;
+  createdAt: Date;
 };
