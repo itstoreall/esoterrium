@@ -6,7 +6,7 @@ import InfoTextLinkBlock from '@/src/components/Form/InfoTextLinkBlock';
 const AuthSuccess = () => {
   return (
     <Main className={'signin-page-main'}>
-      <Container className="form-wrapper-container">
+      <Container className="auth-form-wrapper-container">
         <InfoStatusBlock status="success" text={'Пожалуйста проверьте почту'} />
 
         <InfoTextLinkBlock

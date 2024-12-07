@@ -12,7 +12,7 @@ type ContainerProps = ChildrenProps & {
     | 'page-wrapper-container'
     | 'header-content-block-container'
     | 'main-content-block-container'
-    | 'form-wrapper-container'
+    | 'auth-form-wrapper-container'
     | 'form-backdrop-container'
     | 'form-content-container'
     | 'footer-content-block-container';

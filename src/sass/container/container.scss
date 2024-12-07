@@ -31,25 +31,34 @@ div.container {
   }
 
   &.main-content-block-container {
-    // background-color: $greyDark;
     min-height: $mainHeight;
+    // background-color: teal;
+    // height: 100svh;
   }
 
-  &.form-wrapper-container {
-    padding-top: 10svh;
+  &.auth-form-wrapper-container {
+    // padding-top: 10svh;
     margin: 0 auto;
     // min-width: $min;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1rem;
     width: 100%;
     min-width: calc($min - 2rem);
     max-width: $mobile;
     text-align: center;
 
-    @include media-screen-orientation('min', $mobile) {
-      padding-top: 13svh;
-    }
+    // background-color: tomato;
+    height: 100svh;
+    min-height: 420px;
+    overflow-y: auto;
+
+    // height: $mainHeight;
+
+    // @include media-screen-orientation('min', $mobile) {
+    //   padding-top: 13svh;
+    // }
   }
 
   &.form-backdrop-container {

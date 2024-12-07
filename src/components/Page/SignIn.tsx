@@ -29,11 +29,10 @@ const SignIn = () => {
   };
 
   const error = '';
-  // const isSubmitting = false;
 
   return (
     <Main className={'signin-page-main'}>
-      <Container className="form-wrapper-container">
+      <Container className="auth-form-wrapper-container">
         <Container className="form-backdrop-container">
           <Title tag={'h3'} className="form-title" text={'Вход в аккаунт'} />
 

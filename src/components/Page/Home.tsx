@@ -8,7 +8,7 @@ import Title from '../Layout/Title';
 const arts = [
   'article1',
   'article2',
-  'article3',
+  // 'article3',
   // 'article4',
   // 'article5',
 ];
