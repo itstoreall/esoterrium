@@ -29,7 +29,7 @@ const SignIn = () => {
   };
 
   const error = '';
-  const isSubmitting = false;
+  // const isSubmitting = false;
 
   return (
     <Main className={'signin-page-main'}>
@@ -49,10 +49,10 @@ const SignIn = () => {
 
               <Button
                 className="form-button"
-                isDisable={isSubmitting || !!error}
+                isDisable={isPending || !!error}
                 type="submit"
               >
-                {isSubmitting ? '...' : 'Войти через почту'}
+                {isPending ? 'В процессе...' : 'Войти через почту'}
               </Button>
             </Container>
 
@@ -61,7 +61,8 @@ const SignIn = () => {
             <SignInGoogleButton
               className={'sign-in'}
               title={'Войти через Google'}
-              disabled={!!error}
+              // disabled={!!error}
+              disabled={isPending || !!error}
             />
           </Form>
         </Container>
