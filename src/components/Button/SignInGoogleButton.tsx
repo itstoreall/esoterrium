@@ -20,7 +20,7 @@ const SignInGoogleButton = ({ className, title, disabled = false }: Props) => {
     <Button
       className={`signin-google-button ${className}`}
       clickContent={handleClick}
-      disabled={disabled || isDisabled}
+      isDisable={disabled || isDisabled}
     >
       {title}
     </Button>

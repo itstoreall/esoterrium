@@ -1,5 +1,6 @@
-import Container from '@/src/components/Container';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Container from '@/src/components/Container';
 
 const Copyright = () => {
   return (
@@ -18,11 +19,13 @@ const Copyright = () => {
 };
 
 const Footer = () => {
+  const pathname = usePathname();
+
   return (
     <footer className="footer">
       <Container className="footer-content-block-container">
         <div className="footer-content-block">
-          <Copyright />
+          {pathname !== '/auth/sign-in' && <Copyright />}
         </div>
       </Container>
     </footer>

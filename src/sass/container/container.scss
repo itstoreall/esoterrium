@@ -1,14 +1,15 @@
 @use '@/src/sass/base/vars' as *;
 @use '@/src/sass/extends' as *;
+@use '@/src/sass/mixins' as *;
 
 div.container {
-  min-width: $min;
-  background-color: pink;
+  // min-width: $min;
+  // background-color: pink;
 
   &.page-wrapper-container {
     @extend %extends-hide-scrollbar;
 
-    background-color: tomato;
+    // background-color: tomato;
 
     max-height: 100svh;
     overflow-y: auto;
@@ -20,11 +21,55 @@ div.container {
     padding: 0 1rem;
     margin: 0 auto;
     max-width: $desktop;
-    background-color: green;
+    // background-color: green;
+  }
+
+  &.header-content-block-container {
+    @include media-screen-orientation('max', $desktop) {
+      padding: 0 0 0 1rem;
+    }
   }
 
   &.main-content-block-container {
-    background-color: $greyDark;
+    // background-color: $greyDark;
     min-height: $mainHeight;
+  }
+
+  &.form-wrapper-container {
+    padding-top: 10svh;
+    margin: 0 auto;
+    // min-width: $min;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    min-width: calc($min - 2rem);
+    max-width: $mobile;
+    text-align: center;
+    // background-color: teal;
+
+    @include media-screen-orientation('min', $mobile) {
+      padding-top: 13svh;
+    }
+  }
+
+  &.form-backdrop-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1rem 2.7rem;
+    background-color: $greyDeepDarkPlus;
+    border: 0.1rem solid $greyDeepDarkUltra;
+    border-radius: 0.4rem;
+
+    @include media-screen-orientation('min', $mobile + 32px) {
+      padding: 2rem 2rem 2.7rem;
+    }
+  }
+
+  &.form-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }

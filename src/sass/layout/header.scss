@@ -1,11 +1,10 @@
 @use '@/src/sass/base/vars' as *;
-@use '@/src/sass/extends' as *;
+@use '@/src/sass/mixins' as *;
 
 header.header {
-  background-color: grey;
+  background-color: $greyDeepDark;
 
   div.header-content-block {
     height: $headerHeight;
-    background-color: red;
   }
 }

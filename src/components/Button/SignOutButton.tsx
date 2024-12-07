@@ -9,7 +9,12 @@ type Props = {
   disabled?: boolean;
 };
 
-const SignOutButton = ({ className, content, title, disabled = false }: Props) => {
+const SignOutButton = ({
+  className,
+  content,
+  title,
+  disabled = false,
+}: Props) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +27,7 @@ const SignOutButton = ({ className, content, title, disabled = false }: Props) =
       className={className}
       clickContent={handleClick}
       title={title}
-      disabled={disabled || isDisabled}
+      isDisable={disabled || isDisabled}
     >
       {content}
     </Button>

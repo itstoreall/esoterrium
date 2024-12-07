@@ -1,5 +1,9 @@
 section.section {
   display: flex;
   flex-direction: column;
-  background-color: black;
+  // background-color: black;
+
+  &.readable-content-section {
+    gap: 1.5rem;
+  }
 }

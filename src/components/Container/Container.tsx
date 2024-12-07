@@ -3,7 +3,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
 import { ChildrenProps } from '@/src/types';
 import Header from '@/src/components/Layout/Header';
 import Footer from '@/src/components/Layout/Footer';
@@ -13,12 +12,13 @@ type ContainerProps = ChildrenProps & {
     | 'page-wrapper-container'
     | 'header-content-block-container'
     | 'main-content-block-container'
+    | 'form-wrapper-container'
+    | 'form-backdrop-container'
+    | 'form-content-container'
     | 'footer-content-block-container';
 };
 
 const Container = ({ children, className }: ContainerProps) => {
-  const session = useSession();
-
   useEffect(() => {
     if (className === 'page-wrapper-container') window.scrollTo(0, 0);
   }, []);
@@ -27,9 +27,8 @@ const Container = ({ children, className }: ContainerProps) => {
     case 'page-wrapper-container':
       return (
         <div className={`container ${className}`}>
-          <Header session={session} />
+          <Header />
           {children}
-
           <Footer />
         </div>
       );

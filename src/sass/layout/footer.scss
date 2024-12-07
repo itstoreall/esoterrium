@@ -2,21 +2,24 @@
 @use '@/src/sass/extends' as *;
 
 footer.footer {
-  background-color: grey;
+  // background-color: grey;
 
   div.footer-content-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: $headerHeight;
-    background-color: red;
 
     > div.copyright {
       .copyright-content-block {
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         gap: 0.25rem;
 
         > span,
         time {
           font-size: 0.9rem;
+          color: $light;
         }
       }
     }

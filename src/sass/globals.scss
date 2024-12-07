@@ -20,3 +20,8 @@
 
 // Section:
 @use '@/src/sass/section/section.scss';
+
+// Form:
+@use '@/src/sass/form/default-input.scss';
+@use '@/src/sass/form/form-divider.scss';
+@use '@/src/sass/form/info-text-link-block.scss';

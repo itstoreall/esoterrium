@@ -4,6 +4,7 @@ import Container from '@/src/components/Container';
 type MainProps = ChildrenProps & {
   className?:
     | 'home-page-main'
+    | 'signin-page-main'
     | 'dashboard-page-main'
     | 'articles-page-main'
     | 'article-details-page-main'

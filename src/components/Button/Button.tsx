@@ -9,7 +9,7 @@ type ButtonProps = {
   type?: 'submit' | 'button';
   title?: string;
   clickContent?: (() => void) | string;
-  disabled?: boolean;
+  isDisable?: boolean;
 };
 
 const Button = (props: ButtonProps) => {
@@ -20,7 +20,7 @@ const Button = (props: ButtonProps) => {
     type = 'submit',
     title,
     clickContent,
-    disabled,
+    isDisable,
   } = props;
 
   const router = useRouter();
@@ -33,20 +33,28 @@ const Button = (props: ButtonProps) => {
     } else return;
   };
 
-  const disableStyle = disabled ? 'disabled' : '';
+  const disableStyle = isDisable ? 'disabled' : '';
   const btnStyle = `button ${className || ''} ${disableStyle}`;
 
+  console.log('btnStyle', btnStyle);
+
   return (
-    <button
-      style={{ cursor: 'pointer', ...style }}
-      className={btnStyle}
-      type={type}
-      title={title}
-      onClick={() => onClickHandler()}
-      disabled={disabled}
-    >
-      {children}
-    </button>
+    <>
+      {isDisable ? (
+        <span className={btnStyle}>{children}</span>
+      ) : (
+        <button
+          style={{ cursor: 'pointer', ...style }}
+          className={btnStyle}
+          type={type}
+          title={title}
+          onClick={() => onClickHandler()}
+          disabled={isDisable}
+        >
+          {children}
+        </button>
+      )}
+    </>
   );
 };
 

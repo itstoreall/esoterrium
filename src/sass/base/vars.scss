@@ -21,12 +21,14 @@ $ease03s01s: 0.3s ease 0.1s;
 $googleGradient: linear-gradient(90deg, #34a853, #fbbc05, #ea4335, #4285f4);
 
 $white: white;
-$greyLightUltra: #dedede;
+$greyLightUltra: #dedede; // *
 $greyLight: #c2c4c5;
 $greyMiddle: #717a81;
-$greyDark: #3a3f46;
-$greyDeepDark: #1d2228;
-$greyDeepDarkPlus: #151a1e;
+$greyMiddleDark: #52585c;
+$greyDark: #2b2f38;
+$greyDeepDark: #21242b;
+$greyDeepDarkPlus: #181b21;
+$greyDeepDarkUltra: #14161a;
 $blackMiddle: #0f1114;
 $black: black;
 
@@ -41,20 +43,22 @@ $lightRed: #f25c5e;
 $violetLight: #a676a6;
 $violetDark: #80669d;
 
+$light: $greyLightUltra;
+$dark: $greyDeepDark;
+
 // --- Panel:
 
-$bgDarkPanel: $greyDeepDark;
-$bgDarkPanelHover: $greyDeepDarkPlus;
-$colorLight: $greyLight;
-$colorAccent: $violetLight;
+// $bgDarkPanel: $greyDeepDark;
+// $bgDarkPanelHover: $greyDeepDarkPlus;
+// $colorLight: $greyLight;
+// $colorAccent: $violetLight;
 
 // --- Button:
 
 $bgButtonActive: $blue;
 $bgButtonInactive: $violetDark;
 $bgButtonDesabled: $smokeBlue;
-$colorButton: $greyLightUltra;
-$colorButtonDisabled: $greyMiddle;
+// $colorButtonDisabled: $greyMiddle;
 
 // --- Shadow:
 

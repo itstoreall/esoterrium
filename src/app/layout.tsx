@@ -3,16 +3,16 @@ import { PT_Serif, Roboto } from 'next/font/google';
 import Providers from '@/src/providers';
 import '@/src/sass/globals.scss';
 
-const roboto = Roboto({
+const generalContent = Roboto({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '700', '900'],
-  variable: '--font-roboto',
+  variable: '--general-content-font',
 });
 
-const ptSerif = PT_Serif({
+const textContent = PT_Serif({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '700'],
-  variable: '--font-pt-serif',
+  variable: '--text-content-font',
 });
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: Readonly<ChildrenProps>) {
       </head>
 
       <Providers>
-        <body className={`${roboto.variable} ${ptSerif.variable}`}>
+        <body className={`${generalContent.variable} ${textContent.variable}`}>
           {children}
         </body>
       </Providers>

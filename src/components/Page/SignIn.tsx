@@ -1,7 +1,15 @@
 import { useState, useTransition } from 'react';
 import { handleEmailSignIn } from '@/src/lib/auth/emailSignInServerAction';
-import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
+// import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
 import Main from '@/src/components/Layout/Main';
+import Container from '@/src/components/Container';
+import Title from '@/src/components/Layout/Title';
+import Form from '@/src/components/Form/Form';
+import Button from '../Button/Button';
+import { InputEvent } from '@/src/types';
+import FormDivider from '../Form/FormDivider';
+import SignInGoogleButton from '../Button/SignInGoogleButton';
+import InfoTextLinkBlock from '../Form/InfoTextLinkBlock';
 
 const SignIn = () => {
   const [isPending, startTransition] = useTransition();
@@ -19,51 +27,71 @@ const SignIn = () => {
     }
   };
 
+  const error = '';
+  const isSubmitting = false;
+
   return (
-    <Main className={'articles-page-main'}>
-      <div className="signin-page">
-        <div className="signin-card">
-          <h2>Sign In</h2>
-          <div className="form-container">
-            <form className="email-signin-form" onSubmit={handleSubmit}>
-              <input
-                className="form-input"
-                type="email"
-                maxLength={320}
-                placeholder="Email Address"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  setFormData({ email: event.target.value })
-                }
-                disabled={isPending}
-                required
-              />
-              <button
-                className="submit-button"
+    <Main className={'signin-page-main'}>
+      <Container className="form-wrapper-container">
+        <Container className="form-backdrop-container">
+          <Title tag={'h3'} className="form-title" text={'Вход в аккаунт'} />
+
+          <Form handleSubmit={handleSubmit}>
+            <Container className="form-content-container">
+              <div style={{ position: 'relative' }}>
+                <input
+                  className={`default-input ${error ? 'error' : ''}`}
+                  type="email"
+                  maxLength={320}
+                  placeholder="Email Address"
+                  onChange={(event: InputEvent) =>
+                    setFormData({ email: event.target.value })
+                  }
+                  disabled={isPending}
+                  required
+                />
+
+                {error && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      left: 0,
+                      bottom: '-1rem',
+                      fontSize: 10,
+                      color: 'red',
+                    }}
+                    className="error-message"
+                  >
+                    {error}
+                  </span>
+                )}
+              </div>
+
+              <Button
+                className="form-button"
+                isDisable={isSubmitting || !!error}
                 type="submit"
-                disabled={isPending}
               >
-                Sign in with email
-              </button>
-            </form>
+                {isSubmitting ? '...' : 'Войти через почту'}
+              </Button>
+            </Container>
 
-            <div className="divider">
-              <div className="line"></div>
-              <span className="or">or</span>
-              <div className="line"></div>
-            </div>
+            <FormDivider />
 
-            <div className="social-logins">
-              <button
-                className="google"
-                onClick={() => handleGoogleSignIn('dashboard')}
-                disabled={isPending}
-              >
-                Sign in with Google
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+            <SignInGoogleButton
+              className={'sign-in'}
+              title={'Войти через Google'}
+              disabled={!!error}
+            />
+          </Form>
+        </Container>
+
+        <InfoTextLinkBlock
+          text={'Перейти на '}
+          url={'/'}
+          linkTitle={'Главную'}
+        />
+      </Container>
     </Main>
   );
 };

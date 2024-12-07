@@ -1,39 +1,29 @@
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { HeaderProps } from '@/src/types/header';
-import { GoSignOut } from 'react-icons/go';
+// import { HeaderProps } from '@/src/types/header';
+// import { GoSignOut } from 'react-icons/go';
 import { FiUser } from 'react-icons/fi';
 import Title from '@/src/components/Layout/Title';
-import SignOutButton from '../Button/SignOutButton';
+// import SignOutButton from '../Button/SignOutButton';
 import Button from '@/src/components/Button/Button';
+
+// const navLinks = [
+//   { label: 'account', href: '/dashboard' },
+//   { label: 'articles', href: '/articles' },
+// ];
+
+type ButtonStyle = 'nav-link-react-icon-button' | 'nav-link-text-button';
 
 type NavLinkProps = {
   path: string;
-  className?: 'nav-link-react-icon-button' | 'nav-link-text-button';
+  className?: ButtonStyle;
   content: ReactNode;
   title?: string;
+  isDisable?: boolean;
 };
 
-const Logo = () => (
-  <Link href={'/'}>
-    <Title text="Esoterrium" />
-  </Link>
-);
-
-const NavLinkButton = ({ path, className, content, title }: NavLinkProps) => {
-  return (
-    <Link className="navigation-link" href={path}>
-      <Button className={className} title={title}>
-        {content}
-      </Button>
-    </Link>
-  );
-};
-
-const Navigation = ({ session }: HeaderProps) => {
-  console.log('session ==>', session);
-
+const Navigation = () => {
   const path = usePathname();
 
   const splitPath = path.split('/');
@@ -45,11 +35,38 @@ const Navigation = ({ session }: HeaderProps) => {
   const isHomePage = path === '/';
   const isSignInPage = path === '/auth/sign-in';
   const isDashboardPage = path.includes('dashboard');
-  const isArticlesPage = path.includes('articles');
-  const isArticleId = isArticlesPage && splitPath[2]?.length === 24;
-  const isArticleDetailsPage = isArticlesPage && isArticleId;
-  const isArticleCreatePage = isArticlesPage && path.includes('create');
-  const isArticleEditPage = isArticlesPage && pathLength === 4;
+  const isArticlesPage = path.includes('articles') && pathLength === 2;
+  // const isArticles = path.includes('articles');
+  // const isArticleId = isArticles && splitPath[2]?.length === 24;
+  // const isArticleDetailsPage = isArticles && isArticleId;
+  // const isArticleCreatePage = isArticles && path.includes('create');
+  // const isArticleEditPage = isArticles && pathLength === 4;
+
+  const isDisableArticles = isHomePage || isSignInPage || isArticlesPage;
+  const isDisableAccount = isSignInPage || isDashboardPage;
+
+  const isHiddenArticles = isHomePage || isSignInPage;
+
+  const Logo = () => (
+    <Link href={'/'}>
+      <Title text="Esoterrium" className="logo-title" />
+    </Link>
+  );
+
+  const NavLinkButton = (props: NavLinkProps) => {
+    const { path, className, content, title, isDisable } = props;
+    return isDisable ? (
+      <Button className={className} title={title} isDisable={isDisable}>
+        {content}
+      </Button>
+    ) : (
+      <Link className="navigation-link" href={path}>
+        <Button className={className} title={title}>
+          {content}
+        </Button>
+      </Link>
+    );
+  };
 
   return (
     <nav className="navigation">
@@ -58,31 +75,21 @@ const Navigation = ({ session }: HeaderProps) => {
       </div>
 
       <div className="navigation-button-block">
-        {((!isHomePage && isDashboardPage) ||
-          isArticleDetailsPage ||
-          isArticleCreatePage ||
-          isArticleEditPage) && (
+        {!isHiddenArticles && (
           <NavLinkButton
             path={'/articles'}
             className="nav-link-text-button"
-            content={'Статьи'}
+            content={'Публикации'}
+            isDisable={isDisableArticles}
           />
         )}
-        {isDashboardPage && (
-          <SignOutButton
-            className="nav-link-react-icon-button"
-            content={<GoSignOut size={20} />}
-            title={'Вьіход'}
-          />
-        )}
-        {!isSignInPage && !isDashboardPage && (
-          <NavLinkButton
-            path={'/dashboard'}
-            className="nav-link-react-icon-button"
-            content={<FiUser size={20} />}
-            title={'Вход'}
-          />
-        )}
+        <NavLinkButton
+          path={'/dashboard'}
+          className="nav-link-react-icon-button"
+          content={<FiUser size={20} />}
+          title={'Вход'}
+          isDisable={isDisableAccount}
+        />
       </div>
     </nav>
   );

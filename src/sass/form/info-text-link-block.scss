@@ -1,0 +1,24 @@
+@use '@/src/sass/base/vars' as *;
+
+div.info-text-link-block {
+  display: grid;
+  padding: 1rem 1rem;
+  text-align: center;
+  gap: 10px;
+
+  > p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: $greyMiddle;
+    letter-spacing: 0.03rem;
+
+    > a {
+      margin: 0;
+      color: hsl(208, 86%, 48%);
+
+      &:hover {
+        color: hsl(208, 86%, 58%);
+      }
+    }
+  }
+}

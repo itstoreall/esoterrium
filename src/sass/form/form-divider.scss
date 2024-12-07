@@ -1,0 +1,18 @@
+@use '@/src/sass/base/vars' as *;
+
+div.divider {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+
+  .line {
+    flex-grow: 1;
+    height: 0.05rem;
+    background-color: $greyMiddleDark;
+  }
+
+  .or {
+    padding: 0 1rem;
+    color: $greyMiddleDark;
+  }
+}

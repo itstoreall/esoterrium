@@ -1,5 +1,13 @@
+@use '@/src/sass/base/vars' as *;
+
 main.main {
-  background-color: green;
+  background-color: $light;
+
+  &.signin-page-main {
+    // display: flex;
+    // flex-direction: column;
+    background-color: $dark;
+  }
 
   div.main-content-block {
     display: flex;

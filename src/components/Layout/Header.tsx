@@ -1,13 +1,15 @@
-import { HeaderProps } from '@/src/types/header';
+import { usePathname } from 'next/navigation';
 import Container from '@/src/components/Container';
 import Navigation from '@/src/components/Layout/Navigation';
 
-const Header = ({ session }: HeaderProps) => {
+const Header = () => {
+  const pathname = usePathname();
+
   return (
     <header className="header">
       <Container className={'header-content-block-container'}>
         <div className="header-content-block">
-          <Navigation session={session} />
+          {pathname !== '/auth/sign-in' && <Navigation />}
         </div>
       </Container>
     </header>

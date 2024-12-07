@@ -1,0 +1,37 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/extends' as *;
+@use '@/src/sass/mixins' as *;
+
+input {
+  background-color: unset;
+  background: unset;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: all 5000s ease-in-out 0s;
+  font-size: 16px !important;
+}
+
+input.default-input {
+  padding: 1rem;
+  width: calc(100% - 2rem - 2px);
+  font-size: 16px;
+  color: $light;
+  background-color: $greyDeepDark;
+  border-radius: 0.2rem;
+  border: 1px solid $greyDeepDark;
+  outline: none;
+  transition: $ease03s;
+  --webkit-autofill-font-size: 16px;
+
+  &:focus {
+    color: $light;
+  }
+
+  &::placeholder {
+    color: $greyMiddleDark;
+  }
+}

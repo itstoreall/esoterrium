@@ -10,7 +10,8 @@ nav.navigation {
   > div.navigation-logo-block {
     display: flex;
     align-items: center;
-    background-color: black;
+    gap: 0.1rem;
+    // background-color: black;
 
     /*
     > a.navigation-link {}
