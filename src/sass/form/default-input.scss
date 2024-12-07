@@ -20,9 +20,9 @@ input.default-input {
   width: calc(100% - 2rem - 2px);
   font-size: 16px;
   color: $light;
-  background-color: $greyDeepDark;
+  background-color: $dark;
   border-radius: 0.2rem;
-  border: 1px solid $greyDeepDark;
+  border: 1px solid $dark;
   outline: none;
   transition: $ease03s;
   --webkit-autofill-font-size: 16px;

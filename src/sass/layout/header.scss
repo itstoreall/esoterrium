@@ -2,7 +2,7 @@
 @use '@/src/sass/mixins' as *;
 
 header.header {
-  background-color: $greyDeepDark;
+  background-color: $dark;
 
   div.header-content-block {
     height: $headerHeight;
