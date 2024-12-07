@@ -23,6 +23,8 @@ const Button = (props: ButtonProps) => {
     isDisable,
   } = props;
 
+  // console.log('--->', props.className);
+
   const router = useRouter();
 
   const onClickHandler = () => {

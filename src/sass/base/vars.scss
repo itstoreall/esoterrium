@@ -7,7 +7,7 @@ $max: 1440px;
 // --- Sizes:
 
 $headerHeight: 40px;
-$footerHeight: 40px;
+$footerHeight: 80px;
 $mainHeight: calc(100svh - $headerHeight - $footerHeight);
 
 // ---
@@ -42,6 +42,7 @@ $smokeBlue: #283950;
 $lightRed: #f25c5e;
 $violetLight: #a676a6;
 $violetDark: #80669d;
+$violetDarkSmoke: #36313d;
 
 $light: $greyLightUltra;
 $dark: $greyDeepDark;

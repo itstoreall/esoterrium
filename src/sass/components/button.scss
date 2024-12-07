@@ -28,7 +28,6 @@ span.button {
 
   &.nav-link-react-icon-button,
   &.nav-link-text-button {
-    // height: 40px;
     border-radius: 0;
     // background-color: transparent;
     background-color: $greyDark;
@@ -37,15 +36,13 @@ span.button {
       background-color: $bgButtonInactive;
     }
 
-    &.disabled {
-      // background-color: $g;
-      // color: $greyMiddleDark;
-      color: $violetLight;
+    &.active {
+      color: $white;
+      background-color: $violetDark;
+    }
 
-      &:hover {
-        background-color: $greyDark;
-        cursor: default;
-      }
+    &.disabled {
+      cursor: default;
     }
   }
 
@@ -57,9 +54,9 @@ span.button {
     padding: 0 1rem;
   }
 
-  &.form-button {
-    // height: 40px;
-  }
+  /*
+  &.form-button {} // *
+  */
 
   &.signin-google-button {
     // display: flex;

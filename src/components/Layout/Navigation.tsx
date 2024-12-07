@@ -1,19 +1,15 @@
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-// import { HeaderProps } from '@/src/types/header';
-// import { GoSignOut } from 'react-icons/go';
 import { FiUser } from 'react-icons/fi';
 import Title from '@/src/components/Layout/Title';
-// import SignOutButton from '../Button/SignOutButton';
 import Button from '@/src/components/Button/Button';
 
-// const navLinks = [
-//   { label: 'account', href: '/dashboard' },
-//   { label: 'articles', href: '/articles' },
-// ];
-
-type ButtonStyle = 'nav-link-react-icon-button' | 'nav-link-text-button';
+type ButtonStyle =
+  | 'nav-link-react-icon-button '
+  | 'nav-link-react-icon-button active'
+  | 'nav-link-text-button '
+  | 'nav-link-text-button active';
 
 type NavLinkProps = {
   path: string;
@@ -26,24 +22,17 @@ type NavLinkProps = {
 const Navigation = () => {
   const path = usePathname();
 
+  /*
   const splitPath = path.split('/');
   const pathLength = splitPath.length;
-
-  // console.log('path:', path);
-  // console.log('path:', path.split('/').length);
+  */
 
   const isHomePage = path === '/';
   const isSignInPage = path === '/auth/sign-in';
-  const isDashboardPage = path.includes('dashboard');
-  const isArticlesPage = path.includes('articles') && pathLength === 2;
-  // const isArticles = path.includes('articles');
-  // const isArticleId = isArticles && splitPath[2]?.length === 24;
-  // const isArticleDetailsPage = isArticles && isArticleId;
-  // const isArticleCreatePage = isArticles && path.includes('create');
-  // const isArticleEditPage = isArticles && pathLength === 4;
+  const isDashboardPage = path === '/dashboard';
+  const isArticlesPage = path === '/articles';
 
   const isDisableArticles = isHomePage || isSignInPage || isArticlesPage;
-  const isDisableAccount = isSignInPage || isDashboardPage;
 
   const isHiddenArticles = isHomePage || isSignInPage;
 
@@ -78,17 +67,19 @@ const Navigation = () => {
         {!isHiddenArticles && (
           <NavLinkButton
             path={'/articles'}
-            className="nav-link-text-button"
+            className={`nav-link-text-button ${isArticlesPage ? 'active' : ''}`}
             content={'Публикации'}
             isDisable={isDisableArticles}
           />
         )}
         <NavLinkButton
           path={'/dashboard'}
-          className="nav-link-react-icon-button"
+          className={`nav-link-react-icon-button ${
+            isDashboardPage ? 'active' : ''
+          }`}
           content={<FiUser size={20} />}
-          title={'Вход'}
-          isDisable={isDisableAccount}
+          title={'Аккаунт'}
+          isDisable={isDashboardPage}
         />
       </div>
     </nav>

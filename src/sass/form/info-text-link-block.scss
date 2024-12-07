@@ -14,10 +14,10 @@ div.info-text-link-block {
 
     > a {
       margin: 0;
-      color: hsl(208, 86%, 48%);
+      color: $googleBlue;
 
       &:hover {
-        color: hsl(208, 86%, 58%);
+        color: $googleBlue;
       }
     }
   }

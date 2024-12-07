@@ -1,26 +1,27 @@
 import { useState, useTransition } from 'react';
 import { handleEmailSignIn } from '@/src/lib/auth/emailSignInServerAction';
-// import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
 import Main from '@/src/components/Layout/Main';
 import Container from '@/src/components/Container';
 import Title from '@/src/components/Layout/Title';
 import Form from '@/src/components/Form/Form';
-import Button from '../Button/Button';
-import { InputEvent } from '@/src/types';
-import FormDivider from '../Form/FormDivider';
-import SignInGoogleButton from '../Button/SignInGoogleButton';
-import InfoTextLinkBlock from '../Form/InfoTextLinkBlock';
+import Button from '@/src/components/Button/Button';
+import SimpleInput from '@/src/components/Form/SimpleInput';
+import FormDivider from '@/src/components/Form/FormDivider';
+import SignInGoogleButton from '@/src/components/Button/SignInGoogleButton';
+import InfoTextLinkBlock from '@/src/components/Form/InfoTextLinkBlock';
 
 const SignIn = () => {
   const [isPending, startTransition] = useTransition();
-  const [formData, setFormData] = useState({ email: '' as string });
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputValue = (value: string) => setInputValue(value);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     try {
       if (isPending) return;
       startTransition(async () => {
-        await handleEmailSignIn(formData.email);
+        await handleEmailSignIn(inputValue);
       });
     } catch (error) {
       console.error(error);
@@ -38,34 +39,13 @@ const SignIn = () => {
 
           <Form handleSubmit={handleSubmit}>
             <Container className="form-content-container">
-              <div style={{ position: 'relative' }}>
-                <input
-                  className={`default-input ${error ? 'error' : ''}`}
-                  type="email"
-                  maxLength={320}
-                  placeholder="Email Address"
-                  onChange={(event: InputEvent) =>
-                    setFormData({ email: event.target.value })
-                  }
-                  disabled={isPending}
-                  required
-                />
-
-                {error && (
-                  <span
-                    style={{
-                      position: 'absolute',
-                      left: 0,
-                      bottom: '-1rem',
-                      fontSize: 10,
-                      color: 'red',
-                    }}
-                    className="error-message"
-                  >
-                    {error}
-                  </span>
-                )}
-              </div>
+              <SimpleInput
+                placeholder="Email Address"
+                type="email"
+                handleChange={handleInputValue}
+                isDisable={isPending}
+                isRequire
+              />
 
               <Button
                 className="form-button"

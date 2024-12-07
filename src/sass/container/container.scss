@@ -46,7 +46,6 @@ div.container {
     min-width: calc($min - 2rem);
     max-width: $mobile;
     text-align: center;
-    // background-color: teal;
 
     @include media-screen-orientation('min', $mobile) {
       padding-top: 13svh;
@@ -61,6 +60,7 @@ div.container {
     background-color: $greyDeepDarkPlus;
     border: 0.1rem solid $greyDeepDarkUltra;
     border-radius: 0.4rem;
+    box-shadow: $shadow;
 
     @include media-screen-orientation('min', $mobile + 32px) {
       padding: 2rem 2rem 2.7rem;
