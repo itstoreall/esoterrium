@@ -50,7 +50,8 @@ span.button {
     min-width: 40px;
   }
 
-  &.nav-link-text-button {
+  &.nav-link-text-button,
+  &.admin-panel-text-button {
     padding: 0 1rem;
   }
 
@@ -89,11 +90,11 @@ span.button {
     }
 
     /*
-  .google-icon {
-    margin-right: 1rem;
-    width: 1.15rem;
-    height: 1.15rem;
-  }
-  */
+    .google-icon {
+      margin-right: 1rem;
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+    */
   }
 }

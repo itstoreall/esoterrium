@@ -1,0 +1,22 @@
+import { useState } from 'react';
+import { AuthRoleEnum } from '@/src/enum';
+import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
+import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
+
+const useAccount = () => {
+  const [role, setRole] = useState<AuthRoleEnum>();
+
+  const handleUserRole = async () => {
+    const role = await getUserRole();
+    if (role) {
+      setRole(role as AuthRoleEnum);
+    } else {
+      console.log(`User role: ${role} => signed out...`);
+      handleSignOut();
+    }
+  };
+
+  return { userRole: role, handleUserRole };
+};
+
+export default useAccount;

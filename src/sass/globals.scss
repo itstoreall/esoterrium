@@ -6,24 +6,27 @@
 @use '@/src/sass/base/reset.scss';
 @use '@/src/sass/base/typography.scss';
 
-// Conteiner:
-@use '@/src/sass/container/container.scss';
-
 // Components:
-@use '@/src/sass/components/button.scss';
+@use '@/src/sass/components/loader-block.scss';
+@use '@/src/sass/components/admin-panel.scss';
 
-// Layout:
-@use '@/src/sass/layout/header.scss';
-@use '@/src/sass/layout/navigation.scss';
-@use '@/src/sass/layout/main.scss';
-@use '@/src/sass/layout/footer.scss';
-@use '@/src/sass/layout/loader-block.scss';
+// Components / Conteiner:
+@use '@/src/sass/components/container/container.scss';
 
-// Section:
-@use '@/src/sass/section/section.scss';
+// Components / Layout:
+@use '@/src/sass/components/layout/header.scss';
+@use '@/src/sass/components/layout/navigation.scss';
+@use '@/src/sass/components/layout/main.scss';
+@use '@/src/sass/components/layout/footer.scss';
 
-// Form:
-@use '@/src/sass/form/default-input.scss';
-@use '@/src/sass/form/form-divider.scss';
-@use '@/src/sass/form/info-status-block.scss';
-@use '@/src/sass/form/info-text-link-block.scss';
+// Components / Section:
+@use '@/src/sass/components/section/section.scss';
+
+// Components / Form:
+@use '@/src/sass/components/form/default-input.scss';
+@use '@/src/sass/components/form/form-divider.scss';
+@use '@/src/sass/components/form/info-status-block.scss';
+@use '@/src/sass/components/form/info-text-link-block.scss';
+
+// Components / Button:
+@use '@/src/sass/components/button/button.scss';

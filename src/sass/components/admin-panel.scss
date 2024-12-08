@@ -1,0 +1,9 @@
+div.admin-panel {
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.25rem;
+
+  &.admin-panel-article-handler {
+    background-color: teal;
+  }
+}

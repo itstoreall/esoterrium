@@ -36,6 +36,17 @@ h1 {
 }
 
 h2 {
+  &.page-main-title {
+    display: flex;
+    align-items: flex-end;
+    height: 3.25rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    // color: red;
+    // background-color: teal;
+  }
+
   &.readable-content {
     font-size: 1.6rem;
     font-weight: bold;

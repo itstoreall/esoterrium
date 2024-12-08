@@ -3,23 +3,27 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
+import useAccount from '@/src/hooks/useAccount';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
 import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
 import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
-import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
+// import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
-import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
+// import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 import { AuthRoleEnum } from '@/src/enum';
+import { GoSignOut } from 'react-icons/go';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
-import SignOutButton from '../Button/SignOutButton';
-import { GoSignOut } from 'react-icons/go';
+import SignOutButton from '@/src/components/Button/SignOutButton';
+import Title from '@/src/components/Layout/Title';
 
 const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
   const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
-  const [role, setRole] = useState<AuthRoleEnum>();
+  // const [role, setRole] = useState<AuthRoleEnum>();
+
+  const acc = useAccount();
 
   const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(
     AuthRoleEnum.Guest
@@ -37,15 +41,15 @@ const Dashboard = () => {
     }
   };
 
-  const handleUserRole = async () => {
-    const role = await getUserRole();
-    if (role) {
-      setRole(role as AuthRoleEnum);
-    } else {
-      console.log(`User role: ${role} => signed out...`);
-      handleSignOut();
-    }
-  };
+  // const handleUserRole = async () => {
+  //   const role = await getUserRole();
+  //   if (role) {
+  //     setRole(role as AuthRoleEnum);
+  //   } else {
+  //     console.log(`User role: ${role} => signed out...`);
+  //     handleSignOut();
+  //   }
+  // };
 
   const handleChangeUserRole = async () => {
     if (!userId) {
@@ -54,7 +58,7 @@ const Dashboard = () => {
     }
     try {
       await setUserRole(userId, selectedRole);
-      await handleUserRole();
+      await acc.handleUserRole();
     } catch (error) {
       console.error('Failed to update role:', error);
     }
@@ -69,7 +73,7 @@ const Dashboard = () => {
         console.error('Failed to get account link status:', error);
       }
     };
-    handleUserRole();
+    acc.handleUserRole();
     accountLinkStatus();
   }, []);
 
@@ -83,6 +87,8 @@ const Dashboard = () => {
 
   return (
     <Main className={'dashboard-page-main'}>
+      <Title tag="h2" className="page-main-title" text="Аккаунт" />
+
       <Section className={'dashboard-section'}>
         <SignOutButton
           className="nav-link-react-icon-button"
@@ -91,7 +97,7 @@ const Dashboard = () => {
         />
 
         <div>
-          <p>Role: {role}</p>
+          <p>Role: {acc.userRole}</p>
         </div>
 
         <div className="name">{name}</div>
