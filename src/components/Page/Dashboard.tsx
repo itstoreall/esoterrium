@@ -7,9 +7,7 @@ import useUserRole from '@/src/hooks/useUserRole';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
 import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
 import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
-// import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
-// import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 import { AuthRoleEnum } from '@/src/enum';
 import { GoSignOut } from 'react-icons/go';
 import Main from '@/src/components/Layout/Main';
@@ -21,7 +19,6 @@ const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
   const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
-  // const [role, setRole] = useState<AuthRoleEnum>();
 
   const acc = useUserRole();
 
@@ -40,16 +37,6 @@ const Dashboard = () => {
       session.update({ name: emailName });
     }
   };
-
-  // const handleUserRole = async () => {
-  //   const role = await getUserRole();
-  //   if (role) {
-  //     setRole(role as AuthRoleEnum);
-  //   } else {
-  //     console.log(`User role: ${role} => signed out...`);
-  //     handleSignOut();
-  //   }
-  // };
 
   const handleChangeUserRole = async () => {
     if (!userId) {

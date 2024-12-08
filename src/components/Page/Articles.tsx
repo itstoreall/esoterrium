@@ -2,7 +2,6 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useArticles } from '@/src/hooks/useArticles';
 import useUserRole from '@/src/hooks/useUserRole';
-import { AuthRoleEnum } from '@/src/enum';
 import { ArticleData } from '@/src/types';
 import Main from '@/src/components/Layout/Main';
 import LoaderBlock from '@/src/components/LoaderBlock';
@@ -23,8 +22,6 @@ const Articles = () => {
     return <LoaderBlock className={'light-loader-block'} />;
 
   if (isError) router.push('/articles/error');
-
-  console.log('acc.userRole', acc.userRole, AuthRoleEnum.Admin);
 
   return (
     <Main className={'articles-page-main'}>

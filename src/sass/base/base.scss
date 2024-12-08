@@ -12,3 +12,27 @@ body {
   background-color: $greyDeepDark;
   // background-color: $light;
 }
+
+*::-webkit-scrollbar {
+  width: 1em;
+  // width: 0.2em;
+}
+/*
+*::-webkit-scrollbar-button {
+  background: red;
+}
+*/
+*::-webkit-scrollbar-track-piece {
+  background: $dark;
+}
+*::-webkit-scrollbar-thumb {
+  background: $violetDark;
+}
+
+/*
+@supports (scrollbar-width: none) {
+  * {
+    scrollbar-width: none; // Hides the scrollbar in Firefox
+  }
+}
+// */
