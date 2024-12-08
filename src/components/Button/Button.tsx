@@ -38,12 +38,14 @@ const Button = (props: ButtonProps) => {
   const disableStyle = isDisable ? 'disabled' : '';
   const btnStyle = `button ${className || ''} ${disableStyle}`;
 
-  console.log('btnStyle', btnStyle);
+  // console.log('btnStyle', btnStyle);
 
   return (
     <>
       {isDisable ? (
-        <span className={btnStyle}>{children}</span>
+        <span className={btnStyle}>
+          <span className="button-text">{children}</span>
+        </span>
       ) : (
         <button
           style={{ cursor: 'pointer', ...style }}
@@ -53,7 +55,7 @@ const Button = (props: ButtonProps) => {
           onClick={() => onClickHandler()}
           disabled={isDisable}
         >
-          {children}
+          <span className="button-text">{children}</span>
         </button>
       )}
     </>

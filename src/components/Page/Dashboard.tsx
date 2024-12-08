@@ -14,6 +14,7 @@ import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
 import SignOutButton from '@/src/components/Button/SignOutButton';
 import Title from '@/src/components/Layout/Title';
+import LoaderBlock from '../LoaderBlock';
 
 const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
@@ -71,6 +72,9 @@ const Dashboard = () => {
       handleUserName(user);
     }
   }, [session]);
+
+  if (!name || !acc.userRole || !userId)
+    return <LoaderBlock className={'light-loader-block'} />;
 
   return (
     <Main className={'dashboard-page-main'}>

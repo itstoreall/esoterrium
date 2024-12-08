@@ -2,24 +2,39 @@
 @use '@/src/sass/extends' as *;
 @use '@/src/sass/mixins' as *;
 
+.default-button-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.065rem;
+  text-transform: uppercase;
+  color: $light;
+  transition: color $ease03s;
+}
+
 button.button,
 span.button {
+  @extend .default-button-text;
   display: flex;
   justify-content: center;
   align-items: center;
   // width: 100%;
   height: 40px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.065rem;
-  text-transform: uppercase;
-  color: $light;
   background-color: $bgButtonActive;
   border: none;
   border-radius: 0.2rem;
-  transition: background-color $ease03s, color $ease03s;
+  transition: background-color $ease03s;
   cursor: pointer;
   user-select: none;
+
+  > span.button-text {
+    @extend .default-button-text;
+    // font-size: 0.75rem;
+    // font-weight: 600;
+    // letter-spacing: 0.065rem;
+    // text-transform: uppercase;
+    // color: $light;
+    // transition: color $ease03s;
+  }
 
   &:hover {
     color: $white;
@@ -60,33 +75,23 @@ span.button {
   */
 
   &.signin-google-button {
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // padding: 1rem;
     width: 100%;
-    // height: 40px;
-    // font-size: 0.95rem;
-    font-weight: 600;
-    // letter-spacing: 0.015rem;
-    // border: none;
-    color: $black;
     @include google-gradient-background();
     transition: background-position 0.5s ease, color 0.5s ease;
     border-radius: 0.2rem;
     user-select: none;
 
-    // &.sign-in {
-
-    //   &:hover {
-    //   }
-    // }
+    > span.button-text {
+      color: $black;
+    }
 
     &:hover {
-      font-weight: 500;
-      color: $white;
       background-position: right center;
       cursor: pointer;
+
+      > span.button-text {
+        color: $white;
+      }
     }
 
     /*
