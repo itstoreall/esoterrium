@@ -1,9 +1,70 @@
+@use '@/src/sass/base/vars' as *;
+
 div.admin-panel {
+  position: relative;
   display: flex;
   padding: 1rem;
-  border-radius: 0.25rem;
+  border-radius: $defaultBorderRadius;
+  box-shadow: $shadow;
+
+  /*
+  &::before {
+    content: 'ADMIN';
+    position: absolute;
+    top: -0.3rem;
+    left: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.6rem;
+    height: 0.8rem;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+    line-height: 1;
+    background-color: $googleRed;
+    border-radius: 0.1rem;
+  }
+  */
 
   &.admin-panel-article-handler {
-    background-color: teal;
+    background-color: $dark;
+    justify-content: space-between;
+
+    > div.admin-panel-articles-number-box-wrapper {
+      display: flex;
+      gap: 1rem;
+
+      > div.admin-panel-articles-number-box {
+        display: flex;
+        flex-direction: column;
+
+        > span {
+          text-transform: uppercase;
+          color: $greyMiddle;
+          // background-color: teal;
+
+          &.admin-panel-articles-number-title {
+            font-size: 0.6rem;
+            letter-spacing: 0.02rem;
+          }
+
+          &.admin-panel-articles-number-value {
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+            font-size: 1.5rem;
+            // color: green;
+          }
+        }
+      }
+
+      > span.admin-panel-articles-number-box-divider {
+        display: block;
+        background-color: $greyMiddle;
+        width: 0.0625rem;
+        min-height: 100%;
+      }
+    }
   }
 }

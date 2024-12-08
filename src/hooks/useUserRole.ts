@@ -6,6 +6,8 @@ import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 const useAccount = () => {
   const [role, setRole] = useState<AuthRoleEnum>();
 
+  const isAdminRole = () => role === AuthRoleEnum.Admin;
+
   const handleUserRole = async () => {
     const role = await getUserRole();
     if (role) {
@@ -16,7 +18,11 @@ const useAccount = () => {
     }
   };
 
-  return { userRole: role, handleUserRole };
+  return {
+    userRole: role,
+    handleUserRole,
+    isAdminRole,
+  };
 };
 
 export default useAccount;

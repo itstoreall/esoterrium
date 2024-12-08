@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
-import useAccount from '@/src/hooks/useAccount';
+import useUserRole from '@/src/hooks/useUserRole';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
 import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
 import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
@@ -23,7 +23,7 @@ const Dashboard = () => {
   const [name, setName] = useState('');
   // const [role, setRole] = useState<AuthRoleEnum>();
 
-  const acc = useAccount();
+  const acc = useUserRole();
 
   const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(
     AuthRoleEnum.Guest

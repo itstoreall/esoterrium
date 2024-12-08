@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useArticles } from '@/src/hooks/useArticles';
-import useAccount from '@/src/hooks/useAccount';
+import useUserRole from '@/src/hooks/useUserRole';
 import { AuthRoleEnum } from '@/src/enum';
 import { ArticleData } from '@/src/types';
 import Main from '@/src/components/Layout/Main';
@@ -12,14 +12,15 @@ import { useEffect } from 'react';
 
 const Articles = () => {
   const { data: articles, isLoading, isError } = useArticles();
-  const acc = useAccount();
+  const acc = useUserRole();
   const router = useRouter();
 
   useEffect(() => {
     acc.handleUserRole();
   }, [acc]);
 
-  if (isLoading) return <LoaderBlock className={'light-loader-block'} />;
+  if (isLoading || !acc.userRole)
+    return <LoaderBlock className={'light-loader-block'} />;
 
   if (isError) router.push('/articles/error');
 
@@ -27,16 +28,11 @@ const Articles = () => {
 
   return (
     <Main className={'articles-page-main'}>
-      {/* <Link href="/dashboard">
-        <button>Dashboard</button>
-      </Link>
-      <Link href="/articles/create">
-        <button>Create</button>
-      </Link> */}
-
       <Title tag="h2" className="page-main-title" text="Публикации" />
 
-      {acc.userRole === AuthRoleEnum.Admin && <AdminPanelArticleHandler />}
+      {acc.isAdminRole() && (
+        <AdminPanelArticleHandler articlesNumber={articles.length} />
+      )}
 
       <ul>
         {articles.map((article: ArticleData) => (
