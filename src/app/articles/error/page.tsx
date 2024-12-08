@@ -8,7 +8,7 @@ const ErrorPage = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      router.push('/articles');
+      router.push('/dashboard');
     }, 5000);
 
     return () => clearTimeout(timeout);
@@ -18,7 +18,7 @@ const ErrorPage = () => {
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <h1>Oops! Something went wrong.</h1>
       <p>We encountered an error while processing your request.</p>
-      <p>Redirecting to the articles in 5 seconds...</p>
+      <p>Redirecting to the dashboard in 5 seconds...</p>
     </div>
   );
 };

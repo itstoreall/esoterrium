@@ -1,24 +1,17 @@
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useArticles } from '@/src/hooks/useArticles';
 import { ArticleData } from '@/src/types';
 import Main from '@/src/components/Layout/Main';
-import Link from 'next/link';
+import LoaderBlock from '@/src/components/Layout/LoaderBlock';
 
 const Articles = () => {
   const { data: articles, isLoading, isError } = useArticles();
+  const router = useRouter();
 
-  if (isLoading)
-    return (
-      <Main className={'articles-page-main'}>
-        <p>Loading...</p>
-      </Main>
-    );
+  if (isLoading) return <LoaderBlock className={'light-loader-block'} />;
 
-  if (isError)
-    return (
-      <Main className={'articles-page-main'}>
-        <p>Error fetching articles</p>
-      </Main>
-    );
+  if (isError) router.push('/articles/error');
 
   return (
     <Main className={'articles-page-main'}>
