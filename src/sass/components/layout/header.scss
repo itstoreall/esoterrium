@@ -2,9 +2,24 @@
 @use '@/src/sass/mixins' as *;
 
 header.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $dark;
+  box-shadow: $shadow;
+
+  div.header-content-block {
+    height: $headerHeight;
+  }
+}
+
+/* // Default header:
+header.header {
+  position: fixed;
   background-color: $dark;
 
   div.header-content-block {
     height: $headerHeight;
   }
 }
+*/

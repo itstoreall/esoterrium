@@ -13,21 +13,23 @@ body {
   // background-color: $light;
 }
 
+/*
 *::-webkit-scrollbar {
   width: 1em;
   // width: 0.2em;
 }
-/*
 *::-webkit-scrollbar-button {
   background: red;
 }
-*/
 *::-webkit-scrollbar-track-piece {
+  padding-top: 40px;
+  margin-top: 40px;
   background: $dark;
 }
 *::-webkit-scrollbar-thumb {
   background: $violetDark;
 }
+// */
 
 /*
 @supports (scrollbar-width: none) {

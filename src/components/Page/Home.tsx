@@ -8,7 +8,7 @@ import Title from '../Layout/Title';
 const arts = [
   'article1',
   'article2',
-  // 'article3',
+  'article3',
   // 'article4',
   // 'article5',
 ];
@@ -16,6 +16,8 @@ const arts = [
 const Home = () => {
   return (
     <Main className={'home-page-main'}>
+      <Section className={'main-hero-section'}>{null}</Section>
+
       {arts.map((art) => (
         <div
           key={art}
@@ -60,6 +62,8 @@ const Home = () => {
           </Link>
         </div>
       ))}
+
+      <Section className={'main-final-section'}>{null}</Section>
     </Main>
   );
 };

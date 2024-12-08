@@ -74,7 +74,9 @@ const Dashboard = () => {
 
   return (
     <Main className={'dashboard-page-main'}>
-      <Title tag="h2" className="page-main-title" text="Аккаунт" />
+      <Section className={'main-hero-section'}>
+        <Title tag="h2" className="page-main-title" text="Аккаунт" />
+      </Section>
 
       <Section className={'dashboard-section'}>
         <SignOutButton
@@ -148,6 +150,8 @@ const Dashboard = () => {
             : 'Connect Google Account'}
         </button>
       </Section>
+
+      <Section className={'main-final-section'}>{null}</Section>
     </Main>
   );
 };

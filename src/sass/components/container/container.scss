@@ -18,6 +18,7 @@ div.container {
   &.header-content-block-container,
   &.main-content-block-container,
   &.footer-content-block-container {
+    // padding: 0 1rem;
     padding: 0 1rem;
     margin: 0 auto;
     max-width: $desktop;
@@ -26,13 +27,12 @@ div.container {
 
   &.header-content-block-container {
     @include media-screen-orientation('max', $desktop) {
-      padding: 0 0 0 1rem;
+      // padding: 0 0 0 1rem;
     }
   }
 
   &.main-content-block-container {
     min-height: $mainHeight;
-    // background-color: teal;
     // height: 100svh;
   }
 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useArticles } from '@/src/hooks/useArticles';
@@ -6,8 +7,8 @@ import { ArticleData } from '@/src/types';
 import Main from '@/src/components/Layout/Main';
 import LoaderBlock from '@/src/components/LoaderBlock';
 import AdminPanelArticleHandler from '@/src/components/Layout/AdminPanelArticleHandler';
+import Section from '@/src/components/Section';
 import Title from '@/src/components/Layout/Title';
-import { useEffect } from 'react';
 
 const Articles = () => {
   const { data: articles, isLoading, isError } = useArticles();
@@ -25,7 +26,9 @@ const Articles = () => {
 
   return (
     <Main className={'articles-page-main'}>
-      <Title tag="h2" className="page-main-title" text="Публикации" />
+      <Section className={'main-hero-section'}>
+        <Title tag="h2" className="page-main-title" text="Публикации" />
+      </Section>
 
       {acc.isAdminRole() && (
         <AdminPanelArticleHandler articlesNumber={articles.length} />
@@ -42,6 +45,8 @@ const Articles = () => {
           </li>
         ))}
       </ul>
+
+      <Section className={'main-final-section'}>{null}</Section>
     </Main>
   );
 };
