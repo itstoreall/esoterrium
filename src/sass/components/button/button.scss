@@ -70,6 +70,17 @@ span.button {
     padding: 0 1rem;
   }
 
+  &.admin-panel-text-button {
+    &.disabled {
+      background-color: $greyDark;
+      cursor: default;
+
+      > span.button-text {
+        color: $greyMiddleDark;
+      }
+    }
+  }
+
   /*
   &.form-button {} // *
   */

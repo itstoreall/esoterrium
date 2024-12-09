@@ -1,18 +1,31 @@
+'use client';
+
+import { useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-// import useUserRole from '@/src/hooks/useUserRole';
+// import Link from 'next/link';
+import useUserRole from '@/src/hooks/useUserRole';
 import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
-import DeleteArticleButton from '@/src/components/Button/DeleteArticleButton';
+import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
+// import DeleteArticleButton from '@/src/components/Button/DeleteArticleButton';
 import CommentBlock from '@/src/components/Comments/CommentBlock';
+import LoaderBlock from '@/src/components/LoaderBlock';
+import Sidebar from '@/src/components/Layout/Sidebar';
+import Container from '@/src/components/Container';
+import Title from '@/src/components/Layout/Title';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
-import Title from '@/src/components/Layout/Title';
-import Container from '@/src/components/Container';
-import Sidebar from '@/src/components/Layout/Sidebar';
 
 const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
+  const acc = useUserRole();
+
+  useEffect(() => {
+    acc.handleUserRole();
+  }, [acc]);
+
+  if (!acc.userRole) return <LoaderBlock className={'light-loader-block'} />;
+
   return (
     <Container className="main-aside-combine-container">
       <Sidebar className="article-details-sidebar">
@@ -82,7 +95,9 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
           </p>
         </Section>
 
-        <Section>
+        {acc.isAdminRole() && <AdminPanelArticleDetails article={article} />}
+
+        {/* <Section>
           <div className="mt-6">
             <DeleteArticleButton id={article._id} />
           </div>
@@ -90,7 +105,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
           <Link href={`/articles/${article._id}/edit`}>
             <button>Edit</button>
           </Link>
-        </Section>
+        </Section> */}
 
         <CommentBlock articleId={article._id} />
 

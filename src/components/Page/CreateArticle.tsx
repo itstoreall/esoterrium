@@ -26,6 +26,7 @@ const CreateArticle = () => {
       const idx = latestArticle ? latestArticle.idx + 1 : 1;
       const res = await createArticle({ ...form, idx });
       if (res) {
+        alert('Статья успешно создана! Теперь ее можно опубликовать');
         router.push('/articles');
       }
     } catch (error) {

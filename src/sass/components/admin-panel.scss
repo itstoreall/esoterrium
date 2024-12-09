@@ -27,8 +27,13 @@ div.admin-panel {
   }
   */
 
-  &.admin-panel-article-handler {
+  &.admin-panel-articles,
+  &.admin-panel-article-details {
     background-color: $dark;
+    // justify-content: space-between;
+  }
+
+  &.admin-panel-articles {
     justify-content: space-between;
 
     > div.admin-panel-articles-number-box-wrapper {
@@ -66,5 +71,10 @@ div.admin-panel {
         min-height: 100%;
       }
     }
+  }
+
+  &.admin-panel-article-details {
+    display: flex;
+    gap: 1rem;
   }
 }

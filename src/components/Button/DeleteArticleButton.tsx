@@ -4,6 +4,7 @@ import { useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
 import { deleteArticle } from '@/src/services/articleService';
+import Button from './Button';
 
 type Props = { id: string };
 
@@ -13,7 +14,7 @@ const DeleteArticleButton = ({ id }: Props) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    if (!confirm('Are you sure you want to delete this article?')) {
+    if (!confirm('Эта публикация будет удалена безвозвратно!')) {
       return;
     }
 
@@ -22,7 +23,7 @@ const DeleteArticleButton = ({ id }: Props) => {
       startTransition(async () => {
         const res = await deleteArticle(id);
         if (res) {
-          alert(res.message);
+          alert('Публикация успешно удалена!');
           router.push('/articles');
         }
       });
@@ -32,9 +33,13 @@ const DeleteArticleButton = ({ id }: Props) => {
   };
 
   return (
-    <button onClick={handleDelete} disabled={isPending}>
-      {isPending ? 'Deleting...' : 'Delete'}
-    </button>
+    <Button
+      className="admin-panel-text-button"
+      clickContent={handleDelete}
+      isDisable={isPending}
+    >
+      {isPending ? 'В процессе...' : 'Удалить'}
+    </Button>
   );
 };
 

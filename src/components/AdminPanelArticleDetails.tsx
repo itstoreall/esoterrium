@@ -1,40 +1,19 @@
 import Link from 'next/link';
+import { ArticleData } from '../types';
+import PublishArticleButton from '@/src/components/Button/PublishArticleButton';
+import DeleteArticleButton from '@/src/components/Button/DeleteArticleButton';
 import Button from '@/src/components/Button/Button';
 
-type Props = {
-  articlesNumber: number;
-};
-
-const AdminPanelArticleDetails = ({ articlesNumber }: Props) => {
-  console.log('articlesNumber', articlesNumber);
-
+const AdminPanelArticleDetails = ({ article }: { article: ArticleData }) => {
   return (
-    <div className="admin-panel admin-panel-article-handler">
-      <div className="admin-panel-articles-number-box-wrapper">
-        <div className="admin-panel-articles-number-box">
-          <span className="admin-panel-articles-number-title">{'Всего'}</span>
-          <span className="admin-panel-articles-number-value">
-            {3209}
-            {/* {articlesNumber} */}
-          </span>
-        </div>
+    <div className="admin-panel admin-panel-article-details">
+      <PublishArticleButton id={article._id} isDisable={article.isPublished} />
 
-        <span className="admin-panel-articles-number-box-divider" />
-
-        <div className="admin-panel-articles-number-box">
-          <span className="admin-panel-articles-number-title">
-            {'Опубликовано'}
-          </span>
-          <span className="admin-panel-articles-number-value">
-            {3187}
-            {/* {articlesNumber} */}
-          </span>
-        </div>
-      </div>
-
-      <Link href="/articles/create">
-        <Button className="admin-panel-text-button">Добавить</Button>
+      <Link href={`/articles/${article._id}/edit`}>
+        <Button className="admin-panel-text-button">Редактировать</Button>
       </Link>
+
+      <DeleteArticleButton id={article._id} />
     </div>
   );
 };

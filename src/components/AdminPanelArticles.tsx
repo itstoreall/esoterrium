@@ -9,7 +9,7 @@ const AdminPanelArticles = ({ articlesNumber }: Props) => {
   console.log('articlesNumber', articlesNumber);
 
   return (
-    <div className="admin-panel admin-panel-article-handler">
+    <div className="admin-panel admin-panel-articles">
       <div className="admin-panel-articles-number-box-wrapper">
         <div className="admin-panel-articles-number-box">
           <span className="admin-panel-articles-number-title">{'Всего'}</span>
