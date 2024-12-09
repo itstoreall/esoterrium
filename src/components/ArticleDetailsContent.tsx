@@ -9,41 +9,94 @@ import CommentBlock from '@/src/components/Comments/CommentBlock';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
 import Title from '@/src/components/Layout/Title';
+import Container from '@/src/components/Container';
+import Sidebar from '@/src/components/Layout/Sidebar';
 
 const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
   return (
-    <Main className={'article-details-page-main'}>
-      <Section className={'main-hero-section'}>{null}</Section>
+    <Container className="main-aside-combine-container">
+      <Sidebar className="article-details-sidebar">
+        <Section className={'main-hero-section'}>{null}</Section>
+        <div>
+          <div style={{ marginBottom: '1rem' }}>Нумерология</div>
+          <div style={{ marginBottom: '1rem' }}>Астрология</div>
+          <div style={{ marginBottom: '1rem' }}>Матрица</div>
+          <div style={{ marginBottom: '1rem' }}>Практики</div>
+          <div style={{ marginBottom: '1rem' }}>Книги</div>
+        </div>
 
-      <Title
-        className="article-details-title readable-content "
-        text={article.title}
-      />
+        <div
+          style={{
+            // backgroundColor: 'teal',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '340px',
+            color: '#c2c4c5',
+            border: '1px solid #c2c4c5',
+          }}
+        >
+          Реклама
+        </div>
 
-      <ArticleDetailsPublicationInfo article={article} />
+        <div
+          style={{
+            // backgroundColor: 'teal',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '340px',
+            color: '#c2c4c5',
+            border: '1px solid #c2c4c5',
+          }}
+        >
+          Реклама
+        </div>
 
-      <div className="image-block article-details-image-block">
-        <Image
-          src={article.image || config.defaultImageUrl}
-          className={'image-block-image'}
-          fill
-          priority={true}
-          alt={article.title}
-        />
-      </div>
+        <Section className={'main-final-section'}>{null}</Section>
+      </Sidebar>
 
-      <p className="article-details-text readable-content">{article.content}</p>
+      <Main className={'article-details-page-main'}>
+        <Section className={'main-hero-section'}>{null}</Section>
 
-      <div className="mt-6">
-        <DeleteArticleButton id={article._id} />
-      </div>
+        <Section className="article-details-section">
+          <Title
+            className="article-details-title readable-content "
+            text={article.title}
+          />
 
-      <Link href={`/articles/${article._id}/edit`}>
-        <button>Edit</button>
-      </Link>
+          <ArticleDetailsPublicationInfo article={article} />
 
-      <CommentBlock articleId={article._id} />
-    </Main>
+          <div className="image-block article-details-image-block">
+            <Image
+              src={article.image || config.defaultImageUrl}
+              className={'image-block-image'}
+              fill
+              priority={true}
+              alt={article.title}
+            />
+          </div>
+
+          <p className="article-details-text readable-content">
+            {article.content}
+          </p>
+        </Section>
+
+        <Section>
+          <div className="mt-6">
+            <DeleteArticleButton id={article._id} />
+          </div>
+
+          <Link href={`/articles/${article._id}/edit`}>
+            <button>Edit</button>
+          </Link>
+        </Section>
+
+        <CommentBlock articleId={article._id} />
+
+        <Section className={'main-final-section'}>{null}</Section>
+      </Main>
+    </Container>
   );
 };
 

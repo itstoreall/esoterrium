@@ -8,7 +8,6 @@ div.container {
 
   &.page-wrapper-container {
     @extend %extends-hide-scrollbar;
-
     // background-color: tomato;
 
     // max-height: 100svh;
@@ -30,6 +29,40 @@ div.container {
       // padding: 0 0 0 1rem;
     }
   }
+
+  // --- Combine (aside with main)
+
+  &.article-details-combine-wrapper-container {
+    background-color: $light;
+  }
+
+  &.main-aside-combine-container {
+    // align-items: center;
+    // background-color: teal;
+
+    @include media-screen-orientation('min', $desktop) {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      // gap: 1rem;
+      margin: 0 auto;
+      max-width: $desktop;
+    }
+
+    // background-color: tomato;
+  }
+
+  // --- Sidebar
+
+  &.sidebar-container {
+    div.sidebar-content-container {
+      display: grid;
+      gap: 2rem;
+      padding: 0 1rem;
+      // background-color: red;
+    }
+  }
+
+  // --- Main
 
   &.main-content-block-container {
     min-height: $mainHeight;
@@ -81,4 +114,12 @@ div.container {
     flex-direction: column;
     gap: 1.5rem;
   }
+
+  // &.article-details-container {
+  //   // display: grid;
+  //   // gap: 2rem;
+  //   // margin: 0 auto;
+  //   // max-width: $tablet;
+  //   // background-color: teal;
+  // }
 }

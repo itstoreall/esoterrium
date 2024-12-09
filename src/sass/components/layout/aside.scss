@@ -1,0 +1,13 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/mixins' as *;
+
+aside.sidebar {
+  &.article-details-sidebar {
+    display: none;
+
+    @include media-screen-orientation('min', $desktop) {
+      display: block;
+      // background-color: $greyDark;
+    }
+  }
+}

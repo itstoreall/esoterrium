@@ -11,10 +11,15 @@ type ContainerProps = ChildrenProps & {
   className?:
     | 'page-wrapper-container'
     | 'header-content-block-container'
+    | 'article-details-combine-wrapper-container'
+    | 'main-aside-combine-container'
+    | 'sidebar-container'
+    | 'sidebar-content-container'
     | 'main-content-block-container'
     | 'auth-form-wrapper-container'
     | 'form-backdrop-container'
     | 'form-content-container'
+    | 'article-details-container'
     | 'footer-content-block-container';
 };
 

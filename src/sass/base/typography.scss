@@ -46,7 +46,8 @@ h1 {
       line-height: 1.2;
 
       @include media-screen-orientation('min', $tablet) {
-        font-size: 2em;
+        // font-size: 2em;
+        font-size: 2.2em;
       }
     }
   }
