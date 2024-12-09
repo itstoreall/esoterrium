@@ -10,11 +10,22 @@ const withPWA = withPWAInit({
   disable: false,
   workboxOptions: {
     disableDevLogs: true,
-    importScripts: ['notification-sw.js']
+    importScripts: ['notification-sw.js'],
     // runtimeCaching: []
-  }
+  },
 });
 
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+};
 
 export default withPWA(nextConfig);

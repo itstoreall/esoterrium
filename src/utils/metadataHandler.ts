@@ -1,20 +1,11 @@
 import { Metadata } from 'next';
 import { ArticleData } from '@/src/types';
-import defaultImage from '@/src/assets/images/defaultImage.jpg';
+import { config } from '@/src/config';
 
 type Handler = (
   label: 'general' | 'article',
   article?: ArticleData
 ) => Metadata;
-
-const publicUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
-export const config = {
-  siteName: 'Esoterrium',
-  baseDescription: 'Духовное саморазвитие',
-  defaultImage,
-  defaultImageUrl: `${publicUrl}/_next/static/media/defaultImage.c592ac5f.jpg`,
-};
 
 const metadataHandler: Handler = (label, article) => {
   const imageSize = { width: 1200, height: 630 };
@@ -41,7 +32,7 @@ const metadataHandler: Handler = (label, article) => {
     openGraph: {
       title: config.siteName,
       description: config.baseDescription,
-      url: `${publicUrl}`,
+      url: `${config.publicUrl}`,
       siteName: config.siteName,
       images: [imageMetadata],
       type: 'article',
@@ -70,7 +61,7 @@ const metadataHandler: Handler = (label, article) => {
         openGraph: {
           title: titleMetadata,
           description: descriptionMetadata,
-          url: `${publicUrl}/articles/${article._id}`,
+          url: `${config.publicUrl}/articles/${article._id}`,
           siteName: config.siteName,
           images: [imageMetadata],
           type: 'article',

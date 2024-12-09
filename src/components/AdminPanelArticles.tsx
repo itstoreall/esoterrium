@@ -5,7 +5,7 @@ type Props = {
   articlesNumber: number;
 };
 
-const AdminPanelArticleHandler = ({ articlesNumber }: Props) => {
+const AdminPanelArticles = ({ articlesNumber }: Props) => {
   console.log('articlesNumber', articlesNumber);
 
   return (
@@ -23,7 +23,7 @@ const AdminPanelArticleHandler = ({ articlesNumber }: Props) => {
 
         <div className="admin-panel-articles-number-box">
           <span className="admin-panel-articles-number-title">
-            {'Опубликованьі'}
+            {'Опубликовано'}
           </span>
           <span className="admin-panel-articles-number-value">
             {3187}
@@ -39,4 +39,4 @@ const AdminPanelArticleHandler = ({ articlesNumber }: Props) => {
   );
 };
 
-export default AdminPanelArticleHandler;
+export default AdminPanelArticles;

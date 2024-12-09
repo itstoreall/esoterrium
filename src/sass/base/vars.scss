@@ -9,15 +9,20 @@ $max: 1440px;
 $headerHeight: 40px;
 $footerHeight: 80px;
 $mainHeight: calc(100svh - $footerHeight);
-// $mainHeight: calc(100svh - $headerHeight - $footerHeight);
 
-// ---
+// --- z-index:
+
+$mainZIndex: 20;
+$headerZIndex: 30;
+$modalZIndex: 50;
+
+// --- Transitions:
 
 $ease03s: 0.3s ease;
 $ease03s03s: 0.3s ease 0.3s;
 $ease03s01s: 0.3s ease 0.1s;
 
-// ---
+// --- Borders:
 
 $defaultBorderRadius: 0.25rem;
 

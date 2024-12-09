@@ -20,7 +20,7 @@ div,
 section {
   font-family: var(--general-content-font);
   font-size: 16px;
-  color: $black;
+  color: $dark;
 
   &.readable-content {
     font-family: var(--text-content-font);
@@ -32,6 +32,23 @@ h1 {
     font-weight: 500;
     // text-transform: uppercase;
     color: $light;
+  }
+
+  &.article-details-title {
+    // font-weight: 600;
+    // font-size: 2rem;
+    // text-transform: uppercase;
+    // color: $dark;
+
+    &.readable-content {
+      font-size: 1.6rem;
+      font-weight: bold;
+      line-height: 1.2;
+
+      @include media-screen-orientation('min', $tablet) {
+        font-size: 2em;
+      }
+    }
   }
 }
 
@@ -74,6 +91,18 @@ p {
 
     @include media-screen-orientation('min', $tablet) {
       font-size: 1.125em;
+    }
+  }
+
+  &.article-details-text {
+    &.readable-content {
+      font-size: 1rem;
+      line-height: 1.4;
+      letter-spacing: 0.02rem;
+
+      @include media-screen-orientation('min', $tablet) {
+        font-size: 1.125em;
+      }
     }
   }
 }

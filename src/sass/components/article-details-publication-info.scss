@@ -1,0 +1,19 @@
+@use '@/src/sass/base/vars' as *;
+
+div.article-details-publication-info-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  > span {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    color: $greyMiddle;
+
+    /*
+    &.article-details-publication-author {}
+    &.article-details-publication-divider {}
+    &.article-details-publication-date {}
+    */
+  }
+}

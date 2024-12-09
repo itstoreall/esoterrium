@@ -1,0 +1,25 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/mixins' as *;
+
+div.image-block {
+  position: relative;
+  height: 400px;
+  // width: 100%;
+  overflow: hidden;
+
+  &.article-details-image-block {
+    height: 300px;
+
+    @include media-screen-orientation('min', $mobile + 200) {
+      height: 400px;
+    }
+
+    @include media-screen-orientation('min', $tablet) {
+      height: 500px;
+    }
+
+    .image-block-image {
+      object-fit: cover;
+    }
+  }
+}

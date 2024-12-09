@@ -6,7 +6,7 @@ import useUserRole from '@/src/hooks/useUserRole';
 import { ArticleData } from '@/src/types';
 import Main from '@/src/components/Layout/Main';
 import LoaderBlock from '@/src/components/LoaderBlock';
-import AdminPanelArticleHandler from '@/src/components/Layout/AdminPanelArticleHandler';
+import AdminPanelArticles from '@/src/components/AdminPanelArticles';
 import Section from '@/src/components/Section';
 import Title from '@/src/components/Layout/Title';
 
@@ -31,7 +31,7 @@ const Articles = () => {
       </Section>
 
       {acc.isAdminRole() && (
-        <AdminPanelArticleHandler articlesNumber={articles.length} />
+        <AdminPanelArticles articlesNumber={articles.length} />
       )}
 
       <ul>

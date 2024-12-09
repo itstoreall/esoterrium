@@ -1,3 +1,5 @@
+// 'use client';
+
 import { useState } from 'react';
 import { AuthRoleEnum } from '@/src/enum';
 import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
