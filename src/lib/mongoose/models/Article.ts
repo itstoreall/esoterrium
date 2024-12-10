@@ -10,6 +10,7 @@ const articleSchema = new Schema(
     tags: { type: [String], default: [] },
     views: { type: Number, default: 0 },
     isPublished: { type: Boolean, default: false },
+    access: { type: String, default: 'private' },
     publishedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },

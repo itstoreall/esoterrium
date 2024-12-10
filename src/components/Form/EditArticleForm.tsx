@@ -12,6 +12,14 @@ type EditArticleFormProps = {
 
 type InputEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
+const config = {
+  confirmMsg:
+    'Эта публикация станет общедоступной! Повторно изменить доступ будет невозможно. Также, вы не сможете ее удалить (только редактировать)',
+  alertSuccess:
+    'Изменения успешно сохранены! Контент обновится в течение нескольких минут.',
+  alertError: 'An error occurred while editing the article!',
+};
+
 const EditArticleForm = ({ article }: EditArticleFormProps) => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -41,6 +49,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
       startTransition(async () => {
         const res = await updateArticle(article._id, payload);
         if (res && res._id === article._id) {
+          alert(config.alertSuccess);
           router.push('/articles');
         }
       });

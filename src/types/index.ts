@@ -17,6 +17,7 @@ export type ArticleData = {
   tags: string[];
   views: number;
   isPublished: boolean;
+  access: string;
   publishedAt: Date;
   createdAt: Date;
   updatedAt: Date;

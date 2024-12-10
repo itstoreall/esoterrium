@@ -30,9 +30,7 @@ const Articles = () => {
         <Title tag="h2" className="page-main-title" text="Публикации" />
       </Section>
 
-      {acc.isAdminRole() && (
-        <AdminPanelArticles articlesNumber={articles.length} />
-      )}
+      {acc.isAdminRole() && <AdminPanelArticles articles={articles} />}
 
       <ul>
         {articles.map((article: ArticleData) => (

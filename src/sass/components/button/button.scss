@@ -28,12 +28,6 @@ span.button {
 
   > span.button-text {
     @extend .default-button-text;
-    // font-size: 0.75rem;
-    // font-weight: 600;
-    // letter-spacing: 0.065rem;
-    // text-transform: uppercase;
-    // color: $light;
-    // transition: color $ease03s;
   }
 
   &:hover {
@@ -63,6 +57,10 @@ span.button {
 
   &.nav-link-react-icon-button {
     min-width: 40px;
+
+    > span.button-text {
+      height: 20px;
+    }
   }
 
   &.nav-link-text-button,

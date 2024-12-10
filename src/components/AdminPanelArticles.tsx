@@ -1,12 +1,23 @@
 import Link from 'next/link';
 import Button from '@/src/components/Button/Button';
+import { ArticleData } from '@/src/types';
 
 type Props = {
-  articlesNumber: number;
+  articles: ArticleData[];
 };
 
-const AdminPanelArticles = ({ articlesNumber }: Props) => {
-  console.log('articlesNumber', articlesNumber);
+const AdminPanelArticles = ({ articles }: Props) => {
+  const privateAccess = [];
+  const publicAccess = [];
+  const drafts = [];
+
+  for (let i = 0; i < articles.length; i++) {
+    if (!articles[i].isPublished) {
+      drafts.push(articles[i]);
+    } else if (articles[i].access === 'private') {
+      privateAccess.push(articles[i]);
+    } else publicAccess.push(articles[i]);
+  }
 
   return (
     <div className="admin-panel admin-panel-articles">
@@ -14,8 +25,7 @@ const AdminPanelArticles = ({ articlesNumber }: Props) => {
         <div className="admin-panel-articles-number-box">
           <span className="admin-panel-articles-number-title">{'Всего'}</span>
           <span className="admin-panel-articles-number-value">
-            {3209}
-            {/* {articlesNumber} */}
+            {articles.length || 0}
           </span>
         </div>
 
@@ -23,11 +33,30 @@ const AdminPanelArticles = ({ articlesNumber }: Props) => {
 
         <div className="admin-panel-articles-number-box">
           <span className="admin-panel-articles-number-title">
-            {'Опубликовано'}
+            {'Сообщество'}
           </span>
           <span className="admin-panel-articles-number-value">
-            {3187}
-            {/* {articlesNumber} */}
+            {privateAccess.length}
+          </span>
+        </div>
+
+        <span className="admin-panel-articles-number-box-divider" />
+
+        <div className="admin-panel-articles-number-box">
+          <span className="admin-panel-articles-number-title">
+            {'Общедоступно'}
+          </span>
+          <span className="admin-panel-articles-number-value">
+            {publicAccess.length}
+          </span>
+        </div>
+
+        <span className="admin-panel-articles-number-box-divider" />
+
+        <div className="admin-panel-articles-number-box">
+          <span className="admin-panel-articles-number-title">{'Проект'}</span>
+          <span className="admin-panel-articles-number-value">
+            {drafts.length}
           </span>
         </div>
       </div>

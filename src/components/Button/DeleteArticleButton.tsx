@@ -6,29 +6,34 @@ import { AxiosError } from 'axios';
 import { deleteArticle } from '@/src/services/articleService';
 import Button from './Button';
 
-type Props = { id: string };
+type Props = { id: string; isDisable: boolean };
 
-const DeleteArticleButton = ({ id }: Props) => {
+const config = {
+  confirmMsg: 'Эта публикация будет удалена безвозвратно!',
+  alertSuccess:
+    'Публикация успешно удалена! Ссылка на данную статью больше не активна.',
+  alertError: 'An error occurred while deleting!',
+};
+
+const DeleteArticleButton = ({ id, isDisable }: Props) => {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
 
   const handleDelete = async () => {
-    if (!confirm('Эта публикация будет удалена безвозвратно!')) {
-      return;
-    }
+    if (!confirm(config.confirmMsg)) return;
 
     try {
       if (isPending) return;
       startTransition(async () => {
         const res = await deleteArticle(id);
         if (res) {
-          alert('Публикация успешно удалена!');
+          alert(config.alertSuccess);
           router.push('/articles');
         }
       });
     } catch (err: unknown) {
-      alert((err as AxiosError).message || 'An error occurred while deleting');
+      alert((err as AxiosError).message || config.alertError);
     }
   };
 
@@ -36,7 +41,7 @@ const DeleteArticleButton = ({ id }: Props) => {
     <Button
       className="admin-panel-text-button"
       clickContent={handleDelete}
-      isDisable={isPending}
+      isDisable={isDisable || isPending}
     >
       {isPending ? 'В процессе...' : 'Удалить'}
     </Button>
