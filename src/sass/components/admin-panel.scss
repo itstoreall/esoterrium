@@ -8,30 +8,9 @@ div.admin-panel {
   border-radius: $defaultBorderRadius;
   box-shadow: $shadow;
 
-  /*
-  &::before {
-    content: 'ADMIN';
-    position: absolute;
-    top: -0.3rem;
-    left: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.6rem;
-    height: 0.8rem;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.02rem;
-    line-height: 1;
-    background-color: $googleRed;
-    border-radius: 0.1rem;
-  }
-  */
-
   &.admin-panel-articles,
   &.admin-panel-article-details {
     background-color: $dark;
-    // justify-content: space-between;
   }
 
   // --- Articles:
@@ -39,18 +18,41 @@ div.admin-panel {
   &.admin-panel-articles {
     justify-content: space-between;
 
-    > div.admin-panel-articles-number-box-wrapper {
+    @include media-screen-orientation('max', $tablet - 0.1) {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      > a {
+        width: 100%;
+
+        > button {
+          width: 100%;
+        }
+      }
+    }
+
+    > div.admin-panel-articles-number-box-content {
       display: flex;
       gap: 1rem;
+      width: 100%;
+
+      @include media-screen-orientation('max', $min) {
+        flex-direction: column;
+      }
+
+      @include media-screen-orientation('min', $tablet) {
+        max-width: $mobile + 150;
+      }
 
       > div.admin-panel-articles-number-box {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        height: 40px;
 
         > span {
           text-transform: uppercase;
           color: $greyMiddle;
-          // background-color: teal;
 
           &.admin-panel-articles-number-title {
             font-size: 0.6rem;
@@ -72,6 +74,10 @@ div.admin-panel {
         background-color: $greyMiddle;
         width: 0.0625rem;
         min-height: 100%;
+
+        @include media-screen-orientation('max', $min) {
+          display: none;
+        }
       }
     }
   }

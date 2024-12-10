@@ -3,49 +3,81 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useArticles } from '@/src/hooks/useArticles';
 import useUserRole from '@/src/hooks/useUserRole';
+import useLoader from '@/src/hooks/useLoader';
 import { ArticleData } from '@/src/types';
-import Main from '@/src/components/Layout/Main';
-import LoaderBlock from '@/src/components/LoaderBlock';
 import AdminPanelArticles from '@/src/components/AdminPanelArticles';
-import Section from '@/src/components/Section';
+import Sidebar from '@/src/components/Layout/Sidebar';
+import Container from '@/src/components/Container';
 import Title from '@/src/components/Layout/Title';
+import Main from '@/src/components/Layout/Main';
+import Section from '@/src/components/Section';
 
 const Articles = () => {
   const { data: articles, isLoading, isError } = useArticles();
-  const acc = useUserRole();
+  const { isLoader, Loader } = useLoader();
   const router = useRouter();
+  const acc = useUserRole();
 
   useEffect(() => {
     acc.handleUserRole();
   }, [acc]);
 
-  if (isLoading || !acc.userRole)
-    return <LoaderBlock className={'light-loader-block'} />;
-
   if (isError) router.push('/articles/error');
 
   return (
-    <Main className={'articles-page-main'}>
-      <Section className={'main-hero-section'}>
-        <Title tag="h2" className="page-main-title" text="Публикации" />
-      </Section>
+    <Container className="main-aside-combine-container">
+      <Sidebar className="article-details-sidebar" />
 
-      {acc.isAdminRole() && <AdminPanelArticles articles={articles} />}
+      <Main className={'article-details-page-main'}>
+        {isLoading || !acc.userRole || isLoader ? (
+          <Loader className={'main-combine-light-loader-block'} />
+        ) : (
+          <>
+            <Section className={'main-hero-section'}>
+              <Title tag="h2" className="page-main-title" text="Публикации" />
+            </Section>
 
-      <ul>
-        {articles.map((article: ArticleData) => (
-          <li key={article._id} style={{ border: '1px solid #999999' }}>
-            <h2>{article.title}</h2>
-            <p>{article.content}</p>
-            <Link href={`/articles/${article._id}`}>
-              <button>Open</button>
-            </Link>
-          </li>
-        ))}
-      </ul>
+            {acc.isAdminRole() && <AdminPanelArticles articles={articles} />}
 
-      <Section className={'main-final-section'}>{null}</Section>
-    </Main>
+            <ul>
+              {articles?.map((article: ArticleData) => (
+                <li key={article._id} style={{ border: '1px solid #999999' }}>
+                  <h2>{article.title}</h2>
+                  <p>{article.content}</p>
+                  <Link href={`/articles/${article._id}`}>
+                    <button>Open</button>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        <Section className={'main-final-section'}>{null}</Section>
+      </Main>
+    </Container>
+
+    // <Main className={'articles-page-main'}>
+    //   <Section className={'main-hero-section'}>
+    //     <Title tag="h2" className="page-main-title" text="Публикации" />
+    //   </Section>
+
+    //   {acc.isAdminRole() && <AdminPanelArticles articles={articles} />}
+
+    //   <ul>
+    //     {articles.map((article: ArticleData) => (
+    //       <li key={article._id} style={{ border: '1px solid #999999' }}>
+    //         <h2>{article.title}</h2>
+    //         <p>{article.content}</p>
+    //         <Link href={`/articles/${article._id}`}>
+    //           <button>Open</button>
+    //         </Link>
+    //       </li>
+    //     ))}
+    //   </ul>
+
+    //   <Section className={'main-final-section'}>{null}</Section>
+    // </Main>
   );
 };
 

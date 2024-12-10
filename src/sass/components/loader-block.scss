@@ -6,12 +6,17 @@ div.loader-block {
   align-items: center;
   height: $mainHeight;
 
-  &.light-loader-block {
+  &.light-loader-block,
+  &.main-combine-light-loader-block {
     background-color: $light;
   }
 
   &.dark-loader-block {
     background-color: $dark;
+  }
+
+  &.main-combine-light-loader-block {
+    height: calc($mainHeight + 40px);
   }
 
   /*

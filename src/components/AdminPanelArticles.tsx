@@ -21,11 +21,22 @@ const AdminPanelArticles = ({ articles }: Props) => {
 
   return (
     <div className="admin-panel admin-panel-articles">
-      <div className="admin-panel-articles-number-box-wrapper">
-        <div className="admin-panel-articles-number-box">
+      <div className="admin-panel-articles-number-box-content">
+        {/* <div className="admin-panel-articles-number-box">
           <span className="admin-panel-articles-number-title">{'Всего'}</span>
           <span className="admin-panel-articles-number-value">
             {articles.length || 0}
+          </span>
+        </div> */}
+
+        {/* <span className="admin-panel-articles-number-box-divider" /> */}
+
+        <div className="admin-panel-articles-number-box">
+          <span className="admin-panel-articles-number-title">
+            {'Публичные'}
+          </span>
+          <span className="admin-panel-articles-number-value">
+            {publicAccess.length}
           </span>
         </div>
 
@@ -37,17 +48,6 @@ const AdminPanelArticles = ({ articles }: Props) => {
           </span>
           <span className="admin-panel-articles-number-value">
             {privateAccess.length}
-          </span>
-        </div>
-
-        <span className="admin-panel-articles-number-box-divider" />
-
-        <div className="admin-panel-articles-number-box">
-          <span className="admin-panel-articles-number-title">
-            {'Общедоступно'}
-          </span>
-          <span className="admin-panel-articles-number-value">
-            {publicAccess.length}
           </span>
         </div>
 

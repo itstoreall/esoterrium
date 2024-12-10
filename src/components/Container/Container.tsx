@@ -11,7 +11,7 @@ type ContainerProps = ChildrenProps & {
   className?:
     | 'page-wrapper-container'
     | 'header-content-block-container'
-    | 'article-details-combine-wrapper-container'
+    | 'main-aside-combine-wrapper-container'
     | 'main-aside-combine-container'
     | 'sidebar-container'
     | 'sidebar-content-container'

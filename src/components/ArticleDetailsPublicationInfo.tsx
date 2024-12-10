@@ -13,7 +13,7 @@ const ArticleDetailsPublicationInfo = ({ article }: Props) => {
       </span>
       <span className="article-details-publication-divider">|</span>
       <span className="article-details-publication-date">
-        Опубликовано: {convertDate(article.publishedAt)}
+        Дата: {convertDate(article.publishedAt)}
       </span>
     </div>
   );

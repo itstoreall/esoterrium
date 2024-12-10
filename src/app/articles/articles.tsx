@@ -6,7 +6,9 @@ import Articles from '@/src/components/Page/Articles';
 const ArticlesPage = () => {
   return (
     <Container className={'page-wrapper-container'}>
-      <Articles />
+      <Container className={'main-aside-combine-wrapper-container'}>
+        <Articles />
+      </Container>
     </Container>
   );
 };
