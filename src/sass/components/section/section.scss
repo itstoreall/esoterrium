@@ -1,9 +1,18 @@
+@use '@/src/sass/base/vars' as *;
+
 section.section {
   display: flex;
   flex-direction: column;
 
   &.main-hero-section {
     padding-top: 40px;
+  }
+
+  &.sidebar-title-section {
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid $greyLight;
+    width: 100%;
   }
 
   &.article-details-section {

@@ -1,7 +1,9 @@
 $min: 320px;
 $mobile: 390px;
+$combineMobile: $mobile + 32px;
 $tablet: 820px;
 $desktop: 1024px;
+$combineDesktop: $desktop + 32;
 $max: 1440px;
 
 // --- Sizes:

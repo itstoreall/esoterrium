@@ -5,6 +5,7 @@ type SectionProps = ChildrenProps & {
     | 'main-hero-section'
     | 'home-section'
     | 'dashboard-section'
+    | 'sidebar-title-section'
     | 'article-details-section'
     | 'readable-content-section'
     | 'main-final-section';

@@ -54,7 +54,7 @@ const AdminPanelArticles = ({ articles }: Props) => {
         <span className="admin-panel-articles-number-box-divider" />
 
         <div className="admin-panel-articles-number-box">
-          <span className="admin-panel-articles-number-title">{'Проект'}</span>
+          <span className="admin-panel-articles-number-title">{'Проекты'}</span>
           <span className="admin-panel-articles-number-value">
             {drafts.length}
           </span>

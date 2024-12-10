@@ -14,12 +14,8 @@ div.image-block {
       height: 450px;
     }
 
-    @include media-screen-orientation('min', $tablet) {
+    @include media-screen-orientation('min', $combineDesktop) {
       height: 500px;
-    }
-
-    @include media-screen-orientation('min', $desktop) {
-      height: 450px;
     }
 
     .image-block-image {

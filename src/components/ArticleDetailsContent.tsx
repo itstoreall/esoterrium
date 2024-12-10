@@ -8,7 +8,7 @@ import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
-// import DeleteArticleButton from '@/src/components/Button/DeleteArticleButton';
+import SidebarCategories from '@/src/components/SidebarCategories';
 import CommentBlock from '@/src/components/Comments/CommentBlock';
 import LoaderBlock from '@/src/components/LoaderBlock';
 import Sidebar from '@/src/components/Layout/Sidebar';
@@ -29,14 +29,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
   return (
     <Container className="main-aside-combine-container">
       <Sidebar className="article-details-sidebar">
-        <Section className={'main-hero-section'}>{null}</Section>
-        <div>
-          <div style={{ marginBottom: '1rem' }}>Нумерология</div>
-          <div style={{ marginBottom: '1rem' }}>Астрология</div>
-          <div style={{ marginBottom: '1rem' }}>Матрица</div>
-          <div style={{ marginBottom: '1rem' }}>Практики</div>
-          <div style={{ marginBottom: '1rem' }}>Книги</div>
-        </div>
+        <SidebarCategories />
 
         <div
           style={{
@@ -44,7 +37,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '340px',
+            height: '260px',
             color: '#c2c4c5',
             border: '1px solid #c2c4c5',
           }}
@@ -58,15 +51,13 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '340px',
+            height: '260px',
             color: '#c2c4c5',
             border: '1px solid #c2c4c5',
           }}
         >
           Реклама
         </div>
-
-        <Section className={'main-final-section'}>{null}</Section>
       </Sidebar>
 
       <Main className={'article-details-page-main'}>
@@ -96,16 +87,6 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
         </Section>
 
         {acc.isAdminRole() && <AdminPanelArticleDetails article={article} />}
-
-        {/* <Section>
-          <div className="mt-6">
-            <DeleteArticleButton id={article._id} />
-          </div>
-
-          <Link href={`/articles/${article._id}/edit`}>
-            <button>Edit</button>
-          </Link>
-        </Section> */}
 
         <CommentBlock articleId={article._id} />
 

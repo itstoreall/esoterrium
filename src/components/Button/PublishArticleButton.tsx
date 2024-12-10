@@ -43,7 +43,7 @@ const PublishArticleButton = (props: Props) => {
 
   return (
     <Button
-      className={`admin-panel-text-button ${isDisable ? 'disabled' : ''}`}
+      className={`admin-panel-text-button`}
       clickContent={handlePublish}
       isDisable={isPending || isDisable}
     >

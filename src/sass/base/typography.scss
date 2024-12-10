@@ -1,6 +1,16 @@
 @use '@/src/sass/base/vars' as *;
 @use '@/src/sass/mixins' as *;
 
+.default-page-title {
+  display: flex;
+  align-items: flex-end;
+  // height: 1.7rem;
+  height: 3.25rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+}
+
 /*
 * { color: red; }
 // */
@@ -55,12 +65,14 @@ h1 {
 
 h2 {
   &.page-main-title {
-    display: flex;
-    align-items: flex-end;
+    @extend .default-page-title;
     height: 3.25rem;
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0.03rem;
+
+    // display: flex;
+    // align-items: flex-end;
+    // font-size: 1.3rem;
+    // font-weight: 600;
+    // letter-spacing: 0.03rem;
 
     // background-color: teal;
   }
@@ -81,6 +93,18 @@ h3 {
     font-size: 1.5rem;
     font-weight: 500;
     color: $greyMiddle;
+  }
+
+  &.sidebar-title {
+    @extend .default-page-title;
+    // height: 1.7rem;
+    // display: flex;
+    // align-items: flex-end;
+    // font-size: 1.3rem;
+    // font-weight: 600;
+    // letter-spacing: 0.03rem;
+
+    // background-color: teal;;
   }
 }
 

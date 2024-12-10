@@ -55,6 +55,8 @@ span.button {
     }
   }
 
+  // --- Nav Link Icon:
+
   &.nav-link-react-icon-button {
     min-width: 40px;
 
@@ -63,12 +65,16 @@ span.button {
     }
   }
 
+  // --- Nav Link Text:
+
   &.nav-link-text-button,
   &.admin-panel-text-button {
     padding: 0 1rem;
   }
 
   &.admin-panel-text-button {
+    // width: 100%;
+
     &.disabled {
       background-color: $greyDark;
       cursor: default;
@@ -82,6 +88,8 @@ span.button {
   /*
   &.form-button {} // *
   */
+
+  // --- SignIn Google:
 
   &.signin-google-button {
     width: 100%;

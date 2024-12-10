@@ -5,7 +5,7 @@ aside.sidebar {
   &.article-details-sidebar {
     display: none;
 
-    @include media-screen-orientation('min', $desktop) {
+    @include media-screen-orientation('min', $tablet) {
       display: block;
       // background-color: $greyDark;
     }
