@@ -4,9 +4,10 @@ import { ArticleData } from '@/src/types';
 
 type Props = {
   articles: ArticleData[];
+  handleFilterValue: (val: string) => void;
 };
 
-const AdminPanelArticles = ({ articles }: Props) => {
+const AdminPanelArticles = ({ articles, handleFilterValue }: Props) => {
   const privateAccess = [];
   const publicAccess = [];
   const drafts = [];
@@ -31,7 +32,10 @@ const AdminPanelArticles = ({ articles }: Props) => {
 
         {/* <span className="admin-panel-articles-number-box-divider" /> */}
 
-        <div className="admin-panel-articles-number-box">
+        <div
+          className="admin-panel-articles-number-box"
+          onClick={() => handleFilterValue('public')}
+        >
           <span className="admin-panel-articles-number-title">
             {'Публичные'}
           </span>
@@ -42,7 +46,10 @@ const AdminPanelArticles = ({ articles }: Props) => {
 
         <span className="admin-panel-articles-number-box-divider" />
 
-        <div className="admin-panel-articles-number-box">
+        <div
+          className="admin-panel-articles-number-box"
+          onClick={() => handleFilterValue('private')}
+        >
           <span className="admin-panel-articles-number-title">
             {'Сообщество'}
           </span>
@@ -53,7 +60,10 @@ const AdminPanelArticles = ({ articles }: Props) => {
 
         <span className="admin-panel-articles-number-box-divider" />
 
-        <div className="admin-panel-articles-number-box">
+        <div
+          className="admin-panel-articles-number-box"
+          onClick={() => handleFilterValue('draft')}
+        >
           <span className="admin-panel-articles-number-title">{'Проекты'}</span>
           <span className="admin-panel-articles-number-value">
             {drafts.length}

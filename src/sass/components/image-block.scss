@@ -10,7 +10,11 @@ div.image-block {
   // --- Article List Item:
 
   &.article-list-item-thumb {
-    height: 78%;
+    height: 80%;
+
+    @include media-screen-orientation('min', $mobile + 100) {
+      height: 78%;
+    }
 
     > img.article-list-item-image {
       object-fit: cover;

@@ -5,7 +5,7 @@ import { ArticleData } from '@/src/types';
 import { config } from '@/src/config';
 
 const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
-  return (
+  return articles.length ? (
     <ul className="article-list">
       {articles.map((article: ArticleData) => (
         <li key={article._id} className="article-list-item">
@@ -28,6 +28,8 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
         </li>
       ))}
     </ul>
+  ) : (
+    <p>Материалы отсутствуют</p>
   );
 };
 

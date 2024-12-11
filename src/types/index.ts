@@ -15,7 +15,8 @@ export type ArticleData = {
   image: string;
   author: string;
   tags: string[];
-  views: number;
+  views: string[];
+  likes: string[];
   isPublished: boolean;
   access: string;
   publishedAt: Date;
