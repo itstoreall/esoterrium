@@ -8,9 +8,15 @@ main.main {
     background-color: $dark;
   }
 
+  // ---
+
   div.main-content-block {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    > span.articles-page-main-divider {
+      border-bottom: 1px solid $greyLight;
+    }
   }
 }

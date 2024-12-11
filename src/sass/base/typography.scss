@@ -6,7 +6,7 @@
   align-items: flex-end;
   // height: 1.7rem;
   height: 3.25rem;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.03rem;
 }
@@ -45,18 +45,12 @@ h1 {
   }
 
   &.article-details-title {
-    // font-weight: 600;
-    // font-size: 2rem;
-    // text-transform: uppercase;
-    // color: $dark;
-
     &.readable-content {
       font-size: 1.6rem;
       font-weight: bold;
       line-height: 1.2;
 
-      @include media-screen-orientation('min', $tablet) {
-        // font-size: 2em;
+      @include media-screen-orientation('min', $mobile + 100) {
         font-size: 2.2em;
       }
     }
@@ -92,7 +86,7 @@ h3 {
   }
 
   &.article-list-item-title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     line-height: 1.2;
     display: -webkit-box; // Required for line clamping
@@ -104,15 +98,11 @@ h3 {
     line-clamp: 2; // Standard property for non-WebKit browsers (not yet widely supported)
 
     @include media-screen-orientation('min', $mobile + 100) {
-      font-size: 0.9rem;
-    }
-
-    @include media-screen-orientation('min', $tablet) {
-      font-size: 1rem;
+      font-size: 1em;
     }
 
     @include media-screen-orientation('min', $tablet + 100) {
-      font-size: 0.9rem;
+      font-size: 0.9em;
     }
 
     // @include media-screen-orientation('min', $tablet) {

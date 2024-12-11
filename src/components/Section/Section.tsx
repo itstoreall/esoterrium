@@ -8,6 +8,7 @@ type SectionProps = ChildrenProps & {
     | 'sidebar-title-section'
     | 'article-details-section'
     | 'readable-content-section'
+    | 'article-details-comments-section'
     | 'main-final-section';
 };
 

@@ -60,9 +60,9 @@ const Articles = () => {
 
   return (
     <Container className="main-aside-combine-container">
-      <Sidebar className="article-details-sidebar" />
+      <Sidebar className="articles-sidebar" />
 
-      <Main className={'article-details-page-main'}>
+      <Main className={'articles-page-main'}>
         {isLoading || !acc.userRole || isLoader || !filteredArticles ? (
           <Loader className={'main-combine-light-loader-block'} />
         ) : (
@@ -77,6 +77,8 @@ const Articles = () => {
                 handleFilterValue={handleFilterValue}
               />
             )}
+
+            <span className="articles-page-main-divider" />
 
             <ArticleList articles={filteredArticles} />
           </>

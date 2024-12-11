@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useComments } from '@/src/hooks/useComments';
 import AddCommentForm from '@/src/components/Comments/AddCommentForm';
 import CommentList from '@/src/components/Comments/CommentList';
+import Section from '@/src/components/Section';
 
 const CommentBlock = ({ articleId }: { articleId: string }) => {
   const [userName, setUserName] = useState('');
@@ -19,15 +20,17 @@ const CommentBlock = ({ articleId }: { articleId: string }) => {
   }, [session]);
 
   return userName && comments.data ? (
-    <section>
-      <h2>Comments</h2>
+    <Section className="article-details-comments-section">
+      <h3 className="comment-block-title">{`Комментарии (${32})`}</h3>
 
-      <AddCommentForm userName={userName} articleId={articleId} />
+      <div className="article-details-comments-content">
+        <AddCommentForm userName={userName} articleId={articleId} />
 
-      {/* <button onClick={fetchComments}>Refetch comments</button> */}
+        {/* <button onClick={fetchComments}>Refetch comments</button> */}
 
-      <CommentList articleId={articleId} comments={comments.data} />
-    </section>
+        <CommentList articleId={articleId} comments={comments.data} />
+      </div>
+    </Section>
   ) : null;
 };
 

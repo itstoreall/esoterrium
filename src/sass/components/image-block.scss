@@ -11,6 +11,8 @@ div.image-block {
 
   &.article-list-item-thumb {
     height: 80%;
+    border-radius: $smallBorderRadius;
+    box-shadow: $shadow;
 
     @include media-screen-orientation('min', $mobile + 100) {
       height: 78%;
@@ -25,6 +27,8 @@ div.image-block {
 
   &.article-details-thumb {
     height: 300px;
+    border-radius: $middleBorderRadius;
+    box-shadow: $shadow;
 
     @include media-screen-orientation('min', $mobile + 100) {
       height: 450px;

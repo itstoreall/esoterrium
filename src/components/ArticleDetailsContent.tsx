@@ -9,7 +9,7 @@ import { ArticleData } from '@/src/types';
 import normalizeTitle from '@/src/utils/normalizeTitle';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
-import CommentBlock from '@/src/components/Comments/CommentBlock';
+import ArticleDetailsComments from '@/src/components/Comments/ArticleDetailsComments';
 import Sidebar from '@/src/components/Layout/Sidebar';
 import Container from '@/src/components/Container';
 import Title from '@/src/components/Layout/Title';
@@ -43,6 +43,10 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
 
               <ArticleDetailsPublicationInfo article={article} />
 
+              {acc.isAdminRole() && (
+                <AdminPanelArticleDetails article={article} />
+              )}
+
               <div className="image-block article-details-thumb">
                 <Image
                   src={article.image || config.defaultImageUrl}
@@ -58,11 +62,9 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
               </p>
             </Section>
 
-            {acc.isAdminRole() && (
-              <AdminPanelArticleDetails article={article} />
-            )}
+            <span className="articles-page-main-divider" />
 
-            <CommentBlock articleId={article._id} />
+            <ArticleDetailsComments articleId={article._id} />
 
             <Section className={'main-final-section'}>{null}</Section>
           </>

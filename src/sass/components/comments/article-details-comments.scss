@@ -1,0 +1,8 @@
+@use '@/src/sass/base/vars' as *;
+
+div.article-details-comments-content {
+  padding: 1rem;
+  border: 1px solid $greyLight;
+  border-radius: $middleBorderRadius;
+  // background-color: red;
+}

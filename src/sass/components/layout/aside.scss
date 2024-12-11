@@ -2,6 +2,7 @@
 @use '@/src/sass/mixins' as *;
 
 aside.sidebar {
+  &.articles-sidebar,
   &.article-details-sidebar {
     display: none;
 

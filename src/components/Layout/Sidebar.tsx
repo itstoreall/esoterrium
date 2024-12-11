@@ -4,7 +4,7 @@ import Title from './Title';
 import SidebarCategories from '../SidebarCategories';
 
 type SidebarProps = {
-  className?: 'article-details-sidebar';
+  className?: 'article-details-sidebar' | 'articles-sidebar';
 };
 
 const Sidebar = ({ className }: SidebarProps) => {

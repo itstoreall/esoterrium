@@ -5,7 +5,7 @@ div.admin-panel {
   position: relative;
   display: flex;
   padding: 1rem;
-  border-radius: $defaultBorderRadius;
+  border-radius: $middleBorderRadius;
   box-shadow: $shadow;
 
   &.admin-panel-articles,
@@ -49,6 +49,7 @@ div.admin-panel {
         flex-direction: column;
         width: 100%;
         height: 40px;
+        cursor: pointer;
 
         > span {
           text-transform: uppercase;
