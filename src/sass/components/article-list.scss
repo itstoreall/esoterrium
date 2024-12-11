@@ -1,0 +1,41 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/mixins' as *;
+
+ul.article-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @include media-screen-orientation('min', $mobile + 100) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-screen-orientation('min', $tablet + 100) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  > li.article-list-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+
+    > div.article-list-item-content {
+      // background-color: skyblue;
+      width: 100%;
+      height: 100%;
+
+      // --- Link is here!
+
+      > a > div {
+        margin-bottom: 0.6rem;
+      }
+
+      // h3.article-list-item-title {
+      //   color: palevioletred;
+      // }
+
+      // --- Link is finished here!
+    }
+  }
+}

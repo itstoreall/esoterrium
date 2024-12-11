@@ -7,7 +7,19 @@ div.image-block {
   // width: 100%;
   overflow: hidden;
 
-  &.article-details-image-block {
+  // --- Article List Item:
+
+  &.article-list-item-thumb {
+    height: 78%;
+
+    > img.article-list-item-image {
+      object-fit: cover;
+    }
+  }
+
+  // --- Article Details:
+
+  &.article-details-thumb {
     height: 300px;
 
     @include media-screen-orientation('min', $mobile + 100) {
@@ -18,7 +30,7 @@ div.image-block {
       height: 500px;
     }
 
-    .image-block-image {
+    > img.article-details-image {
       object-fit: cover;
     }
   }

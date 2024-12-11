@@ -67,14 +67,6 @@ h2 {
   &.page-main-title {
     @extend .default-page-title;
     height: 3.25rem;
-
-    // display: flex;
-    // align-items: flex-end;
-    // font-size: 1.3rem;
-    // font-weight: 600;
-    // letter-spacing: 0.03rem;
-
-    // background-color: teal;
   }
 
   &.readable-content {
@@ -97,14 +89,35 @@ h3 {
 
   &.sidebar-title {
     @extend .default-page-title;
-    // height: 1.7rem;
-    // display: flex;
-    // align-items: flex-end;
-    // font-size: 1.3rem;
-    // font-weight: 600;
-    // letter-spacing: 0.03rem;
+  }
 
-    // background-color: teal;;
+  &.article-list-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    display: -webkit-box; // Required for line clamping
+    -webkit-line-clamp: 2; // Number of lines to show (WebKit-based browsers)
+    -webkit-box-orient: vertical; // Vertical text layout (WebKit-based browsers)
+    overflow: hidden; // Hide overflow text
+    text-overflow: ellipsis; // Add ellipsis for truncated text
+    white-space: normal; // Allow wrapping
+    line-clamp: 2; // Standard property for non-WebKit browsers (not yet widely supported)
+
+    @include media-screen-orientation('min', $mobile + 100) {
+      font-size: 0.9rem;
+    }
+
+    @include media-screen-orientation('min', $tablet) {
+      font-size: 1rem;
+    }
+
+    @include media-screen-orientation('min', $tablet + 100) {
+      font-size: 0.9rem;
+    }
+
+    // @include media-screen-orientation('min', $tablet) {
+    //   font-size: 0.9rem;
+    // }
   }
 }
 

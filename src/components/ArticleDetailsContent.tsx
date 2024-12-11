@@ -6,6 +6,7 @@ import useUserRole from '@/src/hooks/useUserRole';
 import useLoader from '@/src/hooks/useLoader';
 import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
+import normalizeTitle from '@/src/utils/normalizeTitle';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
 import CommentBlock from '@/src/components/Comments/CommentBlock';
@@ -37,15 +38,15 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
             <Section className="article-details-section">
               <Title
                 className="article-details-title readable-content "
-                text={article.title}
+                text={normalizeTitle(article.title, 20, 15, 5)}
               />
 
               <ArticleDetailsPublicationInfo article={article} />
 
-              <div className="image-block article-details-image-block">
+              <div className="image-block article-details-thumb">
                 <Image
                   src={article.image || config.defaultImageUrl}
-                  className={'image-block-image'}
+                  className={'article-details-image'}
                   fill
                   priority={true}
                   alt={article.title}
