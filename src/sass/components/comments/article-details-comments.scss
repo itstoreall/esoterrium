@@ -1,5 +1,10 @@
 @use '@/src/sass/base/vars' as *;
 
+div.article-details-comments-heading {
+  display: flex;
+  gap: 1rem;
+}
+
 div.article-details-comments-content {
   display: grid;
   gap: 2rem;
@@ -38,8 +43,10 @@ div.article-details-comments-content {
           // white-space: normal; /* Allow text wrapping */
 
           /*
-          > span.article-details-comment-list-item-content-username {} // *
           */
+          > span.article-details-comment-list-item-content-username {
+            font-weight: 600;
+          } // *
 
           > span.article-details-comment-list-item-content-date {
             font-size: 0.7rem;

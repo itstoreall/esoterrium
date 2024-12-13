@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCreateComment } from '@/src/hooks/useCreateComments';
 import Form from '../Form/Form';
 import Button from '../Button/Button';
@@ -9,16 +9,30 @@ type Props = {
   userId: string;
   userName: string;
   articleId: string;
-  refetchComments: () => void;
+  respondTo: string;
 };
 
 const AddCommentForm = (props: Props) => {
-  const { className, userId, userName, articleId, refetchComments } = props;
+  const { className, userId, userName, articleId, respondTo } = props;
 
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
   const { createComment } = useCreateComment();
+
+  useEffect(() => {
+    setMessage((prev) =>
+      respondTo && prev
+        ? `${respondTo} ${prev}`
+        : !respondTo && prev
+        ? prev
+        : respondTo && !prev
+        ? respondTo
+        : !respondTo && !prev
+        ? ''
+        : ''
+    );
+  }, [respondTo]);
 
   const handleChangeMessage = (msg: string) => setMessage(msg);
 
@@ -63,14 +77,6 @@ const AddCommentForm = (props: Props) => {
           type="submit"
         >
           Комментировать
-        </Button>
-
-        <Button
-          type="button"
-          className="article-details-comments-add-form-refetch-button"
-          clickContent={refetchComments}
-        >
-          Обновить
         </Button>
       </div>
     </Form>

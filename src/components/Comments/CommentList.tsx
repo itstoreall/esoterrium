@@ -14,6 +14,7 @@ type Props = {
   userId: string;
   articleId: string;
   comments: CommentData[];
+  handleRespondTo: (userName: string) => void;
 };
 
 const config = {
@@ -22,9 +23,11 @@ const config = {
   alertError: 'Error deleting comment:',
 };
 
-const CommentList = ({ userId, articleId, comments }: Props) => {
+const CommentList = (props: Props) => {
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
   const acc = useUserRole();
+
+  const { userId, articleId, comments, handleRespondTo } = props;
 
   const queryClient = useQueryClient();
 
@@ -47,6 +50,10 @@ const CommentList = ({ userId, articleId, comments }: Props) => {
 
   const handleCancelEdit = () => {
     setEditingCommentId(null);
+  };
+
+  const handleRespond = (userName: string) => {
+    handleRespondTo(`${userName}, `);
   };
 
   return (
@@ -79,25 +86,37 @@ const CommentList = ({ userId, articleId, comments }: Props) => {
               <p>{normalizeString(comment.message, 25, 15, 5)}</p>
             )}
 
-            {editingCommentId !== comment._id &&
-              (userId === comment.userId || acc.isAdminRole()) && (
-                <div className="article-details-comment-list-item-content-button-block">
-                  {userId === comment.userId && (
-                    <Button
-                      className="link-button"
-                      clickContent={() => handleEditClick(comment._id)}
-                    >
-                      Редактировать
-                    </Button>
-                  )}
-                  <Button
-                    className="link-button"
-                    clickContent={() => handleDeleteClick(comment._id)}
-                  >
-                    Удалить
-                  </Button>
-                </div>
-              )}
+            <div className="article-details-comment-list-item-content-button-block">
+              {editingCommentId !== comment._id &&
+                (userId === comment.userId || acc.isAdminRole()) && (
+                  <>
+                    <>
+                      {userId === comment.userId && (
+                        <Button
+                          className="small-link-button"
+                          clickContent={() => handleEditClick(comment._id)}
+                        >
+                          Редактировать
+                        </Button>
+                      )}
+                      <Button
+                        className="small-link-button"
+                        clickContent={() => handleDeleteClick(comment._id)}
+                      >
+                        Удалить
+                      </Button>
+                    </>
+                    {comment.userId !== userId && (
+                      <Button
+                        className="small-link-button"
+                        clickContent={() => handleRespond(comment.userName)}
+                      >
+                        Ответить
+                      </Button>
+                    )}
+                  </>
+                )}
+            </div>
           </div>
         </li>
       ))}

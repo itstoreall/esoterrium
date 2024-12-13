@@ -11,6 +11,21 @@
   transition: color $ease03s;
 }
 
+.default-small-button {
+  height: 1.2rem;
+  background-color: transparent;
+
+  > span.button-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.04rem;
+    color: $greyMiddle;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
 button.button,
 span.button {
   @extend .default-button-text;
@@ -132,27 +147,34 @@ span.button {
 
   // --- Link Button:
 
-  &.link-button {
-    // display: flex;
-    height: 1.2rem;
-    // padding: 0 0.5rem;
-    // background-color: tomato;
-    background-color: transparent;
-    // border: 1px solid $greyMiddle;
+  &.small-link-button {
+    @extend .default-small-button;
 
     > span.button-text {
-      // padding-top: 1px;
-      font-size: 0.6rem;
-      letter-spacing: 0.04rem;
       color: $blue;
-      // color: $greyMiddle;
     }
 
     &:hover {
-      // border: 1px solid $greyDark;
-
       > span.button-text {
         color: $googleBlue;
+      }
+    }
+  }
+
+  &.small-border-button {
+    @extend .default-small-button;
+    padding: 0 0.35rem;
+    border: 1px solid $greyMiddle;
+
+    > span.button-text {
+      padding-top: 1px;
+    }
+
+    &:hover {
+      border: 1px solid $greyDark;
+
+      > span.button-text {
+        color: $greyDark;
       }
     }
   }

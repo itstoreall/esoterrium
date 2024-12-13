@@ -54,8 +54,6 @@ const Articles = () => {
     }
   }, [articles, filterValue]);
 
-  console.log('articles:', articles);
-
   if (isError) router.push('/articles/error');
 
   return (

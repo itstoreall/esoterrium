@@ -34,7 +34,7 @@ export const useComments = (articleId: string) => {
   const refetch = () => {
     const currentTime = Date.now();
 
-    if (!lastFetchTime || currentTime - lastFetchTime >= 60000) {
+    if (!lastFetchTime || currentTime - lastFetchTime >= 30000) {
       queryClient.invalidateQueries({ queryKey: ['comments'] });
       setLastFetchTime(currentTime);
     } else {
