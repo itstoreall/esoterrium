@@ -90,32 +90,30 @@ const CommentList = (props: Props) => {
               {editingCommentId !== comment._id &&
                 (userId === comment.userId || acc.isAdminRole()) && (
                   <>
-                    <>
-                      {userId === comment.userId && (
-                        <Button
-                          className="small-link-button"
-                          clickContent={() => handleEditClick(comment._id)}
-                        >
-                          Редактировать
-                        </Button>
-                      )}
+                    {userId === comment.userId && (
                       <Button
                         className="small-link-button"
-                        clickContent={() => handleDeleteClick(comment._id)}
+                        clickContent={() => handleEditClick(comment._id)}
                       >
-                        Удалить
-                      </Button>
-                    </>
-                    {comment.userId !== userId && (
-                      <Button
-                        className="small-link-button"
-                        clickContent={() => handleRespond(comment.userName)}
-                      >
-                        Ответить
+                        Редактировать
                       </Button>
                     )}
+                    <Button
+                      className="small-link-button"
+                      clickContent={() => handleDeleteClick(comment._id)}
+                    >
+                      Удалить
+                    </Button>
                   </>
                 )}
+              {comment.userId !== userId && (
+                <Button
+                  className="small-link-button"
+                  clickContent={() => handleRespond(comment.userName)}
+                >
+                  Ответить
+                </Button>
+              )}
             </div>
           </div>
         </li>
