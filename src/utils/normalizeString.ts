@@ -1,16 +1,16 @@
 import trimString from '@/src/utils/trimString';
 
-type NormalizeTitle = (
+type NormalizeString = (
   title: string,
   limit: number,
   start: number,
   end: number
 ) => string;
 
-const normalizeTitle: NormalizeTitle = (title, limit, start, end) => {
+const normalizeString: NormalizeString = (title, limit, start, end) => {
   const splitTitle = title.split(' ');
 
-  const trimedTitle = splitTitle.map((word) => {
+  const trimedString = splitTitle.map((word) => {
     if (word.length < limit) {
       return word;
     } else {
@@ -18,8 +18,8 @@ const normalizeTitle: NormalizeTitle = (title, limit, start, end) => {
     }
   });
 
-  const normalTitle = trimedTitle.join(' ');
-  return normalTitle;
+  const normalString = trimedString.join(' ');
+  return normalString;
 };
 
-export default normalizeTitle;
+export default normalizeString;

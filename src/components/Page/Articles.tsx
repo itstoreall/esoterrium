@@ -23,9 +23,9 @@ const Articles = () => {
 
   const handleFilterValue = (val: string) => setFilterValue(val);
 
-  useEffect(() => {
-    acc.handleUserRole();
-  }, [acc]);
+  // useEffect(() => {
+  //   acc.handleUserRole();
+  // }, [acc]);
 
   useEffect(() => {
     switch (filterValue) {

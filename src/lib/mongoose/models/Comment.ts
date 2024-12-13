@@ -3,6 +3,7 @@ import { Schema, model, models } from 'mongoose';
 const commentSchema = new Schema(
   {
     articleId: { type: Schema.Types.ObjectId, ref: 'Article', required: true },
+    userId: { type: String, required: true },
     userName: { type: String, required: true },
     message: { type: String, required: true },
   },

@@ -1,15 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
 import Image from 'next/image';
 import useUserRole from '@/src/hooks/useUserRole';
 import useLoader from '@/src/hooks/useLoader';
 import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
-import normalizeTitle from '@/src/utils/normalizeTitle';
+import normalizeString from '@/src/utils/normalizeString';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
-import ArticleDetailsComments from '@/src/components/Comments/ArticleDetailsComments';
+import ArticleDetailsComments from '@/src/components/Comments';
 import Sidebar from '@/src/components/Layout/Sidebar';
 import Container from '@/src/components/Container';
 import Title from '@/src/components/Layout/Title';
@@ -20,9 +19,9 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
   const { isLoader, Loader } = useLoader();
   const acc = useUserRole();
 
-  useEffect(() => {
-    acc.handleUserRole();
-  }, [acc]);
+  // useEffect(() => {
+  //   acc.handleUserRole();
+  // }, [acc]);
 
   return (
     <Container className="main-aside-combine-container">
@@ -38,7 +37,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
             <Section className="article-details-section">
               <Title
                 className="article-details-title readable-content "
-                text={normalizeTitle(article.title, 20, 15, 5)}
+                text={normalizeString(article.title, 20, 15, 5)}
               />
 
               <ArticleDetailsPublicationInfo article={article} />

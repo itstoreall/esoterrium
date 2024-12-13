@@ -27,6 +27,7 @@ export type ArticleData = {
 export type CommentData = {
   _id: string;
   articleId: string;
+  userId: string;
   userName: string;
   message: string;
   updatedAt: Date;

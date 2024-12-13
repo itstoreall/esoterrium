@@ -1,8 +1,62 @@
 @use '@/src/sass/base/vars' as *;
 
 div.article-details-comments-content {
-  padding: 1rem;
-  border: 1px solid $greyLight;
-  border-radius: $middleBorderRadius;
+  display: grid;
+  gap: 2rem;
+  // padding: 1rem;
+  // border: 1px solid $greyLight;
+  // border-radius: $middleBorderRadius;
   // background-color: red;
+
+  > ul.article-details-comment-list {
+    display: grid;
+    gap: 1rem;
+
+    > li.article-details-comment-list-item {
+      display: grid;
+      gap: 1rem;
+      // background-color: green;
+
+      > span.article-details-comment-list-item-divider {
+        display: block;
+        border-bottom: 1px solid $greyLight;
+        // color: blue;
+        // width: 100px;
+        // height: 100px;
+      }
+
+      > div.article-details-comment-list-item-content {
+        display: grid;
+        gap: 1rem;
+
+        > div.article-details-comment-list-item-content-heading {
+          display: grid;
+          gap: 0.3rem;
+          // background-color: teal;
+          // overflow-wrap: break-word; /* Ensures long words wrap */
+          // word-wrap: break-word; /* Compatibility for older browsers */
+          // white-space: normal; /* Allow text wrapping */
+
+          /*
+          > span.article-details-comment-list-item-content-username {} // *
+          */
+
+          > span.article-details-comment-list-item-content-date {
+            font-size: 0.7rem;
+            color: $greyMiddle;
+          }
+
+          // > span.article-details-comment-list-item-content-message {
+          //   color: yellow;
+          // }
+        }
+
+        > div.article-details-comment-list-item-content-button-block {
+          display: flex;
+          gap: 0.5rem;
+          // background-color: tomato;
+        }
+      }
+    }
+  }
 }

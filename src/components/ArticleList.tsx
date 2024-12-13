@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import normalizeTitle from '@/src/utils/normalizeTitle';
+import normalizeString from '@/src/utils/normalizeString';
 import { ArticleData } from '@/src/types';
 import { config } from '@/src/config';
 
@@ -20,8 +20,9 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
                   alt={article.title}
                 />
               </div>
+
               <h3 className="article-list-item-title">
-                {normalizeTitle(article.title, 20, 15, 5)}
+                {normalizeString(article.title, 20, 15, 5)}
               </h3>
             </Link>
           </div>

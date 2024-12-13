@@ -1,6 +1,6 @@
 // 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AuthRoleEnum } from '@/src/enum';
 import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
 import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
@@ -19,6 +19,10 @@ const useAccount = () => {
       handleSignOut();
     }
   };
+
+  useEffect(() => {
+    handleUserRole();
+  }, []);
 
   return {
     userRole: role,

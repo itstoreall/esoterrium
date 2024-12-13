@@ -34,7 +34,7 @@ export async function GET(
 export async function POST(req: Request) {
   await connectToDatabase();
 
-  const { articleId, userName, message } = await req.json();
+  const { articleId, userId, userName, message } = await req.json();
 
   if (!articleId || !userName || !message) {
     return NextResponse.json(
@@ -44,7 +44,12 @@ export async function POST(req: Request) {
   }
 
   try {
-    const comment = await Comment.create({ articleId, userName, message });
+    const comment = await Comment.create({
+      articleId,
+      userId,
+      userName,
+      message,
+    });
     return NextResponse.json(
       { message: 'Comment added successfully', comment },
       { status: 201 }

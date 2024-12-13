@@ -109,6 +109,13 @@ h3 {
     //   font-size: 0.9rem;
     // }
   }
+
+  &.comment-block-title {
+    > span.comment-block-title-counter {
+      padding-left: 0.5rem;
+      font-weight: 600;
+    }
+  }
 }
 
 p {

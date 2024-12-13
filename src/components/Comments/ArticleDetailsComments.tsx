@@ -13,6 +13,8 @@ const CommentBlock = ({ articleId }: { articleId: string }) => {
   const comments = useComments(articleId);
   const session = useSession();
 
+  const userId = session.data?.user?.id ?? '';
+
   useEffect(() => {
     if (session && session.data?.user?.name) {
       setUserName(session.data?.user?.name);
@@ -21,14 +23,28 @@ const CommentBlock = ({ articleId }: { articleId: string }) => {
 
   return userName && comments.data ? (
     <Section className="article-details-comments-section">
-      <h3 className="comment-block-title">{`Комментарии (${32})`}</h3>
+      <h3 className="comment-block-title">
+        {'Комментарии'}
+        <span
+          className={'comment-block-title-counter'}
+        >{`(${comments.data.length})`}</span>
+      </h3>
 
       <div className="article-details-comments-content">
-        <AddCommentForm userName={userName} articleId={articleId} />
+        <AddCommentForm
+          className={'article-details-comments-add-form'}
+          userId={userId}
+          userName={userName}
+          articleId={articleId}
+        />
 
         {/* <button onClick={fetchComments}>Refetch comments</button> */}
 
-        <CommentList articleId={articleId} comments={comments.data} />
+        <CommentList
+          userId={userId}
+          articleId={articleId}
+          comments={comments.data}
+        />
       </div>
     </Section>
   ) : null;

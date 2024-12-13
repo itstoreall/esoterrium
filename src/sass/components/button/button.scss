@@ -119,4 +119,37 @@ span.button {
     }
     */
   }
+
+  &.article-details-comments-add-form-submit-button {
+    max-width: 165px;
+  }
+
+  &.article-details-comment-list-item-content-button {
+    max-width: 165px;
+  }
+
+  // ---
+
+  &.small-button {
+    display: flex;
+    height: 1.4rem;
+    padding: 0 0.5rem;
+    background-color: transparent;
+    border: 1px solid $greyMiddle;
+
+    > span.button-text {
+      padding-top: 1px;
+      font-size: 0.6rem;
+      letter-spacing: 0.04rem;
+      color: $greyMiddle;
+    }
+
+    &:hover {
+      border: 1px solid $greyDark;
+
+      > span.button-text {
+        color: $greyDark;
+      }
+    }
+  }
 }

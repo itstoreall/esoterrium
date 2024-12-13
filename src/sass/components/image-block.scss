@@ -39,6 +39,7 @@ div.image-block {
     }
 
     > img.article-details-image {
+      display: block;
       object-fit: cover;
     }
   }

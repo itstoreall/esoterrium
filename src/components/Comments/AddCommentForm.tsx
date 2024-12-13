@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useCreateComment } from '@/src/hooks/useCreateComments';
+import Form from '../Form/Form';
+import Button from '../Button/Button';
 
 type Props = {
+  className: 'article-details-comments-add-form';
+  userId: string;
   userName: string;
   articleId: string;
 };
 
 const AddCommentForm = (props: Props) => {
-  const { userName, articleId } = props;
+  const { className, userId, userName, articleId } = props;
 
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -22,7 +26,7 @@ const AddCommentForm = (props: Props) => {
     }
 
     try {
-      createComment({ articleId, userName, message });
+      createComment({ articleId, userId, userName, message });
       setMessage('');
       setError('');
     } catch (err) {
@@ -32,19 +36,30 @@ const AddCommentForm = (props: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <span>{userName}</span>
-      <div>
+    <Form className={className} handleSubmit={handleSubmit}>
+      <span className="article-details-comments-add-form-username">
+        {userName}
+      </span>
+      <div className="article-details-comments-add-form-textarea-block">
         <textarea
+          className="article-details-comments-add-form-textarea"
           id="newComment"
+          placeholder="Напишите свой комментарий..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           required
         />
       </div>
+
       {error && <p>{error}</p>}
-      <button type="submit">Post Comment</button>
-    </form>
+
+      <Button
+        className="article-details-comments-add-form-submit-button"
+        type="submit"
+      >
+        Комментировать
+      </Button>
+    </Form>
   );
 };
 

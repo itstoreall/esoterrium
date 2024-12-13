@@ -1,8 +1,15 @@
 import apiClient from '@/src/lib/axios/client';
 import { CommentData } from '@/src/types';
 
-type CreatePayload = Pick<CommentData, 'articleId' | 'userName' | 'message'>;
-type UpdatePayload = Omit<CreatePayload, 'userName'> & { commentId: string };
+type CreatePayload = Pick<
+  CommentData,
+  'articleId' | 'userId' | 'userName' | 'message'
+>;
+
+type UpdatePayload = Omit<CreatePayload, 'userName' | 'userId'> & {
+  commentId: string;
+};
+
 type DeletePayload = Omit<UpdatePayload, 'message'>;
 
 export const getComments = async (articleId: string) => {
