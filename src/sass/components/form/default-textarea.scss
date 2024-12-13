@@ -1,0 +1,17 @@
+@use '@/src/sass/base/vars' as *;
+
+textarea.default-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+
+  &::placeholder {
+    font-weight: 400;
+    color: $greyLight;
+  }
+
+  &.article-details-comments-edit-form-textarea,
+  &.article-details-comments-add-form-textarea {
+    height: 4rem;
+  }
+}

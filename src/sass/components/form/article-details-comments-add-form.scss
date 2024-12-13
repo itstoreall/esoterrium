@@ -14,18 +14,12 @@ form.article-details-comments-add-form {
     // background-color: cadetblue;
   }
 
-  > div.article-details-comments-add-form-textarea-block {
-    textarea {
-      resize: none;
-      width: 100%;
-      height: 4rem;
-      // padding: 0.5rem;
-      box-sizing: border-box;
+  // > div.article-details-comments-add-form-textarea-block {
 
-      &::placeholder {
-        font-weight: 400;
-        color: $greyLight;
-      }
-    }
+  // }
+
+  > div.article-details-comments-add-form-button-block {
+    display: flex;
+    justify-content: space-between;
   }
 }

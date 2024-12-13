@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import useUserRole from '@/src/hooks/useUserRole';
 import { deleteComment } from '@/src/services/commentsService';
 import { CommentData } from '@/src/types';
 import normalizeString from '@/src/utils/normalizeString';
 import EditCommentForm from '@/src/components/Comments/EditCommentForm';
 import convertDate from '@/src/utils/convertDate';
-import Button from '../Button/Button';
-import useUserRole from '@/src/hooks/useUserRole';
+import Button from '../Button';
 
 type Props = {
   userId: string;
@@ -49,8 +49,6 @@ const CommentList = ({ userId, articleId, comments }: Props) => {
     setEditingCommentId(null);
   };
 
-  console.log('acc.isAdminRole()', acc);
-
   return (
     <ul className="article-details-comment-list">
       {comments.map((comment: CommentData, idx: number) => (
@@ -72,7 +70,7 @@ const CommentList = ({ userId, articleId, comments }: Props) => {
 
             {editingCommentId === comment._id ? (
               <EditCommentForm
-                className={'article-details-comment-list-item-edit-form'}
+                className={'article-details-comments-edit-form'}
                 articleId={articleId}
                 comment={comment}
                 onCancel={handleCancelEdit}
@@ -84,14 +82,16 @@ const CommentList = ({ userId, articleId, comments }: Props) => {
             {editingCommentId !== comment._id &&
               (userId === comment.userId || acc.isAdminRole()) && (
                 <div className="article-details-comment-list-item-content-button-block">
+                  {userId === comment.userId && (
+                    <Button
+                      className="link-button"
+                      clickContent={() => handleEditClick(comment._id)}
+                    >
+                      Редактировать
+                    </Button>
+                  )}
                   <Button
-                    className="small-button"
-                    clickContent={() => handleEditClick(comment._id)}
-                  >
-                    Редактировать
-                  </Button>
-                  <Button
-                    className="small-button"
+                    className="link-button"
                     clickContent={() => handleDeleteClick(comment._id)}
                   >
                     Удалить
@@ -99,44 +99,6 @@ const CommentList = ({ userId, articleId, comments }: Props) => {
                 </div>
               )}
           </div>
-
-          {/* {editingCommentId === comment._id ? (
-            <EditCommentForm
-              className={'article-details-comment-list-item-edit-form'}
-              articleId={articleId}
-              comment={comment}
-              onCancel={handleCancelEdit}
-            />
-          ) : (
-            <div className="article-details-comment-list-item-content">
-              <p className="article-details-comment-list-item-content-message">
-                <span className="article-details-comment-list-item-content-message-username">
-                  {comment.userName}
-                </span>
-                <span className="article-details-comment-list-item-content-message-date">
-                  {convertDate(comment.createdAt)}
-                </span>
-                <span className="article-details-comment-list-item-content-message-text">
-                  {normalizeString(comment.message, 25, 15, 5)}
-                </span>
-              </p>
-
-              <div>
-                <Button
-                  className="small-button"
-                  clickContent={() => handleEditClick(comment._id)}
-                >
-                  Редактировать
-                </Button>
-                <Button
-                  className="small-button"
-                  clickContent={() => handleDeleteClick(comment._id)}
-                >
-                  Удалить
-                </Button>
-              </div>
-            </div>
-          )} */}
         </li>
       ))}
     </ul>

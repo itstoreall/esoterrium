@@ -5,9 +5,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import { updateComment } from '@/src/services/commentsService';
 import { CommentData } from '@/src/types';
 import Form from '../Form/Form';
+import Button from '../Button/Button';
+import Textarea from '../Form/Textarea';
 
 type EditCommentFormProps = {
-  className: 'article-details-comment-list-item-edit-form';
+  className: 'article-details-comments-edit-form';
   articleId: string;
   comment: CommentData;
   onCancel: () => void;
@@ -20,6 +22,8 @@ const EditCommentForm = (props: EditCommentFormProps) => {
   const [error, setError] = useState('');
 
   const queryClient = useQueryClient();
+
+  const handleChangeMessage = (msg: string) => setUpdatedMessage(msg);
 
   useEffect(() => {
     setUpdatedMessage(comment.message);
@@ -51,19 +55,26 @@ const EditCommentForm = (props: EditCommentFormProps) => {
 
   return (
     <Form className={className} handleSubmit={handleUpdate}>
-      <textarea
-        // placeholder="Напишите свой комментарий..."
+      <Textarea
+        className="article-details-comments-edit-form-textarea"
+        placeholder="Напишите свой комментарий..."
         value={updatedMessage}
-        onChange={(e) => setUpdatedMessage(e.target.value)}
+        maxLength={252}
+        handleChangeValue={handleChangeMessage}
         required
+        isAutoFocus
       />
 
       {error && <p>{error}</p>}
 
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
+      <div className="article-details-comment-list-item-content-edit-form-button-block">
+        <Button className="link-button" type="submit">
+          Сохранить
+        </Button>
+        <Button className="link-button" type="button" clickContent={onCancel}>
+          Отменить
+        </Button>
+      </div>
     </Form>
   );
 };

@@ -36,9 +36,8 @@ const CommentBlock = ({ articleId }: { articleId: string }) => {
           userId={userId}
           userName={userName}
           articleId={articleId}
+          refetchComments={comments.refetch}
         />
-
-        {/* <button onClick={fetchComments}>Refetch comments</button> */}
 
         <CommentList
           userId={userId}
