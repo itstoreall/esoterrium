@@ -35,7 +35,7 @@ const Sidebar = ({ className }: SidebarProps) => {
               border: '1px solid #c2c4c5',
             }}
           >
-            Реклама
+            Ad
           </div>
 
           <div
@@ -49,7 +49,7 @@ const Sidebar = ({ className }: SidebarProps) => {
               border: '1px solid #c2c4c5',
             }}
           >
-            Реклама
+            Ad
           </div>
         </Container>
 
