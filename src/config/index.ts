@@ -1,4 +1,5 @@
 import defaultImage from '@/src/assets/images/defaultImage.jpg';
+import blueLotusImage from '@/src/assets/images/blueLotus.jpg';
 
 // https://res.cloudinary.com/dsxdnz1hq/image/upload/v1732806735/cld-sample-2.jpg
 
@@ -9,5 +10,6 @@ export const config = {
   baseDescription: 'Духовное саморазвитие',
   publicUrl,
   defaultImage,
+  blueLotusImage,
   defaultImageUrl: `${publicUrl}/_next/static/media/defaultImage.c592ac5f.jpg`,
 };
