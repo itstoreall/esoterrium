@@ -4,6 +4,10 @@ main.main {
   // padding-top: 40px;
   background-color: $light;
 
+  &.home-page-main {
+    background-color: $black;
+  }
+
   &.signin-page-main {
     background-color: $dark;
   }

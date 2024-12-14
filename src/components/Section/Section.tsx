@@ -4,6 +4,7 @@ type SectionProps = ChildrenProps & {
   className?:
     | 'main-hero-section'
     | 'home-section'
+    | 'blue-lotus-home-section'
     | 'dashboard-section'
     | 'sidebar-title-section'
     | 'article-details-section'

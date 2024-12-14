@@ -7,6 +7,19 @@ div.image-block {
   // width: 100%;
   overflow: hidden;
 
+  // --- Home:
+
+  &.home-page-main-thumb {
+    width: 100%;
+    max-width: 300px;
+    // max-height: 300px;
+
+    > img.home-page-main-image {
+      display: block;
+      object-fit: cover;
+    }
+  }
+
   // --- Article List Item:
 
   &.article-list-item-thumb {

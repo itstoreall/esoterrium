@@ -30,4 +30,11 @@ section.section {
   &.main-final-section {
     padding-bottom: 80px;
   }
+
+  &.blue-lotus-home-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
 }
