@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import useUserRole from '@/src/hooks/useUserRole';
-import { deleteComment } from '@/src/services/commentsService';
-import { CommentData } from '@/src/types';
 import normalizeString from '@/src/utils/normalizeString';
-import EditCommentForm from '@/src/components/Comments/EditCommentForm';
+import { deleteComment } from '@/src/services/commentsService';
 import convertDate from '@/src/utils/convertDate';
-import Button from '../Button';
+import { CommentData } from '@/src/types';
+import EditCommentForm from '@/src/components/Comments/EditCommentForm';
+import Button from '@/src/components/Button';
 
 type Props = {
   userId: string;
@@ -53,7 +53,12 @@ const CommentList = (props: Props) => {
   };
 
   const handleRespond = (userName: string) => {
-    handleRespondTo(`${userName}, `);
+    const currentDate = new Date();
+    const timestamp = currentDate.getTime();
+    const markedUserNameTemplate = `${timestamp}_|_${userName}, `;
+    console.log('markedUserNameTemplate:', markedUserNameTemplate);
+    console.log('timestamp:', editingCommentId, timestamp);
+    handleRespondTo(markedUserNameTemplate);
   };
 
   return (

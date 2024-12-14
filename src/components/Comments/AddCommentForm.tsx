@@ -21,17 +21,23 @@ const AddCommentForm = (props: Props) => {
   const { createComment } = useCreateComment();
 
   useEffect(() => {
-    setMessage((prev) =>
-      respondTo && prev
-        ? `${respondTo} ${prev}`
-        : !respondTo && prev
-        ? prev
-        : respondTo && !prev
-        ? respondTo
-        : !respondTo && !prev
-        ? ''
-        : ''
-    );
+    setMessage((prev) => {
+      const splitUerName = respondTo.split('_|_')[1];
+
+      switch (true) {
+        case splitUerName && !!prev:
+          const isAlreadyChosen = prev.includes(splitUerName);
+          return isAlreadyChosen ? prev : `${splitUerName} ${prev}`;
+        case !splitUerName && !!prev:
+          return prev;
+        case splitUerName && !prev:
+          return splitUerName;
+        case !splitUerName && !prev:
+          return '';
+        default:
+          return '';
+      }
+    });
   }, [respondTo]);
 
   const handleChangeMessage = (msg: string) => setMessage(msg);
