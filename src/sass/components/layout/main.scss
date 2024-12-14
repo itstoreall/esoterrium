@@ -12,6 +12,10 @@ main.main {
     background-color: $dark;
   }
 
+  &.dashboard-page-main {
+    background-color: $black;
+  }
+
   // ---
 
   div.main-content-block {

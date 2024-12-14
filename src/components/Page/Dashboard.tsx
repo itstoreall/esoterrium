@@ -15,6 +15,7 @@ import Section from '@/src/components/Section';
 import SignOutButton from '@/src/components/Button/SignOutButton';
 import Title from '@/src/components/Layout/Title';
 import LoaderBlock from '../LoaderBlock';
+import trimString from '@/src/utils/trimString';
 
 const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
@@ -79,80 +80,120 @@ const Dashboard = () => {
   return (
     <Main className={'dashboard-page-main'}>
       <Section className={'main-hero-section'}>
-        <Title tag="h2" className="page-main-title" text="Аккаунт" />
+        <Title
+          tag="h2"
+          className="page-main-title color-light"
+          text="Аккаунт"
+        />
       </Section>
 
       <Section className={'dashboard-section'}>
-        <SignOutButton
-          className="nav-link-react-icon-button"
-          content={<GoSignOut size={20} />}
-          title={'Вьіход'}
-        />
-
-        <div>
-          <p>Role: {acc.userRole}</p>
+        <div className="user-account-block">
+          <ul className="user-account-info-list">
+            <li className="user-account-info-list-item">
+              <div className="user-account-info-list-item-content">
+                <span className="user-account-info-list-item-content-key">
+                  ID:
+                </span>
+                <span className="user-account-info-list-item-content-value">
+                  {trimString(userId, 8, 5)}
+                </span>
+              </div>
+            </li>
+            <li className="user-account-info-list-item">
+              <div className="user-account-info-list-item-content">
+                <span className="user-account-info-list-item-content-key">
+                  Роль:
+                </span>
+                <span className="user-account-info-list-item-content-value">
+                  {acc.userRole}
+                </span>
+              </div>
+            </li>
+            <li className="user-account-info-list-item">
+              <div className="user-account-info-list-item-content">
+                <span className="user-account-info-list-item-content-key">
+                  Никнейм:
+                </span>
+                <span className="user-account-info-list-item-content-value">
+                  {name}
+                </span>
+              </div>
+            </li>
+            <li className="user-account-info-list-item">
+              <div className="user-account-info-list-item-content">
+                <SignOutButton
+                  className="nav-link-react-icon-button"
+                  content={<GoSignOut size={20} />}
+                  title={'Вьіход'}
+                />
+              </div>
+            </li>
+          </ul>
         </div>
 
-        <div className="name">{name}</div>
+        {acc.userRole === AuthRoleEnum.Influencer && (
+          <>
+            <div className="field-input-container">
+              <input
+                className="field-input"
+                type="text"
+                placeholder={'Enter name'}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
 
-        <div className="field-input-container">
-          <input
-            className="field-input"
-            type="text"
-            placeholder={'Enter name'}
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
+              <button
+                className="update-field-button"
+                onClick={() => session.update({ name })}
+              >
+                Update Name
+              </button>
 
-          <button
-            className="update-field-button"
-            onClick={() => session.update({ name })}
-          >
-            Update Name
-          </button>
-
-          <select
-            value={selectedRole}
-            onChange={(event) =>
-              setSelectedRole(event.target.value as AuthRoleEnum)
-            }
-            className="field-input"
-          >
-            {Object.values(AuthRoleEnum).map((role) => (
-              <option key={role} value={role}>
-                {role}
-              </option>
-            ))}
-          </select>
-
-          <button
-            className="update-field-button"
-            onClick={handleChangeUserRole}
-          >
-            Update Role
-          </button>
-        </div>
-
-        <button
-          className="link-account-button"
-          onClick={
-            isAccountLinked
-              ? async () => {
-                  await unlinkGoogleAccount().then(() => {
-                    setIsAccountLinked(false);
-                  });
+              <select
+                value={selectedRole}
+                onChange={(event) =>
+                  setSelectedRole(event.target.value as AuthRoleEnum)
                 }
-              : async () => {
-                  await handleGoogleSignIn('dashboard').then(() => {
-                    setIsAccountLinked(true);
-                  });
-                }
-          }
-        >
-          {isAccountLinked
-            ? 'Disconnect Google Account'
-            : 'Connect Google Account'}
-        </button>
+                className="field-input"
+              >
+                {Object.values(AuthRoleEnum).map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                className="update-field-button"
+                onClick={handleChangeUserRole}
+              >
+                Update Role
+              </button>
+            </div>
+
+            <button
+              className="link-account-button"
+              onClick={
+                isAccountLinked
+                  ? async () => {
+                      await unlinkGoogleAccount().then(() => {
+                        setIsAccountLinked(false);
+                      });
+                    }
+                  : async () => {
+                      await handleGoogleSignIn('dashboard').then(() => {
+                        setIsAccountLinked(true);
+                      });
+                    }
+              }
+            >
+              {isAccountLinked
+                ? 'Disconnect Google Account'
+                : 'Connect Google Account'}
+            </button>
+          </>
+        )}
       </Section>
 
       <Section className={'main-final-section'}>{null}</Section>

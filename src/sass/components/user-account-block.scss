@@ -1,0 +1,48 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/mixins' as *;
+
+div.user-account-block {
+  // background-color: teal;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+
+  /*
+  @include media-screen-orientation('max', $mobile + 100) {}
+  */
+
+  > ul.user-account-info-list {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    // width: 100%;
+    max-width: $mobile + 100;
+    border: 1px solid $greyDeepDark;
+    border-radius: $middleBorderRadius;
+
+    > li.user-account-info-list-item {
+      // background-color: teal;
+
+      > div.user-account-info-list-item-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+
+        > span {
+          color: $greyMiddle;
+
+          &.user-account-info-list-item-content-value {
+            color: $greyLight;
+          }
+        }
+      }
+
+      &:not(:last-child) {
+        > div.user-account-info-list-item-content {
+          padding-bottom: 1rem;
+          border-bottom: 1px solid $greyDeepDark;
+        }
+      }
+    }
+  }
+}

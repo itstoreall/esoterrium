@@ -61,7 +61,14 @@ h2 {
   &.page-main-title {
     @extend .default-page-title;
     height: 3.25rem;
+
+    &.color-light {
+      color: $greyLight;
+    }
   }
+
+  // &.page-main-title-light {
+  // }
 
   &.readable-content {
     font-size: 1.6rem;

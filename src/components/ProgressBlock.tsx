@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 const ProgressLoader = ({ duration }: { duration: number }) => {
   const [loading, hasLoaded] = useState(false);
 
-  console.log('loading:', loading);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       hasLoaded(true);
