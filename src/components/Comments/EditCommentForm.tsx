@@ -68,10 +68,14 @@ const EditCommentForm = (props: EditCommentFormProps) => {
       {error && <p>{error}</p>}
 
       <div className="article-details-comment-list-item-content-edit-form-button-block">
-        <Button className="link-button" type="submit">
+        <Button className="small-link-button" type="submit">
           Сохранить
         </Button>
-        <Button className="link-button" type="button" clickContent={onCancel}>
+        <Button
+          className="small-link-button"
+          type="button"
+          clickContent={onCancel}
+        >
           Отменить
         </Button>
       </div>

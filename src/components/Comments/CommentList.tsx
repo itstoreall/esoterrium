@@ -56,8 +56,6 @@ const CommentList = (props: Props) => {
     const currentDate = new Date();
     const timestamp = currentDate.getTime();
     const markedUserNameTemplate = `${timestamp}_|_${userName}, `;
-    console.log('markedUserNameTemplate:', markedUserNameTemplate);
-    console.log('timestamp:', editingCommentId, timestamp);
     handleRespondTo(markedUserNameTemplate);
   };
 
