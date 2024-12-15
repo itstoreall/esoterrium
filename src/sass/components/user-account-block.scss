@@ -11,7 +11,7 @@ div.user-account-block {
   gap: 1rem;
   // flex-direction: column;
 
-  @include media-screen-orientation('max', $accountMobileWidth) {
+  @include media-screen-orientation('max', $accountMobileWidth - 0.1) {
     grid-template-columns: repeat(1, 1fr);
   }
 
@@ -51,7 +51,9 @@ div.user-account-block {
             display: block;
             font-size: 16px;
             padding: 0 0.3rem;
+            width: 100%;
             background-color: $violetLight;
+            border-radius: $smallBorderRadius;
             border: none;
             color: $dark;
 
@@ -96,8 +98,28 @@ div.user-account-block {
     background-color: $violetDark;
     border-radius: $middleBorderRadius;
 
-    @include media-screen-orientation('max', $accountMobileWidth) {
+    @include media-screen-orientation('max', $accountMobileWidth - 0.1) {
       height: 500px;
+    }
+
+    > div {
+      min-height: 100%;
+      // background-color: red;
+      // border-radius: $middleBorderRadius;
+
+      > textarea.user-account-notes-textarea {
+        display: flex;
+        background-color: transparent;
+        resize: none;
+        width: calc(100% - 2rem);
+        // height: 500px;
+        padding: 1rem;
+        outline: none;
+
+        @include media-screen-orientation('min', $accountMobileWidth) {
+          height: 363px;
+        }
+      }
     }
   }
 }

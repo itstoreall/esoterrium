@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
 import useUserRole from '@/src/hooks/useUserRole';
@@ -22,13 +22,39 @@ import Button from '../Button';
 
 const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
-  // const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
   const [isEditNickname, setIsEditNickname] = useState(false);
 
-  const { userInfo } = useUserInfo();
+  // ---
 
-  // console.log('userInfo:', userInfo);
+  /*
+  const [notesText, setNotesText] = useState('eee');
+  const handleNotes = (val: string) => {
+    // save to localStorage
+    setNotesText(val);
+  };
+  */
+
+  const [notesText, setNotesText] = useState(
+    () => localStorage.getItem('notesText') || ''
+  );
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleNotes = (val: string) => {
+    setNotesText(val);
+
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+
+    debounceTimeoutRef.current = setTimeout(() => {
+      localStorage.setItem('notesText', val);
+    }, 2000);
+  };
+
+  // ---
+
+  const { userInfo } = useUserInfo();
 
   const acc = useUserRole();
 
@@ -94,6 +120,12 @@ const Dashboard = () => {
     };
     acc.handleUserRole();
     accountLinkStatus();
+
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
   }, []);
 
   // useEffect(() => {
@@ -232,7 +264,20 @@ const Dashboard = () => {
             </li>
           </ul>
 
-          <div className="user-account-notes-block"></div>
+          <div className="user-account-notes-block">
+            {/* <div>
+              <MDEditor.Markdown source={'Hello!'} />
+            </div> */}
+
+            <div>
+              <textarea
+                // ref={taRef}
+                className={'user-account-notes-textarea'}
+                value={notesText}
+                onChange={(e) => handleNotes(e.target.value)}
+              />
+            </div>
+          </div>
         </div>
 
         {/* {acc.userRole === AuthRoleEnum.Influencer && ( */}
