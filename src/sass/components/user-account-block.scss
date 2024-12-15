@@ -99,7 +99,7 @@ div.user-account-block {
     border-radius: $middleBorderRadius;
 
     @include media-screen-orientation('max', $accountMobileWidth - 0.1) {
-      height: 500px;
+      height: 400px;
     }
 
     > div {
@@ -112,9 +112,10 @@ div.user-account-block {
         background-color: transparent;
         resize: none;
         width: calc(100% - 2rem);
-        // height: 500px;
+        height: 368px;
         padding: 1rem;
         outline: none;
+        // background-color: teal;
 
         @include media-screen-orientation('min', $accountMobileWidth) {
           height: 363px;
