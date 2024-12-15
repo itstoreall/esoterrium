@@ -1,6 +1,8 @@
 @use '@/src/sass/base/vars' as *;
 @use '@/src/sass/mixins' as *;
 
+$accountMobileWidth: $mobile + 225;
+
 div.user-account-block {
   // background-color: teal;
   // display: flex;
@@ -9,13 +11,13 @@ div.user-account-block {
   gap: 1rem;
   // flex-direction: column;
 
-  @include media-screen-orientation('max', $mobile + 260) {
+  @include media-screen-orientation('max', $accountMobileWidth) {
     grid-template-columns: repeat(1, 1fr);
   }
 
   > ul.user-account-info-list {
     display: grid;
-    gap: 1rem;
+    // gap: 1rem;
     padding: 1rem;
     // width: 100%;
     // max-width: $mobile + 100;
@@ -28,7 +30,10 @@ div.user-account-block {
       > div.user-account-info-list-item-content {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 1rem;
+        min-width: 250px;
+        height: 60px;
 
         > span {
           color: $greyMiddle;
@@ -37,14 +42,62 @@ div.user-account-block {
             color: $greyLight;
           }
         }
+
+        > div.user-account-info-list-item-content-value-input-box {
+          display: flex;
+          gap: 0.5rem;
+
+          > input.user-account-info-list-item-content-value-input {
+            display: block;
+            font-size: 16px;
+            padding: 0 0.3rem;
+            background-color: $violetLight;
+            border: none;
+            color: $dark;
+
+            &::placeholder {
+              color: $light;
+              font-size: 0.9rem;
+            }
+          }
+        }
       }
+
+      // border-bottom: 1px solid green;
 
       &:not(:last-child) {
         > div.user-account-info-list-item-content {
-          padding-bottom: 1rem;
+          // padding-bottom: 1rem;
           border-bottom: 1px solid $greyDeepDark;
         }
       }
+
+      > div.user-account-info-list-item-content-button-block {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding-top: 1rem;
+        // background-color: red;
+
+        > button,
+        > span {
+          @include media-screen-orientation('max', $mobile) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  // --- Notes Block:
+
+  > div.user-account-notes-block {
+    background-color: $violetDark;
+    border-radius: $middleBorderRadius;
+
+    @include media-screen-orientation('max', $accountMobileWidth) {
+      height: 500px;
     }
   }
 }

@@ -26,6 +26,8 @@
   }
 }
 
+// --- Button:
+
 button.button,
 span.button {
   @extend .default-button-text;
@@ -51,7 +53,8 @@ span.button {
   }
 
   &.nav-link-react-icon-button,
-  &.nav-link-text-button {
+  &.nav-link-text-button,
+  &.dashboard-text-button {
     border-radius: 0;
     // background-color: transparent;
     background-color: $greyDark;
@@ -60,13 +63,25 @@ span.button {
       background-color: $bgButtonInactive;
     }
 
-    &.active {
-      color: $white;
-      background-color: $violetDark;
-    }
-
     &.disabled {
       cursor: default;
+      background-color: $greyDeepDarkUltra;
+
+      > span.button-text {
+        padding-top: 1px;
+        line-height: 1.2;
+        text-align: center;
+        color: $greyDeepDark;
+      }
+    }
+
+    &.active {
+      color: $light;
+      background-color: $violetDark;
+
+      > span.button-text {
+        color: $light;
+      }
     }
   }
 
@@ -80,10 +95,11 @@ span.button {
     }
   }
 
-  // --- Nav Link Text:
+  // --- Text Button:
 
   &.nav-link-text-button,
-  &.admin-panel-text-button {
+  &.admin-panel-text-button,
+  &.dashboard-text-button {
     padding: 0 1rem;
   }
 
@@ -145,7 +161,7 @@ span.button {
     max-width: 165px;
   }
 
-  // --- Link Button:
+  // --- Small Button:
 
   &.small-link-button {
     @extend .default-small-button;
@@ -161,10 +177,12 @@ span.button {
     }
   }
 
-  &.small-border-button {
+  &.small-border-button,
+  &.small-border-button-as-system {
     @extend .default-small-button;
     padding: 0 0.35rem;
     border: 1px solid $greyMiddle;
+    transition: border-color $ease03s;
 
     > span.button-text {
       padding-top: 1px;
@@ -175,6 +193,14 @@ span.button {
 
       > span.button-text {
         color: $greyDark;
+      }
+    }
+  }
+
+  &.small-border-button-as-system {
+    &:hover {
+      > span.button-text {
+        color: $violetLight;
       }
     }
   }

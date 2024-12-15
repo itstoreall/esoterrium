@@ -13,7 +13,6 @@ const useUserInfo = () => {
   });
 
   const refetch = () => {
-    console.log('refetch info!!!');
     queryClient.invalidateQueries({ queryKey: ['user_info'] });
   };
 

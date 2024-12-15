@@ -18,11 +18,13 @@ import LoaderBlock from '../LoaderBlock';
 import trimString from '@/src/utils/trimString';
 import useUserInfo from '@/src/hooks/useUserInfo';
 import convertDate from '@/src/utils/convertDate';
+import Button from '../Button';
 
 const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
   // const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
+  const [isEditNickname, setIsEditNickname] = useState(false);
 
   const { userInfo } = useUserInfo();
 
@@ -74,6 +76,11 @@ const Dashboard = () => {
     } catch (error) {
       console.error('Failed to update role:', error);
     }
+  };
+
+  const handleUpdateName = () => {
+    session.update({ name });
+    setIsEditNickname(false);
   };
 
   useEffect(() => {
@@ -146,9 +153,33 @@ const Dashboard = () => {
                 <span className="user-account-info-list-item-content-key">
                   Никнейм:
                 </span>
-                <span className="user-account-info-list-item-content-value">
-                  {session.data.user.name}
-                </span>
+                <>
+                  {!isEditNickname ? (
+                    <span
+                      className="user-account-info-list-item-content-value"
+                      onClick={() => setIsEditNickname(true)}
+                    >
+                      {session.data.user.name}
+                    </span>
+                  ) : (
+                    <div className="user-account-info-list-item-content-value-input-box">
+                      <input
+                        className="user-account-info-list-item-content-value-input"
+                        type="text"
+                        placeholder={'Введите никнейм'}
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                      />
+
+                      <Button
+                        className="small-border-button-as-system"
+                        clickContent={() => handleUpdateName()}
+                      >
+                        сохранить
+                      </Button>
+                    </div>
+                  )}
+                </>
               </div>
             </li>
             <li className="user-account-info-list-item">
@@ -172,61 +203,40 @@ const Dashboard = () => {
               </div>
             </li>
             <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
+              <div className="user-account-info-list-item-content-button-block">
                 <SignOutButton
                   className="nav-link-react-icon-button"
                   content={<GoSignOut size={20} />}
                   title={'Вьіход'}
                 />
+                <Button
+                  className="dashboard-text-button disabled"
+                  clickContent={
+                    isAccountLinked
+                      ? async () => {
+                          await unlinkGoogleAccount().then(() => {
+                            setIsAccountLinked(false);
+                          });
+                        }
+                      : async () => {
+                          await handleGoogleSignIn('dashboard').then(() => {
+                            setIsAccountLinked(true);
+                          });
+                        }
+                  }
+                  isDisable
+                >
+                  {isAccountLinked ? 'Disconnect Account' : 'Connect Account'}
+                </Button>
               </div>
             </li>
           </ul>
 
-          {/* <ul className="user-account-info-list">
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  ID:
-                </span>
-                <span className="user-account-info-list-item-content-value">
-                  {trimString(userInfo.id, 8, 5)}
-                </span>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  Роль:
-                </span>
-                <span className="user-account-info-list-item-content-value">
-                  {acc.userRole}
-                </span>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  Никнейм:
-                </span>
-                <span className="user-account-info-list-item-content-value">
-                  {userInfo.name}
-                </span>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <SignOutButton
-                  className="nav-link-react-icon-button"
-                  content={<GoSignOut size={20} />}
-                  title={'Вьіход'}
-                />
-              </div>
-            </li>
-          </ul> */}
+          <div className="user-account-notes-block"></div>
         </div>
 
         {/* {acc.userRole === AuthRoleEnum.Influencer && ( */}
-        {acc.userRole === AuthRoleEnum.User && (
+        {acc.userRole === AuthRoleEnum.Admin && (
           <>
             <div className="field-input-container">
               <input
@@ -266,7 +276,7 @@ const Dashboard = () => {
               </button>
             </div>
 
-            <button
+            {/* <button
               className="link-account-button"
               onClick={
                 isAccountLinked
@@ -285,7 +295,7 @@ const Dashboard = () => {
               {isAccountLinked
                 ? 'Disconnect Google Account'
                 : 'Connect Google Account'}
-            </button>
+            </button> */}
           </>
         )}
       </Section>

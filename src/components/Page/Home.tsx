@@ -1,12 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import Section from '@/src/components/Section';
 import Main from '@/src/components/Layout/Main';
 // import Title from '../Layout/Title';
 // import { config } from '@/src/config'; // https://www.esoterrium.space/_next/static/media/blueLotus.940f885c.jpg
-import Button from '../Button';
 
 // const arts = [
 //   'article1',
@@ -34,9 +33,9 @@ const Home = () => {
           />
         </div>
 
-        <Link href="/dashboard">
+        {/* <Link href="/dashboard">
           <Button className="nav-link-text-button">Перейти в аккаунт</Button>
-        </Link>
+        </Link> */}
       </Section>
 
       {/* {arts.map((art) => (
