@@ -3,20 +3,22 @@
 
 div.user-account-block {
   // background-color: teal;
-  display: flex;
+  // display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  flex-direction: column;
+  // flex-direction: column;
 
-  /*
-  @include media-screen-orientation('max', $mobile + 100) {}
-  */
+  @include media-screen-orientation('max', $mobile + 260) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
   > ul.user-account-info-list {
     display: grid;
     gap: 1rem;
     padding: 1rem;
     // width: 100%;
-    max-width: $mobile + 100;
+    // max-width: $mobile + 100;
     border: 1px solid $greyDeepDark;
     border-radius: $middleBorderRadius;
 

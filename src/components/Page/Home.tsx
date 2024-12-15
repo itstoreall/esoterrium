@@ -83,7 +83,7 @@ const Home = () => {
           </Link>
         </div>
       ))} */}
-      <Section className={'main-final-section'}>{null}</Section>
+      {/* <Section className={'main-final-section'}>{null}</Section> */}
     </Main>
   );
 };

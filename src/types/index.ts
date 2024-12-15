@@ -1,9 +1,25 @@
 import { ReactNode } from 'react';
+import { AuthRoleEnum } from '@/src/enum';
 
 export type ChildrenProps = { children: ReactNode };
 
 export type FormEvent = React.FormEvent<HTMLFormElement>;
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
+
+// ------ User:
+
+export type UserData = {
+  id: string;
+  name: string | null;
+  email: string;
+  emailVerified: Date | null;
+  role: AuthRoleEnum;
+  points: number;
+  image: string | null;
+  accessedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 // ------ Article:
 
