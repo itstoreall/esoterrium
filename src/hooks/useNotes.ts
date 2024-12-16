@@ -26,19 +26,6 @@ const useNotes = () => {
     }, 2000);
   };
 
-  // const handleNotesChange = (val: string) => {
-  //   const maxLines = 10;
-  //   const lines = val.split('\n');
-
-  //   console.log('lines:', lines);
-
-  //   // /*
-  //   if (lines.length > maxLines) {
-  //     updateNotes(lines.slice(0, maxLines).join('\n'));
-  //   } else updateNotes(val);
-  //   // */
-  // };
-
   const handleNotesChange = (e: TextareaEvent) => {
     const textarea = e.target;
     const maxHeight = 368;

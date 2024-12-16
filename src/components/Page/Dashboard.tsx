@@ -22,74 +22,22 @@ import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
 import LoaderBlock from '@/src/components/LoaderBlock';
 import Button from '@/src/components/Button';
-
-// const getLSNotes = () => localStorage.getItem('notes_text') || '';
+import copyToClipboard from '@/src/utils/copyToClipboard';
 
 const Dashboard = () => {
-  // const [notesText, setNotesText] = useState(getLSNotes() || '');
   const [isAccountLinked, setIsAccountLinked] = useState(false);
   const [isEditNickname, setIsEditNickname] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const [name, setName] = useState('');
-
-  const { notesText, handleNotesChange, clearNotes } = useNotes();
-
-  // const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  // ---
-
-  /*
-  const [notesText, setNotesText] = useState('eee');
-  const handleNotes = (val: string) => {
-    // save to localStorage
-    setNotesText(val);
-  };
-  */
-
-  // const updateNotes = (val: string) => {
-  //   setNotesText(val);
-  //   if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
-  //   debounceTimeoutRef.current = setTimeout(() => {
-  //     localStorage.setItem('notes_text', val);
-  //   }, 2000);
-  // };
-
-  // // const handleNotesChange = (val: string) => {
-  // //   const maxLines = 10;
-  // //   const lines = val.split('\n');
-
-  // //   console.log('lines:', lines);
-
-  // //   // /*
-  // //   if (lines.length > maxLines) {
-  // //     updateNotes(lines.slice(0, maxLines).join('\n'));
-  // //   } else updateNotes(val);
-  // //   // */
-  // // };
-
-  // const handleNotesChange = (e: TextareaEvent) => {
-  //   const textarea = e.target;
-  //   const maxHeight = 368;
-  //   if (textarea.scrollHeight > maxHeight) return;
-  //   updateNotes(textarea.value);
-  // };
-
-  // const clearNotes = () => {
-  //   if (!confirm('Очистить заметки?')) return;
-  //   localStorage.removeItem('notes_text');
-  //   setNotesText('');
-  // };
-
-  // ---
-
-  const { userInfo } = useUserInfo();
-
-  const acc = useUserRole();
 
   const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(
     AuthRoleEnum.Guest
   );
 
+  const { notesText, handleNotesChange, clearNotes } = useNotes();
+  const { userInfo } = useUserInfo();
   const session = useSession();
+  const acc = useUserRole();
 
   const handleUserName = async (user: User) => {
     const { name: userName, email } = user;
@@ -136,6 +84,12 @@ const Dashboard = () => {
     setIsEditNickname(false);
   };
 
+  const handleCopyValue = (val: string) => {
+    setIsCopied(true);
+    copyToClipboard(val);
+    setTimeout(() => setIsCopied(false), 300);
+  };
+
   useEffect(() => {
     const accountLinkStatus = async () => {
       try {
@@ -147,21 +101,7 @@ const Dashboard = () => {
     };
     acc.handleUserRole();
     accountLinkStatus();
-
-    // return () => {
-    //   if (debounceTimeoutRef.current) {
-    //     clearTimeout(debounceTimeoutRef.current);
-    //   }
-    // };
   }, []);
-
-  // useEffect(() => {
-  //   const user = session.data?.user;
-  //   if (userInfo?.id) {
-  //     // setUserId(user.id);
-  //     handleUserName(userInfo);
-  //   }
-  // }, [user]);
 
   useEffect(() => {
     const user = session.data?.user;
@@ -174,7 +114,9 @@ const Dashboard = () => {
   // ---
 
   if (!userInfo || !session.data?.user)
-    return <LoaderBlock className={'light-loader-block'} />;
+    return <LoaderBlock className={'black-loader-block'} />;
+
+  const copyStyle = isCopied ? 'copied' : '';
 
   return (
     <Main className={'dashboard-page-main'}>
@@ -194,7 +136,11 @@ const Dashboard = () => {
                 <span className="user-account-info-list-item-content-key">
                   ID:
                 </span>
-                <span className="user-account-info-list-item-content-value">
+                <span
+                  className={`user-account-info-list-item-content-value-onclick ${copyStyle}`}
+                  // className="user-account-info-list-item-content-value-onclick"
+                  onClick={() => handleCopyValue(userInfo.id)}
+                >
                   {trimString(userInfo.id, 8, 5)}
                 </span>
               </div>
@@ -217,7 +163,7 @@ const Dashboard = () => {
                 <>
                   {!isEditNickname ? (
                     <span
-                      className="user-account-info-list-item-content-value"
+                      className="user-account-info-list-item-content-value-onclick"
                       onClick={() => setIsEditNickname(true)}
                     >
                       {session.data.user.name}
@@ -355,27 +301,6 @@ const Dashboard = () => {
                 Update Role
               </button>
             </div>
-
-            {/* <button
-              className="link-account-button"
-              onClick={
-                isAccountLinked
-                  ? async () => {
-                      await unlinkGoogleAccount().then(() => {
-                        setIsAccountLinked(false);
-                      });
-                    }
-                  : async () => {
-                      await handleGoogleSignIn('dashboard').then(() => {
-                        setIsAccountLinked(true);
-                      });
-                    }
-              }
-            >
-              {isAccountLinked
-                ? 'Disconnect Google Account'
-                : 'Connect Google Account'}
-            </button> */}
           </>
         )}
       </Section>

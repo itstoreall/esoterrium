@@ -15,6 +15,10 @@ div.loader-block {
     background-color: $dark;
   }
 
+  &.black-loader-block {
+    background-color: $black;
+  }
+
   &.main-combine-light-loader-block {
     height: calc($mainHeight + 40px);
   }

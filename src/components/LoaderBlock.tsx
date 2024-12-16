@@ -1,7 +1,11 @@
 import BallTriangleLoader from '@/src/assets/animation/BallTriangleLoader';
 
 type Props = {
-  className: 'light-loader-block' | 'main-combine-light-loader-block';
+  className:
+    | 'light-loader-block'
+    | 'dark-loader-block'
+    | 'black-loader-block'
+    | 'main-combine-light-loader-block';
 };
 
 const LoaderBlock = ({ className }: Props) => {

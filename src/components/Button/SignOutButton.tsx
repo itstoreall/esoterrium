@@ -18,6 +18,7 @@ const SignOutButton = ({
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = () => {
+    if (!confirm('Вы выходите из своего аккаунта!')) return;
     setIsDisabled(true);
     handleSignOut();
   };

@@ -38,8 +38,20 @@ div.user-account-block {
         > span {
           color: $greyMiddle;
 
-          &.user-account-info-list-item-content-value {
+          &.user-account-info-list-item-content-value,
+          &.user-account-info-list-item-content-value-onclick {
             color: $greyLight;
+          }
+
+          &.user-account-info-list-item-content-value-onclick {
+            cursor: pointer;
+            user-select: none;
+            // transition: color $ease03s;
+
+            &.copied {
+              color: $violetLight;
+              animation: copiedAnimation $ease03s;
+            }
           }
         }
 
@@ -130,7 +142,7 @@ div.user-account-block {
         }
 
         &::placeholder {
-          color: $greyLight;
+          color: $violetLightPlus;
         }
       }
     }
@@ -141,5 +153,19 @@ div.user-account-block {
       right: 0.5rem;
       stroke: $light;
     }
+  }
+}
+
+// --- Copy Animation:
+
+@keyframes copiedAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
   }
 }
