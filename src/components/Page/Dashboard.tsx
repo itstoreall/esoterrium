@@ -3,9 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
-import { FiTrash2 } from 'react-icons/fi';
 import { GoSignOut } from 'react-icons/go';
-import useNotes from '@/src/hooks/useNotes';
 import useUserRole from '@/src/hooks/useUserRole';
 import useUserInfo from '@/src/hooks/useUserInfo';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
@@ -14,7 +12,6 @@ import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
 import convertDate from '@/src/utils/convertDate';
 import trimString from '@/src/utils/trimString';
-// import { TextareaEvent } from '@/src/types';
 import { AuthRoleEnum } from '@/src/enum';
 import SignOutButton from '@/src/components/Button/SignOutButton';
 import Title from '@/src/components/Layout/Title';
@@ -23,6 +20,7 @@ import Section from '@/src/components/Section';
 import LoaderBlock from '@/src/components/LoaderBlock';
 import Button from '@/src/components/Button';
 import copyToClipboard from '@/src/utils/copyToClipboard';
+import AccountNotes from '../AccountNotes';
 
 const Dashboard = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
@@ -34,7 +32,6 @@ const Dashboard = () => {
     AuthRoleEnum.Guest
   );
 
-  const { notesText, handleNotesChange, clearNotes } = useNotes();
   const { userInfo } = useUserInfo();
   const session = useSession();
   const acc = useUserRole();
@@ -239,29 +236,7 @@ const Dashboard = () => {
             </li>
           </ul>
 
-          <div className="user-account-notes-block">
-            {/* <div>
-              <MDEditor.Markdown source={'Hello!'} />
-            </div> */}
-
-            <div>
-              <textarea
-                // ref={taRef}
-                placeholder="Напишите заметку"
-                className={'user-account-notes-textarea'}
-                value={notesText}
-                onChange={(e) => handleNotesChange(e)}
-                // onChange={(e) => handleNotesChange(e.target.value)}
-                rows={10}
-              />
-            </div>
-
-            <FiTrash2
-              className="user-account-notes-trash-button"
-              size={25}
-              onClick={() => clearNotes()}
-            />
-          </div>
+          <AccountNotes />
         </div>
 
         {/* {acc.userRole === AuthRoleEnum.Influencer && ( */}

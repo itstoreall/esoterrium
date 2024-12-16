@@ -1,8 +1,6 @@
 @use '@/src/sass/base/vars' as *;
 @use '@/src/sass/mixins' as *;
 
-$accountMobileWidth: $mobile + 225;
-
 div.user-account-block {
   // background-color: teal;
   // display: flex;
@@ -18,7 +16,7 @@ div.user-account-block {
   > ul.user-account-info-list {
     display: grid;
     // gap: 1rem;
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     // width: 100%;
     // max-width: $mobile + 100;
     border: 1px solid $greyDeepDark;
@@ -109,49 +107,8 @@ div.user-account-block {
   // --- Notes Block:
 
   > div.user-account-notes-block {
-    position: relative;
-    background-color: $violetDark;
-    border-radius: $middleBorderRadius;
-
-    @include media-screen-orientation('max', $accountMobileWidth - 0.1) {
-      height: 400px;
-    }
-
-    > div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100%;
-      // background-color: red;
-      // border-radius: $middleBorderRadius;
-
-      > textarea.user-account-notes-textarea {
-        // padding: 1rem;
-        // margin: 0 auto;
-        width: calc(100% - 2rem);
-        height: 368px;
-        outline: none;
-        overflow: hidden;
-        resize: none;
-        background-color: transparent;
-        // background-color: teal;
-
-        @include media-screen-orientation('min', $accountMobileWidth) {
-          // max-height: calc(1.5rem * 10);
-          // height: 363px;
-        }
-
-        &::placeholder {
-          color: $violetLightPlus;
-        }
-      }
-    }
-
-    > svg.user-account-notes-trash-button {
-      position: absolute;
-      bottom: 0.5rem;
-      right: 0.5rem;
-      stroke: $light;
+    > button {
+      min-width: 100%;
     }
   }
 }

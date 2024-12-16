@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 
 const lsKey = 'notes_text';
 
-const getLSNotes = () => localStorage.getItem(lsKey) || '';
-
 const useNotes = () => {
+  const getLSNotes = () => localStorage.getItem(lsKey) || '';
+
   const [notesText, setNotesText] = useState(getLSNotes() || '');
 
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);

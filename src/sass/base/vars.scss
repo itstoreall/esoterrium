@@ -11,6 +11,7 @@ $max: 1440px;
 $headerHeight: 40px;
 $footerHeight: 80px;
 $mainHeight: calc(100svh - $footerHeight);
+$accountMobileWidth: $mobile + 225;
 
 // --- z-index:
 
@@ -53,7 +54,7 @@ $googleBlue: #4285f4;
 $blue: #225695;
 $smokeBlue: #283950;
 $lightRed: #f25c5e;
-$violetLightPlus: #c6a7c6;
+$violetLightPlus: #c0abc0;
 $violetLight: #a676a6;
 $violetDark: #80669d;
 $violetDarkSmoke: #36313d;
