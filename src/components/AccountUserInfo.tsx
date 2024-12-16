@@ -1,5 +1,61 @@
-/*
-const AccountUserInfo = () => {
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react'; // SessionContextValue
+import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
+import copyToClipboard from '@/src/utils/copyToClipboard';
+import trimString from '../utils/trimString';
+// import { Session } from 'next-auth';
+import { Acc } from './Page/Dashboard';
+import { UserData } from '../types';
+import convertDate from '../utils/convertDate';
+import SignOutButton from './Button/SignOutButton';
+import { GoSignOut } from 'react-icons/go';
+import Button from './Button';
+import { unlinkGoogleAccount } from '../lib/auth/unlinkGoogleAccountServerAction';
+import { handleGoogleSignIn } from '../lib/auth/googleSignInServerAction';
+
+type Props = {
+  acc: Acc;
+  name: string;
+  userInfo: UserData;
+  setIsCopied: Dispatch<SetStateAction<boolean>>;
+  copyStyle: string;
+  setName: Dispatch<SetStateAction<string>>;
+};
+
+const AccountUserInfo = (props: Props) => {
+  const { acc, name, userInfo, copyStyle, setIsCopied, setName } = props;
+
+  const [isAccountLinked, setIsAccountLinked] = useState(false);
+  const [isEditNickname, setIsEditNickname] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false);
+
+  const session = useSession();
+
+  const updateName = () => {
+    session.update({ name });
+    setIsEditNickname(false);
+  };
+
+  const handleCopyValue = (val: string) => {
+    setIsCopied(true);
+    copyToClipboard(val);
+    setTimeout(() => setIsCopied(false), 300);
+  };
+
+  useEffect(() => {
+    const accountLinkStatus = async () => {
+      try {
+        const accountLinkStatus = await getAccountLinkStatus();
+        setIsAccountLinked(accountLinkStatus);
+      } catch (error) {
+        console.error('Failed to get account link status:', error);
+      }
+    };
+    acc.handleUserRole();
+    accountLinkStatus();
+  }, []);
+
   return (
     <ul className="user-account-info-list">
       <li className="user-account-info-list-item">
@@ -27,15 +83,25 @@ const AccountUserInfo = () => {
       <li className="user-account-info-list-item">
         <div className="user-account-info-list-item-content">
           <span className="user-account-info-list-item-content-key">
+            E-mail:
+          </span>
+          <span className="user-account-info-list-item-content-value">
+            {/* {acc.} */}
+          </span>
+        </div>
+      </li>
+      <li className="user-account-info-list-item">
+        <div className="user-account-info-list-item-content">
+          <span className="user-account-info-list-item-content-key">
             Никнейм:
           </span>
-          <div>
+          <>
             {!isEditNickname ? (
               <span
                 className="user-account-info-list-item-content-value-onclick"
                 onClick={() => setIsEditNickname(true)}
               >
-                {session.data.user.name}
+                {session?.data?.user?.name}
               </span>
             ) : (
               <div className="user-account-info-list-item-content-value-input-box">
@@ -108,7 +174,6 @@ const AccountUserInfo = () => {
       </li>
     </ul>
   );
-}
+};
 
-export default AccountUserInfo
-*/
+export default AccountUserInfo;

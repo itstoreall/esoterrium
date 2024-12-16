@@ -21,6 +21,7 @@ div.user-account-block {
     // max-width: $mobile + 100;
     border: 1px solid $greyDeepDark;
     border-radius: $middleBorderRadius;
+    order: 2;
 
     > li.user-account-info-list-item {
       // background-color: teal;
@@ -107,6 +108,8 @@ div.user-account-block {
   // --- Notes Block:
 
   > div.user-account-notes-block {
+    order: 1;
+
     > button {
       min-width: 100%;
     }

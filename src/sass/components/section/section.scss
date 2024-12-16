@@ -15,9 +15,13 @@ section.section {
     width: 100%;
   }
 
-  /*
-  &.dashboard-section { background-color: red }
-  */
+  &.dashboard-section {
+    display: flex;
+    flex-direction: column; // Ensures elements stack vertically
+    align-items: stretch; // Makes sure items take full width if required
+    gap: 1rem;
+    // background-color: red;
+  }
 
   &.article-details-section {
     gap: 2rem;

@@ -18,16 +18,16 @@ div.user-account-notes-block {
     // padding: 1rem;
     // margin: 0 auto;
     width: calc(100% - 2rem);
-    height: 352px;
+    height: 365px;
     outline: none;
     overflow: hidden;
     resize: none;
     background-color: transparent;
     // background-color: teal;
 
-    /*
-    @include media-screen-orientation('min', $accountMobileWidth) {}
-    */
+    @include media-screen-orientation('min', $accountMobileWidth) {
+      height: 405px;
+    }
 
     &::placeholder {
       color: $violetLightPlus;

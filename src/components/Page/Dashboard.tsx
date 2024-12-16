@@ -3,28 +3,36 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
-import { GoSignOut } from 'react-icons/go';
+// import { GoSignOut } from 'react-icons/go';
 import useUserRole from '@/src/hooks/useUserRole';
 import useUserInfo from '@/src/hooks/useUserInfo';
-import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
-import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
-import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
+// import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
+// import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
+// import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
-import convertDate from '@/src/utils/convertDate';
-import trimString from '@/src/utils/trimString';
+// import convertDate from '@/src/utils/convertDate';
+// import trimString from '@/src/utils/trimString';
 import { AuthRoleEnum } from '@/src/enum';
-import SignOutButton from '@/src/components/Button/SignOutButton';
+// import SignOutButton from '@/src/components/Button/SignOutButton';
 import Title from '@/src/components/Layout/Title';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
 import LoaderBlock from '@/src/components/LoaderBlock';
-import Button from '@/src/components/Button';
-import copyToClipboard from '@/src/utils/copyToClipboard';
+// import Button from '@/src/components/Button';
+// import copyToClipboard from '@/src/utils/copyToClipboard';
 import AccountNotes from '../AccountNotes';
 
+import AccountUserInfo from '@/src/components/AccountUserInfo';
+
+export type Acc = {
+  userRole: AuthRoleEnum | undefined;
+  handleUserRole: () => Promise<void>;
+  isAdminRole: () => boolean;
+};
+
 const Dashboard = () => {
-  const [isAccountLinked, setIsAccountLinked] = useState(false);
-  const [isEditNickname, setIsEditNickname] = useState(false);
+  // const [isAccountLinked, setIsAccountLinked] = useState(false);
+  // const [isEditNickname, setIsEditNickname] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [name, setName] = useState('');
 
@@ -34,7 +42,7 @@ const Dashboard = () => {
 
   const { userInfo } = useUserInfo();
   const session = useSession();
-  const acc = useUserRole();
+  const acc: Acc = useUserRole();
 
   const handleUserName = async (user: User) => {
     const { name: userName, email } = user;
@@ -76,29 +84,29 @@ const Dashboard = () => {
     }
   };
 
-  const updateName = () => {
-    session.update({ name });
-    setIsEditNickname(false);
-  };
+  // const updateName = () => {
+  //   session.update({ name });
+  //   setIsEditNickname(false);
+  // };
 
-  const handleCopyValue = (val: string) => {
-    setIsCopied(true);
-    copyToClipboard(val);
-    setTimeout(() => setIsCopied(false), 300);
-  };
+  // const handleCopyValue = (val: string) => {
+  //   setIsCopied(true);
+  //   copyToClipboard(val);
+  //   setTimeout(() => setIsCopied(false), 300);
+  // };
 
-  useEffect(() => {
-    const accountLinkStatus = async () => {
-      try {
-        const accountLinkStatus = await getAccountLinkStatus();
-        setIsAccountLinked(accountLinkStatus);
-      } catch (error) {
-        console.error('Failed to get account link status:', error);
-      }
-    };
-    acc.handleUserRole();
-    accountLinkStatus();
-  }, []);
+  // useEffect(() => {
+  //   const accountLinkStatus = async () => {
+  //     try {
+  //       const accountLinkStatus = await getAccountLinkStatus();
+  //       setIsAccountLinked(accountLinkStatus);
+  //     } catch (error) {
+  //       console.error('Failed to get account link status:', error);
+  //     }
+  //   };
+  //   acc.handleUserRole();
+  //   accountLinkStatus();
+  // }, []);
 
   useEffect(() => {
     const user = session.data?.user;
@@ -127,114 +135,14 @@ const Dashboard = () => {
 
       <Section className={'dashboard-section'}>
         <div className="user-account-block">
-          <ul className="user-account-info-list">
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  ID:
-                </span>
-                <span
-                  className={`user-account-info-list-item-content-value-onclick ${copyStyle}`}
-                  // className="user-account-info-list-item-content-value-onclick"
-                  onClick={() => handleCopyValue(userInfo.id)}
-                >
-                  {trimString(userInfo.id, 8, 5)}
-                </span>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  Статус:
-                </span>
-                <span className="user-account-info-list-item-content-value">
-                  {acc.userRole}
-                </span>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  Никнейм:
-                </span>
-                <>
-                  {!isEditNickname ? (
-                    <span
-                      className="user-account-info-list-item-content-value-onclick"
-                      onClick={() => setIsEditNickname(true)}
-                    >
-                      {session.data.user.name}
-                    </span>
-                  ) : (
-                    <div className="user-account-info-list-item-content-value-input-box">
-                      <input
-                        className="user-account-info-list-item-content-value-input"
-                        type="text"
-                        placeholder={'Введите никнейм'}
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                      />
-
-                      <Button
-                        className="small-border-button-as-system"
-                        clickContent={() => updateName()}
-                      >
-                        сохранить
-                      </Button>
-                    </div>
-                  )}
-                </>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  Рейтинг:
-                </span>
-                <span className="user-account-info-list-item-content-value">
-                  {userInfo.points}
-                </span>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content">
-                <span className="user-account-info-list-item-content-key">
-                  Регистрация:
-                </span>
-                <span className="user-account-info-list-item-content-value">
-                  {convertDate(userInfo.createdAt)}
-                </span>
-              </div>
-            </li>
-            <li className="user-account-info-list-item">
-              <div className="user-account-info-list-item-content-button-block">
-                <SignOutButton
-                  className="nav-link-react-icon-button"
-                  content={<GoSignOut size={20} />}
-                  title={'Вьіход'}
-                />
-                <Button
-                  className="dashboard-text-button disabled"
-                  clickContent={
-                    isAccountLinked
-                      ? async () => {
-                          await unlinkGoogleAccount().then(() => {
-                            setIsAccountLinked(false);
-                          });
-                        }
-                      : async () => {
-                          await handleGoogleSignIn('dashboard').then(() => {
-                            setIsAccountLinked(true);
-                          });
-                        }
-                  }
-                  isDisable
-                >
-                  {isAccountLinked ? 'Disconnect Account' : 'Connect Account'}
-                </Button>
-              </div>
-            </li>
-          </ul>
+          <AccountUserInfo
+            acc={acc}
+            userInfo={userInfo}
+            name={name}
+            copyStyle={copyStyle}
+            setIsCopied={setIsCopied}
+            setName={setName}
+          />
 
           <AccountNotes />
         </div>
