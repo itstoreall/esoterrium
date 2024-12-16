@@ -23,6 +23,7 @@ import LoaderBlock from '@/src/components/LoaderBlock';
 import AccountNotes from '../AccountNotes';
 
 import AccountUserInfo from '@/src/components/AccountUserInfo';
+import useNotes from '@/src/hooks/useNotes';
 
 export type Acc = {
   userRole: AuthRoleEnum | undefined;
@@ -35,6 +36,12 @@ const Dashboard = () => {
   // const [isEditNickname, setIsEditNickname] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [name, setName] = useState('');
+
+  const { notesText, handleNotesChange, clearNotes } = useNotes();
+
+  // const getLSNotes = () => localStorage.getItem(lsKey) || '';
+
+  // const [notesText, setNotesText] = useState(getLSNotes() || '');
 
   const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(
     AuthRoleEnum.Guest
@@ -144,7 +151,11 @@ const Dashboard = () => {
             setName={setName}
           />
 
-          <AccountNotes />
+          <AccountNotes
+            notesText={notesText}
+            handleNotesChange={handleNotesChange}
+            clearNotes={clearNotes}
+          />
         </div>
 
         {/* {acc.userRole === AuthRoleEnum.Influencer && ( */}

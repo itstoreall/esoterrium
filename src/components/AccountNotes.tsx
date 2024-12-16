@@ -1,9 +1,16 @@
-import useNotes from '@/src/hooks/useNotes';
+// import useNotes from '@/src/hooks/useNotes';
 import { FiTrash2 } from 'react-icons/fi';
+import { TextareaEvent } from '../types';
 // import Button from '@/src/components/Button';
 
-const AccountNotes = () => {
-  const { notesText, handleNotesChange, clearNotes } = useNotes();
+type Props = {
+  notesText: string;
+  handleNotesChange: (val: TextareaEvent) => void;
+  clearNotes: () => void;
+};
+
+const AccountNotes = ({ notesText, handleNotesChange, clearNotes }: Props) => {
+  // const { notesText, handleNotesChange, clearNotes } = useNotes();
 
   return (
     <div className="user-account-notes-block">

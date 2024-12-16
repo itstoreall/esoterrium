@@ -11,23 +11,23 @@ div.user-account-notes-block {
   border-radius: $middleBorderRadius;
 
   @include media-screen-orientation('max', $accountMobileWidth - 0.1) {
-    height: 400px;
+    height: 437px;
   }
 
   > textarea.user-account-notes-textarea {
     // padding: 1rem;
     // margin: 0 auto;
     width: calc(100% - 2rem);
-    height: 365px;
+    height: 405px;
     outline: none;
     overflow: hidden;
     resize: none;
     background-color: transparent;
     // background-color: teal;
 
-    @include media-screen-orientation('min', $accountMobileWidth) {
-      height: 405px;
-    }
+    // @include media-screen-orientation('min', $accountMobileWidth) {
+    //   height: 405px;
+    // }
 
     &::placeholder {
       color: $violetLightPlus;

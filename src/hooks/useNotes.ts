@@ -22,13 +22,14 @@ const useNotes = () => {
     setNotesText(val);
     if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
     debounceTimeoutRef.current = setTimeout(() => {
+      console.log(val);
       localStorage.setItem(lsKey, val);
     }, 2000);
   };
 
   const handleNotesChange = (e: TextareaEvent) => {
     const textarea = e.target;
-    const maxHeight = 368;
+    const maxHeight = 406;
     if (textarea.scrollHeight > maxHeight) return;
     updateNotes(textarea.value);
   };
