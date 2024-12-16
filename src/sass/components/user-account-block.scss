@@ -82,12 +82,14 @@ div.user-account-block {
         padding-top: 1rem;
         // background-color: red;
 
+        /*
         > button,
         > span {
           @include media-screen-orientation('max', $mobile) {
             width: 100%;
           }
         }
+        */
       }
     }
   }
@@ -95,6 +97,7 @@ div.user-account-block {
   // --- Notes Block:
 
   > div.user-account-notes-block {
+    position: relative;
     background-color: $violetDark;
     border-radius: $middleBorderRadius;
 
@@ -103,24 +106,40 @@ div.user-account-block {
     }
 
     > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       min-height: 100%;
       // background-color: red;
       // border-radius: $middleBorderRadius;
 
       > textarea.user-account-notes-textarea {
-        display: flex;
-        background-color: transparent;
-        resize: none;
+        // padding: 1rem;
+        // margin: 0 auto;
         width: calc(100% - 2rem);
         height: 368px;
-        padding: 1rem;
         outline: none;
+        overflow: hidden;
+        resize: none;
+        background-color: transparent;
         // background-color: teal;
 
         @include media-screen-orientation('min', $accountMobileWidth) {
-          height: 363px;
+          // max-height: calc(1.5rem * 10);
+          // height: 363px;
+        }
+
+        &::placeholder {
+          color: $greyLight;
         }
       }
+    }
+
+    > svg.user-account-notes-trash-button {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      stroke: $light;
     }
   }
 }

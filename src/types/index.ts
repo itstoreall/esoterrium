@@ -5,6 +5,7 @@ export type ChildrenProps = { children: ReactNode };
 
 export type FormEvent = React.FormEvent<HTMLFormElement>;
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
+export type TextareaEvent = React.ChangeEvent<HTMLTextAreaElement>;
 
 // ------ User:
 

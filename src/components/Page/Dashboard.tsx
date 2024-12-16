@@ -1,29 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
+import { FiTrash2 } from 'react-icons/fi';
+import { GoSignOut } from 'react-icons/go';
+import useNotes from '@/src/hooks/useNotes';
 import useUserRole from '@/src/hooks/useUserRole';
+import useUserInfo from '@/src/hooks/useUserInfo';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
 import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
 import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
+import convertDate from '@/src/utils/convertDate';
+import trimString from '@/src/utils/trimString';
+// import { TextareaEvent } from '@/src/types';
 import { AuthRoleEnum } from '@/src/enum';
-import { GoSignOut } from 'react-icons/go';
-import Main from '@/src/components/Layout/Main';
-import Section from '@/src/components/Section';
 import SignOutButton from '@/src/components/Button/SignOutButton';
 import Title from '@/src/components/Layout/Title';
-import LoaderBlock from '../LoaderBlock';
-import trimString from '@/src/utils/trimString';
-import useUserInfo from '@/src/hooks/useUserInfo';
-import convertDate from '@/src/utils/convertDate';
-import Button from '../Button';
+import Main from '@/src/components/Layout/Main';
+import Section from '@/src/components/Section';
+import LoaderBlock from '@/src/components/LoaderBlock';
+import Button from '@/src/components/Button';
+
+// const getLSNotes = () => localStorage.getItem('notes_text') || '';
 
 const Dashboard = () => {
+  // const [notesText, setNotesText] = useState(getLSNotes() || '');
   const [isAccountLinked, setIsAccountLinked] = useState(false);
-  const [name, setName] = useState('');
   const [isEditNickname, setIsEditNickname] = useState(false);
+  const [name, setName] = useState('');
+
+  const { notesText, handleNotesChange, clearNotes } = useNotes();
+
+  // const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // ---
 
@@ -35,22 +45,39 @@ const Dashboard = () => {
   };
   */
 
-  const [notesText, setNotesText] = useState(
-    () => localStorage.getItem('notesText') || ''
-  );
-  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  // const updateNotes = (val: string) => {
+  //   setNotesText(val);
+  //   if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
+  //   debounceTimeoutRef.current = setTimeout(() => {
+  //     localStorage.setItem('notes_text', val);
+  //   }, 2000);
+  // };
 
-  const handleNotes = (val: string) => {
-    setNotesText(val);
+  // // const handleNotesChange = (val: string) => {
+  // //   const maxLines = 10;
+  // //   const lines = val.split('\n');
 
-    if (debounceTimeoutRef.current) {
-      clearTimeout(debounceTimeoutRef.current);
-    }
+  // //   console.log('lines:', lines);
 
-    debounceTimeoutRef.current = setTimeout(() => {
-      localStorage.setItem('notesText', val);
-    }, 2000);
-  };
+  // //   // /*
+  // //   if (lines.length > maxLines) {
+  // //     updateNotes(lines.slice(0, maxLines).join('\n'));
+  // //   } else updateNotes(val);
+  // //   // */
+  // // };
+
+  // const handleNotesChange = (e: TextareaEvent) => {
+  //   const textarea = e.target;
+  //   const maxHeight = 368;
+  //   if (textarea.scrollHeight > maxHeight) return;
+  //   updateNotes(textarea.value);
+  // };
+
+  // const clearNotes = () => {
+  //   if (!confirm('Очистить заметки?')) return;
+  //   localStorage.removeItem('notes_text');
+  //   setNotesText('');
+  // };
 
   // ---
 
@@ -91,7 +118,7 @@ const Dashboard = () => {
   //   */
   // };
 
-  const handleChangeUserRole = async () => {
+  const changeUserRole = async () => {
     if (!userInfo?.id) {
       console.error('User ID is missing or invalid:', userInfo?.id);
       return;
@@ -104,7 +131,7 @@ const Dashboard = () => {
     }
   };
 
-  const handleUpdateName = () => {
+  const updateName = () => {
     session.update({ name });
     setIsEditNickname(false);
   };
@@ -121,11 +148,11 @@ const Dashboard = () => {
     acc.handleUserRole();
     accountLinkStatus();
 
-    return () => {
-      if (debounceTimeoutRef.current) {
-        clearTimeout(debounceTimeoutRef.current);
-      }
-    };
+    // return () => {
+    //   if (debounceTimeoutRef.current) {
+    //     clearTimeout(debounceTimeoutRef.current);
+    //   }
+    // };
   }, []);
 
   // useEffect(() => {
@@ -143,6 +170,8 @@ const Dashboard = () => {
       handleUserName(user);
     }
   }, [session]);
+
+  // ---
 
   if (!userInfo || !session.data?.user)
     return <LoaderBlock className={'light-loader-block'} />;
@@ -205,7 +234,7 @@ const Dashboard = () => {
 
                       <Button
                         className="small-border-button-as-system"
-                        clickContent={() => handleUpdateName()}
+                        clickContent={() => updateName()}
                       >
                         сохранить
                       </Button>
@@ -272,11 +301,20 @@ const Dashboard = () => {
             <div>
               <textarea
                 // ref={taRef}
+                placeholder="Напишите заметку"
                 className={'user-account-notes-textarea'}
                 value={notesText}
-                onChange={(e) => handleNotes(e.target.value)}
+                onChange={(e) => handleNotesChange(e)}
+                // onChange={(e) => handleNotesChange(e.target.value)}
+                rows={10}
               />
             </div>
+
+            <FiTrash2
+              className="user-account-notes-trash-button"
+              size={25}
+              onClick={() => clearNotes()}
+            />
           </div>
         </div>
 
@@ -313,10 +351,7 @@ const Dashboard = () => {
                 ))}
               </select>
 
-              <button
-                className="update-field-button"
-                onClick={handleChangeUserRole}
-              >
+              <button className="update-field-button" onClick={changeUserRole}>
                 Update Role
               </button>
             </div>
