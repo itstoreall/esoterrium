@@ -22,9 +22,11 @@ div.user-account-block {
     border: 1px solid $greyDeepDark;
     border-radius: $middleBorderRadius;
 
+    /*
     @include media-screen-orientation('max', $accountMobileWidth) {
       order: 2;
     }
+    */
 
     > li.user-account-info-list-item {
       // background-color: teal;
@@ -111,9 +113,11 @@ div.user-account-block {
   // --- Notes Block:
 
   > div.user-account-notes-block {
+    /*
     @include media-screen-orientation('max', $accountMobileWidth) {
       order: 1;
     }
+    */
 
     > button {
       min-width: 100%;

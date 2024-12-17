@@ -24,6 +24,7 @@ div.user-account-notes-block {
     resize: none;
     background-color: transparent;
     // background-color: teal;
+    caret-color: $black;
 
     @include media-screen-orientation('min', $accountMobileWidth) {
       height: 408px;
