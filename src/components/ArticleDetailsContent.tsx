@@ -14,6 +14,7 @@ import Container from '@/src/components/Container';
 import Title from '@/src/components/Layout/Title';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
+import MDEditorBlock from './MDEditorBlock';
 
 const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
   const { isLoader, Loader } = useLoader();
@@ -61,9 +62,14 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
                 />
               </div>
 
-              <p className="article-details-text readable-content">
+              <MDEditorBlock
+                className="article-details-mdeditor-block"
+                text={article.content}
+              />
+
+              {/* <p className="article-details-text readable-content">
                 {article.content}
-              </p>
+              </p> */}
             </Section>
 
             <span className="articles-page-main-divider" />

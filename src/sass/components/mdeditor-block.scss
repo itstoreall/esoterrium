@@ -1,0 +1,41 @@
+@use '@/src/sass/base/vars' as *;
+@use '@/src/sass/mixins' as *;
+
+div.mdeditor-block {
+  &.article-details-mdeditor-block {
+    > div.mdeditor-markdown-top-lib-elenemt {
+      background-color: transparent;
+
+      > h2,
+      > h3,
+      > p {
+        font-family: var(--text-content-font);
+      }
+
+      > h1 {
+        display: none;
+      }
+
+      > h2,
+      > h3 {
+        font-size: 1.6rem;
+        font-weight: bold;
+        line-height: 1.2;
+
+        @include media-screen-orientation('min', $tablet) {
+          font-size: 2em;
+        }
+      }
+
+      > p {
+        font-size: 1rem;
+        line-height: 1.4;
+        letter-spacing: 0.02rem;
+
+        @include media-screen-orientation('min', $tablet) {
+          font-size: 1.125em;
+        }
+      }
+    }
+  }
+}

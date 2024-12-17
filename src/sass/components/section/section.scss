@@ -17,10 +17,9 @@ section.section {
 
   &.dashboard-section {
     display: flex;
-    flex-direction: column; // Ensures elements stack vertically
-    align-items: stretch; // Makes sure items take full width if required
+    flex-direction: column;
+    align-items: stretch;
     gap: 1rem;
-    // background-color: red;
   }
 
   &.article-details-section {

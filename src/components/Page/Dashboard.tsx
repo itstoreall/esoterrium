@@ -5,7 +5,7 @@ import { User } from 'next-auth';
 import useNotes from '@/src/hooks/useNotes';
 import useUserInfo from '@/src/hooks/useUserInfo';
 import useUserRole from '@/src/hooks/useUserRole';
-import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
+// import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
 import { AuthRoleEnum } from '@/src/enum';
 import AccountUserInfo from '@/src/components/AccountUserInfo';
 import AccountNotes from '@/src/components/AccountNotes';
@@ -20,16 +20,16 @@ export type Acc = {
   isAdminRole: () => boolean;
 };
 
-const initRole = AuthRoleEnum.Guest;
+// const initRole = AuthRoleEnum.Guest;
 
 const Dashboard = () => {
+  // const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(initRole);
   const [name, setName] = useState('');
-  const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(initRole);
 
   const { notesText, handleNotesChange, clearNotes } = useNotes();
   const { userInfo } = useUserInfo();
-  const session = useSession();
   const acc: Acc = useUserRole();
+  const session = useSession();
 
   const handleUserName = async (user: User) => {
     const { name: userName, email } = user;
@@ -41,18 +41,18 @@ const Dashboard = () => {
     }
   };
 
-  const changeUserRole = async () => {
-    if (!userInfo?.id) {
-      console.error('User ID is missing or invalid:', userInfo?.id);
-      return;
-    }
-    try {
-      await setUserRole(userInfo?.id, selectedRole);
-      await acc.handleUserRole();
-    } catch (error) {
-      console.error('Failed to update role:', error);
-    }
-  };
+  // const changeUserRole = async () => {
+  //   if (!userInfo?.id) {
+  //     console.error('User ID is missing or invalid:', userInfo?.id);
+  //     return;
+  //   }
+  //   try {
+  //     await setUserRole(userInfo?.id, selectedRole);
+  //     await acc.handleUserRole();
+  //   } catch (error) {
+  //     console.error('Failed to update role:', error);
+  //   }
+  // };
 
   useEffect(() => {
     const user = session.data?.user;
@@ -92,46 +92,6 @@ const Dashboard = () => {
             clearNotes={clearNotes}
           />
         </div>
-
-        {/* {acc.userRole === AuthRoleEnum.Influencer && ( */}
-        {acc.userRole === AuthRoleEnum.Admin && (
-          <>
-            <div className="field-input-container">
-              <input
-                className="field-input"
-                type="text"
-                placeholder={'Enter name'}
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-              />
-
-              <button
-                className="update-field-button"
-                onClick={() => session.update({ name })}
-              >
-                Update Name
-              </button>
-
-              <select
-                value={selectedRole}
-                onChange={(event) =>
-                  setSelectedRole(event.target.value as AuthRoleEnum)
-                }
-                className="field-input"
-              >
-                {Object.values(AuthRoleEnum).map((role) => (
-                  <option key={role} value={role}>
-                    {role}
-                  </option>
-                ))}
-              </select>
-
-              <button className="update-field-button" onClick={changeUserRole}>
-                Update Role
-              </button>
-            </div>
-          </>
-        )}
       </Section>
 
       <Section className={'main-final-section-zero'}>{null}</Section>
@@ -140,3 +100,40 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+/*
+<div className="field-input-container">
+  <input
+    className="field-input"
+    type="text"
+    placeholder={'Enter name'}
+    value={name}
+    onChange={(event) => setName(event.target.value)}
+  />
+
+  <button
+    className="update-field-button"
+    onClick={() => session.update({ name })}
+  >
+    Update Name
+  </button>
+
+  <select
+    value={selectedRole}
+    onChange={(event) =>
+      setSelectedRole(event.target.value as AuthRoleEnum)
+    }
+    className="field-input"
+  >
+    {Object.values(AuthRoleEnum).map((role) => (
+      <option key={role} value={role}>
+        {role}
+      </option>
+    ))}
+  </select>
+
+  <button className="update-field-button" onClick={changeUserRole}>
+    Update Role
+  </button>
+</div>
+*/
