@@ -35,10 +35,6 @@ section.section {
     gap: 1.5rem;
   }
 
-  &.main-final-section {
-    padding-bottom: 80px;
-  }
-
   &.blue-lotus-home-section {
     display: flex;
     justify-content: center;
@@ -47,5 +43,17 @@ section.section {
     height: calc($mainHeight - 150px);
     min-height: 230px;
     // background-color: tomato;
+  }
+
+  &.main-final-section {
+    padding-bottom: 80px;
+  }
+
+  &.main-final-section-small {
+    padding-bottom: 1rem;
+  }
+
+  &.main-final-section-zero {
+    padding-bottom: 0;
   }
 }

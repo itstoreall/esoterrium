@@ -1,7 +1,5 @@
-// import useNotes from '@/src/hooks/useNotes';
 import { FiTrash2 } from 'react-icons/fi';
 import { TextareaEvent } from '../types';
-// import Button from '@/src/components/Button';
 
 type Props = {
   notesText: string;
@@ -10,8 +8,6 @@ type Props = {
 };
 
 const AccountNotes = ({ notesText, handleNotesChange, clearNotes }: Props) => {
-  // const { notesText, handleNotesChange, clearNotes } = useNotes();
-
   return (
     <div className="user-account-notes-block">
       {/* <div>

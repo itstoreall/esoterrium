@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 const lsKey = 'notes_text';
 
 const useNotes = () => {
-  const getLSNotes = () => localStorage.getItem(lsKey) || '';
-
-  const [notesText, setNotesText] = useState(getLSNotes() || '');
+  const [notesText, setNotesText] = useState('');
 
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    const lsNotes = localStorage.getItem(lsKey) || '';
+    setNotesText(lsNotes);
+
     return () => {
       if (debounceTimeoutRef.current) {
         clearTimeout(debounceTimeoutRef.current);
@@ -22,7 +23,6 @@ const useNotes = () => {
     setNotesText(val);
     if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
     debounceTimeoutRef.current = setTimeout(() => {
-      console.log(val);
       localStorage.setItem(lsKey, val);
     }, 2000);
   };

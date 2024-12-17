@@ -34,7 +34,7 @@ export type Acc = {
 const Dashboard = () => {
   // const [isAccountLinked, setIsAccountLinked] = useState(false);
   // const [isEditNickname, setIsEditNickname] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false);
   const [name, setName] = useState('');
 
   const { notesText, handleNotesChange, clearNotes } = useNotes();
@@ -128,8 +128,6 @@ const Dashboard = () => {
   if (!userInfo || !session.data?.user)
     return <LoaderBlock className={'black-loader-block'} />;
 
-  const copyStyle = isCopied ? 'copied' : '';
-
   return (
     <Main className={'dashboard-page-main'}>
       <Section className={'main-hero-section'}>
@@ -146,8 +144,8 @@ const Dashboard = () => {
             acc={acc}
             userInfo={userInfo}
             name={name}
-            copyStyle={copyStyle}
-            setIsCopied={setIsCopied}
+            // copyStyle={copyStyle}
+            // setIsCopied={setIsCopied}
             setName={setName}
           />
 
@@ -199,7 +197,7 @@ const Dashboard = () => {
         )}
       </Section>
 
-      <Section className={'main-final-section'}>{null}</Section>
+      <Section className={'main-final-section-zero'}>{null}</Section>
     </Main>
   );
 };

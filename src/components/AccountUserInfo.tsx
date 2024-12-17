@@ -1,47 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react'; // SessionContextValue
-import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
-import copyToClipboard from '@/src/utils/copyToClipboard';
-import trimString from '../utils/trimString';
-// import { Session } from 'next-auth';
-import { Acc } from './Page/Dashboard';
-import { UserData } from '../types';
-import convertDate from '../utils/convertDate';
-import SignOutButton from './Button/SignOutButton';
 import { GoSignOut } from 'react-icons/go';
+import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
+import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
+import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
+import copyToClipboard from '@/src/utils/copyToClipboard';
+import { BooleanState, UserData } from '@/src/types';
+import convertDate from '@/src/utils/convertDate';
+import trimString from '@/src/utils/trimString';
+import trimEmail from '@/src/utils/trimEmail';
+import SignOutButton from '@/src/components/Button/SignOutButton';
+import { Acc } from '@/src/components/Page/Dashboard';
 import Button from './Button';
-import { unlinkGoogleAccount } from '../lib/auth/unlinkGoogleAccountServerAction';
-import { handleGoogleSignIn } from '../lib/auth/googleSignInServerAction';
 
 type Props = {
   acc: Acc;
   name: string;
   userInfo: UserData;
-  setIsCopied: Dispatch<SetStateAction<boolean>>;
-  copyStyle: string;
   setName: Dispatch<SetStateAction<string>>;
 };
 
 const AccountUserInfo = (props: Props) => {
-  const { acc, name, userInfo, copyStyle, setIsCopied, setName } = props;
+  const { acc, name, userInfo, setName } = props;
 
   const [isAccountLinked, setIsAccountLinked] = useState(false);
   const [isEditNickname, setIsEditNickname] = useState(false);
-  // const [isCopied, setIsCopied] = useState(false);
+  const [isEmailCopied, setIsEmailCopied] = useState(false);
+  const [isIdCopied, setIsIdCopied] = useState(false);
 
   const session = useSession();
-
-  const updateName = () => {
-    session.update({ name });
-    setIsEditNickname(false);
-  };
-
-  const handleCopyValue = (val: string) => {
-    setIsCopied(true);
-    copyToClipboard(val);
-    setTimeout(() => setIsCopied(false), 300);
-  };
 
   useEffect(() => {
     const accountLinkStatus = async () => {
@@ -56,15 +44,31 @@ const AccountUserInfo = (props: Props) => {
     accountLinkStatus();
   }, []);
 
+  const updateName = () => {
+    session.update({ name });
+    setIsEditNickname(false);
+  };
+
+  const handleCopyValue = (val: string, setCopiedState: BooleanState) => {
+    setCopiedState(true);
+    copyToClipboard(val);
+    setTimeout(() => setCopiedState(false), 300);
+  };
+
+  // ---
+
+  const copyEmailStyle = isEmailCopied ? 'copied' : '';
+  const copyIdStyle = isIdCopied ? 'copied' : '';
+
   return (
     <ul className="user-account-info-list">
       <li className="user-account-info-list-item">
         <div className="user-account-info-list-item-content">
           <span className="user-account-info-list-item-content-key">ID:</span>
           <span
-            className={`user-account-info-list-item-content-value-onclick ${copyStyle}`}
+            className={`user-account-info-list-item-content-value-onclick ${copyIdStyle}`}
             // className="user-account-info-list-item-content-value-onclick"
-            onClick={() => handleCopyValue(userInfo.id)}
+            onClick={() => handleCopyValue(userInfo.id, setIsIdCopied)}
           >
             {trimString(userInfo.id, 8, 5)}
           </span>
@@ -85,8 +89,11 @@ const AccountUserInfo = (props: Props) => {
           <span className="user-account-info-list-item-content-key">
             E-mail:
           </span>
-          <span className="user-account-info-list-item-content-value">
-            {/* {acc.} */}
+          <span
+            className={`user-account-info-list-item-content-value-onclick ${copyEmailStyle}`}
+            onClick={() => handleCopyValue(userInfo.email, setIsEmailCopied)}
+          >
+            {trimEmail(userInfo.email, 2, 2)}
           </span>
         </div>
       </li>

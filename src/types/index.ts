@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { AuthRoleEnum } from '@/src/enum';
 
 export type ChildrenProps = { children: ReactNode };
@@ -6,6 +6,8 @@ export type ChildrenProps = { children: ReactNode };
 export type FormEvent = React.FormEvent<HTMLFormElement>;
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 export type TextareaEvent = React.ChangeEvent<HTMLTextAreaElement>;
+
+export type BooleanState = Dispatch<SetStateAction<boolean>>;
 
 // ------ User:
 

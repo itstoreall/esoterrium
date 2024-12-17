@@ -10,7 +10,9 @@ type SectionProps = ChildrenProps & {
     | 'article-details-section'
     | 'readable-content-section'
     | 'article-details-comments-section'
-    | 'main-final-section';
+    | 'main-final-section'
+    | 'main-final-section-small'
+    | 'main-final-section-zero';
 };
 
 const Section = ({ children, className }: SectionProps) => {
