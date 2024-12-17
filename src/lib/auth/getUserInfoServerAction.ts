@@ -2,7 +2,6 @@
 
 import { auth } from '@/src/lib/auth/authConfig';
 import { prisma } from '@/src/lib/prisma/client';
-// import { UserData } from '@/src/types';
 
 export const getUserInfo = async () => {
   const session = await auth();

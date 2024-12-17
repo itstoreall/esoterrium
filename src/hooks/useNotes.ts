@@ -1,5 +1,5 @@
-import { TextareaEvent } from '@/src/types';
 import { useEffect, useRef, useState } from 'react';
+import { TextareaEvent } from '@/src/types';
 
 const lsKey = 'notes_text';
 
@@ -11,7 +11,6 @@ const useNotes = () => {
   useEffect(() => {
     const lsNotes = localStorage.getItem(lsKey) || '';
     setNotesText(lsNotes);
-
     return () => {
       if (debounceTimeoutRef.current) {
         clearTimeout(debounceTimeoutRef.current);
