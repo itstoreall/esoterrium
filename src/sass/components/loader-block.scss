@@ -9,7 +9,20 @@ div.loader-block {
   &.light-loader-block,
   &.main-combine-light-loader-block {
     background-color: $light;
+    height: calc($mainHeight - 180px);
+    // background-color: tomato;
   }
+
+  /*
+  &.light-loader-block {
+    background-color: tomato;
+  }
+
+  &.main-combine-light-loader-block {
+    height: calc($mainHeight - 170px); // + 40px
+    background-color: teal;
+  }
+  */
 
   &.dark-loader-block {
     background-color: $dark;
@@ -17,10 +30,6 @@ div.loader-block {
 
   &.black-loader-block {
     background-color: $black;
-  }
-
-  &.main-combine-light-loader-block {
-    height: calc($mainHeight + 40px);
   }
 
   /*

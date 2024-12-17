@@ -79,10 +79,10 @@ const Articles = () => {
             <span className="articles-page-main-divider" />
 
             <ArticleList articles={filteredArticles} />
+
+            <Section className={'main-final-section'}>{null}</Section>
           </>
         )}
-
-        <Section className={'main-final-section'}>{null}</Section>
       </Main>
     </Container>
   );

@@ -29,7 +29,12 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
 
       <Main className={'article-details-page-main'}>
         {!acc.userRole || isLoader ? (
-          <Loader className="light-loader-block" />
+          <>
+            <Section className={'main-hero-section'}>
+              <Title tag="h2" className="page-main-title" text={'...'} />
+            </Section>
+            <Loader className="light-loader-block" />
+          </>
         ) : (
           <>
             <Section className={'main-hero-section'}>{null}</Section>
