@@ -24,11 +24,12 @@ div.container {
     // background-color: green;
   }
 
+  /*
   &.header-content-block-container {
-    @include media-screen-orientation('max', $desktop) {
-      // padding: 0 0 0 1rem;
-    }
+    max-width: $max;
+    @include media-screen-orientation('max', $desktop) {}
   }
+  */
 
   // --- Combine (aside with main)
 
@@ -53,10 +54,11 @@ div.container {
       // gap: 1rem;
       margin: 0 auto;
       max-width: $desktop;
-
-      // @include media-screen-orientation('min', $combineDesktop) {
-      //   grid-template-columns: 17.5rem 1fr;
-      // }
+      /*
+      @include media-screen-orientation('min', $combineDesktop) {
+        grid-template-columns: 17.5rem 1fr;
+      }
+      */
     }
 
     // background-color: tomato;
@@ -113,8 +115,10 @@ div.container {
     flex-direction: column;
     gap: 2rem;
     padding: 2rem 1rem 2.7rem;
-    background-color: $greyDeepDarkPlus;
-    border: 0.1rem solid $greyDeepDarkUltra;
+    background-color: $greyDeepDarkUltra;
+    // background-color: $greyDeepDarkPlus;
+    border: 0.1rem solid $greyDeepDarkPlus;
+    // border: 0.1rem solid $greyDeepDarkUltra;
     border-radius: 0.4rem;
     box-shadow: $shadow;
 

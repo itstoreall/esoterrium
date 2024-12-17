@@ -25,9 +25,9 @@ div.user-account-notes-block {
     background-color: transparent;
     // background-color: teal;
 
-    // @include media-screen-orientation('min', $accountMobileWidth) {
-    //   height: 405px;
-    // }
+    @include media-screen-orientation('min', $accountMobileWidth) {
+      height: 408px;
+    }
 
     &::placeholder {
       color: $violetLightPlus;

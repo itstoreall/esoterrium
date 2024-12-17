@@ -61,14 +61,14 @@ const Articles = () => {
       <Sidebar className="articles-sidebar" />
 
       <Main className={'articles-page-main'}>
+        <Section className={'main-hero-section'}>
+          <Title tag="h2" className="page-main-title" text="Публикации" />
+        </Section>
+
         {isLoading || !acc.userRole || isLoader || !filteredArticles ? (
           <Loader className={'main-combine-light-loader-block'} />
         ) : (
           <>
-            <Section className={'main-hero-section'}>
-              <Title tag="h2" className="page-main-title" text="Публикации" />
-            </Section>
-
             {acc.isAdminRole() && (
               <AdminPanelArticles
                 articles={articles}

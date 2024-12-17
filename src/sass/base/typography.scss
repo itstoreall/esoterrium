@@ -9,6 +9,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.03rem;
+  // color: $greyMiddleDark;
 }
 
 /*
@@ -62,8 +63,19 @@ h2 {
     @extend .default-page-title;
     height: 3.25rem;
 
+    /*
+    &::before {
+      content: '';
+      margin-right: 0.5rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      background-color: $violetLight;
+    }
+    */
+
     &.color-light {
-      color: $greyLight;
+      // color: $greyLight;
+      color: $greyMiddle;
     }
   }
 
@@ -90,6 +102,17 @@ h3 {
 
   &.sidebar-title {
     @extend .default-page-title;
+    // background-color: teal;
+
+    /*
+    &::before {
+      content: '';
+      margin-right: 0.5rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      background-color: $violetLight;
+    }
+    */
   }
 
   &.article-list-item-title {

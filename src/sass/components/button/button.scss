@@ -68,7 +68,7 @@ span.button {
       background-color: $greyDeepDarkUltra;
 
       > span.button-text {
-        padding-top: 1px;
+        // padding-top: 1px; // applying to all!
         line-height: 1.2;
         text-align: center;
         color: $greyDeepDark;
