@@ -9,7 +9,7 @@ div.user-account-block {
   gap: 1rem;
   // flex-direction: column;
 
-  @include media-screen-orientation('max', $accountMobileWidth - 0.1) {
+  @include media-screen-orientation('max', $mobilePlus - 0.1) {
     grid-template-columns: repeat(1, 1fr);
   }
 
@@ -23,7 +23,7 @@ div.user-account-block {
     border-radius: $middleBorderRadius;
 
     /*
-    @include media-screen-orientation('max', $accountMobileWidth) {
+    @include media-screen-orientation('max', $mobileWidthPlus) {
       order: 2;
     }
     */
@@ -114,7 +114,7 @@ div.user-account-block {
 
   > div.user-account-notes-block {
     /*
-    @include media-screen-orientation('max', $accountMobileWidth) {
+    @include media-screen-orientation('max', $mobileWidthPlus) {
       order: 1;
     }
     */

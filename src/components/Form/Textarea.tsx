@@ -1,5 +1,8 @@
+import { useEffect, useRef } from 'react';
+
 type Props = {
   className?:
+    | 'article-create-form-textarea'
     | 'article-details-comments-add-form-textarea'
     | 'article-details-comments-edit-form-textarea';
   placeholder?: string;
@@ -21,9 +24,25 @@ const Textarea = (props: Props) => {
     isAutoFocus = false,
   } = props;
 
+  const taRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = () => {
+    if (taRef.current) {
+      taRef.current.style.height = 'auto'; // Reset height to auto
+      taRef.current.style.height = `${taRef.current.scrollHeight}px`; // Set height to content's scroll height
+    }
+  };
+
+  // Adjust height on component mount or when value changes
+  useEffect(() => {
+    if (className !== 'article-create-form-textarea') return;
+    adjustHeight();
+  }, [value, className]);
+
   return (
     <textarea
       className={`default-textarea ${className}`}
+      ref={taRef}
       placeholder={placeholder}
       value={value}
       onChange={(e) => handleChangeValue(e.target.value)}

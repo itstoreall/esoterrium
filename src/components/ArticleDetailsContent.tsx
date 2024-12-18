@@ -20,10 +20,6 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
   const { isLoader, Loader } = useLoader();
   const acc = useUserRole();
 
-  // useEffect(() => {
-  //   acc.handleUserRole();
-  // }, [acc]);
-
   return (
     <Container className="main-aside-combine-container">
       <Sidebar className="article-details-sidebar" />

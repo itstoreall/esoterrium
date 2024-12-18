@@ -22,15 +22,19 @@ section.section {
     gap: 1rem;
   }
 
+  &.article-create-form-section {
+    gap: 2rem;
+  }
+
   &.article-details-section {
     gap: 2rem;
   }
 
-  &.readable-content-section {
+  &.article-details-comments-section {
     gap: 1.5rem;
   }
 
-  &.article-details-comments-section {
+  &.readable-content-section {
     gap: 1.5rem;
   }
 

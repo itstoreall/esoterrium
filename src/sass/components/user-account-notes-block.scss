@@ -10,7 +10,7 @@ div.user-account-notes-block {
   background-color: $violetDark;
   border-radius: $middleBorderRadius;
 
-  @include media-screen-orientation('max', $accountMobileWidth - 0.1) {
+  @include media-screen-orientation('max', $mobilePlus - 0.1) {
     height: 437px;
   }
 
@@ -26,7 +26,7 @@ div.user-account-notes-block {
     // background-color: teal;
     caret-color: $black;
 
-    @include media-screen-orientation('min', $accountMobileWidth) {
+    @include media-screen-orientation('min', $mobilePlus) {
       height: 408px;
     }
 

@@ -31,13 +31,13 @@
 @use '@/src/sass/components/section/section.scss';
 
 // Components / Form:
+@use '@/src/sass/components/form/default-form.scss';
 @use '@/src/sass/components/form/default-input.scss';
+@use '@/src/sass/components/form/default-select.scss';
 @use '@/src/sass/components/form/default-textarea.scss';
 @use '@/src/sass/components/form/form-divider.scss';
 @use '@/src/sass/components/form/info-status-block.scss';
 @use '@/src/sass/components/form/info-text-link-block.scss';
-@use '@/src/sass/components/form/article-details-comments-add-form.scss';
-@use '@/src/sass/components/form/article-details-comments-edit-form.scss';
 
 // Components / Button:
 @use '@/src/sass/components/button/button.scss';

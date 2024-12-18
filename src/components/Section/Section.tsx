@@ -7,9 +7,11 @@ type SectionProps = ChildrenProps & {
     | 'blue-lotus-home-section'
     | 'dashboard-section'
     | 'sidebar-title-section'
+    | 'article-create-form-section'
+    | 'article-edit-form-section'
     | 'article-details-section'
-    | 'readable-content-section'
     | 'article-details-comments-section'
+    | 'readable-content-section'
     | 'main-final-section'
     | 'main-final-section-small'
     | 'main-final-section-zero';

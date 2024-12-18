@@ -1,0 +1,54 @@
+@use '@/src/sass/base/vars' as *;
+
+form.default-form {
+  // --- Add Article Form:
+
+  &.article-create-form {
+    display: grid;
+    gap: 1rem;
+
+    > div.article-create-form-button-block {
+      display: flex;
+      gap: 1rem;
+
+      > button {
+        width: 100%;
+      }
+    }
+  }
+
+  // --- Add Comment Form:
+
+  &.article-details-comments-add-form {
+    display: grid;
+    gap: 1rem;
+    // background-color: skyblue;
+
+    padding: 1rem;
+    border: 1px solid $greyLight;
+    border-radius: $middleBorderRadius;
+
+    > span.article-details-comments-add-form-username {
+      font-weight: 600;
+      // background-color: cadetblue;
+    }
+
+    // > div.article-details-comments-add-form-textarea-block {
+
+    // }
+
+    > div.article-details-comments-add-form-button-block {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  // --- Edit Comment Form:
+
+  &.article-details-comments-edit-form {
+    div.article-details-comment-list-item-content-edit-form-button-block {
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+}

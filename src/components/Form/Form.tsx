@@ -1,7 +1,10 @@
 import { FormEvent } from '@/src/types';
 
 type FormProps = {
-  className?: string;
+  className?:
+    | 'article-create-form'
+    | 'article-details-comments-add-form'
+    | 'article-details-comments-edit-form';
   handleSubmit: (event: FormEvent) => void;
   children: React.ReactNode;
   isPending?: boolean;

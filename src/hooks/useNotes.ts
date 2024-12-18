@@ -28,7 +28,7 @@ const useNotes = () => {
 
   const handleNotesChange = (e: TextareaEvent) => {
     const textarea = e.target;
-    const maxHeight = 406;
+    const maxHeight = 408;
     if (textarea.scrollHeight > maxHeight) return;
     updateNotes(textarea.value);
   };

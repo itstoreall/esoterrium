@@ -1,5 +1,6 @@
 $min: 320px;
 $mobile: 390px;
+$mobilePlus: $mobile + 225;
 $combineMobile: $mobile + 32px;
 $tablet: 820px;
 $desktop: 1024px;
@@ -11,7 +12,6 @@ $max: 1440px;
 $headerHeight: 40px;
 $footerHeight: 80px;
 $mainHeight: calc(100svh - $footerHeight);
-$accountMobileWidth: $mobile + 225;
 
 // --- z-index:
 

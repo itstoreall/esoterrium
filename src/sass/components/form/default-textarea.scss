@@ -1,8 +1,10 @@
 @use '@/src/sass/base/vars' as *;
 
 textarea.default-textarea {
-  width: 100%;
+  display: block;
   box-sizing: border-box;
+  width: 100%;
+  border-radius: $middleBorderRadius;
   resize: none;
 
   &::placeholder {
@@ -13,5 +15,17 @@ textarea.default-textarea {
   &.article-details-comments-edit-form-textarea,
   &.article-details-comments-add-form-textarea {
     height: 4rem;
+  }
+
+  &.article-create-form-textarea {
+    padding: 1rem;
+    min-height: 250px;
+    border: 1px solid $dark;
+
+    &::placeholder {
+      color: $greyMiddle;
+    }
+    // height: 300px;
+    // background-color: skyblue;
   }
 }

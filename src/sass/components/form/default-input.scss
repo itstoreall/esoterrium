@@ -22,7 +22,7 @@ input.default-input {
   font-size: 16px;
   color: $light;
   background-color: $dark;
-  border-radius: 0.2rem;
+  border-radius: $middleBorderRadius;
   border: 1px solid $dark;
   outline: none;
   transition: $ease03s;
@@ -34,5 +34,18 @@ input.default-input {
 
   &::placeholder {
     color: $greyMiddleDark;
+  }
+
+  &.light-input-theme {
+    background-color: transparent;
+    color: $dark;
+
+    &:focus {
+      color: $dark;
+    }
+
+    &::placeholder {
+      color: $greyMiddle;
+    }
   }
 }
