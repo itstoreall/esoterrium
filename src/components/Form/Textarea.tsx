@@ -28,12 +28,11 @@ const Textarea = (props: Props) => {
 
   const adjustHeight = () => {
     if (taRef.current) {
-      taRef.current.style.height = 'auto'; // Reset height to auto
-      taRef.current.style.height = `${taRef.current.scrollHeight}px`; // Set height to content's scroll height
+      taRef.current.style.height = 'auto'; // Reset to auto
+      taRef.current.style.height = `${taRef.current.scrollHeight}px`; // Scroll height
     }
   };
 
-  // Adjust height on component mount or when value changes
   useEffect(() => {
     if (className !== 'article-create-form-textarea') return;
     adjustHeight();

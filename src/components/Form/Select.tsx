@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { FiChevronUp } from 'react-icons/fi';
+import { GoAlert } from 'react-icons/go';
 
 interface Props {
+  className?: string;
   options: string[];
   onSelect: (selectedOption: string) => void;
   placeholder?: string;
-  className?: string;
+  isError?: boolean;
 }
 
-const Select = ({ options, onSelect, placeholder, className }: Props) => {
+const Select = (props: Props) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+
+  const { className, options, onSelect, placeholder, isError } = props;
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -19,16 +23,21 @@ const Select = ({ options, onSelect, placeholder, className }: Props) => {
     setIsOpen(false);
   };
 
+  const handleOpen = () => setIsOpen((prev) => !prev);
+
+  // ---
+
+  const optionSelectedStyle = selectedOption ? 'option-selected' : '';
+
   return (
     <div className={`default-select ${className}`}>
       <div
-        className="default-select-selected"
-        onClick={() => setIsOpen((prev) => !prev)}
+        className={`default-select-selected ${optionSelectedStyle}`}
+        onClick={handleOpen}
       >
         <span>{selectedOption || placeholder}</span>
         {isOpen ? <FiChevronUp /> : <FiChevronDown />}
       </div>
-
       {isOpen && (
         <ul className="default-select-option-list">
           {options.map((option) => (
@@ -42,6 +51,7 @@ const Select = ({ options, onSelect, placeholder, className }: Props) => {
           ))}
         </ul>
       )}
+      {isError && <GoAlert size={25} className="default-select-error-icon" />}
     </div>
   );
 };

@@ -29,8 +29,13 @@ div.default-select {
     cursor: pointer;
     text-align: left;
     border-radius: $middleBorderRadius;
-    background-color: teal;
     border: 1px solid $dark;
+
+    &.option-selected {
+      > span {
+        font-weight: 500;
+      }
+    }
   }
 
   > ul.default-select-option-list {
@@ -68,8 +73,19 @@ div.default-select {
   }
 
   &.article-create-form-select {
+    // display: flex;
     max-width: 240px;
-    @include media-screen-orientation('min', $mobilePlus) {
-    }
+    /*
+    @include media-screen-orientation('min', $mobilePlus) {}
+    */
+  }
+
+  // --- Error icon (svg):
+
+  > svg.default-select-error-icon {
+    position: absolute;
+    top: 8px;
+    right: -2.2rem;
+    fill: $lightRed;
   }
 }

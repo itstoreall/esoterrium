@@ -9,8 +9,8 @@ import Title from '@/src/components/Layout/Title';
 import Select from '@/src/components/Form/Select';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
-import Form from '../Form/Form';
-import Button from '../Button';
+import Form from '@/src/components/Form/Form';
+import Button from '@/src/components/Button';
 
 // const defaultImage = 'https://res.cloudinary.com/dsxdnz1hq/image/upload/v1732806735/cld-sample-2.jpg';
 
@@ -33,14 +33,20 @@ const selectOptions = [
 
 const CreateArticle = () => {
   const [form, setForm] = useState(initState);
+  const [isSelectError, setIsSelectError] = useState(false);
 
   const session = useSession();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!confirm('Данная статья будет сохранена в проекты!')) return;
+    if (!form.tags.length) {
+      handleSelectError(true);
+      alert('А Рубрику выбрать?');
+      return;
+    }
     if (!session.data?.user?.id || !session.data?.user?.name) return;
+    if (!confirm('Данная статья будет сохранена в проекты!')) return;
     try {
       const latestArticle = await getLatestArticleIdx();
       const idx = latestArticle ? latestArticle.idx + 1 : 1;
@@ -59,13 +65,18 @@ const CreateArticle = () => {
     }
   };
 
-  console.log('form:', form);
+  // console.log('form:', form);
 
   const handleFormContent = (text: string) => {
     setForm({ ...form, content: text });
   };
 
+  const handleSelectError = (is: boolean) => {
+    setIsSelectError(is);
+  };
+
   const handleTagSelect = (selectedTag: string) => {
+    if (isSelectError) handleSelectError(false);
     setForm((prevForm) => ({
       ...prevForm,
       tags: [...new Set([...prevForm.tags, selectedTag])],
@@ -76,21 +87,6 @@ const CreateArticle = () => {
     if (!confirm('Вся введенная информация будет удалена!')) return;
     setForm(initState);
   };
-
-  /*
-  const handleTagChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedTag = e.target.value;
-    setForm((prev) => ({
-      ...prev,
-      tags: [selectedTag],
-    }));
-
-    // setForm((prev) => ({
-    //   ...prev,
-    //   tags: [...new Set([...prev.tags, selectedTag])], // Avoid duplicate tags
-    // }));
-  };
-  */
 
   return (
     <Main className={'create-article-page-main'}>
@@ -118,6 +114,7 @@ const CreateArticle = () => {
             options={selectOptions}
             placeholder="Рубрика"
             onSelect={handleTagSelect}
+            isError={isSelectError}
           />
           <Textarea
             className="article-create-form-textarea"
