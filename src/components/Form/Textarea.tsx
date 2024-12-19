@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 type Props = {
   className?:
     | 'article-create-form-textarea'
+    | 'article-edit-form-textarea'
     | 'article-details-comments-add-form-textarea'
     | 'article-details-comments-edit-form-textarea';
   placeholder?: string;
@@ -11,6 +12,7 @@ type Props = {
   handleChangeValue: (val: string) => void;
   required?: boolean;
   isAutoFocus?: boolean;
+  isDisable?: boolean;
 };
 
 const Textarea = (props: Props) => {
@@ -22,6 +24,7 @@ const Textarea = (props: Props) => {
     handleChangeValue,
     required = true,
     isAutoFocus = false,
+    isDisable = false,
   } = props;
 
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -34,7 +37,9 @@ const Textarea = (props: Props) => {
   };
 
   useEffect(() => {
-    if (className !== 'article-create-form-textarea') return;
+    const isCreateArticle = className === 'article-create-form-textarea';
+    const isEditArticle = className === 'article-edit-form-textarea';
+    if (!isCreateArticle && !isEditArticle) return;
     adjustHeight();
   }, [value, className]);
 
@@ -48,6 +53,7 @@ const Textarea = (props: Props) => {
       maxLength={maxLength}
       required={required}
       autoFocus={isAutoFocus}
+      disabled={isDisable}
     />
   );
 };

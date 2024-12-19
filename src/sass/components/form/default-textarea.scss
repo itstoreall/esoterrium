@@ -17,7 +17,8 @@ textarea.default-textarea {
     height: 4rem;
   }
 
-  &.article-create-form-textarea {
+  &.article-create-form-textarea,
+  &.article-edit-form-textarea {
     padding: 1rem;
     min-height: 250px;
     border: 1px solid $dark;

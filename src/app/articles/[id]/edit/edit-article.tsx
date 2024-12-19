@@ -17,7 +17,7 @@ const EditArticlePage = async ({ params }: Props) => {
 
     return (
       <Container className={'page-wrapper-container'}>
-        <EditArticle article={article} />
+        <EditArticle article={JSON.parse(JSON.stringify(article))} />
       </Container>
     );
   } catch (error) {

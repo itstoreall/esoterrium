@@ -72,7 +72,8 @@ div.default-select {
     }
   }
 
-  &.article-create-form-select {
+  &.article-create-form-select,
+  &.article-edit-form-select {
     // display: flex;
     max-width: 240px;
     /*

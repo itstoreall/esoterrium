@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { FiChevronUp } from 'react-icons/fi';
 import { GoAlert } from 'react-icons/go';
 
-interface Props {
-  className?: string;
+type Props = {
+  className?:
+    | 'article-create-form-select light-select-theme'
+    | 'article-edit-form-select light-select-theme';
   options: string[];
+  initialOption?: string | null;
   onSelect: (selectedOption: string) => void;
   placeholder?: string;
+  isDisable?: boolean;
+  isReset?: boolean;
   isError?: boolean;
-}
+};
 
 const Select = (props: Props) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { className, options, onSelect, placeholder, isError } = props;
+  const { className, placeholder, options, initialOption } = props;
+  const { onSelect, isDisable, isError, isReset } = props;
+
+  useEffect(() => {
+    if (initialOption) setSelectedOption(initialOption);
+  }, [initialOption]);
+
+  useEffect(() => {
+    if (initialOption || initialOption === null) {
+      setSelectedOption(initialOption);
+    }
+  }, [isReset]);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -23,7 +40,7 @@ const Select = (props: Props) => {
     setIsOpen(false);
   };
 
-  const handleOpen = () => setIsOpen((prev) => !prev);
+  const handleOpen = () => !isDisable && setIsOpen((prev) => !prev);
 
   // ---
 
@@ -38,6 +55,7 @@ const Select = (props: Props) => {
         <span>{selectedOption || placeholder}</span>
         {isOpen ? <FiChevronUp /> : <FiChevronDown />}
       </div>
+
       {isOpen && (
         <ul className="default-select-option-list">
           {options.map((option) => (

@@ -5,7 +5,7 @@ import useUserRole from '@/src/hooks/useUserRole';
 import useLoader from '@/src/hooks/useLoader';
 import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
-import normalizeString from '@/src/utils/normalizeString';
+import trimLongWord from '@/src/utils/trimLongWord';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
 import ArticleDetailsComments from '@/src/components/Comments';
@@ -39,7 +39,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
             <Section className="article-details-section">
               <Title
                 className="article-details-title readable-content "
-                text={normalizeString(article.title, 20, 15, 5)}
+                text={trimLongWord(article.title, 20, 15, 5)}
               />
 
               <ArticleDetailsPublicationInfo article={article} />

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { getLatestArticleIdx } from '@/src/lib/mongoose/getLatestArticleIdxServerAction';
@@ -32,8 +32,10 @@ const selectOptions = [
 ];
 
 const CreateArticle = () => {
-  const [form, setForm] = useState(initState);
+  const [isPending, startTransition] = useTransition();
   const [isSelectError, setIsSelectError] = useState(false);
+  const [isReset, setIsReset] = useState(false);
+  const [form, setForm] = useState(initState);
 
   const session = useSession();
   const router = useRouter();
@@ -48,18 +50,23 @@ const CreateArticle = () => {
     if (!session.data?.user?.id || !session.data?.user?.name) return;
     if (!confirm('Данная статья будет сохранена в проекты!')) return;
     try {
+      const author = session.data.user.name;
+      const firstView = session.data.user.id;
       const latestArticle = await getLatestArticleIdx();
       const idx = latestArticle ? latestArticle.idx + 1 : 1;
-      const res = await createArticle({
-        ...form,
-        idx,
-        author: session.data?.user?.name,
-        views: [session.data?.user?.id],
+      if (isPending) return;
+      startTransition(async () => {
+        const res = await createArticle({
+          ...form,
+          idx,
+          author,
+          views: [firstView],
+        });
+        if (res) {
+          alert('Статья успешно создана! Теперь ее можно опубликовать.');
+          router.push('/articles');
+        }
       });
-      if (res) {
-        alert('Статья успешно создана! Теперь ее можно опубликовать.');
-        router.push('/articles');
-      }
     } catch (error) {
       console.error('Failed to create article:', error);
     }
@@ -77,15 +84,15 @@ const CreateArticle = () => {
 
   const handleTagSelect = (selectedTag: string) => {
     if (isSelectError) handleSelectError(false);
-    setForm((prevForm) => ({
-      ...prevForm,
-      tags: [...new Set([...prevForm.tags, selectedTag])],
-    }));
+    setForm((prevForm) => ({ ...prevForm, tags: [selectedTag] }));
+    // tags: [...new Set([...prevForm.tags, selectedTag])], // * Multiple tags
   };
 
   const handleReset = () => {
     if (!confirm('Вся введенная информация будет удалена!')) return;
+    setIsReset(true);
     setForm(initState);
+    setTimeout(() => setIsReset(false), 1000);
   };
 
   return (
@@ -100,36 +107,52 @@ const CreateArticle = () => {
             className="light-input-theme"
             type="text"
             placeholder="Изображение (url)"
+            value={form.image}
             handleChange={(url) => setForm({ ...form, image: url })}
+            isDisable={isPending}
           />
           <SimpleInput
             className="light-input-theme"
             type="text"
             placeholder="Название статьи"
+            value={form.title}
             handleChange={(text) => setForm({ ...form, title: text })}
+            isDisable={isPending}
             isRequire
           />
           <Select
             className="article-create-form-select light-select-theme"
             options={selectOptions}
+            initialOption={null}
             placeholder="Рубрика"
             onSelect={handleTagSelect}
             isError={isSelectError}
+            isReset={isReset}
+            isDisable={isPending}
           />
           <Textarea
             className="article-create-form-textarea"
             placeholder="Текст статьи"
             value={form.content}
             handleChangeValue={handleFormContent}
+            isDisable={isPending}
           />
           <div className="article-create-form-button-block">
-            <Button type="submit">Сохранить</Button>
-            <Button type="button" clickContent={handleReset}>
+            <Button type="submit" isDisable={isPending}>
+              Сохранить
+            </Button>
+            <Button
+              type="button"
+              clickContent={handleReset}
+              isDisable={isPending}
+            >
               Очистить
             </Button>
           </div>
         </Form>
       </Section>
+
+      <Section className={'main-final-section-zero'}>{null}</Section>
     </Main>
   );
 };

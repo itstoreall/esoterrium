@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import useUserRole from '@/src/hooks/useUserRole';
-import normalizeString from '@/src/utils/normalizeString';
 import { deleteComment } from '@/src/services/commentsService';
+import { makeUniqueString } from '@/src/utils/uniqueStringHandler';
+import trimLongWord from '@/src/utils/trimLongWord';
 import convertDate from '@/src/utils/convertDate';
 import { CommentData } from '@/src/types';
 import EditCommentForm from '@/src/components/Comments/EditCommentForm';
@@ -53,9 +54,11 @@ const CommentList = (props: Props) => {
   };
 
   const handleRespond = (userName: string) => {
-    const currentDate = new Date();
-    const timestamp = currentDate.getTime();
-    const markedUserNameTemplate = `${timestamp}_|_${userName}, `;
+    // const currentDate = new Date();
+    // const timestamp = currentDate.getTime();
+    // const markedUserNameTemplate = `${timestamp}_|_${userName}, `;
+    // const markedUserNameTemplate = makeUniqueString(userName);
+    const markedUserNameTemplate = makeUniqueString(`${userName}, `);
     handleRespondTo(markedUserNameTemplate);
   };
 
@@ -86,7 +89,7 @@ const CommentList = (props: Props) => {
                 onCancel={handleCancelEdit}
               />
             ) : (
-              <p>{normalizeString(comment.message, 25, 15, 5)}</p>
+              <p>{trimLongWord(comment.message, 25, 15, 5)}</p>
             )}
 
             <div className="article-details-comment-list-item-content-button-block">

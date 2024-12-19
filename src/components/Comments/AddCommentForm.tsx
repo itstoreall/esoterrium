@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useCreateComment } from '@/src/hooks/useCreateComments';
-import Form from '../Form/Form';
-import Button from '../Button/Button';
+import { parseUniqueString } from '@/src/utils/uniqueStringHandler';
 import Textarea from '../Form/Textarea';
+import Button from '../Button/Button';
+import Form from '../Form/Form';
 
 type Props = {
   className: 'article-details-comments-add-form';
@@ -22,7 +23,8 @@ const AddCommentForm = (props: Props) => {
 
   useEffect(() => {
     setMessage((prev) => {
-      const splitUerName = respondTo.split('_|_')[1];
+      // const splitUerName = respondTo.split('_|_')[1];
+      const splitUerName = parseUniqueString(respondTo);
 
       switch (true) {
         case splitUerName && !!prev:

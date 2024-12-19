@@ -1,13 +1,13 @@
 import trimString from '@/src/utils/trimString';
 
-type NormalizeString = (
+type TrimLongWord = (
   title: string,
   limit: number,
   start: number,
   end: number
 ) => string;
 
-const normalizeString: NormalizeString = (title, limit, start, end) => {
+const trimLongWord: TrimLongWord = (title, limit, start, end) => {
   const splitTitle = title.split(' ');
 
   const trimedString = splitTitle.map((word) => {
@@ -22,4 +22,4 @@ const normalizeString: NormalizeString = (title, limit, start, end) => {
   return normalString;
 };
 
-export default normalizeString;
+export default trimLongWord;

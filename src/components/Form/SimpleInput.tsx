@@ -2,8 +2,9 @@ type Props = {
   className?: string;
   type?: string;
   placeholder?: string;
-  maxLength?: number;
+  value: string;
   handleChange: (value: string) => void;
+  maxLength?: number;
   isDisable?: boolean;
   isRequire?: boolean;
 };
@@ -13,8 +14,9 @@ const SimpleInput = (props: Props) => {
     className,
     type = 'text',
     placeholder,
-    maxLength = 320,
+    value,
     handleChange,
+    maxLength = 320,
     isDisable = false,
     isRequire = false,
   } = props;
@@ -26,6 +28,7 @@ const SimpleInput = (props: Props) => {
         type={type}
         maxLength={maxLength}
         placeholder={placeholder}
+        value={value}
         onChange={(e) => handleChange(e.target.value)}
         disabled={isDisable}
         required={isRequire}

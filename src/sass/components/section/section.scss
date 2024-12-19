@@ -22,7 +22,8 @@ section.section {
     gap: 1rem;
   }
 
-  &.article-create-form-section {
+  &.article-create-form-section,
+  &.article-edit-form-section {
     gap: 2rem;
   }
 

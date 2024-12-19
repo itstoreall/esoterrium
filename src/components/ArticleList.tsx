@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import normalizeString from '@/src/utils/normalizeString';
+import trimLongWord from '@/src/utils/trimLongWord';
 import { ArticleData } from '@/src/types';
 import { config } from '@/src/config';
 import ProgressLoader from './ProgressBlock';
@@ -33,7 +33,7 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
                 </div>
 
                 <h3 className="article-list-item-title">
-                  {normalizeString(article.title, 20, 15, 5)}
+                  {trimLongWord(article.title, 20, 15, 5)}
                 </h3>
               </>
             ) : (
@@ -52,7 +52,7 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
                 </div>
 
                 <h3 className="article-list-item-title">
-                  {normalizeString(article.title, 20, 15, 5)}
+                  {trimLongWord(article.title, 20, 15, 5)}
                 </h3>
               </Link>
             )}

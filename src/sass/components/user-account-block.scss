@@ -42,6 +42,10 @@ div.user-account-block {
         > span {
           color: $greyMiddle;
 
+          &.user-account-info-list-item-content-key {
+            font-weight: 500;
+          }
+
           &.user-account-info-list-item-content-value,
           &.user-account-info-list-item-content-value-onclick {
             color: $greyLight;

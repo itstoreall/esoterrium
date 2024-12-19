@@ -12,16 +12,16 @@ import InfoTextLinkBlock from '@/src/components/Form/InfoTextLinkBlock';
 
 const SignIn = () => {
   const [isPending, startTransition] = useTransition();
-  const [inputValue, setInputValue] = useState('');
+  const [email, setEmail] = useState('');
 
-  const handleInputValue = (value: string) => setInputValue(value);
+  const handleEmail = (value: string) => setEmail(value);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     try {
       if (isPending) return;
       startTransition(async () => {
-        await handleEmailSignIn(inputValue);
+        await handleEmailSignIn(email);
       });
     } catch (error) {
       console.error(error);
@@ -41,7 +41,8 @@ const SignIn = () => {
               <SimpleInput
                 placeholder="Email Address"
                 type="email"
-                handleChange={handleInputValue}
+                value={email}
+                handleChange={handleEmail}
                 isDisable={isPending}
                 isRequire
               />

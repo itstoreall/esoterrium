@@ -23,8 +23,6 @@ const Button = (props: ButtonProps) => {
     isDisable,
   } = props;
 
-  // console.log('--->', props.className);
-
   const router = useRouter();
 
   const onClickHandler = () => {
@@ -37,8 +35,6 @@ const Button = (props: ButtonProps) => {
 
   const disableStyle = isDisable ? 'disabled' : '';
   const btnStyle = `button ${className || ''} ${disableStyle}`;
-
-  // console.log('btnStyle', btnStyle);
 
   return (
     <>

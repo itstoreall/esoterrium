@@ -3,6 +3,7 @@ import { FormEvent } from '@/src/types';
 type FormProps = {
   className?:
     | 'article-create-form'
+    | 'article-edit-form'
     | 'article-details-comments-add-form'
     | 'article-details-comments-edit-form';
   handleSubmit: (event: FormEvent) => void;
