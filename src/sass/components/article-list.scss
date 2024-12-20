@@ -25,18 +25,27 @@ ul.article-list {
       height: 100%;
       // background-color: skyblue;
 
+      > a > div.article-list-item-progress-loader-block {
+        display: flex;
+        justify-content: center;
+        padding-top: 1rem;
+      }
+
+      /* remove later!
       > div.article-list-item-progress-loader-block {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 80%;
         // background-color: red;
+        border: 1px solid $greyLight;
+        box-shadow: $shadow;
 
         @include media-screen-orientation('min', $mobile + 100) {
           height: 78%;
         }
-
       }
+      */
 
       // --- Link is here!
 

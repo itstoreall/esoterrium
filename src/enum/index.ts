@@ -7,3 +7,11 @@ export enum AuthRoleEnum {
   User = 'USER',
   Ban = 'BAN',
 }
+
+export enum CategoriesEnum {
+  Numerology = 'Нумерология',
+  Astrology = 'Астрология',
+  Matrix = 'Матрица',
+  Practices = 'Практики',
+  Books = 'Книги',
+}

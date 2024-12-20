@@ -12,6 +12,7 @@ type SectionProps = ChildrenProps & {
     | 'article-details-section'
     | 'article-details-comments-section'
     | 'readable-content-section'
+    | 'main-filter-value-section'
     | 'main-final-section'
     | 'main-final-section-small'
     | 'main-final-section-zero';

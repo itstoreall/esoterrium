@@ -1,0 +1,16 @@
+@use '@/src/sass/base/vars' as *;
+
+ul.article-sidebar-category-list {
+  display: grid;
+  gap: 1rem;
+
+  > li.article-sidebar-category-list-item {
+    font-weight: 500;
+    cursor: pointer;
+    transition: color $ease03s;
+
+    &:hover {
+      color: $violetDarkPlus;
+    }
+  }
+}
