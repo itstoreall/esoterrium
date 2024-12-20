@@ -21,9 +21,22 @@ ul.article-list {
     aspect-ratio: 1 / 1;
 
     > div.article-list-item-content {
-      // background-color: skyblue;
       width: 100%;
       height: 100%;
+      // background-color: skyblue;
+
+      > div.article-list-item-progress-loader-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80%;
+        // background-color: red;
+
+        @include media-screen-orientation('min', $mobile + 100) {
+          height: 78%;
+        }
+
+      }
 
       // --- Link is here!
 

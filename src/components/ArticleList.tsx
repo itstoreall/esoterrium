@@ -1,18 +1,87 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import trimLongWord from '@/src/utils/trimLongWord';
-import { ArticleData } from '@/src/types';
 import { config } from '@/src/config';
+import { ArticleData } from '@/src/types';
+import trimLongWord from '@/src/utils/trimLongWord';
 import ProgressLoader from './ProgressBlock';
 
 const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
-  const [chosenArticle, setChosenArticle] = useState('');
+  const [loadingArticleId, setLoadingArticleId] = useState<string | null>(null);
+
+  const handleItemClick = (articleId: string) => {
+    setLoadingArticleId(articleId);
+    setTimeout(() => {
+      setLoadingArticleId(null);
+    }, 5000);
+  };
 
   return articles.length ? (
     <ul className="article-list">
       {articles.map((article: ArticleData) => (
-        <li key={article._id} className="article-list-item">
+        <li
+          key={article._id}
+          className="article-list-item"
+          onClick={() => handleItemClick(article._id)}
+        >
+          <div className="article-list-item-content">
+            {loadingArticleId === article._id ? (
+              <div className="article-list-item-progress-loader-block">
+                <ProgressLoader duration={2000} />
+              </div>
+            ) : (
+              <Link href={`/articles/${article._id}`}>
+                <div className="image-block article-list-item-thumb">
+                  <Image
+                    src={article.image || config.defaultImageUrl}
+                    className="article-list-item-image"
+                    fill
+                    priority={true}
+                    alt={article.title}
+                  />
+                </div>
+                <h3 className="article-list-item-title">
+                  {trimLongWord(article.title, 20, 15, 5)}
+                </h3>
+              </Link>
+            )}
+          </div>
+          {/* <div className="article-list-item-content">
+            <Link href={`/articles/${article._id}`}>
+              <div className="image-block article-list-item-thumb">
+                <Image
+                  src={article.image || config.defaultImageUrl}
+                  className={'article-list-item-image'}
+                  fill
+                  priority={true}
+                  alt={article.title}
+                />
+              </div>
+
+              <h3 className="article-list-item-title">
+                {trimLongWord(article.title, 20, 15, 5)}
+              </h3>
+            </Link>
+          </div> */}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>Материалы отсутствуют</p>
+  );
+};
+
+export default ArticleList;
+
+/*
+'DWEWFWERGRTHTAAAVAAA' - 20 chars
+*/
+
+/*
+import ProgressLoader from './ProgressBlock';
+const [chosenArticle, setChosenArticle] = useState('');
+
+<li key={article._id} className="article-list-item">
           <div className="article-list-item-content">
             {chosenArticle ? (
               <>
@@ -58,15 +127,4 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
             )}
           </div>
         </li>
-      ))}
-    </ul>
-  ) : (
-    <p>Материалы отсутствуют</p>
-  );
-};
-
-export default ArticleList;
-
-/*
-'DWEWFWERGRTHTAAAVAAA' - 20 chars
-*/
+        */
