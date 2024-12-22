@@ -2,6 +2,7 @@ import { ChildrenProps } from '@/src/types';
 
 type SectionProps = ChildrenProps & {
   className?:
+    | 'admin-section'
     | 'main-hero-section'
     | 'home-section'
     | 'blue-lotus-home-section'

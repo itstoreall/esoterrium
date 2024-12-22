@@ -3,6 +3,7 @@ import Container from '@/src/components/Container';
 
 type MainProps = ChildrenProps & {
   className?:
+    | 'admin-page-main'
     | 'home-page-main'
     | 'signin-page-main'
     | 'dashboard-page-main'

@@ -5,6 +5,12 @@ import { AuthRoleEnum } from '@/src/enum';
 import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
 import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 
+export type Acc = {
+  userRole: AuthRoleEnum | undefined;
+  handleUserRole: () => Promise<void>;
+  isAdminRole: () => boolean;
+};
+
 const useAccount = () => {
   const [role, setRole] = useState<AuthRoleEnum>();
 
@@ -28,7 +34,7 @@ const useAccount = () => {
     userRole: role,
     handleUserRole,
     isAdminRole,
-  };
+  } as Acc;
 };
 
 export default useAccount;

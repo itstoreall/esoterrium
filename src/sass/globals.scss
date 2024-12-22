@@ -19,6 +19,9 @@
 @use '@/src/sass/components/user-account-block.scss';
 @use '@/src/sass/components/user-account-notes-block.scss';
 
+// Components / Admin:
+@use '@/src/sass/components/admin/admin-account-block.scss';
+
 // Components / Conteiner:
 @use '@/src/sass/components/container/container.scss';
 

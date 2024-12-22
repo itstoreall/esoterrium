@@ -1,9 +1,12 @@
-const AdminPage: React.FC = () => {
-  return (
-    <div className="admin-page">
-      <h2>Admin Page</h2>
-    </div>
-  );
-};
+'use client';
+
+import Container from '@/src/components/Container';
+import Admin from '@/src/components/Page/Admin';
+
+const AdminPage: React.FC = () => (
+  <Container className={'page-wrapper-container'}>
+    <Admin />
+  </Container>
+);
 
 export default AdminPage;

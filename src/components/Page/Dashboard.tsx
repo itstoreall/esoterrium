@@ -6,7 +6,7 @@ import useNotes from '@/src/hooks/useNotes';
 import useUserInfo from '@/src/hooks/useUserInfo';
 import useUserRole from '@/src/hooks/useUserRole';
 // import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
-import { AuthRoleEnum } from '@/src/enum';
+// import { AuthRoleEnum } from '@/src/enum';
 import AccountUserInfo from '@/src/components/AccountUserInfo';
 import AccountNotes from '@/src/components/AccountNotes';
 import LoaderBlock from '@/src/components/LoaderBlock';
@@ -14,11 +14,11 @@ import Title from '@/src/components/Layout/Title';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
 
-export type Acc = {
-  userRole: AuthRoleEnum | undefined;
-  handleUserRole: () => Promise<void>;
-  isAdminRole: () => boolean;
-};
+// export type Acc = {
+//   userRole: AuthRoleEnum | undefined;
+//   handleUserRole: () => Promise<void>;
+//   isAdminRole: () => boolean;
+// };
 
 // const initRole = AuthRoleEnum.Guest;
 
@@ -28,8 +28,8 @@ const Dashboard = () => {
 
   const { notesText, handleNotesChange, clearNotes } = useNotes();
   const { userInfo } = useUserInfo();
-  const acc: Acc = useUserRole();
   const session = useSession();
+  const acc = useUserRole();
 
   const handleUserName = async (user: User) => {
     const { name: userName, email } = user;

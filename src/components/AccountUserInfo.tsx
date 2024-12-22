@@ -2,6 +2,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react'; // SessionContextValue
 import { GoSignOut } from 'react-icons/go';
+import { Acc } from '@/src/hooks/useUserRole';
 import { getAccountLinkStatus } from '@/src/lib/auth/getAccountLinkStatusServerAction';
 import { unlinkGoogleAccount } from '@/src/lib/auth/unlinkGoogleAccountServerAction';
 import { handleGoogleSignIn } from '@/src/lib/auth/googleSignInServerAction';
@@ -11,8 +12,7 @@ import convertDate from '@/src/utils/convertDate';
 import trimString from '@/src/utils/trimString';
 import trimEmail from '@/src/utils/trimEmail';
 import SignOutButton from '@/src/components/Button/SignOutButton';
-import { Acc } from '@/src/components/Page/Dashboard';
-import Button from './Button';
+import Button from '@/src/components/Button';
 
 type Props = {
   acc: Acc;

@@ -15,6 +15,7 @@ section.section {
     width: 100%;
   }
 
+  &.admin-section,
   &.dashboard-section {
     display: flex;
     flex-direction: column;

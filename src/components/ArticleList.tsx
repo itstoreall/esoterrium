@@ -46,34 +46,6 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
               )}
             </Link>
           </div>
-          {/* <div className="article-list-item-content">
-            {loadingArticleId === article._id ? (
-              <>
-                <div className="article-list-item-progress-loader-block">
-                  <ProgressLoader duration={2000} />
-                </div>
-                <h3 className="article-list-item-title">
-                  {trimLongWord(article.title, 20, 15, 5)}
-                </h3>
-              </>
-            ) : (
-              <Link href={`/articles/${article._id}`}>
-                <div className="image-block article-list-item-thumb">
-                  <ProgressLoader duration={2000} />
-                  <Image
-                    src={article.image || config.defaultImageUrl}
-                    className="article-list-item-image"
-                    fill
-                    priority={true}
-                    alt={article.title}
-                  />
-                </div>
-                <h3 className="article-list-item-title">
-                  {trimLongWord(article.title, 20, 15, 5)}
-                </h3>
-              </Link>
-            )}
-          </div> */}
         </li>
       ))}
     </ul>
