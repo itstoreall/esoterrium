@@ -41,19 +41,6 @@ const Dashboard = () => {
     }
   };
 
-  // const changeUserRole = async () => {
-  //   if (!userInfo?.id) {
-  //     console.error('User ID is missing or invalid:', userInfo?.id);
-  //     return;
-  //   }
-  //   try {
-  //     await setUserRole(userInfo?.id, selectedRole);
-  //     await acc.handleUserRole();
-  //   } catch (error) {
-  //     console.error('Failed to update role:', error);
-  //   }
-  // };
-
   useEffect(() => {
     const user = session.data?.user;
     if (user?.id) {
@@ -100,40 +87,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-/*
-<div className="field-input-container">
-  <input
-    className="field-input"
-    type="text"
-    placeholder={'Enter name'}
-    value={name}
-    onChange={(event) => setName(event.target.value)}
-  />
-
-  <button
-    className="update-field-button"
-    onClick={() => session.update({ name })}
-  >
-    Update Name
-  </button>
-
-  <select
-    value={selectedRole}
-    onChange={(event) =>
-      setSelectedRole(event.target.value as AuthRoleEnum)
-    }
-    className="field-input"
-  >
-    {Object.values(AuthRoleEnum).map((role) => (
-      <option key={role} value={role}>
-        {role}
-      </option>
-    ))}
-  </select>
-
-  <button className="update-field-button" onClick={changeUserRole}>
-    Update Role
-  </button>
-</div>
-*/

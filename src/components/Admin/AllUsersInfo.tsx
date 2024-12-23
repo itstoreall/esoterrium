@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 // import { useSession } from 'next-auth/react'; // SessionContextValue
 import useCopyState from '@/src/hooks/useCopyState';
-// import convertDate from '@/src/utils/convertDate';
 import { getAllUsers } from '@/src/lib/auth/getAllUsersServerAction';
 import sliceLimitString from '@/src/utils/sliceLimitString';
 import normalizeDate from '@/src/utils/normalizeDate';
@@ -13,18 +12,18 @@ import Select from '../Form/Select';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
 import { AuthRole } from '@prisma/client';
 import { AuthRoleEnum } from '@/src/enum';
-// import trimEmail from '@/src/utils/trimEmail';
-// import Button from '@/src/components/Button';
 
-// type Props = {};
+const { Editor, Moderator, Influencer, User, Guest, Ban } = AuthRoleEnum;
 
 const AllUsersInfo = () => {
-  const [users, setUsers] = useState<UserData[]>([]);
+  const roles = [Editor, Moderator, Influencer, User, Guest, Ban];
 
-  const [selectOptions] = useState(['ADMIN', 'USER', 'GUEST']);
+  const [users, setUsers] = useState<UserData[]>([]);
+  // const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const [isSelectError, setSelectError] = useState(false);
   const [isPending, setPending] = useState(false);
   const [isReset, setReset] = useState(false);
+  const [selectOptions] = useState(roles);
 
   const { copyValue, isCopied } = useCopyState();
 
@@ -34,26 +33,22 @@ const AllUsersInfo = () => {
     });
   }, []);
 
-  const handleRoleSelect = async (userId: string, newRole: string) => {
+  const handleRoleSelect = async (id: string, name: string, role: string) => {
+    if (!confirm(`Пользователь ${name} получит статус "${role}"!`)) {
+      setReset(true);
+      return;
+    }
+
     setPending(true);
     setSelectError(false);
+    setReset(false);
 
     try {
-      // Update the role on the server
-      const success = await setUserRole(userId, newRole as AuthRole);
+      const success = await setUserRole(id, role as AuthRole);
       if (!success) throw new Error('Role update failed');
-
-      // Update the local state to reflect the new role
-      // setUsers((prev) =>
-      //   prev.map((user) =>
-      //     user.id === userId ? { ...user, role: newRole } : user
-      //   )
-      // );
       setUsers((prev) =>
         prev.map((user) =>
-          user.id === userId
-            ? { ...user, role: newRole as AuthRoleEnum } // Explicitly cast `newRole` to `AuthRole`
-            : user
+          user.id === id ? { ...user, role: role as AuthRoleEnum } : user
         )
       );
     } catch (error) {
@@ -61,8 +56,15 @@ const AllUsersInfo = () => {
       setSelectError(true);
     } finally {
       setPending(false);
+      // setOpenDropdownId(null);
     }
   };
+
+  /*
+  const toggleDropdown = (id: string) => {
+    setOpenDropdownId((prev) => (prev === id ? null : id));
+  };
+  */
 
   return (
     <ul className="admin-all-users-info-list">
@@ -159,32 +161,33 @@ const AllUsersInfo = () => {
                 <span className="admin-all-users-info-list-item-content-key">
                   Статус:
                 </span>
-                <span>
-                  {/* {user.role} */}
-                  {/* <Select
-                    className="admin-all-users-info-list-item-content-value-select"
-                    options={selectOptions}
-                    initialOption={null}
-                    placeholder="Статус"
-                    onSelect={handleRoleSelect}
-                    isError={isSelectError}
-                    isReset={isReset}
-                    isDisable={isPending}
-                  /> */}
+                {user.role === AuthRoleEnum.Admin ? (
+                  <span
+                    className={
+                      'admin-all-users-info-list-item-content-value-admin'
+                    }
+                  >
+                    {AuthRoleEnum.Admin}
+                  </span>
+                ) : (
                   <Select
                     className="admin-all-users-info-list-item-content-value-select"
-                    options={selectOptions}
-                    initialOption={'INFLUENCER'}
-                    // initialOption={
-                    //   selectOptions.find((opt) => opt === user.role) || null
-                    // }
+                    options={selectOptions.filter((opt) => opt !== user.role)}
+                    // initialOption={'INFLUENCER'}
+                    initialOption={
+                      selectOptions.find((opt) => opt === user.role) || null
+                    }
                     placeholder="Статус"
-                    onSelect={(newRole) => handleRoleSelect(user.id, newRole)}
+                    onSelect={(newRole) =>
+                      handleRoleSelect(user.id, user.name || 'No name', newRole)
+                    }
                     isError={isSelectError}
                     isReset={isReset}
                     isDisable={isPending}
+                    // isOpen={openDropdownId === user.id}
+                    // onToggle={() => toggleDropdown(user.id)}
                   />
-                </span>
+                )}
               </div>
             </div>
           </div>

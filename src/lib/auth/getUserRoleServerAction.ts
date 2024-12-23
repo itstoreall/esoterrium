@@ -2,11 +2,13 @@
 
 import { auth } from '@/src/lib/auth/authConfig';
 import { prisma } from '@/src/lib/prisma/client';
+import { redirect } from 'next/navigation';
 
 export const getUserRole = async () => {
   const session = await auth();
   if (!session) {
-    throw new Error('Unauthorized');
+    redirect('/dashboard');
+    // throw new Error('Unauthorized');
   }
 
   const userId: string = session.user!.id!;
