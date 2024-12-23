@@ -6,6 +6,7 @@ import { GoAlert } from 'react-icons/go';
 
 type Props = {
   className?:
+    | 'admin-all-users-info-list-item-content-value-select'
     | 'article-create-form-select light-select-theme'
     | 'article-edit-form-select light-select-theme';
   options: string[];

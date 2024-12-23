@@ -22,6 +22,8 @@ div.admin-account-block {
     // max-width: $mobile + 100;
     border: 1px solid $greyDeepDark;
     border-radius: $middleBorderRadius;
+    // background-color: red;
+    // height: 70svh;
 
     > li.admin-all-users-info-list-item {
       // display: grid;
@@ -30,122 +32,173 @@ div.admin-account-block {
       // @include media-screen-orientation('min', $mobilePlus) {
       // }
 
+      @include media-screen-orientation('min', $mobilePlus) {
+        background-color: $blackMiddle;
+
+        &:nth-child(even) {
+          background-color: $greyDeepDarkUltra;
+        }
+      }
+
+      // --- Item Content:
+
+      @include media-screen-orientation('max', $mobilePlus - 0.1) {
+        &:not(:last-child) {
+          > div.admin-all-users-info-list-item-content {
+            border-bottom: 1px solid $greyDark;
+
+            > div.admin-all-users-info-list-item-content-box-wrap {
+              @include media-screen-orientation('max', $mobilePlus - 0.1) {
+                &:nth-child(2) {
+                  padding-bottom: 1rem;
+                }
+              }
+            }
+          }
+        }
+      }
+
       > div.admin-all-users-info-list-item-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+        // display: flex;
+        // flex-direction: column;
+        // gap: 1rem;
 
         // background-color: teal;
 
-        @include media-screen-orientation('max', $mobilePlus - 0.1) {
-          padding-bottom: 1rem;
-          border-bottom: 1px solid $greyDark;
-        }
+        // @include media-screen-orientation('max', $mobilePlus - 0.1) {
+        //   // padding-bottom: 1rem;
+        //   // border-bottom: 1px solid $greyDark;
+        // }
 
-        @include media-screen-orientation('min', $mobilePlus) {
-          background-color: $greyDeepDarkUltra;
-          flex-direction: row;
-        }
+        // @include media-screen-orientation('min', $mobilePlus) {
+        //   flex-direction: row;
+        //   background-color: $greyDeepDarkUltra;
+        // }
 
-        > div.admin-all-users-info-list-item-content-box {
+        > div.admin-all-users-info-list-item-content-box-wrap {
           display: flex;
-          // justify-content: space-around;
-          justify-content: space-between;
-          align-items: center;
-          // gap: 1rem;
-          // min-width: 250px;
-          height: 1.2rem;
-          // padding-left: 1rem;
-          // background-color: $greyDeepDark;
+          flex-direction: column;
+
+          // @include media-screen-orientation('max', $mobilePlus - 0.1) {
+          //   &:nth-child(2) {
+          //     // padding-bottom: 1rem;
+          //     // border-bottom: 1px solid $greyDark;
+          //   }
+          // }
 
           @include media-screen-orientation('min', $mobilePlus) {
-            height: 3rem;
-          }
+            flex-direction: row;
+            // background-color: $greyDeepDarkUltra;
 
-          width: 100%;
-
-          &:nth-child(1) {
-            min-width: 40px;
-          }
-
-          &:nth-child(2) {
-            min-width: 90px;
-          }
-
-          &:nth-child(3) {
-            min-width: 140px;
-          }
-
-          &:nth-child(4) {
-            min-width: 50px;
-          }
-
-          &:nth-child(5) {
-            min-width: 80px;
-          }
-
-          @include media-screen-orientation('min', $mobilePlus) {
-            padding-left: 1rem;
-
-            &:not(:first-child) {
-              border-left: 1px solid $greyDark;
+            &:nth-child(1) {
+              border-bottom: 1px solid $greyDeepDark;
+              // min-width: 35px;
             }
           }
 
-          > span {
-            color: $greyMiddle;
+          > div.admin-all-users-info-list-item-content-box {
+            display: flex;
+            // justify-content: space-around;
+            justify-content: space-between;
+            align-items: center;
+            // gap: 1rem;
+            // min-width: 250px;
+            width: 100%;
+            height: 1.2rem;
+            // padding-left: 1rem;
+            // background-color: $greyDeepDark;
+            height: 2rem;
 
             @include media-screen-orientation('min', $mobilePlus) {
-              font-size: 0.8rem;
+              height: 3rem;
             }
 
-            &.admin-all-users-info-list-item-content-key {
-              font-weight: 500;
+            &:nth-child(1) {
+              @include media-screen-orientation('min', $mobilePlus) {
+                width: 30%;
+                min-width: 100px;
+              }
+            }
+
+            &:nth-child(2) {
+              // width: 100%;
 
               @include media-screen-orientation('min', $mobilePlus) {
-                display: none;
+                width: 40%;
+                min-width: 200px;
               }
             }
 
-            &.admin-all-users-info-list-item-content-value,
-            &.admin-all-users-info-list-item-content-value-onclick {
-              color: $greyLight;
+            &:nth-child(3) {
+              @include media-screen-orientation('min', $mobilePlus) {
+                width: 30%;
+                min-width: 160px;
+              }
             }
 
-            &.admin-all-users-info-list-item-content-value-onclick {
-              cursor: pointer;
-              user-select: none;
-              // transition: color $ease03s;
+            @include media-screen-orientation('min', $mobilePlus) {
+              padding-left: 1rem;
 
-              &.copied {
-                color: $violetLight;
-                animation: copiedAnimation $ease03s;
+              &:not(:first-child) {
+                border-left: 1px solid $greyDeepDark;
+              }
+            }
+
+            > span {
+              color: $greyMiddle;
+
+              // @include media-screen-orientation('min', $mobilePlus) {
+              //   font-size: 0.8rem;
+              // }
+
+              &.admin-all-users-info-list-item-content-key {
+                font-weight: 500;
+
+                @include media-screen-orientation('min', $mobilePlus) {
+                  display: none;
+                }
+              }
+
+              &.admin-all-users-info-list-item-content-value,
+              &.admin-all-users-info-list-item-content-value-onclick {
+                color: $greyLight;
+              }
+
+              &.admin-all-users-info-list-item-content-value-onclick {
+                cursor: pointer;
+                user-select: none;
+                // transition: color $ease03s;
+
+                &.copied {
+                  color: $violetLight;
+                  animation: copiedAnimation $ease03s;
+                }
+              }
+            }
+
+            /*
+          > div.user-account-info-list-item-content-value-input-box {
+            display: flex;
+            gap: 0.5rem;
+  
+            > input.user-account-info-list-item-content-value-input {
+              display: block;
+              font-size: 16px;
+              padding: 0 0.3rem;
+              width: 100%;
+              background-color: $violetLight;
+              border-radius: $smallBorderRadius;
+              border: none;
+              color: $dark;
+  
+              &::placeholder {
+                color: $light;
+                font-size: 0.9rem;
               }
             }
           }
-
-          /*
-        > div.user-account-info-list-item-content-value-input-box {
-          display: flex;
-          gap: 0.5rem;
-
-          > input.user-account-info-list-item-content-value-input {
-            display: block;
-            font-size: 16px;
-            padding: 0 0.3rem;
-            width: 100%;
-            background-color: $violetLight;
-            border-radius: $smallBorderRadius;
-            border: none;
-            color: $dark;
-
-            &::placeholder {
-              color: $light;
-              font-size: 0.9rem;
-            }
+          */
           }
-        }
-        */
         }
       }
 

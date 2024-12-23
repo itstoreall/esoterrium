@@ -91,8 +91,8 @@ const Admin = () => {
       <Section className={'admin-section'}>
         <div className="admin-account-block">
           <AllUsersInfo />
-          <AllUsersInfo />
-          <AllUsersInfo />
+          {/* <AllUsersInfo />
+          <AllUsersInfo /> */}
         </div>
       </Section>
 
