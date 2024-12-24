@@ -3,9 +3,9 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { FiUser } from 'react-icons/fi';
 import { FiUnlock } from 'react-icons/fi';
-import Title from '@/src/components/Layout/Title';
-import Button from '@/src/components/Button/Button';
 import useUserRole from '@/src/hooks/useUserRole';
+import Button from '@/src/components/Button/Button';
+import Title from '@/src/components/Layout/Title';
 
 type ButtonStyle =
   | 'nav-link-react-icon-button '
@@ -39,12 +39,6 @@ const Navigation = () => {
   const isDisableArticles = isHomePage || isSignInPage || isArticlesPage;
   const isHiddenArticles = isHomePage || isSignInPage;
 
-  // const Logo = () => (
-  //   <Link href={'/'}>
-  //     <Title text="Esoterrium" className="logo-title" />
-  //   </Link>
-  // );
-
   const NavLinkButton = (props: NavLinkProps) => {
     const { path, className, content, title, isDisable } = props;
     return isDisable ? (
@@ -63,7 +57,6 @@ const Navigation = () => {
   return (
     <nav className="navigation">
       <div className="navigation-logo-block">
-        {/* <Logo /> */}
         <Link href={'/'}>
           <Title text="Esoterrium" className="logo-title" />
         </Link>

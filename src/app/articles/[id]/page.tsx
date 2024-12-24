@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import metadataHandler from '@/src/utils/metadataHandler';
+import { roleAccess } from '@/src/lib/auth/roleAccessServerAction';
 import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
 import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
@@ -37,6 +38,11 @@ export async function generateMetadata({ params }: Props) {
 }
 
 const Article = async ({ params }: Props) => {
+  const access = await roleAccess('article-details');
+  if (!access.isAccess) {
+    redirect('/auth/ban');
+  }
+
   const isAuthenticated = await checkIsAuthenticated();
   const { id } = await params;
 

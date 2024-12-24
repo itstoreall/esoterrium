@@ -9,15 +9,15 @@ export async function generateMetadata() {
 }
 
 const Dashboard: React.FC = async () => {
-  const isAuthenticated = await checkIsAuthenticated();
-  const { isAccess } = await roleAccess('dashboard');
+  const access = await roleAccess('dashboard');
+  if (!access.isAccess) {
+    redirect('/auth/ban');
+  }
 
-  console.log('isAccess:', isAccess);
+  const isAuthenticated = await checkIsAuthenticated();
 
   if (!isAuthenticated) {
     redirect('/auth/sign-in');
-  } else if (!isAccess) {
-    redirect('/auth/ban');
   } else {
     return <DashboardPage />;
   }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { AuthRoleEnum } from '@/src/enum';
 import { getUserRole } from '@/src/lib/auth/getUserRoleServerAction';
-import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
+// import { handleSignOut } from '@/src/lib/auth/signOutServerAction';
 
 export type Acc = {
   userRole: AuthRoleEnum | undefined;
@@ -21,8 +21,10 @@ const useAccount = () => {
     if (role) {
       setRole(role as AuthRoleEnum);
     } else {
-      console.log(`User role: ${role} => signed out...`);
-      handleSignOut();
+      console.log('handleUserRole return ==>');
+      return;
+      // console.log(`User role: ${role} => signed out...`);
+      // handleSignOut();
     }
   };
 

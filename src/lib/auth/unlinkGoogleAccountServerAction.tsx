@@ -6,7 +6,8 @@ import { prisma } from '@/src/lib/prisma/client';
 export const unlinkGoogleAccount = async () => {
   const session = await auth();
   if (!session) {
-    throw new Error('Unauthorized');
+    return;
+    // throw new Error('Unauthorized');
   }
 
   const userId: string = session.user!.id!;
