@@ -1,9 +1,10 @@
 import ConfirmCircleFilledIcon from '@/src/assets/animation/ConfirmCircleFilledIcon';
 import ErrorCircleFilledIcon from '@/src/assets/animation/ErrorCircleFilledIcon';
+import WarningTriangleIcon from '@/src/assets/animation/WarningTriangleIcon';
 
 type Props = {
   text?: string;
-  status?: 'success' | 'error';
+  status?: 'success' | 'error' | 'warning';
   className?: string;
 };
 
@@ -13,11 +14,18 @@ const InfoStatusBlock = (props: Props) => {
   const icon =
     status === 'success' ? (
       <ConfirmCircleFilledIcon />
-    ) : (
+    ) : status === 'error' ? (
       <ErrorCircleFilledIcon />
+    ) : (
+      <WarningTriangleIcon />
     );
 
-  const statusText = status === 'error' ? 'Ошибка' : 'Отправлено';
+  const statusText =
+    status === 'success'
+      ? 'Отправлено'
+      : status === 'error'
+      ? 'Ошибка'
+      : 'Внимание';
 
   return (
     <div className={`info-status-block ${status} ${className}`}>

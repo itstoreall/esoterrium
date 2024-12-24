@@ -33,33 +33,16 @@ const SelectMulti = (props: Props) => {
     isReset,
   } = props;
 
-  /*
   useEffect(() => {
     if (initialOption) setSelectedOption(initialOption);
   }, [initialOption]);
 
-  useEffect(() => {
-    if (initialOption || initialOption === null) {
-      console.log('isReset:', initialOption);
-      setSelectedOption(initialOption);
-    }
-  }, [isReset]);
-  */
-
-  // Handle initial option
-  useEffect(() => {
-    if (initialOption) setSelectedOption(initialOption);
-  }, [initialOption]);
-
-  // Handle reset logic
   useEffect(() => {
     if (isReset) {
       console.log('Resetting to:', initialOption);
       setSelectedOption(initialOption || null);
     }
   }, [isReset, initialOption]);
-
-  console.log('selectedOption:', selectedOption);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);

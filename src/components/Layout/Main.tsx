@@ -10,7 +10,8 @@ type MainProps = ChildrenProps & {
     | 'articles-page-main'
     | 'article-details-page-main'
     | 'create-article-page-main'
-    | 'edit-article-page-main';
+    | 'edit-article-page-main'
+    | 'ban-page-main';
 };
 
 const Main = ({ children, className }: MainProps) => (

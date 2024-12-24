@@ -7,9 +7,7 @@ const Copyright = () => {
     <div className="copyright">
       <div className="copyright-content-block">
         <span className="copyright-title">
-          <Link href={'/'} target="_blank">
-            Esoterrium
-          </Link>
+          <Link href={'/'}>Esoterrium</Link>
         </span>
         <span className="copyright-symbol">&copy;</span>
         <time className="copyright-time">{new Date().getFullYear()}</time>
