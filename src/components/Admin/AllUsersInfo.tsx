@@ -97,11 +97,11 @@ const AllUsersInfo = () => {
                   }`}
                   onClick={() => copyValue(user.email, user.email)}
                 >
-                  {sliceLimitString(
+                  {/* {sliceLimitString(
                     trimEmail('serhiistanislav@rambler.com', 4, 4),
                     23
-                  )}
-                  {/* {sliceLimitString(trimEmail(user.email, 3, 3), 22)} */}
+                  )} */}
+                  {sliceLimitString(trimEmail(user.email, 4, 4), 23)}
                 </span>
               </div>
 
