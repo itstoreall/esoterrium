@@ -8,7 +8,7 @@ import normalizeDate from '@/src/utils/normalizeDate';
 import trimString from '@/src/utils/trimString';
 import trimEmail from '@/src/utils/trimEmail';
 import { UserData } from '@/src/types';
-import Select from '../Form/Select';
+import SelectMulti from '../Form/SelectMulti';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
 import { AuthRole } from '@prisma/client';
 import { AuthRoleEnum } from '@/src/enum';
@@ -19,7 +19,7 @@ const AllUsersInfo = () => {
   const roles = [Editor, Moderator, Influencer, User, Guest, Ban];
 
   const [users, setUsers] = useState<UserData[]>([]);
-  // const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const [isSelectError, setSelectError] = useState(false);
   const [isPending, setPending] = useState(false);
   const [isReset, setReset] = useState(false);
@@ -36,6 +36,7 @@ const AllUsersInfo = () => {
   const handleRoleSelect = async (id: string, name: string, role: string) => {
     if (!confirm(`Пользователь ${name} получит статус "${role}"!`)) {
       setReset(true);
+      setTimeout(() => setReset(false), 100);
       return;
     }
 
@@ -56,15 +57,15 @@ const AllUsersInfo = () => {
       setSelectError(true);
     } finally {
       setPending(false);
-      // setOpenDropdownId(null);
+      setOpenDropdownId(null);
     }
   };
 
-  /*
+  // /*
   const toggleDropdown = (id: string) => {
     setOpenDropdownId((prev) => (prev === id ? null : id));
   };
-  */
+  // */
 
   return (
     <ul className="admin-all-users-info-list">
@@ -170,7 +171,7 @@ const AllUsersInfo = () => {
                     {AuthRoleEnum.Admin}
                   </span>
                 ) : (
-                  <Select
+                  <SelectMulti
                     className="admin-all-users-info-list-item-content-value-select"
                     options={selectOptions.filter((opt) => opt !== user.role)}
                     // initialOption={'INFLUENCER'}
@@ -184,8 +185,8 @@ const AllUsersInfo = () => {
                     isError={isSelectError}
                     isReset={isReset}
                     isDisable={isPending}
-                    // isOpen={openDropdownId === user.id}
-                    // onToggle={() => toggleDropdown(user.id)}
+                    isOpen={openDropdownId === user.id}
+                    onToggle={() => toggleDropdown(user.id)}
                   />
                 )}
               </div>

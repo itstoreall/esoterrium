@@ -5,9 +5,7 @@ import { FiChevronUp } from 'react-icons/fi';
 import { GoAlert } from 'react-icons/go';
 
 type Props = {
-  className?: // | 'admin-all-users-info-list-item-content-value-select'
-  | 'article-create-form-select light-select-theme'
-    | 'article-edit-form-select light-select-theme';
+  className?: 'admin-all-users-info-list-item-content-value-select';
   options: string[];
   initialOption?: string | null;
   onSelect: (selectedOption: string) => void;
@@ -15,32 +13,65 @@ type Props = {
   isDisable?: boolean;
   isReset?: boolean;
   isError?: boolean;
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
-const Select = (props: Props) => {
+const SelectMulti = (props: Props) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const { className, placeholder, options, initialOption } = props;
-  const { onSelect, isDisable, isError, isReset } = props;
+  const {
+    className,
+    placeholder,
+    options,
+    initialOption,
+    isOpen,
+    onToggle,
+    onSelect,
+    isDisable,
+    isError,
+    isReset,
+  } = props;
 
+  /*
   useEffect(() => {
     if (initialOption) setSelectedOption(initialOption);
   }, [initialOption]);
 
   useEffect(() => {
     if (initialOption || initialOption === null) {
+      console.log('isReset:', initialOption);
       setSelectedOption(initialOption);
     }
   }, [isReset]);
+  */
+
+  // Handle initial option
+  useEffect(() => {
+    if (initialOption) setSelectedOption(initialOption);
+  }, [initialOption]);
+
+  // Handle reset logic
+  useEffect(() => {
+    if (isReset) {
+      console.log('Resetting to:', initialOption);
+      setSelectedOption(initialOption || null);
+    }
+  }, [isReset, initialOption]);
+
+  console.log('selectedOption:', selectedOption);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     onSelect(option);
-    setIsOpen(false);
+    onToggle();
   };
 
-  const handleOpen = () => !isDisable && setIsOpen((prev) => !prev);
+  const handleOpen = () => {
+    if (!isDisable) {
+      onToggle();
+    }
+  };
 
   // ---
 
@@ -74,4 +105,4 @@ const Select = (props: Props) => {
   );
 };
 
-export default Select;
+export default SelectMulti;
