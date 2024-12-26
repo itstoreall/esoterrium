@@ -2,10 +2,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/src/lib/mongoose';
 import { Article } from '@/src/lib/mongoose/models/Article';
 
-export async function GET() {
+type GetArticleData = {
+  isPublished: boolean;
+  access: string;
+};
+
+export async function GET(req: NextRequest) {
   await connectToDatabase();
   try {
-    const articles = await Article.find().sort({ updatedAt: -1 });
+    const isPublished = req.nextUrl.searchParams.get('isPublished');
+    const access = req.nextUrl.searchParams.get('access');
+    const filter: Record<string, GetArticleData['isPublished' | 'access']> = {};
+    if (isPublished === 'true') filter.isPublished = true;
+    if (access === 'public') filter.access = 'public';
+    const articles = await Article.find(filter).sort({ updatedAt: -1 });
     return NextResponse.json(articles);
   } catch (error) {
     return NextResponse.json(

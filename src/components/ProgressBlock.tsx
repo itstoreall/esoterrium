@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 
-const ProgressLoader = ({ duration }: { duration: number }) => {
+const ProgressLoader = ({
+  duration,
+  className,
+}: {
+  duration: number;
+  className?: 'dark-loader-block';
+}) => {
   const [loading, hasLoaded] = useState(false);
 
   useEffect(() => {
@@ -13,7 +19,7 @@ const ProgressLoader = ({ duration }: { duration: number }) => {
 
   return (
     <div
-      className={`progress-loader-block ${
+      className={`progress-loader-block ${className} ${
         loading ? 'progress-loader-success' : 'progress-loader-failure'
       }`}
     >

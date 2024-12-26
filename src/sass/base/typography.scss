@@ -94,6 +94,12 @@ h2 {
 }
 
 h3 {
+  &.public-articles-home-section-title {
+    @extend .default-page-title;
+    color: $greyMiddle;
+    // background-color: red;
+  }
+
   &.form-title {
     font-size: 1.5rem;
     font-weight: 500;
@@ -145,6 +151,10 @@ h3 {
       padding-left: 0.5rem;
       font-weight: 600;
     }
+  }
+
+  &.theme-dark {
+    color: $light;
   }
 }
 

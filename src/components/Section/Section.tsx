@@ -6,6 +6,7 @@ type SectionProps = ChildrenProps & {
     | 'main-hero-section'
     | 'home-section'
     | 'blue-lotus-home-section'
+    | 'public-articles-home-section'
     | 'dashboard-section'
     | 'sidebar-title-section'
     | 'article-create-form-section'

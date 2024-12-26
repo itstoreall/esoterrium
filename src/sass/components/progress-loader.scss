@@ -37,6 +37,18 @@
     animation: fillBar 3s ease-in-out 0s normal 1 forwards;
   }
 
+  &.dark-loader-block {
+    .border {
+      fill: $dark;
+    }
+  }
+
+  &.black-loader-block {
+    .border {
+      fill: $black;
+    }
+  }
+
   @keyframes fillBar {
     0% {
       width: 0.1rem;

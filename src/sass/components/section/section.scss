@@ -1,4 +1,5 @@
 @use '@/src/sass/base/vars' as *;
+@use '@/src/sass/mixins' as *;
 
 section.section {
   display: flex;
@@ -40,14 +41,41 @@ section.section {
     gap: 1.5rem;
   }
 
+  // --- Home:
+
   &.blue-lotus-home-section {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    height: calc($mainHeight - 150px);
-    min-height: 230px;
+    // height: calc($mainHeight - 450px);
+    // height: calc($mainHeight - 150px);
+    // min-height: 230px;
     // background-color: tomato;
+
+    @include media-screen-orientation('min', $min) {
+      padding-top: 2rem;
+    }
+
+    @include media-screen-orientation('min', $mobile + 100) {
+      padding-top: 3rem;
+    }
+  }
+
+  &.public-articles-home-section {
+    // background-color: red;
+    gap: 2rem;
+
+    > div.home-page-main-loader-block {
+      display: flex;
+      justify-content: center;
+      // background-color: teal;
+    }
+
+    > div.public-articles-home-section-content-loader-blick {
+      // background-color: red;
+      // min-height: calc($mainHeight);
+    }
   }
 
   /*

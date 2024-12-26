@@ -1,9 +1,16 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 // import Link from 'next/link';
-import Section from '@/src/components/Section';
+import { usePublicArticles } from '@/src/hooks/usePublicArticles';
+// import { useArticles } from '@/src/hooks/useArticles';
+import { ArticleData } from '@/src/types';
+import ArticleList from '@/src/components/ArticleList';
 import Main from '@/src/components/Layout/Main';
+import Section from '@/src/components/Section';
+import ProgressLoader from '../ProgressBlock';
+import Title from '../Layout/Title';
 // import Title from '../Layout/Title';
 // import { config } from '@/src/config'; // https://www.esoterrium.space/_next/static/media/blueLotus.940f885c.jpg
 
@@ -16,6 +23,15 @@ import Main from '@/src/components/Layout/Main';
 // ];
 
 const Home = () => {
+  const [filteredArticles, setFilteredArticles] = useState<ArticleData[]>([]);
+
+  const { data: articles, isLoading } = usePublicArticles(); // isError
+
+  useEffect(() => {
+    if (!articles) return;
+    setFilteredArticles(articles);
+  }, [articles]);
+
   return (
     <Main className={'home-page-main'}>
       <Section className={'main-hero-section'}>{null}</Section>
@@ -36,6 +52,26 @@ const Home = () => {
         {/* <Link href="/dashboard">
           <Button className="nav-link-text-button">Перейти в аккаунт</Button>
         </Link> */}
+      </Section>
+
+      <Section className={'public-articles-home-section'}>
+        {isLoading ? (
+          <div className="home-page-main-loader-block theme-light">
+            <ProgressLoader className="dark-loader-block" duration={2000} />
+          </div>
+        ) : (
+          <>
+            <Title
+              tag="h3"
+              className="public-articles-home-section-title"
+              text="Публикации"
+            />
+
+            {/* <div className="public-articles-home-section-content-loader-blick">Hi</div> */}
+
+            <ArticleList articles={filteredArticles} />
+          </>
+        )}
       </Section>
 
       {/* {arts.map((art) => (

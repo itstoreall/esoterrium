@@ -36,7 +36,7 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
                 />
               </div>
               {loadingArticleId !== article._id ? (
-                <h3 className="article-list-item-title">
+                <h3 className="article-list-item-title theme-dark">
                   {trimLongWord(article.title, 20, 15, 5)}
                 </h3>
               ) : (
