@@ -77,7 +77,7 @@ section.section {
       justify-content: center;
       padding: 40px 0;
       // min-height: 240px;
-      background-color: $blackMiddle;
+      // background-color: $blackMiddle;
       border-radius: $middleBorderRadius;
 
       @include media-screen-orientation('min', $mobile + 100) {
