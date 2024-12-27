@@ -6,7 +6,12 @@ import { ArticleData } from '@/src/types';
 import trimLongWord from '@/src/utils/trimLongWord';
 import ProgressLoader from './ProgressBlock';
 
-const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
+type Props = {
+  articles: ArticleData[];
+  className?: 'article-list-theme-light' | 'article-list-theme-dark';
+};
+
+const ArticleList = ({ articles, className }: Props) => {
   const [loadingArticleId, setLoadingArticleId] = useState<string | null>(null);
 
   const handleItemClick = (articleId: string) => {
@@ -24,7 +29,7 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
           className="article-list-item"
           onClick={() => handleItemClick(article._id)}
         >
-          <div className="article-list-item-content">
+          <div className={`article-list-item-content ${className}`}>
             <Link href={`/articles/${article._id}`}>
               <div className="image-block article-list-item-thumb">
                 <Image
@@ -36,7 +41,7 @@ const ArticleList = ({ articles }: { articles: ArticleData[] }) => {
                 />
               </div>
               {loadingArticleId !== article._id ? (
-                <h3 className="article-list-item-title theme-dark">
+                <h3 className="article-list-item-title">
                   {trimLongWord(article.title, 20, 15, 5)}
                 </h3>
               ) : (

@@ -72,12 +72,18 @@ section.section {
       // background-color: teal;
     }
 
-    /*
-    > div.public-articles-home-section-content-loader-blick {
-      // background-color: red;
-      // min-height: calc($mainHeight);
+    > div.public-articles-home-section-content-loader-block {
+      display: flex;
+      justify-content: center;
+      padding: 40px 0;
+      // min-height: 240px;
+      background-color: $blackMiddle;
+      border-radius: $middleBorderRadius;
+
+      @include media-screen-orientation('min', $mobile + 100) {
+        padding: 120px 0;
+      }
     }
-    */
   }
 
   /*

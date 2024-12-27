@@ -31,6 +31,20 @@ ul.article-list {
         padding-top: 1rem;
       }
 
+      /*
+      &.article-list-theme-light {
+        > a > h3.article-list-item-title {
+          color: blue;
+        }
+      }
+      */
+
+      &.article-list-theme-dark {
+        > a > h3.article-list-item-title {
+          color: $light;
+        }
+      }
+
       /* remove later!
       > div.article-list-item-progress-loader-block {
         display: flex;

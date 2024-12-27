@@ -55,6 +55,50 @@ const Home = () => {
       </Section>
 
       <Section className={'public-articles-home-section'}>
+        <Title
+          tag="h3"
+          className="public-articles-home-section-title"
+          text="Публикации"
+        />
+
+        {isLoading ? (
+          <div className="public-articles-home-section-content-loader-block">
+            <div className="home-page-main-loader-block theme-light">
+              <ProgressLoader className="dark-loader-block" duration={2000} />
+            </div>
+          </div>
+        ) : (
+          <ArticleList
+            className="article-list-theme-dark"
+            articles={filteredArticles}
+          />
+        )}
+
+        {/* {isLoading ? (
+          <div className="home-page-main-loader-block theme-light">
+            <ProgressLoader className="dark-loader-block" duration={2000} />
+          </div>
+        ) : (
+          <>
+            <Title
+              tag="h3"
+              className="public-articles-home-section-title"
+              text="Публикации"
+            />
+
+            <div className="public-articles-home-section-content-loader-blick">
+              Hi
+            </div>
+
+            <ArticleList
+              className="article-list-theme-dark"
+              articles={filteredArticles}
+            />
+          </>
+        )} */}
+      </Section>
+
+      {/* <Section className={'public-articles-home-section'}>
         {isLoading ? (
           <div className="home-page-main-loader-block theme-light">
             <ProgressLoader className="dark-loader-block" duration={2000} />
@@ -67,12 +111,17 @@ const Home = () => {
               text="Публикации"
             />
 
-            {/* <div className="public-articles-home-section-content-loader-blick">Hi</div> */}
+            <div className="public-articles-home-section-content-loader-blick">
+              Hi
+            </div>
 
-            <ArticleList articles={filteredArticles} />
+            <ArticleList
+              className="article-list-theme-dark"
+              articles={filteredArticles}
+            />
           </>
         )}
-      </Section>
+      </Section> */}
 
       {/* {arts.map((art) => (
         <div
