@@ -1,4 +1,4 @@
-import { CategoriesEnum } from '../enum';
+import { CategoryEnum } from '@/src/enum';
 
 type Props = {
   handleCategory: (category: string) => void;
@@ -7,7 +7,7 @@ type Props = {
 const SidebarCategories = ({ handleCategory }: Props) => {
   return (
     <ul className="article-sidebar-category-list">
-      {Object.values(CategoriesEnum).map((category) => (
+      {Object.values(CategoryEnum).map((category) => (
         <li
           key={category}
           className="article-sidebar-category-list-item"

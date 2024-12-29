@@ -10,16 +10,22 @@ div.default-select {
   user-select: none;
 
   &.light-select-theme {
-    > div.default-select-selected {
+    > div.default-select-selected,
+    > span.default-select-selected-disable {
       background-color: $light;
+      // background-color: teal;
     }
 
     > ul.default-select-option-list {
+      padding: 0;
+      padding-top: 5px;
       background-color: $light;
+      // background-color: tomato;
     }
   }
 
-  > div.default-select-selected {
+  > div.default-select-selected,
+  > span.default-select-selected-disable {
     // border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -37,6 +43,12 @@ div.default-select {
         font-weight: 500;
       }
     }
+  }
+
+  > span.default-select-selected-disable {
+    cursor: auto;
+    border: 1px solid $greyLight;
+    color: $greyLight;
   }
 
   > ul.default-select-option-list {

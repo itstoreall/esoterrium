@@ -11,14 +11,16 @@ div.image-block {
 
   &.home-page-main-thumb {
     // width: 100%;
-    width: 260px;
-    height: 260px;
+    width: 200px;
+    height: 200px;
 
+    /*
     @include media-screen-orientation('min', $mobile + 100) {
       width: 200px;
       height: 200px;
       // border: 1px solid white;
     }
+    */
 
     > img.home-page-main-image {
       display: block;

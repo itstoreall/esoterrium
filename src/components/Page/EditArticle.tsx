@@ -1,27 +1,30 @@
 'use client';
 
-// import Link from 'next/link';
-import { useState, useTransition } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
-import { ArticleData } from '@/src/types';
 import { updateArticle } from '@/src/services/articleService';
+import useSelectMulti from '@/src/hooks/useSelectMulti';
+import { CategoryEnum } from '@/src/enum';
+import { ArticleData } from '@/src/types';
+import * as gc from '@/src/config';
 import SimpleInput from '@/src/components/Form/SimpleInput';
+import SelectMulti from '@/src/components/Form/SelectMulti';
 import Textarea from '@/src/components/Form/Textarea';
 import Title from '@/src/components/Layout/Title';
-import Select from '@/src/components/Form/Select';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
 import Form from '@/src/components/Form/Form';
 import Button from '@/src/components/Button';
 
-const selectOptions = [
-  'Нумерология',
-  'Астрология',
-  'Матрица',
-  'Практики',
-  'Книги',
-];
+// const selectOptions = [
+//   'Нумерология',
+//   'Астрология',
+//   'Матрица',
+//   'Практики',
+//   'Книги',
+// ];
 
 const config = {
   alertSuccess:
@@ -40,16 +43,57 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
     author: article.author,
     // tags: article.tags.join(', '), // Tags as a comma-separated string
     tags: article.tags as string[],
+    // tags: [],
     views: article.views,
   };
 
-  const [isPending, startTransition] = useTransition();
+  const [initialLvl2Option, setInitialLvl2Option] = useState('');
   const [isSelectError, setIsSelectError] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const [isResetLvl2, setIsResetLvl2] = useState(false);
   const [isReset, setIsReset] = useState(false);
   const [form, setForm] = useState(initState);
   // const [error, setError] = useState<string | null>(null);
 
+  const { openDropdownId, toggleDropdown } = useSelectMulti();
   const router = useRouter();
+
+  const isNumerology = form.tags[0] === CategoryEnum.Numerology;
+  const isPractices = form.tags[0] === CategoryEnum.Practices;
+  const isCources = form.tags[0] === CategoryEnum.Courses;
+  const isBooks = form.tags[0] === CategoryEnum.Books;
+  const isLvl2 = isNumerology || isPractices || isCources || isBooks;
+
+  const selectOptionsLvl2 = isNumerology
+    ? gc.selectOptionsNumerologyTopic
+    : isPractices
+    ? gc.selectOptionsPracticesTopic
+    : isCources || isBooks
+    ? gc.selectOptionsCourcesTopic
+    : [];
+
+  useEffect(() => {
+    const init = article.tags;
+    const current = form.tags;
+    /*
+    console.log('');
+    console.log('init:', init);
+    console.log('current:', current);
+    console.log('===:', init, current, init === current);
+    */
+
+    if (init === current) {
+      setInitialLvl2Option(article.tags[1]);
+    } else {
+      // if (init.length === current.length) { console.log(3) }
+      if (init.length > current.length) {
+        console.log(4);
+        setInitialLvl2Option('');
+        setIsResetLvl2(true);
+        setTimeout(() => setIsResetLvl2(false), 1000);
+      }
+    }
+  }, [form.tags]);
 
   /*
   const handleChange = (e: InputEvent) => {
@@ -62,10 +106,24 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
     setForm({ ...form, content: text });
   };
 
-  const handleTagSelect = (selectedTag: string) => {
+  // const handleTagSelect = (selectedTag: string) => {
+  //   if (isSelectError) handleSelectError(false);
+  //   setForm((prevForm) => ({ ...prevForm, tags: [selectedTag] }));
+  //   // tags: [...new Set([...prevForm.tags, selectedTag])], // * Multiple tags
+  // };
+
+  const handleTagLvl1Select = (selectedTag: string) => {
     if (isSelectError) handleSelectError(false);
     setForm((prevForm) => ({ ...prevForm, tags: [selectedTag] }));
     // tags: [...new Set([...prevForm.tags, selectedTag])], // * Multiple tags
+  };
+
+  const handleTagLvl2Select = (selectedTag: string) => {
+    if (isSelectError) handleSelectError(false);
+    setForm((prevForm) => ({
+      ...prevForm,
+      tags: [prevForm.tags[0], selectedTag],
+    }));
   };
 
   const handleSelectError = (is: boolean) => {
@@ -74,6 +132,7 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
 
   const handleReset = () => {
     if (!confirm(config.alertReset)) return;
+    setIsResetLvl2(true);
     setIsReset(true);
     setForm(initState);
     setTimeout(() => setIsReset(false), 1000);
@@ -104,6 +163,8 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
     }
   };
 
+  console.log('==>', article.tags[1] ?? null, article.tags[1]);
+
   return (
     <Main className={'edit-article-page-main'}>
       <Section className={'main-hero-section'}>
@@ -129,16 +190,38 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
             isDisable={isPending}
             // isRequire
           />
-          <Select
-            className="article-edit-form-select light-select-theme"
-            options={selectOptions}
-            initialOption={article.tags[0] ?? null}
-            placeholder="Рубрика"
-            onSelect={handleTagSelect}
-            isError={isSelectError}
-            isReset={isReset}
-            isDisable={isPending}
-          />
+
+          <div className="article-create-form-select-block">
+            <SelectMulti
+              className="article-edit-form-select light-select-theme"
+              options={gc.selectOptionsLvl1.filter(
+                (opt) => opt !== form.tags[0]
+              )}
+              initialOption={article.tags[0] ?? null}
+              placeholder="Рубрика"
+              onSelect={handleTagLvl1Select}
+              isError={isSelectError}
+              isReset={isReset}
+              isDisable={isPending}
+              isOpen={openDropdownId === 'category'}
+              onToggle={() => toggleDropdown('category')}
+            />
+            <SelectMulti
+              className="article-edit-form-select light-select-theme"
+              options={selectOptionsLvl2.filter((opt) => opt !== form.tags[1])}
+              initialOption={initialLvl2Option}
+              // initialOption={article.tags[1] ?? null}
+              placeholder="Тема"
+              onSelect={handleTagLvl2Select}
+              isError={isSelectError}
+              isReset={isResetLvl2}
+              // isReset={isReset || form.tags.length === 1}
+              isDisable={isPending || !isLvl2}
+              isOpen={openDropdownId === 'topic'}
+              onToggle={() => toggleDropdown('topic')}
+            />
+          </div>
+
           <Textarea
             className="article-edit-form-textarea"
             placeholder="Текст статьи"

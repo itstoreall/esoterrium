@@ -1,5 +1,11 @@
 import defaultImage from '@/src/assets/images/defaultImage.jpg';
 import blueLotusImage from '@/src/assets/images/blueLotus.jpg';
+import {
+  CategoryEnum,
+  TopicBooksEnum,
+  TopicNumerologyEnum,
+  TopicPracticesEnum,
+} from '../enum';
 
 // https://res.cloudinary.com/dsxdnz1hq/image/upload/v1732806735/cld-sample-2.jpg
 
@@ -13,3 +19,26 @@ export const config = {
   blueLotusImage,
   defaultImageUrl: `${publicUrl}/_next/static/media/defaultImage.c592ac5f.jpg`,
 };
+
+export const selectOptionsLvl1 = [
+  CategoryEnum.Numerology,
+  CategoryEnum.Practices,
+  CategoryEnum.Courses,
+  CategoryEnum.Books,
+];
+
+export const selectOptionsNumerologyTopic = [
+  TopicNumerologyEnum.FateMatrix,
+  TopicNumerologyEnum.SpaceMatrix,
+];
+
+export const selectOptionsPracticesTopic = [
+  TopicPracticesEnum.Elements,
+  TopicPracticesEnum.Energy,
+];
+
+export const selectOptionsCourcesTopic = [
+  TopicBooksEnum.Numerology,
+  TopicBooksEnum.Bioenergy,
+  TopicBooksEnum.Tarot,
+];

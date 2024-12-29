@@ -8,10 +8,25 @@ export enum AuthRoleEnum {
   Ban = 'BAN',
 }
 
-export enum CategoriesEnum {
+export enum CategoryEnum {
   Numerology = 'Нумерология',
-  Astrology = 'Астрология',
-  Matrix = 'Матрица',
   Practices = 'Практики',
+  Courses = 'Курсы',
   Books = 'Книги',
+}
+
+export enum TopicNumerologyEnum {
+  FateMatrix = 'Матрица судьбы',
+  SpaceMatrix = 'Космическая матрица',
+}
+
+export enum TopicPracticesEnum {
+  Elements = 'Стихии',
+  Energy = 'Енергетические',
+}
+
+export enum TopicBooksEnum {
+  Numerology = 'Нумерология',
+  Bioenergy = 'Биоэнергетика',
+  Tarot = 'Таро',
 }

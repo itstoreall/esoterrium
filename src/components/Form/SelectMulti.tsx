@@ -5,7 +5,10 @@ import { FiChevronUp } from 'react-icons/fi';
 import { GoAlert } from 'react-icons/go';
 
 type Props = {
-  className?: 'admin-all-users-info-list-item-content-value-select';
+  className?:
+    | 'admin-all-users-info-list-item-content-value-select'
+    | 'article-create-form-select light-select-theme'
+    | 'article-edit-form-select light-select-theme';
   options: string[];
   initialOption?: string | null;
   onSelect: (selectedOption: string) => void;
@@ -62,28 +65,36 @@ const SelectMulti = (props: Props) => {
 
   return (
     <div className={`default-select ${className}`}>
-      <div
-        className={`default-select-selected ${optionSelectedStyle}`}
-        onClick={handleOpen}
-      >
-        <span>{selectedOption || placeholder}</span>
-        {isOpen ? <FiChevronUp /> : <FiChevronDown />}
-      </div>
+      {!isDisable ? (
+        <>
+          <div
+            className={`default-select-selected ${optionSelectedStyle}`}
+            onClick={handleOpen}
+          >
+            <span>{selectedOption || placeholder}</span>
+            {isOpen ? <FiChevronUp /> : <FiChevronDown />}
+          </div>
 
-      {isOpen && (
-        <ul className="default-select-option-list">
-          {options.map((option) => (
-            <li
-              key={option}
-              className="default-select-option-list-item"
-              onClick={() => handleOptionClick(option)}
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
+          {isOpen && (
+            <ul className="default-select-option-list">
+              {options.map((option) => (
+                <li
+                  key={option}
+                  className="default-select-option-list-item"
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {option}
+                </li>
+              ))}
+            </ul>
+          )}
+          {isError && (
+            <GoAlert size={25} className="default-select-error-icon" />
+          )}
+        </>
+      ) : (
+        <span className={`default-select-selected-disable`}>{placeholder}</span>
       )}
-      {isError && <GoAlert size={25} className="default-select-error-icon" />}
     </div>
   );
 };

@@ -12,6 +12,7 @@ import SelectMulti from '../Form/SelectMulti';
 import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
 import { AuthRole } from '@prisma/client';
 import { AuthRoleEnum } from '@/src/enum';
+import useSelectMulti from '@/src/hooks/useSelectMulti';
 
 const { Editor, Moderator, Influencer, User, Guest, Ban } = AuthRoleEnum;
 
@@ -19,12 +20,14 @@ const AllUsersInfo = () => {
   const roles = [Editor, Moderator, Influencer, User, Guest, Ban];
 
   const [users, setUsers] = useState<UserData[]>([]);
-  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+  // const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const [isSelectError, setSelectError] = useState(false);
   const [isPending, setPending] = useState(false);
   const [isReset, setReset] = useState(false);
   const [selectOptions] = useState(roles);
 
+  const { openDropdownId, handleOpenDropdown, toggleDropdown } =
+    useSelectMulti();
   const { copyValue, isCopied } = useCopyState();
 
   useEffect(() => {
@@ -57,11 +60,12 @@ const AllUsersInfo = () => {
       setSelectError(true);
     } finally {
       setPending(false);
-      setOpenDropdownId(null);
+      handleOpenDropdown(null);
+      // setOpenDropdownId(null);
     }
   };
 
-  // /*
+  /*
   const toggleDropdown = (id: string) => {
     setOpenDropdownId((prev) => (prev === id ? null : id));
   };
