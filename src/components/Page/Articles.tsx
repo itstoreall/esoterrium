@@ -66,6 +66,7 @@ const Articles = () => {
     } else if (label === 'category' || label === 'topic') {
       if (label === 'category') setCategoryTag('');
       setTopicTag('');
+      toggleDropdown('');
       setIsResetLvl2(true);
       setTimeout(() => setIsResetLvl2(false), 1000);
     }

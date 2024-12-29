@@ -23,6 +23,7 @@ import Section from '@/src/components/Section';
 // const initRole = AuthRoleEnum.Guest;
 
 const Dashboard = () => {
+  // /*
   // const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(initRole);
   const [name, setName] = useState('');
 
@@ -53,6 +54,8 @@ const Dashboard = () => {
 
   if (!userInfo || !session.data?.user)
     return <LoaderBlock className={'black-loader-block'} />;
+
+  // */
 
   return (
     <Main className={'dashboard-page-main'}>
