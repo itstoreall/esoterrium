@@ -140,10 +140,9 @@ div.default-select {
   &.article-create-form-select,
   &.article-edit-form-select {
     // display: flex;
-    max-width: 240px;
-    /*
-    @include media-screen-orientation('min', $mobilePlus) {}
-    */
+    @include media-screen-orientation('min', $mobilePlus) {
+      max-width: 240px;
+    }
   }
 
   // --- Error icon (svg):
