@@ -26,29 +26,6 @@ const initState = {
   views: [],
 };
 
-// const selectOptionsLvl1 = [
-//   CategoryEnum.Numerology,
-//   CategoryEnum.Practices,
-//   CategoryEnum.Courses,
-//   CategoryEnum.Books,
-// ];
-
-// const selectOptionsNumerologyTopic = [
-//   TopicNumerologyEnum.FateMatrix,
-//   TopicNumerologyEnum.SpaceMatrix,
-// ];
-
-// const selectOptionsPracticesTopic = [
-//   TopicPracticesEnum.Elements,
-//   TopicPracticesEnum.Energy,
-// ];
-
-// const selectOptionsCourcesTopic = [
-//   TopicBooksEnum.Numerology,
-//   TopicBooksEnum.Bioenergy,
-//   TopicBooksEnum.Tarot,
-// ];
-
 const CreateArticle = () => {
   const [isPending, startTransition] = useTransition();
   const [isSelectError, setIsSelectError] = useState(false);

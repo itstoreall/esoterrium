@@ -86,9 +86,14 @@ section.section {
     }
   }
 
-  /*
-  &.main-filter-value-section {} // *
-  */
+  &.main-filter-value-section {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    min-height: 42px;
+    // background-color: teal;
+  }
 
   &.main-final-section {
     padding-bottom: 80px;

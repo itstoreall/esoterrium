@@ -2,9 +2,8 @@
 
 div.main-filter-value-block {
   display: flex;
-  height: 1.8rem;
-  gap: 1rem;
-  // background-color: tomato;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 
   > span.main-filter-value {
     display: flex;
@@ -12,6 +11,8 @@ div.main-filter-value-block {
     justify-content: center;
     gap: 0.3rem;
     padding: 0 0.4rem 0 0.6rem;
+
+    height: 1.8rem;
     // color: teal;
     background-color: $violetDark;
     border-radius: $middleBorderRadius;

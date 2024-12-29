@@ -43,7 +43,6 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
     author: article.author,
     // tags: article.tags.join(', '), // Tags as a comma-separated string
     tags: article.tags as string[],
-    // tags: [],
     views: article.views,
   };
 
@@ -53,7 +52,6 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
   const [isResetLvl2, setIsResetLvl2] = useState(false);
   const [isReset, setIsReset] = useState(false);
   const [form, setForm] = useState(initState);
-  // const [error, setError] = useState<string | null>(null);
 
   const { openDropdownId, toggleDropdown } = useSelectMulti();
   const router = useRouter();
@@ -106,12 +104,6 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
     setForm({ ...form, content: text });
   };
 
-  // const handleTagSelect = (selectedTag: string) => {
-  //   if (isSelectError) handleSelectError(false);
-  //   setForm((prevForm) => ({ ...prevForm, tags: [selectedTag] }));
-  //   // tags: [...new Set([...prevForm.tags, selectedTag])], // * Multiple tags
-  // };
-
   const handleTagLvl1Select = (selectedTag: string) => {
     if (isSelectError) handleSelectError(false);
     setForm((prevForm) => ({ ...prevForm, tags: [selectedTag] }));
@@ -162,8 +154,6 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
       // setError((err as AxiosError).message);
     }
   };
-
-  console.log('==>', article.tags[1] ?? null, article.tags[1]);
 
   return (
     <Main className={'edit-article-page-main'}>

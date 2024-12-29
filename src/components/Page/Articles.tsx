@@ -4,6 +4,7 @@ import useUserRole from '@/src/hooks/useUserRole';
 import { useArticles } from '@/src/hooks/useArticles';
 import useLoader from '@/src/hooks/useLoader';
 import { ArticleData } from '@/src/types';
+import * as gc from '@/src/config';
 import Section from '@/src/components/Section';
 import Main from '@/src/components/Layout/Main';
 import Container from '@/src/components/Container';
@@ -12,36 +13,69 @@ import AdminPanelArticles from '@/src/components/AdminPanelArticles';
 import FilterValueBlock from '@/src/components/FilterValueBlock';
 import Sidebar from '@/src/components/Layout/Sidebar';
 import Title from '@/src/components/Layout/Title';
+import SelectMulti from '../Form/SelectMulti';
+import { CategoryEnum } from '@/src/enum';
+import useSelectMulti from '@/src/hooks/useSelectMulti';
 
 const Articles = () => {
   const [filteredArticles, setFilteredArticles] = useState<ArticleData[]>([]);
-  const [adminfilterValue, setAdminFilterValue] = useState('');
-  const [tagFilterValue, setTagFilterValue] = useState('');
+  const [adminFilterValue, setAdminFilterValue] = useState('');
+  const [isSelectError, setIsSelectError] = useState(false);
+  const [isResetLvl2, setIsResetLvl2] = useState(false);
+  const [categoryTag, setCategoryTag] = useState('');
+  const [topicTag, setTopicTag] = useState('');
 
   const { data: articles, isLoading, isError } = useArticles();
+  const { openDropdownId, toggleDropdown } = useSelectMulti();
   const { isLoader, Loader } = useLoader();
   const router = useRouter();
   const acc = useUserRole();
 
+  const isNumerology = categoryTag === CategoryEnum.Numerology;
+  const isPractices = categoryTag === CategoryEnum.Practices;
+  const isCources = categoryTag === CategoryEnum.Courses;
+  const isBooks = categoryTag === CategoryEnum.Books;
+  const isLvl2 = isNumerology || isPractices || isCources || isBooks;
+
+  const selectOptionsLvl2 = isNumerology
+    ? gc.selectOptionsNumerologyTopic
+    : isPractices
+    ? gc.selectOptionsPracticesTopic
+    : isCources || isBooks
+    ? gc.selectOptionsCourcesTopic
+    : [];
+
   const handleAdminFilterValue = (val: string) => setAdminFilterValue(val);
 
   const handleCategory = (tag: string | null) => {
-    setTagFilterValue(tag || '');
+    setCategoryTag(tag || '');
+  };
+
+  const handleTagLvl2Select = (selectedTag: string) => {
+    if (isSelectError) handleSelectError(false);
+    setTopicTag(selectedTag);
+  };
+
+  const handleSelectError = (is: boolean) => {
+    setIsSelectError(is);
   };
 
   const resetFilter = (label: string) => {
     if (label === 'admin') {
       setAdminFilterValue('');
-    } else if (label === 'tag') {
-      setTagFilterValue('');
+    } else if (label === 'category' || label === 'topic') {
+      if (label === 'category') setCategoryTag('');
+      setTopicTag('');
+      setIsResetLvl2(true);
+      setTimeout(() => setIsResetLvl2(false), 1000);
     }
   };
 
   useEffect(() => {
     if (!articles) return;
     let filtered = articles;
-    if (adminfilterValue) {
-      switch (adminfilterValue) {
+    if (adminFilterValue) {
+      switch (adminFilterValue) {
         case 'public':
           filtered = filtered.filter(
             (art: ArticleData) => art.access === 'public'
@@ -61,13 +95,18 @@ const Articles = () => {
           break;
       }
     }
-    if (tagFilterValue) {
+    if (categoryTag) {
       filtered = filtered.filter((art: ArticleData) =>
-        art.tags?.includes(tagFilterValue)
+        art.tags[0]?.includes(categoryTag)
+      );
+    }
+    if (topicTag) {
+      filtered = filtered.filter((art: ArticleData) =>
+        art.tags[1]?.includes(topicTag)
       );
     }
     setFilteredArticles(filtered);
-  }, [articles, adminfilterValue, tagFilterValue]);
+  }, [articles, adminFilterValue, categoryTag, topicTag]);
 
   // ---
 
@@ -95,12 +134,26 @@ const Articles = () => {
 
             <span className="articles-page-main-divider" />
 
-            {(adminfilterValue || tagFilterValue) && (
+            {(adminFilterValue || categoryTag) && (
               <Section className={'main-filter-value-section'}>
                 <FilterValueBlock
-                  adminfilterValue={adminfilterValue}
-                  tagFilterValue={tagFilterValue}
+                  adminfilterValue={adminFilterValue}
+                  categoryTag={categoryTag}
+                  topicTag={topicTag}
                   resetFilter={resetFilter}
+                />
+
+                <SelectMulti
+                  className="article-edit-form-select light-select-theme"
+                  options={selectOptionsLvl2.filter((opt) => opt !== topicTag)}
+                  initialOption={null}
+                  placeholder="Тема"
+                  onSelect={handleTagLvl2Select}
+                  isError={isSelectError}
+                  isReset={isResetLvl2}
+                  isDisable={!isLvl2}
+                  isOpen={openDropdownId === 'topic'}
+                  onToggle={() => toggleDropdown('topic')}
                 />
               </Section>
             )}

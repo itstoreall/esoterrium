@@ -2,12 +2,13 @@ import { FiX } from 'react-icons/fi';
 
 type Props = {
   adminfilterValue: string;
-  tagFilterValue: string;
+  categoryTag: string;
+  topicTag: string;
   resetFilter: (label: string) => void;
 };
 
 const FilterValueBlock = (props: Props) => {
-  const { adminfilterValue, tagFilterValue, resetFilter } = props;
+  const { adminfilterValue, categoryTag, topicTag, resetFilter } = props;
 
   const adminValue =
     adminfilterValue === 'public'
@@ -26,10 +27,16 @@ const FilterValueBlock = (props: Props) => {
           <FiX size={18} onClick={() => resetFilter('admin')} />
         </span>
       )}
-      {tagFilterValue && (
+      {categoryTag && (
         <span className="main-filter-value">
-          <span>{tagFilterValue}</span>
-          <FiX size={18} onClick={() => resetFilter('tag')} />
+          <span>{categoryTag}</span>
+          <FiX size={18} onClick={() => resetFilter('category')} />
+        </span>
+      )}
+      {topicTag && (
+        <span className="main-filter-value">
+          <span>{topicTag}</span>
+          <FiX size={18} onClick={() => resetFilter('topic')} />
         </span>
       )}
     </div>
