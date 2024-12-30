@@ -4,11 +4,21 @@
 aside.sidebar {
   &.articles-sidebar,
   &.article-details-sidebar {
-    display: none;
+    div.sidebar-content-wrapper {
+      @include media-screen-orientation('max', $tablet - 0.1) {
+        display: none;
+      }
+    }
 
     @include media-screen-orientation('min', $tablet) {
       display: block;
       // background-color: $greyDark;
+    }
+  }
+
+  > section.main-final-section {
+    @include media-screen-orientation('max', $tablet - 0.1) {
+      display: none;
     }
   }
 }

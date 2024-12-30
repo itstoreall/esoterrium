@@ -18,10 +18,11 @@ type SectionProps = ChildrenProps & {
     | 'main-final-section'
     | 'main-final-section-small'
     | 'main-final-section-zero';
+  id?: string;
 };
 
-const Section = ({ children, className }: SectionProps) => {
-  return <section className={`section ${className}`}>{children}</section>;
+const Section = ({ children, className, id }: SectionProps) => {
+  return <section className={`section ${className}`} id={id}>{children}</section>;
 };
 
 export default Section;

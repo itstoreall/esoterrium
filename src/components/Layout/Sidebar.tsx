@@ -25,10 +25,32 @@ const Sidebar = ({ className, handleCategory }: SidebarProps) => {
             </>
           )}
 
-          {!handleCategory && (
-            <>
+          {
+            <div className="sidebar-content-wrapper">
+              {!handleCategory && (
+                <>
+                  <Section className="sidebar-title-section">
+                    <Title tag="h3" text="Новинка" className="sidebar-title" />
+                  </Section>
+
+                  <div
+                    style={{
+                      // backgroundColor: 'teal',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      height: '260px',
+                      color: '#c2c4c5',
+                      border: '1px solid #c2c4c5',
+                    }}
+                  >
+                    Публикация
+                  </div>
+                </>
+              )}
+
               <Section className="sidebar-title-section">
-                <Title tag="h3" text="Новинка" className="sidebar-title" />
+                <Title tag="h3" text="Сообщество" className="sidebar-title" />
               </Section>
 
               <div
@@ -42,31 +64,15 @@ const Sidebar = ({ className, handleCategory }: SidebarProps) => {
                   border: '1px solid #c2c4c5',
                 }}
               >
-                Публикация
+                Ad
               </div>
-            </>
-          )}
-
-          <Section className="sidebar-title-section">
-            <Title tag="h3" text="Сообщество" className="sidebar-title" />
-          </Section>
-
-          <div
-            style={{
-              // backgroundColor: 'teal',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '260px',
-              color: '#c2c4c5',
-              border: '1px solid #c2c4c5',
-            }}
-          >
-            Ad
-          </div>
+            </div>
+          }
         </Container>
 
-        <Section className={'main-final-section'}>{null}</Section>
+        <Section className={'main-final-section'} id="main-final-section">
+          {null}
+        </Section>
       </aside>
     </Container>
   );
