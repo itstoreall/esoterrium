@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import useUserRole from '@/src/hooks/useUserRole';
@@ -63,14 +64,36 @@ const Articles = () => {
   const resetFilter = (label: string) => {
     if (label === 'admin') {
       setAdminFilterValue('');
-    } else if (label === 'category' || label === 'topic') {
-      if (label === 'category') setCategoryTag('');
+    } else if (label === 'category') {
+      setCategoryTag('');
       setTopicTag('');
       toggleDropdown('');
       setIsResetLvl2(true);
       setTimeout(() => setIsResetLvl2(false), 1000);
+    } else if (label === 'topic') {
+      setTopicTag('');
+      toggleDropdown('');
+      setIsResetLvl2(true);
+      setTimeout(() => setIsResetLvl2(false), 1000);
+    } else if (label === 'category_and_topic') {
+      setCategoryTag(categoryTag || '');
+      setTopicTag(''); // Reset topic tag
+      toggleDropdown(''); // Close any open dropdowns
+      setIsResetLvl2(true);
+      setTimeout(() => setIsResetLvl2(false), 1000);
+
+      if (articles) {
+        const filtered = articles.filter((art: ArticleData) =>
+          art.tags[0]?.includes(categoryTag || '')
+        );
+        setFilteredArticles(filtered);
+      }
     }
   };
+
+  useEffect(() => {
+    resetFilter('category_and_topic');
+  }, [categoryTag]);
 
   useEffect(() => {
     if (!articles) return;

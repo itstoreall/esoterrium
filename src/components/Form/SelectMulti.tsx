@@ -42,7 +42,6 @@ const SelectMulti = (props: Props) => {
 
   useEffect(() => {
     if (isReset) {
-      console.log('Resetting to:', initialOption);
       setSelectedOption(initialOption || null);
     }
   }, [isReset, initialOption]);
