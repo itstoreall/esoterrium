@@ -53,9 +53,17 @@ section.section {
     // height: calc($mainHeight - 150px);
     // min-height: 230px;
     background-color: $violetDarkPlus;
+    animation: bgColorChange 5s ease-in-out forwards;
 
     > div.image-block.home-page-main-thumb {
-      rotate: -2deg;
+      rotate: -5deg;
+      animation: rotateToZero 5s ease-in-out forwards;
+
+      // transition: rotate 5s ease-in-out; // Smoothly transition the rotation over 5 seconds
+
+      // &:hover {
+      //   rotate: 0; // Trigger rotation on hover or adjust logic for auto-play
+      // }
     }
 
     /*
@@ -78,7 +86,6 @@ section.section {
     > div.home-page-main-loader-block {
       display: flex;
       justify-content: center;
-      // background-color: teal;
     }
 
     > div.public-articles-home-section-content-loader-block {
@@ -87,15 +94,17 @@ section.section {
       align-items: center;
       // padding: 40px 0;
       // min-height: 230px;
-      height: calc($mainHeight - 440px);
+      height: calc($mainHeight - 520px);
       background-color: $blackMiddle;
       border-radius: $middleBorderRadius;
+      // background-color: teal;
 
-      /*
+      // /*
       @include media-screen-orientation('min', $mobile + 100) {
-        padding: 120px 0;
+        // padding: 120px 0;
+        height: calc($mainHeight - 400px);
       }
-      */
+      // */
     }
   }
 
@@ -118,5 +127,23 @@ section.section {
 
   &.main-final-section-zero {
     padding-bottom: 0;
+  }
+}
+
+@keyframes rotateToZero {
+  from {
+    rotate: -5deg;
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+
+@keyframes bgColorChange {
+  from {
+    background-color: $violetDarkPlus;
+  }
+  to {
+    background-color: $black;
   }
 }
