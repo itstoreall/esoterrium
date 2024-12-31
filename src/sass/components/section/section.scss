@@ -72,8 +72,7 @@ section.section {
       position: absolute;
       width: 340px;
       height: 340px;
-      background-color: teal;
-      animation: rotateBackElement 5s ease-in-out forwards,
+      animation: rotateBackElement 5s ease forwards,
         bgColorChangeBackElement 5s ease forwards;
     }
 
@@ -144,8 +143,10 @@ section.section {
 @keyframes rotateFrontElement {
   from {
     rotate: -10deg;
+    opacity: 0;
   }
   to {
+    opacity: 1;
     rotate: 0deg;
   }
 }
@@ -155,7 +156,7 @@ section.section {
     rotate: 90deg;
   }
   to {
-    rotate: -100deg;
+    rotate: -90deg;
   }
 }
 
