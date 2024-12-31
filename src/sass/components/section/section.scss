@@ -44,6 +44,7 @@ section.section {
   // --- Home:
 
   &.blue-lotus-home-section {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,17 +54,27 @@ section.section {
     // height: calc($mainHeight - 150px);
     // min-height: 230px;
     background-color: $violetDarkPlus;
-    animation: bgColorChange 5s ease-in-out forwards;
+    animation: bgColorChangeFrontElement 5s ease-in-out forwards;
+    overflow: hidden;
 
     > div.image-block.home-page-main-thumb {
       rotate: -5deg;
-      animation: rotateToZero 5s ease-in-out forwards;
+      animation: rotateFrontElement 5s ease-in-out forwards;
 
       // transition: rotate 5s ease-in-out; // Smoothly transition the rotation over 5 seconds
 
       // &:hover {
       //   rotate: 0; // Trigger rotation on hover or adjust logic for auto-play
       // }
+    }
+
+    > div.blue-lotus-home-section-rotating-block {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      background-color: teal;
+      animation: rotateBackElement 5s ease-in-out forwards,
+        bgColorChangeBackElement 5s ease forwards;
     }
 
     /*
@@ -130,17 +141,38 @@ section.section {
   }
 }
 
-@keyframes rotateToZero {
+@keyframes rotateFrontElement {
   from {
-    rotate: -5deg;
+    rotate: -10deg;
   }
   to {
     rotate: 0deg;
   }
 }
 
-@keyframes bgColorChange {
+@keyframes rotateBackElement {
   from {
+    rotate: 90deg;
+  }
+  to {
+    rotate: -100deg;
+  }
+}
+
+@keyframes bgColorChangeFrontElement {
+  from {
+    background-color: $violetDarkPlus;
+  }
+  to {
+    background-color: $black;
+  }
+}
+
+@keyframes bgColorChangeBackElement {
+  from {
+    background-color: $violetDarkPlus;
+  }
+  5% {
     background-color: $violetDarkPlus;
   }
   to {

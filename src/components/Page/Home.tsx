@@ -37,6 +37,8 @@ const Home = () => {
       <Section className={'main-hero-section'}>{null}</Section>
 
       <Section className={'blue-lotus-home-section'}>
+        <div className="blue-lotus-home-section-rotating-block"></div>
+
         <div className="image-block home-page-main-thumb">
           <Image
             src={
