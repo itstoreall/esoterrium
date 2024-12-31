@@ -48,15 +48,22 @@ section.section {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+    padding: 6rem 0;
     // height: calc($mainHeight - 450px);
     // height: calc($mainHeight - 150px);
     // min-height: 230px;
-    // background-color: tomato;
+    background-color: $violetDarkPlus;
 
+    > div.image-block.home-page-main-thumb {
+      rotate: -2deg;
+    }
+
+    /*
     @include media-screen-orientation('min', $min) {
       // padding-top: 2rem;
       padding: 2rem 0;
     }
+    */
 
     @include media-screen-orientation('min', $mobile + 100) {
       // padding-top: 3rem;
