@@ -10,7 +10,7 @@ import ArticleList from '@/src/components/ArticleList';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
 import ProgressLoader from '../ProgressBlock';
-import Title from '../Layout/Title';
+// import Title from '../Layout/Title';
 // import Title from '../Layout/Title';
 // import { config } from '@/src/config'; // https://www.esoterrium.space/_next/static/media/blueLotus.940f885c.jpg
 
@@ -55,11 +55,11 @@ const Home = () => {
       </Section>
 
       <Section className={'public-articles-home-section'}>
-        <Title
+        {/* <Title
           tag="h3"
           className="public-articles-home-section-title"
           text="Публикации"
-        />
+        /> */}
 
         {isLoading ? (
           <div className="public-articles-home-section-content-loader-block">

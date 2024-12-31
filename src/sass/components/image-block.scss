@@ -13,6 +13,7 @@ div.image-block {
     // width: 100%;
     width: 200px;
     height: 200px;
+    // background-color: tomato;
 
     /*
     @include media-screen-orientation('min', $mobile + 100) {
@@ -31,7 +32,7 @@ div.image-block {
   // --- Article List Item:
 
   &.article-list-item-thumb {
-    height: 80%;
+    height: 70%;
     border-radius: $smallBorderRadius;
     box-shadow: $shadow;
 
