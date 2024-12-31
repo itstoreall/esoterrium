@@ -70,8 +70,8 @@ section.section {
 
     > div.blue-lotus-home-section-rotating-block {
       position: absolute;
-      width: 340px;
-      height: 340px;
+      // width: 340px;
+      // height: 340px;
       animation: rotateBackElement 5s ease forwards,
         bgColorChangeBackElement 5s ease forwards;
     }
@@ -145,6 +145,9 @@ section.section {
     rotate: -10deg;
     opacity: 0;
   }
+  15% {
+    opacity: 1;
+  }
   to {
     opacity: 1;
     rotate: 0deg;
@@ -153,9 +156,13 @@ section.section {
 
 @keyframes rotateBackElement {
   from {
+    width: 240px;
+    height: 240px;
     rotate: 90deg;
   }
   to {
+    width: $max;
+    height: $max;
     rotate: -90deg;
   }
 }
