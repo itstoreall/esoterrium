@@ -16,7 +16,7 @@ const Admin = () => {
 
   return (
     <Main className={'admin-page-main'}>
-      <Section className={'main-hero-section'}>
+      <Section className={'main-heading-section first-element'}>
         <Title tag="h2" className="page-main-title color-light" text="Admin" />
       </Section>
 
@@ -26,7 +26,7 @@ const Admin = () => {
         </div>
       </Section>
 
-      <Section className={'main-final-section-zero'}>{null}</Section>
+      {/* <Section className={'main-final-section-zero'}>{null}</Section> */}
     </Main>
   );
 };

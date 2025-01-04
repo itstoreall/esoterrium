@@ -19,6 +19,7 @@ type ContainerProps = ChildrenProps & {
     | 'auth-form-wrapper-container'
     | 'form-backdrop-container'
     | 'form-content-container'
+    // | 'dashboard-main-content-container'
     | 'article-details-container'
     | 'footer-content-block-container';
 };

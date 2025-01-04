@@ -5,15 +5,37 @@ section.section {
   display: flex;
   flex-direction: column;
 
+  // in Home
   &.main-hero-section {
-    padding-top: 40px;
+    // padding-top: 40px;
+    background-color: $violetDarkPlus;
   }
 
-  &.sidebar-title-section {
-    padding-bottom: 2rem;
-    // margin-bottom: 2rem;
-    border-bottom: 1px solid $greyLight;
-    width: 100%;
+  &.main-heading-section {
+    &.first-element {
+      padding: 40px 0 0 0;
+    }
+
+    &.article-details-heading {
+      padding: 40px 0 0 0;
+    }
+  }
+
+  &.main-heading-combine-section {
+    &.first-element {
+      @include media-screen-orientation('min', $tablet) {
+        padding: 40px 0 0 0;
+      }
+    }
+  }
+
+  &.sidebar-heading-section {
+    // width: 100%;
+
+    &.first-element {
+      padding: 40px 0 0 0;
+      // background-color: yellow;
+    }
   }
 
   &.admin-section,
@@ -22,15 +44,22 @@ section.section {
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
   }
 
   &.article-create-form-section,
   &.article-edit-form-section {
     gap: 2rem;
+    padding-bottom: $finalBottomPadding;
   }
 
   &.article-details-section {
     gap: 2rem;
+    padding: 72px 0 2rem;
+    // background-color: blue;
   }
 
   &.article-details-comments-section {
@@ -43,19 +72,24 @@ section.section {
 
   // --- Home:
 
-  &.blue-lotus-home-section {
+  &.home-hero-section {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    padding: 6rem 0;
+    // padding: 6rem 0;
+    height: 540px;
     // height: calc($mainHeight - 450px);
     // height: calc($mainHeight - 150px);
     // min-height: 230px;
     background-color: $violetDarkPlus;
     animation: bgColorChangeFrontElement 5s ease-in-out forwards;
     overflow: hidden;
+
+    @include media-screen-orientation('min', $mobile + 100) {
+      height: 250px;
+    }
 
     > div.image-block.home-page-main-thumb {
       rotate: -5deg;
@@ -68,7 +102,7 @@ section.section {
       // }
     }
 
-    > div.blue-lotus-home-section-rotating-block {
+    > div.home-hero-section-rotating-block {
       position: absolute;
       // width: 340px;
       // height: 340px;
@@ -104,7 +138,7 @@ section.section {
       align-items: center;
       // padding: 40px 0;
       // min-height: 230px;
-      height: calc($mainHeight - 520px);
+      height: calc($mainHeight - 560px);
       background-color: $blackMiddle;
       border-radius: $middleBorderRadius;
       // background-color: teal;
@@ -123,10 +157,12 @@ section.section {
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
     min-height: 42px;
     // background-color: teal;
   }
 
+  /* Final Section
   &.main-final-section {
     padding-bottom: 80px;
   }
@@ -138,6 +174,7 @@ section.section {
   &.main-final-section-zero {
     padding-bottom: 0;
   }
+  */
 }
 
 @keyframes rotateFrontElement {

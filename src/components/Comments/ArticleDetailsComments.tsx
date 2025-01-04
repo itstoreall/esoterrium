@@ -37,7 +37,7 @@ const CommentBlock = ({ articleId }: { articleId: string }) => {
 
         <Button
           type="button"
-          className="small-border-button"
+          className="small-border-button-comments-update"
           clickContent={comments.refetch}
         >
           Обновить комментарии
@@ -53,12 +53,14 @@ const CommentBlock = ({ articleId }: { articleId: string }) => {
           respondTo={respondTo}
         />
 
-        <CommentList
-          userId={userId}
-          articleId={articleId}
-          comments={comments.data}
-          handleRespondTo={handleRespondTo}
-        />
+        {!!comments.data.length && (
+          <CommentList
+            userId={userId}
+            articleId={articleId}
+            comments={comments.data}
+            handleRespondTo={handleRespondTo}
+          />
+        )}
       </div>
     </Section>
   ) : null;

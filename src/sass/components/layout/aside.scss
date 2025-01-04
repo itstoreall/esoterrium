@@ -5,6 +5,8 @@ aside.sidebar {
   &.articles-sidebar,
   &.article-details-sidebar {
     div.sidebar-content-wrapper {
+      padding-bottom: $finalBottomPadding;
+
       @include media-screen-orientation('max', $tablet - 0.1) {
         display: none;
       }
@@ -16,9 +18,9 @@ aside.sidebar {
     }
   }
 
-  > section.main-final-section {
-    @include media-screen-orientation('max', $tablet - 0.1) {
-      display: none;
-    }
-  }
+  // > section.main-final-section {
+  //   @include media-screen-orientation('max', $tablet - 0.1) {
+  //     display: none;
+  //   }
+  // }
 }

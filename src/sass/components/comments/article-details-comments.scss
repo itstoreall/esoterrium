@@ -2,12 +2,15 @@
 
 div.article-details-comments-heading {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+  // background-color: teal;
 }
 
 div.article-details-comments-content {
   display: grid;
   gap: 2rem;
+  padding-bottom: $finalBottomPadding;
   // padding: 1rem;
   // border: 1px solid $greyLight;
   // border-radius: $middleBorderRadius;

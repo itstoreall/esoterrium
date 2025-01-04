@@ -157,7 +157,7 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
 
   return (
     <Main className={'edit-article-page-main'}>
-      <Section className={'main-hero-section'}>
+      <Section className={'main-heading-section first-element'}>
         <Title tag="h2" className="page-main-title" text="Редактор статья" />
       </Section>
 
@@ -234,7 +234,7 @@ const EditArticle = ({ article }: { article: ArticleData }) => {
         </Form>
       </Section>
 
-      <Section className={'main-final-section-zero'}>{null}</Section>
+      {/* <Section className={'main-final-section-zero'}>{null}</Section> */}
     </Main>
   );
 };

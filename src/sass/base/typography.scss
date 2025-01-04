@@ -61,7 +61,12 @@ h1 {
 h2 {
   &.page-main-title {
     @extend .default-page-title;
-    height: 3.25rem;
+    // height: 3.25rem;
+    // color: red;
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    // padding: 40px 0 0 0;
 
     /*
     &::before {
@@ -94,10 +99,29 @@ h2 {
 }
 
 h3 {
+  &.page-main-title {
+    @extend .default-page-title;
+    // height: 3.25rem;
+    // color: red;
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    // padding: 2rem 0;
+
+    &.color-light {
+      // color: $greyLight;
+      color: $greyMiddle;
+    }
+  }
+
+  // &.general-heading-title {
+  //   height: 3rem;
+  //   background-color: yellow;
+  // }
+
   &.public-articles-home-section-title {
     @extend .default-page-title;
     color: $greyMiddle;
-    // background-color: red;
   }
 
   &.form-title {

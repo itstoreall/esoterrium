@@ -4,8 +4,14 @@ type SectionProps = ChildrenProps & {
   className?:
     | 'admin-section'
     | 'main-hero-section'
+    | 'main-heading-section'
+    | 'main-heading-section first-element'
+    | 'main-heading-combine-section first-element'
+    | 'main-heading-section article-details-heading'
+    | 'sidebar-heading-section'
+    | 'sidebar-heading-section first-element'
     | 'home-section'
-    | 'blue-lotus-home-section'
+    | 'home-hero-section'
     | 'public-articles-home-section'
     | 'dashboard-section'
     | 'sidebar-title-section'
@@ -22,7 +28,11 @@ type SectionProps = ChildrenProps & {
 };
 
 const Section = ({ children, className, id }: SectionProps) => {
-  return <section className={`section ${className}`} id={id}>{children}</section>;
+  return (
+    <section className={`section ${className}`} id={id}>
+      {children}
+    </section>
+  );
 };
 
 export default Section;

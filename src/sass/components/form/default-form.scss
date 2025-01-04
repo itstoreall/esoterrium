@@ -11,8 +11,8 @@ form.default-form {
     > div.article-create-form-select-block {
       display: flex;
       gap: 1rem;
-      height: 42px;
-      // background-color: red;
+      min-height: 42px;
+      flex-wrap: wrap;
     }
 
     > div.article-create-form-button-block,

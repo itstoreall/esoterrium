@@ -13,6 +13,7 @@ import LoaderBlock from '@/src/components/LoaderBlock';
 import Title from '@/src/components/Layout/Title';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
+// import Container from '../Container';
 
 // export type Acc = {
 //   userRole: AuthRoleEnum | undefined;
@@ -59,7 +60,18 @@ const Dashboard = () => {
 
   return (
     <Main className={'dashboard-page-main'}>
-      <Section className={'main-hero-section'}>
+      {/* <Section className={'main-hero-section'}>{null}</Section> */}
+
+      {/* <Container className="dashboard-main-content-container"> */}
+      {/* <Section className={'main-heading-section'}>
+        <Title
+          tag="h2"
+          className="page-main-title color-light"
+          text="Аккаунт"
+        />
+      </Section> */}
+
+      <Section className={'main-heading-section first-element'}>
         <Title
           tag="h2"
           className="page-main-title color-light"
@@ -83,8 +95,6 @@ const Dashboard = () => {
           />
         </div>
       </Section>
-
-      <Section className={'main-final-section-zero'}>{null}</Section>
     </Main>
   );
 };

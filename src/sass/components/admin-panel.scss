@@ -17,6 +17,7 @@ div.admin-panel {
 
   &.admin-panel-articles {
     justify-content: space-between;
+    margin-bottom: 2rem;
 
     @include media-screen-orientation('max', $tablet - 0.1) {
       flex-wrap: wrap;

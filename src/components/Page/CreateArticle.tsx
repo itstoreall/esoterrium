@@ -134,7 +134,7 @@ const CreateArticle = () => {
 
   return (
     <Main className={'create-article-page-main'}>
-      <Section className={'main-hero-section'}>
+      <Section className={'main-heading-section first-element'}>
         <Title tag="h2" className="page-main-title" text="Новая статья" />
       </Section>
 
@@ -232,7 +232,7 @@ const CreateArticle = () => {
         </Form>
       </Section>
 
-      <Section className={'main-final-section-zero'}>{null}</Section>
+      {/* <Section className={'main-final-section-zero'}>{null}</Section> */}
     </Main>
   );
 };

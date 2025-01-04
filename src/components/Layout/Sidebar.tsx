@@ -12,13 +12,13 @@ const Sidebar = ({ className, handleCategory }: SidebarProps) => {
   return (
     <Container className={'sidebar-container'}>
       <aside className={`sidebar ${className}`}>
-        <Section className={'main-hero-section'}>{null}</Section>
+        {/* <Section className={'main-hero-section'}>{null}</Section> */}
 
         <Container className={'sidebar-content-container'}>
           {handleCategory && (
             <>
-              <Section className="sidebar-title-section">
-                <Title tag="h3" text="Рубрики" className="sidebar-title" />
+              <Section className="sidebar-heading-section first-element">
+                <Title tag="h3" text="Рубрики" className="page-main-title" />
               </Section>
 
               <SidebarCategories handleCategory={handleCategory} />
@@ -29,8 +29,12 @@ const Sidebar = ({ className, handleCategory }: SidebarProps) => {
             <div className="sidebar-content-wrapper">
               {!handleCategory && (
                 <>
-                  <Section className="sidebar-title-section">
-                    <Title tag="h3" text="Новинка" className="sidebar-title" />
+                  <Section className="sidebar-heading-section first-element">
+                    <Title
+                      tag="h3"
+                      text="Новинка"
+                      className="page-main-title"
+                    />
                   </Section>
 
                   <div
@@ -49,8 +53,8 @@ const Sidebar = ({ className, handleCategory }: SidebarProps) => {
                 </>
               )}
 
-              <Section className="sidebar-title-section">
-                <Title tag="h3" text="Сообщество" className="sidebar-title" />
+              <Section className="sidebar-heading-section">
+                <Title tag="h3" text="Сообщество" className="page-main-title" />
               </Section>
 
               <div
@@ -70,9 +74,9 @@ const Sidebar = ({ className, handleCategory }: SidebarProps) => {
           }
         </Container>
 
-        <Section className={'main-final-section'} id="main-final-section">
+        {/* <Section className={'main-final-section'} id="main-final-section">
           {null}
-        </Section>
+        </Section> */}
       </aside>
     </Container>
   );

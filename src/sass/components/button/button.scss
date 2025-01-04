@@ -181,7 +181,8 @@ span.button {
   }
 
   &.small-border-button,
-  &.small-border-button-as-system {
+  &.small-border-button-as-system,
+  &.small-border-button-comments-update {
     @extend .default-small-button;
     padding: 0 0.35rem;
     border: 1px solid $greyMiddle;
@@ -206,5 +207,9 @@ span.button {
         color: $violetLight;
       }
     }
+  }
+
+  &.small-border-button-comments-update {
+    white-space: nowrap;
   }
 }

@@ -27,14 +27,14 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
       <Main className={'article-details-page-main'}>
         {!acc.userRole || isLoader ? (
           <>
-            <Section className={'main-hero-section'}>
+            <Section className={'main-heading-section article-details-heading'}>
               <Title tag="h2" className="page-main-title" text={'...'} />
             </Section>
             <Loader className="light-loader-block" />
           </>
         ) : (
           <>
-            <Section className={'main-hero-section'}>{null}</Section>
+            {/* <Section className={'main-heading-section'}>{null}</Section> */}
 
             <Section className="article-details-section">
               <Title
@@ -72,7 +72,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
 
             <ArticleDetailsComments articleId={article._id} />
 
-            <Section className={'main-final-section'}>{null}</Section>
+            {/* <Section className={'main-final-section'}>{null}</Section> */}
           </>
         )}
       </Main>

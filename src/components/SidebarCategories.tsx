@@ -18,17 +18,6 @@ const SidebarCategories = ({ handleCategory }: Props) => {
       ))}
     </ul>
   );
-  /*
-  return (
-    <ul className="article-details-sidebar-category-list">
-      <li style={{ marginBottom: '1rem' }}>{CategoriesEnum.Numerology}</li>
-      <li style={{ marginBottom: '1rem' }}>{CategoriesEnum.Astrology}</li>
-      <li style={{ marginBottom: '1rem' }}>{CategoriesEnum.Matrix}</li>
-      <li style={{ marginBottom: '1rem' }}>{CategoriesEnum.Practices}</li>
-      <li style={{ marginBottom: '1rem' }}>{CategoriesEnum.Books}</li>
-    </ul>
-  );
-  */
 };
 
 export default SidebarCategories;

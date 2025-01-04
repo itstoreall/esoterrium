@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import useUserRole from '@/src/hooks/useUserRole';
+import useSelectMulti from '@/src/hooks/useSelectMulti';
 import { useArticles } from '@/src/hooks/useArticles';
 import useLoader from '@/src/hooks/useLoader';
 import { ArticleData } from '@/src/types';
@@ -16,7 +17,6 @@ import Sidebar from '@/src/components/Layout/Sidebar';
 import Title from '@/src/components/Layout/Title';
 import SelectMulti from '../Form/SelectMulti';
 import { CategoryEnum } from '@/src/enum';
-import useSelectMulti from '@/src/hooks/useSelectMulti';
 
 const Articles = () => {
   const [filteredArticles, setFilteredArticles] = useState<ArticleData[]>([]);
@@ -141,7 +141,7 @@ const Articles = () => {
       <Sidebar className="articles-sidebar" handleCategory={handleCategory} />
 
       <Main className={'articles-page-main'}>
-        <Section className={'main-hero-section'}>
+        <Section className={'main-heading-combine-section first-element'}>
           <Title tag="h2" className="page-main-title" text="Публикации" />
         </Section>
 
@@ -156,7 +156,7 @@ const Articles = () => {
               />
             )}
 
-            <span className="articles-page-main-divider" />
+            {/* <span className="articles-page-main-divider" /> */}
 
             {(adminFilterValue || categoryTag) && (
               <Section className={'main-filter-value-section'}>
@@ -184,7 +184,7 @@ const Articles = () => {
 
             <ArticleList articles={filteredArticles} />
 
-            <Section className={'main-final-section'}>{null}</Section>
+            {/* <Section className={'main-final-section'}>{null}</Section> */}
           </>
         )}
       </Main>

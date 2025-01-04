@@ -1,4 +1,5 @@
 @use '@/src/sass/base/vars' as *;
+@use '@/src/sass/mixins' as *;
 
 div.loader-block {
   display: flex;
@@ -8,21 +9,26 @@ div.loader-block {
 
   &.light-loader-block,
   &.main-combine-light-loader-block {
-    background-color: $light;
     height: calc($mainHeight - 180px);
-    // background-color: tomato;
+    background-color: $light;
   }
 
   /*
   &.light-loader-block {
     background-color: tomato;
-  }
+    }
+    */
 
   &.main-combine-light-loader-block {
-    height: calc($mainHeight - 170px); // + 40px
-    background-color: teal;
+    min-height: 200px;
+    max-height: 360px;
+    // background-color: pink;
+
+    @include media-screen-orientation('min', $tablet) {
+      max-height: calc($mainHeight - 20px);
+      // background-color: skyblue;
+    }
   }
-  */
 
   &.dark-loader-block {
     background-color: $dark;

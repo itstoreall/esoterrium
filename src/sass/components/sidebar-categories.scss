@@ -3,6 +3,9 @@
 ul.article-sidebar-category-list {
   display: grid;
   gap: 1rem;
+  padding: 0 0 2rem 0;
+  border-bottom: 1px solid $greyLight;
+  // background-color: teal;
 
   > li.article-sidebar-category-list-item {
     font-weight: 500;
