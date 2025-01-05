@@ -1,0 +1,28 @@
+div.sidebar-latest-article-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 260px;
+  color: #c2c4c5;
+  border: 1px solid transparent;
+
+  &.latest-article-loader-block {
+    border: 1px solid #c2c4c5;
+    // background-color: red;
+  }
+
+  > a {
+    width: 100%;
+    height: 100%;
+
+    > div.image-block.article-list-item-thumb {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  /*
+  > div.sidebar-latest-article-content {
+    background-color: red;
+  }
+  */
+}

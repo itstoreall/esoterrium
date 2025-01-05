@@ -2,18 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-// import Link from 'next/link';
 import { usePublicArticles } from '@/src/hooks/usePublicArticles';
-// import { useArticles } from '@/src/hooks/useArticles';
 import { ArticleData } from '@/src/types';
+import ProgressLoader from '@/src/components/ProgressBlock';
 import ArticleList from '@/src/components/ArticleList';
 import Main from '@/src/components/Layout/Main';
+import Hero from '@/src/components/Layout/Hero';
 import Section from '@/src/components/Section';
-import ProgressLoader from '../ProgressBlock';
-import Hero from '../Layout/Hero';
-// import Title from '../Layout/Title';
-// import Title from '../Layout/Title';
-// import { config } from '@/src/config';
 
 // https://www.esoterrium.space/_next/static/media/blueLotus.940f885c.jpg
 
@@ -56,9 +51,7 @@ const Home = () => {
 
         {isLoading ? (
           <div className="public-articles-home-section-content-loader-block">
-            <div className="home-page-main-loader-block theme-light">
-              <ProgressLoader className="dark-loader-block" duration={2000} />
-            </div>
+            <ProgressLoader className="dark-loader-block" duration={2000} />
           </div>
         ) : (
           <ArticleList
@@ -67,8 +60,6 @@ const Home = () => {
           />
         )}
       </Section>
-
-      {/* <Section className={'main-final-section'}>{null}</Section> */}
     </Main>
   );
 };

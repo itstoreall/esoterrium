@@ -7,19 +7,20 @@ import { useArticles } from '@/src/hooks/useArticles';
 import useLoader from '@/src/hooks/useLoader';
 import { ArticleData } from '@/src/types';
 import * as gc from '@/src/config';
+import { CategoryEnum } from '@/src/enum';
 import Section from '@/src/components/Section';
 import Main from '@/src/components/Layout/Main';
 import Container from '@/src/components/Container';
 import ArticleList from '@/src/components/ArticleList';
 import AdminPanelArticles from '@/src/components/AdminPanelArticles';
 import FilterValueBlock from '@/src/components/FilterValueBlock';
+import SelectMulti from '@/src/components/Form/SelectMulti';
 import Sidebar from '@/src/components/Layout/Sidebar';
 import Title from '@/src/components/Layout/Title';
-import SelectMulti from '../Form/SelectMulti';
-import { CategoryEnum } from '@/src/enum';
 
 const Articles = () => {
   const [filteredArticles, setFilteredArticles] = useState<ArticleData[]>([]);
+  // const [latestArticle, setLatestArticle] = useState<ArticleData | null>(null);
   const [adminFilterValue, setAdminFilterValue] = useState('');
   const [isSelectError, setIsSelectError] = useState(false);
   const [isResetLvl2, setIsResetLvl2] = useState(false);
@@ -97,6 +98,17 @@ const Articles = () => {
 
   useEffect(() => {
     if (!articles) return;
+
+    // if (articles.length > 0) {
+    //   const latest = articles.reduce(
+    //     (latest: ArticleData, current: ArticleData) =>
+    //       new Date(current.createdAt) > new Date(latest.createdAt)
+    //         ? current
+    //         : latest
+    //   );
+    //   // setLatestArticle(latest);
+    // }
+
     let filtered = articles;
     if (adminFilterValue) {
       switch (adminFilterValue) {

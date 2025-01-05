@@ -5,27 +5,14 @@ import { User } from 'next-auth';
 import useNotes from '@/src/hooks/useNotes';
 import useUserInfo from '@/src/hooks/useUserInfo';
 import useUserRole from '@/src/hooks/useUserRole';
-// import { setUserRole } from '@/src/lib/auth/setUserRoleServerAction';
-// import { AuthRoleEnum } from '@/src/enum';
 import AccountUserInfo from '@/src/components/AccountUserInfo';
 import AccountNotes from '@/src/components/AccountNotes';
 import LoaderBlock from '@/src/components/LoaderBlock';
 import Title from '@/src/components/Layout/Title';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
-// import Container from '../Container';
-
-// export type Acc = {
-//   userRole: AuthRoleEnum | undefined;
-//   handleUserRole: () => Promise<void>;
-//   isAdminRole: () => boolean;
-// };
-
-// const initRole = AuthRoleEnum.Guest;
 
 const Dashboard = () => {
-  // /*
-  // const [selectedRole, setSelectedRole] = useState<AuthRoleEnum>(initRole);
   const [name, setName] = useState('');
 
   const { notesText, handleNotesChange, clearNotes } = useNotes();
@@ -56,13 +43,8 @@ const Dashboard = () => {
   if (!userInfo || !session.data?.user)
     return <LoaderBlock className={'black-loader-block'} />;
 
-  // */
-
   return (
     <Main className={'dashboard-page-main'}>
-      {/* <Section className={'main-hero-section'}>{null}</Section> */}
-
-      {/* <Container className="dashboard-main-content-container"> */}
       {/* <Section className={'main-heading-section'}>
         <Title
           tag="h2"

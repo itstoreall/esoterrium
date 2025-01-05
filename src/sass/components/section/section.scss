@@ -126,29 +126,36 @@ section.section {
   &.public-articles-home-section {
     // background-color: red;
     gap: 2rem;
-
-    > div.home-page-main-loader-block {
-      display: flex;
-      justify-content: center;
-    }
+    // padding-bottom: $finalBottomPadding;
 
     > div.public-articles-home-section-content-loader-block {
       display: flex;
       justify-content: center;
       align-items: center;
+      padding-bottom: $finalBottomPadding;
       // padding: 40px 0;
       // min-height: 230px;
       height: calc($mainHeight - 560px);
-      background-color: $blackMiddle;
       border-radius: $middleBorderRadius;
       // background-color: teal;
 
-      // /*
       @include media-screen-orientation('min', $mobile + 100) {
         // padding: 120px 0;
         height: calc($mainHeight - 400px);
       }
+
+      /*
+      > div.home-page-main-loader-block {
+        // display: flex;
+        // justify-content: center;
+        background-color: $blackMiddle;
+      }
       // */
+    }
+
+    // Home Public Articles:
+    > ul.article-list {
+      padding-bottom: 0;
     }
   }
 
