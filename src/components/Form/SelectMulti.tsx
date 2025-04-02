@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { FiChevronUp } from 'react-icons/fi';
-import { GoAlert } from 'react-icons/go';
+// import { GoAlert } from 'react-icons/go';
 
 type Props = {
   className?:
@@ -32,7 +32,7 @@ const SelectMulti = (props: Props) => {
     onToggle,
     onSelect,
     isDisable,
-    isError,
+    // isError,
     isReset,
   } = props;
 
@@ -87,9 +87,9 @@ const SelectMulti = (props: Props) => {
               ))}
             </ul>
           )}
-          {isError && (
+          {/* {isError && (
             <GoAlert size={25} className="default-select-error-icon" />
-          )}
+          )} */}
         </>
       ) : (
         <span className={`default-select-selected-disable`}>{placeholder}</span>

@@ -21,7 +21,7 @@ const useAccount = () => {
     if (role) {
       setRole(role as AuthRoleEnum);
     } else {
-      console.log('handleUserRole return ==>');
+      // console.log('handleUserRole return ==>', role);
       return;
       // console.log(`User role: ${role} => signed out...`);
       // handleSignOut();

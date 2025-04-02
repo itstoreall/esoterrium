@@ -9,23 +9,25 @@ import trimLongWord from '@/src/utils/trimLongWord';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
 import ArticleDetailsComments from '@/src/components/Comments';
+import MDEditorBlock from '@/src/components/MDEditorBlock';
 import Sidebar from '@/src/components/Layout/Sidebar';
 import Container from '@/src/components/Container';
 import Title from '@/src/components/Layout/Title';
 import Main from '@/src/components/Layout/Main';
 import Section from '@/src/components/Section';
-import MDEditorBlock from './MDEditorBlock';
 
 const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
   const { isLoader, Loader } = useLoader();
   const acc = useUserRole();
+
+  const isPublic = article.access === 'public';
 
   return (
     <Container className="main-aside-combine-container">
       <Sidebar className="article-details-sidebar" />
 
       <Main className={'article-details-page-main'}>
-        {!acc.userRole || isLoader ? (
+        {(!isPublic && !acc.userRole) || isLoader ? (
           <>
             <Section className={'main-heading-section article-details-heading'}>
               <Title tag="h2" className="page-main-title" text={'...'} />

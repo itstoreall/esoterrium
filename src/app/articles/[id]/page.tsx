@@ -38,27 +38,33 @@ export async function generateMetadata({ params }: Props) {
 }
 
 const Article = async ({ params }: Props) => {
-  const access = await roleAccess('article-details');
-  if (!access.isAccess) {
-    redirect('/auth/ban');
-  }
-
-  const isAuthenticated = await checkIsAuthenticated();
   const { id } = await params;
+  const article = await getArticle(id);
 
-  try {
-    if (!isAuthenticated) {
-      redirect('/auth/sign-in');
-    } else {
-      const article = await getArticle(id);
-      return <ArticleDetailPage article={jsonParse(article)} />;
+  if (article.access === 'public') {
+    return <ArticleDetailPage article={jsonParse(article)} />;
+  } else {
+    const access = await roleAccess('article-details');
+    if (!access.isAccess) {
+      const redirectPath = access.role === null ? '/auth/sign-in' : '/auth/ban';
+      redirect(redirectPath);
     }
-  } catch (error) {
-    console.error(`Error generating metadata: ${error}`);
-    return {
-      title: 'Error',
-      description: 'An error occurred while fetching the article.',
-    };
+
+    const isAuthenticated = await checkIsAuthenticated();
+
+    try {
+      if (!isAuthenticated) {
+        redirect('/auth/sign-in');
+      } else {
+        return <ArticleDetailPage article={jsonParse(article)} />;
+      }
+    } catch (error) {
+      console.error(`Error generating metadata: ${error}`);
+      return {
+        title: 'Error',
+        description: 'An error occurred while fetching the article.',
+      };
+    }
   }
 };
 

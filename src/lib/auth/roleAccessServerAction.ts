@@ -28,13 +28,13 @@ export const roleAccess = async (page: Page) => {
 
   const mainCheck = (page: Page, role: AuthRole | null) => {
     if (isComunityAccess()) {
-      // console.log('Access granted for community.');
+      console.log('Access granted for community.');
       return { isAccess: true, page, role };
     } else if (isGuest()) {
-      // console.log('Access granted for guest.');
+      console.log('Access granted for guest.');
       return { isAccess: true, page, role };
     } else if (isBanned()) {
-      // console.log('Access denied: user is banned.');
+      console.log('Access denied: user is banned.');
       return { isAccess: false, page, role };
     } else return { isAccess: false, page, role: null };
   };
