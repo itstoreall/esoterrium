@@ -9,6 +9,7 @@ export enum AuthRoleEnum {
 }
 
 export enum CategoryEnum {
+  Prosvetlenie = 'Просветление',
   Numerology = 'Нумерология',
   Practices = 'Практики',
   Courses = 'Курсы',

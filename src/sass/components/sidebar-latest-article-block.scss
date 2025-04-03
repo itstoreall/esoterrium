@@ -8,7 +8,6 @@ div.sidebar-latest-article-block {
 
   &.latest-article-loader-block {
     border: 1px solid #c2c4c5;
-    // background-color: red;
   }
 
   > a {
@@ -17,6 +16,13 @@ div.sidebar-latest-article-block {
 
     > div.image-block.article-list-item-thumb {
       margin-bottom: 0.5rem;
+    }
+
+    > div.article-list-item-progress-loader-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2rem;
     }
   }
 

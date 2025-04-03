@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getLatestArticle } from '@/src/lib/mongoose/getLatestArticleServerAction';
 import trimLongWord from '@/src/utils/trimLongWord';
+import { ArticleData } from '@/src/types';
 import { config } from '@/src/config';
 import ProgressLoader from '@/src/components/ProgressBlock';
-import { ArticleData } from '@/src/types';
 
 // type Props = {
 //   latestArticle: ArticleData | null;
@@ -15,7 +16,10 @@ const SidebarLatestArticleBlock = () => {
   const [loadingArticleId, setLoadingArticleId] = useState<string | null>(null);
   const [latestArticle, setLatestArticle] = useState<ArticleData | null>();
 
+  const path = usePathname();
+
   const handleItemClick = (articleId: string) => {
+    if (path.split('/')[2] === latestArticle?._id) return;
     setLoadingArticleId(articleId);
     setTimeout(() => {
       setLoadingArticleId(null);

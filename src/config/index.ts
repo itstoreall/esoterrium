@@ -21,6 +21,7 @@ export const config = {
 };
 
 export const selectOptionsLvl1 = [
+  CategoryEnum.Prosvetlenie,
   CategoryEnum.Numerology,
   CategoryEnum.Practices,
   CategoryEnum.Courses,
