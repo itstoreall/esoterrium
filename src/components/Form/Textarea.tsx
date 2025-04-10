@@ -20,7 +20,7 @@ const Textarea = (props: Props) => {
     className,
     placeholder = '',
     value,
-    maxLength = 3500,
+    maxLength,
     handleChangeValue,
     required = true,
     isAutoFocus = false,
