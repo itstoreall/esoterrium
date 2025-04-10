@@ -214,7 +214,7 @@ const CreateArticle = () => {
             className="article-create-form-textarea"
             placeholder="Текст статьи"
             value={form.content}
-            maxLength={5252}
+            maxLength={10000}
             handleChangeValue={handleFormContent}
             isDisable={isPending}
           />
