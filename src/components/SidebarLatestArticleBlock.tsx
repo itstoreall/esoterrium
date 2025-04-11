@@ -27,10 +27,12 @@ const SidebarLatestArticleBlock = () => {
   };
 
   useEffect(() => {
-    getLatestArticle().then((art) =>
-      setLatestArticle(JSON.parse(JSON.stringify(art)) ?? null)
-    );
-  }, [path]);
+    console.log(1);
+    getLatestArticle().then((art) => {
+      console.log(2, art);
+      setLatestArticle(JSON.parse(JSON.stringify(art)) ?? null);
+    });
+  }, []);
 
   // console.log('latestArticle:', latestArticle);
   // console.log('path:', path);
