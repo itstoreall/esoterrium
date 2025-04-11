@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArticleData } from '../types';
+import { ArticleData } from '@/src/types';
 import PublishArticleButton from '@/src/components/Button/PublishArticleButton';
 import DeleteArticleButton from '@/src/components/Button/DeleteArticleButton';
-import PublicAccessButton from './Button/PublicAccessButton';
+import PublicAccessButton from '@/src/components/Button/PublicAccessButton';
 import Button from '@/src/components/Button/Button';
+import { useSession } from 'next-auth/react';
 
 const AdminPanelArticleDetails = ({ article }: { article: ArticleData }) => {
   const [isPublished, setIsPublished] = useState(article.isPublished);
   const [isPublicAccess, setIsPublicAccess] = useState(true);
+
+  const session = useSession();
+
+  const esoterriumEmail = session.data?.user?.email;
+  const isEsoterriumAuthor = article.author === 'Esoterrium';
+  const isEsoterriumEditor = esoterriumEmail?.split('@')[0] === 'esoterrium';
 
   useEffect(() => {
     if (article.access === 'private') setIsPublicAccess(false);
@@ -26,8 +33,19 @@ const AdminPanelArticleDetails = ({ article }: { article: ArticleData }) => {
           handleIsPublished={handleIsPublished}
         />
 
-        <Link href={`/articles/${article._id}/edit`}>
-          <Button className="admin-panel-text-button">Редактировать</Button>
+        <Link
+          href={
+            isEsoterriumAuthor && !isEsoterriumEditor
+              ? `/articles/${article._id}`
+              : `/articles/${article._id}/edit`
+          }
+        >
+          <Button
+            className="admin-panel-text-button"
+            isDisable={isEsoterriumAuthor && !isEsoterriumEditor}
+          >
+            Редактировать
+          </Button>
         </Link>
       </div>
 
