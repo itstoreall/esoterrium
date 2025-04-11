@@ -30,7 +30,10 @@ const SidebarLatestArticleBlock = () => {
     getLatestArticle().then((art) =>
       setLatestArticle(JSON.parse(JSON.stringify(art)) ?? null)
     );
-  }, []);
+  }, [path]);
+
+  // console.log('latestArticle:', latestArticle);
+  // console.log('path:', path);
 
   return latestArticle ? (
     <div
