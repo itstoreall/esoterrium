@@ -13,6 +13,7 @@ export const getLatestArticle = async (): Promise<ArticleData | null> => {
     return null;
   }
 
+  // /*
   const mappedArticle: ArticleData = {
     _id: latestArticle._id.toString(),
     idx: latestArticle.idx,
@@ -31,6 +32,7 @@ export const getLatestArticle = async (): Promise<ArticleData | null> => {
   };
 
   return mappedArticle;
+  // */
 
   /* works
   if (!mongoose.connection.readyState) {

@@ -28,41 +28,27 @@ const Sidebar = (props: SidebarProps) => {
             </>
           )}
 
-          {
-            <div className="sidebar-content-wrapper">
-              {!handleCategory && (
-                <>
-                  <Section className="sidebar-heading-section first-element">
-                    <Title
-                      tag="h3"
-                      text="Новинка"
-                      className="page-main-title"
-                    />
-                  </Section>
+          <div className="sidebar-content-wrapper">
+            {!handleCategory && <SidebarLatestArticle />}
 
-                  <SidebarLatestArticle />
-                </>
-              )}
+            <Section className="sidebar-heading-section">
+              <Title tag="h3" text="Полезно" className="page-main-title" />
+            </Section>
 
-              <Section className="sidebar-heading-section">
-                <Title tag="h3" text="Сообщество" className="page-main-title" />
-              </Section>
-
-              <div
-                style={{
-                  // backgroundColor: 'teal',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '260px',
-                  color: '#c2c4c5',
-                  border: '1px solid #c2c4c5',
-                }}
-              >
-                Ad
-              </div>
+            <div
+              style={{
+                // backgroundColor: 'teal',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '260px',
+                color: '#c2c4c5',
+                border: '1px solid #c2c4c5',
+              }}
+            >
+              Ad
             </div>
-          }
+          </div>
         </Container>
       </aside>
     </Container>

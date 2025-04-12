@@ -1,4 +1,5 @@
 import defaultImage from '@/src/assets/images/defaultImage.jpg';
+import communityImage from '@/src/assets/images/communityImage.jpg';
 import blueLotusImage from '@/src/assets/images/blueLotus.jpg';
 import {
   CategoryEnum,
@@ -16,8 +17,10 @@ export const config = {
   baseDescription: 'Духовное саморазвитие',
   publicUrl,
   defaultImage,
+  communityImage,
   blueLotusImage,
   defaultImageUrl: `${publicUrl}/_next/static/media/defaultImage.c592ac5f.jpg`,
+  facebookCommunity: 'https://www.facebook.com/groups/754123990135762',
 };
 
 export const selectOptionsLvl1 = [
