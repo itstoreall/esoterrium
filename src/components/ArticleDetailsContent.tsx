@@ -7,8 +7,8 @@ import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
 import trimLongWord from '@/src/utils/trimLongWord';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
-import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
-// import ArticleDetailsComments from '@/src/components/Comments';
+// import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
+import ArticleDetailsComments from '@/src/components/Comments';
 import MDEditorBlock from '@/src/components/MDEditorBlock';
 import Sidebar from '@/src/components/Layout/Sidebar';
 import Container from '@/src/components/Container';
@@ -46,9 +46,9 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
 
               <ArticleDetailsPublicationInfo article={article} />
 
-              {acc.isAdminRole() && (
+              {/* {acc.isAdminRole() && (
                 <AdminPanelArticleDetails article={article} />
-              )}
+              )} */}
 
               <div className="image-block article-details-thumb">
                 <Image
@@ -68,7 +68,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
 
             <span className="articles-page-main-divider" />
 
-            {/* <ArticleDetailsComments articleId={article._id} /> */}
+            <ArticleDetailsComments articleId={article._id} />
           </>
         )}
       </Main>
