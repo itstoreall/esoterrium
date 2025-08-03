@@ -1,12 +1,12 @@
 'use client';
 
-// import Image from 'next/image';
+import Image from 'next/image';
 import useUserRole from '@/src/hooks/useUserRole';
 import useLoader from '@/src/hooks/useLoader';
-// import { config } from '@/src/config';
+import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
 import trimLongWord from '@/src/utils/trimLongWord';
-// import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
+import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 // import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
 // import ArticleDetailsComments from '@/src/components/Comments';
 // import MDEditorBlock from '@/src/components/MDEditorBlock';
@@ -44,15 +44,11 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
                 text={trimLongWord(article.title, 20, 15, 5)}
               />
 
-              <div style={{ color: 'green', paddingTop: '100px' }}>
-                Details 6 {`${article.title} - ${isPublic}`}
-              </div>
+              <ArticleDetailsPublicationInfo article={article} />
 
-              {/* <ArticleDetailsPublicationInfo article={article} />
-
-              {acc.isAdminRole() && (
+              {/* {acc.isAdminRole() && (
                 <AdminPanelArticleDetails article={article} />
-              )}
+              )} */}
 
               <div className="image-block article-details-thumb">
                 <Image
@@ -64,7 +60,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
                 />
               </div>
 
-              <MDEditorBlock
+              {/* <MDEditorBlock
                 className="article-details-mdeditor-block"
                 text={article.content}
               /> */}
