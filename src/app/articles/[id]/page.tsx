@@ -1,9 +1,9 @@
 // import { redirect } from 'next/navigation';
-// import metadataHandler from '@/src/utils/metadataHandler';
+import metadataHandler from '@/src/utils/metadataHandler';
 // import { roleAccess } from '@/src/lib/auth/roleAccessServerAction';
 // import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
-// import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
+import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
 // import jsonParse from '@/src/utils/jsonParse';
 
 type Props = { params: Promise<{ id: string }> };
@@ -23,7 +23,6 @@ const getArticle = async (id: string) => {
   }
 };
 
-/*
 export async function generateMetadata({ params }: Props) {
   const { id } = await params;
   try {
@@ -37,7 +36,6 @@ export async function generateMetadata({ params }: Props) {
     };
   }
 }
-*/
 
 const Article = async ({ params }: Props) => {
   const { id } = await params;
@@ -45,8 +43,26 @@ const Article = async ({ params }: Props) => {
   console.log('article:', article);
 
   if (article.access === 'public') {
+    const d = {
+      _id: '67719da6bfd356c5bf540700',
+      idx: 3,
+      title: 'Шесть миров',
+      content: 'Шесть миров бытия',
+      image:
+        'https://res.cloudinary.com/dsxdnz1hq/image/upload/v1744298123/lokas_r6srkx.jpg',
+      author: 'Esoterrium',
+      tags: ['Просветление'],
+      views: ['cm4mu7gw90000bkpyolhloi9k'],
+      likes: [],
+      isPublished: true,
+      access: 'public',
+      publishedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    return <ArticleDetailPage article={d} />;
     // return <ArticleDetailPage article={jsonParse(article)} />;
-    return <div style={{ color: 'red' }}>Details 1</div>;
+    // return <div style={{ color: 'red' }}>Details 1</div>;
   } else {
     return <div style={{ color: 'red' }}>Details 2</div>;
   }
