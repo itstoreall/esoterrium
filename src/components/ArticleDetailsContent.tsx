@@ -20,10 +20,6 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
   const { isLoader, Loader } = useLoader();
   const acc = useUserRole();
 
-  // setTimeout(() => {
-  //   throw new Error();
-  // }, 3000);
-
   const isPublic = article.access === 'public';
 
   return (
