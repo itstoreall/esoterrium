@@ -43,7 +43,13 @@ const Article = async ({ params }: Props) => {
   const { id } = await params;
   const article = await getArticle(id);
   console.log('article:', article);
-  return <div style={{ color: 'red' }}>Details</div>;
+
+  if (article.access === 'public') {
+    // return <ArticleDetailPage article={jsonParse(article)} />;
+    return <div style={{ color: 'red' }}>Details 1</div>;
+  } else {
+    return <div style={{ color: 'red' }}>Details 2</div>;
+  }
 
   /*
   const { id } = await params;
