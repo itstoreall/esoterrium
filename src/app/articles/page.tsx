@@ -10,10 +10,9 @@ export async function generateMetadata() {
 
 const Articles: React.FC = async () => {
   const access = await roleAccess('articles');
-  console.log('access:', access);
-  // if (!access.isAccess) {
-  //   redirect('/auth/ban');
-  // }
+  if (!access.isAccess) {
+    redirect('/auth/ban');
+  }
 
   const isAuthenticated = await checkIsAuthenticated();
 

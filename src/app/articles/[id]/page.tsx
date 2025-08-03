@@ -1,7 +1,7 @@
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 import metadataHandler from '@/src/utils/metadataHandler';
-import { roleAccess } from '@/src/lib/auth/roleAccessServerAction';
-import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
+// import { roleAccess } from '@/src/lib/auth/roleAccessServerAction';
+// import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
 import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
 import jsonParse from '@/src/utils/jsonParse';
@@ -38,6 +38,9 @@ export async function generateMetadata({ params }: Props) {
 }
 
 const Article = async ({ params }: Props) => {
+  console.log('params:', params);
+  return <ArticleDetailPage article={jsonParse('article')} />;
+  /*
   const { id } = await params;
   const article = await getArticle(id);
 
@@ -66,6 +69,7 @@ const Article = async ({ params }: Props) => {
       };
     }
   }
+  */
 };
 
 export default Article;
