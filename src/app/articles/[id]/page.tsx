@@ -1,13 +1,14 @@
 // import { redirect } from 'next/navigation';
-import metadataHandler from '@/src/utils/metadataHandler';
+// import metadataHandler from '@/src/utils/metadataHandler';
 // import { roleAccess } from '@/src/lib/auth/roleAccessServerAction';
 // import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
-import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
-import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
-import jsonParse from '@/src/utils/jsonParse';
+// import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
+// import ArticleDetailPage from '@/src/app/articles/[id]/article-detail';
+// import jsonParse from '@/src/utils/jsonParse';
 
 type Props = { params: Promise<{ id: string }> };
 
+/*
 const getArticle = async (id: string) => {
   try {
     const article = await getArticleById(id, 'lean');
@@ -36,10 +37,11 @@ export async function generateMetadata({ params }: Props) {
     };
   }
 }
+*/
 
 const Article = async ({ params }: Props) => {
   console.log('params:', params);
-  return <ArticleDetailPage article={jsonParse('article')} />;
+  return <div style={{ color: 'red' }}>Details</div>;
   /*
   const { id } = await params;
   const article = await getArticle(id);
