@@ -5,7 +5,7 @@ import useUserRole from '@/src/hooks/useUserRole';
 import useLoader from '@/src/hooks/useLoader';
 // import { config } from '@/src/config';
 import { ArticleData } from '@/src/types';
-// import trimLongWord from '@/src/utils/trimLongWord';
+import trimLongWord from '@/src/utils/trimLongWord';
 // import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 // import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
 // import ArticleDetailsComments from '@/src/components/Comments';
@@ -22,7 +22,7 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
 
   const isPublic = article.access === 'public';
 
-  console.log('acc:', acc);
+  // console.log('acc:', acc);
 
   return (
     <Container className="main-aside-combine-container">
@@ -37,42 +37,43 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
             <Loader className="light-loader-block" />
           </>
         ) : (
-          <div style={{ color: 'tomato', paddingTop: '100px' }}>
-            Details 5 {`${article.title} - ${isPublic}`}
-          </div>
-          // <>
-          //   <Section className="article-details-section">
-          //     <Title
-          //       className="article-details-title readable-content "
-          //       text={trimLongWord(article.title, 20, 15, 5)}
-          //     />
+          <>
+            <Section className="article-details-section">
+              <Title
+                className="article-details-title readable-content "
+                text={trimLongWord(article.title, 20, 15, 5)}
+              />
 
-          //     <ArticleDetailsPublicationInfo article={article} />
+              <div style={{ color: 'green', paddingTop: '100px' }}>
+                Details 6 {`${article.title} - ${isPublic}`}
+              </div>
 
-          //     {acc.isAdminRole() && (
-          //       <AdminPanelArticleDetails article={article} />
-          //     )}
+              {/* <ArticleDetailsPublicationInfo article={article} />
 
-          //     <div className="image-block article-details-thumb">
-          //       <Image
-          //         src={article.image || config.defaultImageUrl}
-          //         className={'article-details-image'}
-          //         fill
-          //         priority={true}
-          //         alt={article.title}
-          //       />
-          //     </div>
+              {acc.isAdminRole() && (
+                <AdminPanelArticleDetails article={article} />
+              )}
 
-          //     <MDEditorBlock
-          //       className="article-details-mdeditor-block"
-          //       text={article.content}
-          //     />
-          //   </Section>
+              <div className="image-block article-details-thumb">
+                <Image
+                  src={article.image || config.defaultImageUrl}
+                  className={'article-details-image'}
+                  fill
+                  priority={true}
+                  alt={article.title}
+                />
+              </div>
 
-          //   <span className="articles-page-main-divider" />
+              <MDEditorBlock
+                className="article-details-mdeditor-block"
+                text={article.content}
+              /> */}
+            </Section>
 
-          //   <ArticleDetailsComments articleId={article._id} />
-          // </>
+            <span className="articles-page-main-divider" />
+
+            {/* <ArticleDetailsComments articleId={article._id} /> */}
+          </>
         )}
       </Main>
     </Container>
