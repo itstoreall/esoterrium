@@ -6,13 +6,18 @@ type Props = {
 };
 
 const MDEditorBlock = ({ className, text }: Props) => {
+  // console.log('text:', text);
+
   return (
     <div className={`mdeditor-block ${className}`}>
-      <MDEditor.Markdown
-        style={{ whiteSpace: 'pre-wrap' }}
-        className="mdeditor-markdown-top-lib-elenemt"
-        source={text}
-      />
+      {text && (
+        <MDEditor.Markdown
+          style={{ whiteSpace: 'pre-wrap' }}
+          className="mdeditor-markdown-top-lib-elenemt"
+          source={'text 111'}
+          // source={text}
+        />
+      )}
     </div>
   );
 };

@@ -60,12 +60,12 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
                 />
               </div>
 
-              {article.content && (
+              {
                 <MDEditorBlock
                   className="article-details-mdeditor-block"
                   text={article.content}
                 />
-              )}
+              }
             </Section>
 
             <span className="articles-page-main-divider" />
