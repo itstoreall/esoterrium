@@ -9,7 +9,7 @@ import trimLongWord from '@/src/utils/trimLongWord';
 import ArticleDetailsPublicationInfo from '@/src/components/ArticleDetailsPublicationInfo';
 import AdminPanelArticleDetails from '@/src/components/AdminPanelArticleDetails';
 import ArticleDetailsComments from '@/src/components/Comments';
-// import MDEditorBlock from '@/src/components/MDEditorBlock';
+import MDEditorBlock from '@/src/components/MDEditorBlock';
 import Sidebar from '@/src/components/Layout/Sidebar';
 import Container from '@/src/components/Container';
 import Title from '@/src/components/Layout/Title';
@@ -60,10 +60,12 @@ const ArticleDetailsContent = ({ article }: { article: ArticleData }) => {
                 />
               </div>
 
-              {/* <MDEditorBlock
-                className="article-details-mdeditor-block"
-                text={article.content}
-              /> */}
+              {article.content && (
+                <MDEditorBlock
+                  className="article-details-mdeditor-block"
+                  text={article.content}
+                />
+              )}
             </Section>
 
             <span className="articles-page-main-divider" />
