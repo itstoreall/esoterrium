@@ -1,5 +1,5 @@
 // import { redirect } from 'next/navigation';
-import metadataHandler from '@/src/utils/metadataHandler';
+// import metadataHandler from '@/src/utils/metadataHandler';
 // import { roleAccess } from '@/src/lib/auth/roleAccessServerAction';
 // import { checkIsAuthenticated } from '@/src/lib/auth/checkIsAuthedServerAction';
 import { getArticleById } from '@/src/lib/mongoose/getArticleByIdServerAction';
@@ -23,19 +23,19 @@ const getArticle = async (id: string) => {
   }
 };
 
-export async function generateMetadata({ params }: Props) {
-  const { id } = await params;
-  try {
-    const article = await getArticle(id);
-    return metadataHandler('article', article);
-  } catch (error) {
-    console.error(`Error generating metadata: ${error}`);
-    return {
-      title: 'Error',
-      description: 'An error occurred while fetching the article.',
-    };
-  }
-}
+// export async function generateMetadata({ params }: Props) {
+//   const { id } = await params;
+//   try {
+//     const article = await getArticle(id);
+//     return metadataHandler('article', article);
+//   } catch (error) {
+//     console.error(`Error generating metadata: ${error}`);
+//     return {
+//       title: 'Error',
+//       description: 'An error occurred while fetching the article.',
+//     };
+//   }
+// }
 
 const Article = async ({ params }: Props) => {
   const { id } = await params;
