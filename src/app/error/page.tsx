@@ -38,7 +38,7 @@ const ErrorPage = () => {
           We encountered an error while processing your request.
         </p>
         <p style={{ color: '#52585c' }}>
-          Redirecting to the Articles in 5 seconds...
+          Redirecting to the Home Page in 5 seconds...
         </p>
       </div>
     </div>
