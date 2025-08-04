@@ -7,12 +7,14 @@ const generalContent = Roboto({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '700', '900'],
   variable: '--general-content-font',
+  preload: false,
 });
 
 const textContent = PT_Serif({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '700'],
   variable: '--text-content-font',
+  preload: false,
 });
 
 export const metadata: Metadata = {

@@ -42,26 +42,6 @@ const Article = async ({ params }: Props) => {
   const article = await getArticle(id);
 
   if (article.access === 'public') {
-    // const d = {
-    //   _id: '67719da6bfd356c5bf540700',
-    //   idx: 3,
-    //   title: 'Шесть миров',
-    //   content: 'Шесть миров бытия',
-    //   image:
-    //     'https://res.cloudinary.com/dsxdnz1hq/image/upload/v1744298123/lokas_r6srkx.jpg',
-    //   author: 'Esoterrium',
-    //   tags: ['Просветление'],
-    //   views: ['cm4mu7gw90000bkpyolhloi9k'],
-    //   likes: [],
-    //   isPublished: true,
-    //   access: 'public',
-    //   publishedAt: new Date(),
-    //   createdAt: new Date(),
-    //   updatedAt: new Date(),
-    // };
-    // return <ArticleDetailPage article={d} />;
-    // return <ArticleDetailPage article={article} />;
-    // return <div style={{ color: 'red' }}>Details 1 {article._id}</div>;
     return <ArticleDetailPage article={jsonParse(article)} />;
   } else {
     const access = await roleAccess('article-details');
@@ -76,25 +56,6 @@ const Article = async ({ params }: Props) => {
       if (!isAuthenticated) {
         redirect('/auth/sign-in');
       } else {
-        // const d = {
-        //   _id: '67719da6bfd356c5bf540700',
-        //   idx: 3,
-        //   title: 'Шесть миров',
-        //   content: 'Шесть миров бытия',
-        //   image:
-        //     'https://res.cloudinary.com/dsxdnz1hq/image/upload/v1744298123/lokas_r6srkx.jpg',
-        //   author: 'Esoterrium',
-        //   tags: ['Просветление'],
-        //   views: ['cm4mu7gw90000bkpyolhloi9k'],
-        //   likes: [],
-        //   isPublished: true,
-        //   access: 'public',
-        //   publishedAt: new Date(),
-        //   createdAt: new Date(),
-        //   updatedAt: new Date(),
-        // };
-        // return <ArticleDetailPage article={d} />;
-        // return <div style={{ color: 'red' }}>Details 2 {article._id}</div>;
         return <ArticleDetailPage article={jsonParse(article)} />;
       }
     } catch (error) {

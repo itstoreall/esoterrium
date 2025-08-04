@@ -6,7 +6,7 @@ const trimEmail: TrimEmail = (email, start, end) => {
   const username = splitEmail[0];
   return Math.min(start + end, username.length) < username.length
     ? `${username.slice(0, start)}...${username.slice(-end)}@${splitEmail[1]}`
-    : username;
+    : `${username}@${splitEmail[1]}`;
 };
 
 export default trimEmail;

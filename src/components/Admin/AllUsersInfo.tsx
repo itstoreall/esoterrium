@@ -105,7 +105,8 @@ const AllUsersInfo = () => {
                     trimEmail('serhiistanislav@rambler.com', 4, 4),
                     23
                   )} */}
-                  {sliceLimitString(trimEmail(user.email, 4, 4), 23)}
+                  {sliceLimitString(trimEmail(user.email, 6, 6), 26)}
+                  {/* {trimEmail(user.email, 6, 6)} */}
                 </span>
               </div>
 

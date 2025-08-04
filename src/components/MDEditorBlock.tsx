@@ -14,12 +14,7 @@ const MDEditorBlock = ({ className, text }: Props) => {
         className="mdeditor-markdown-top-lib-elenemt"
         source={text}
       /> */}
-      <Markdown
-      // style={{ whiteSpace: 'pre-wrap' }}
-      // className="mdeditor-markdown-top-lib-elenemt"
-      >
-        {text}
-      </Markdown>
+      <Markdown>{text}</Markdown>
     </div>
   );
 };

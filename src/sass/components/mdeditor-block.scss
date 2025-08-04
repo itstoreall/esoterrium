@@ -3,75 +3,85 @@
 
 div.mdeditor-block {
   &.article-details-mdeditor-block {
-    > div.mdeditor-markdown-top-lib-elenemt {
-      background-color: transparent;
+    white-space: pre-wrap;
+    background-color: transparent;
 
-      // TODO: anchor style here
+    // TODO: anchor style here
 
-      > h2,
-      > h3,
-      > p,
-      > blockquote > p {
-        font-family: var(--text-content-font);
+    > h2,
+    > h3,
+    > p,
+    > blockquote > p {
+      font-family: var(--text-content-font);
+    }
+
+    // --- h1
+
+    > h1 {
+      display: none;
+    }
+
+    > h2,
+    > h3 {
+      // padding-top: 10px;
+      margin-bottom: 10px;
+      // font-size: 1.6rem;
+      // color: red;
+      font-weight: bold;
+      line-height: 1.2;
+
+      // @include media-screen-orientation('min', $mobile + 100) {
+      //   font-size: 2.2em;
+      // }
+
+      // @include media-screen-orientation('min', $tablet) {
+      //   font-size: 2em;
+      // }
+    }
+
+    // --- h2
+
+    > h2 {
+      font-size: 1.4rem;
+
+      @include media-screen-orientation('min', $tablet) {
+        font-size: 1.8em;
       }
+    }
 
-      // --- h1
+    // --- h3
 
-      > h1 {
-        display: none;
+    > h3 {
+      font-size: 1.2rem;
+
+      @include media-screen-orientation('min', $tablet) {
+        font-size: 1.6em;
       }
+    }
 
-      > h2,
-      > h3 {
-        // font-size: 1.6rem;
-        // color: red;
-        font-weight: bold;
-        line-height: 1.2;
+    > p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.4;
+      letter-spacing: 0.02rem;
 
-        // @include media-screen-orientation('min', $mobile + 100) {
-        //   font-size: 2.2em;
-        // }
-
-        // @include media-screen-orientation('min', $tablet) {
-        //   font-size: 2em;
-        // }
+      @include media-screen-orientation('min', $tablet) {
+        font-size: 1.125em;
       }
+    }
 
-      // --- h2
-
-      > h2 {
-        font-size: 1.4rem;
-
-        @include media-screen-orientation('min', $tablet) {
-          font-size: 1.8em;
-        }
-      }
-
-      // --- h3
-
-      > h3 {
-        font-size: 1.2rem;
-
-        @include media-screen-orientation('min', $tablet) {
-          font-size: 1.6em;
-        }
-      }
+    > blockquote {
+      // padding: 10px 0 10px 20px;
+      padding: 0 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid $smokeBlue;
 
       > p {
-        font-size: 1rem;
-        line-height: 1.4;
-        letter-spacing: 0.02rem;
-
-        @include media-screen-orientation('min', $tablet) {
-          font-size: 1.125em;
-        }
-      }
-
-      > blockquote > p {
         font-size: 1.1rem;
         font-weight: 600;
         font-style: italic;
         letter-spacing: 0.03rem;
+        line-height: 1.3;
         color: $smokeBlue;
       }
     }

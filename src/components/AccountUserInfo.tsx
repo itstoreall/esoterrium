@@ -93,7 +93,7 @@ const AccountUserInfo = (props: Props) => {
             className={`user-account-info-list-item-content-value-onclick ${copyEmailStyle}`}
             onClick={() => handleCopyValue(userInfo.email, setIsEmailCopied)}
           >
-            {trimEmail(userInfo.email, 2, 2)}
+            {trimEmail(userInfo.email, 5, 5)}
           </span>
         </div>
       </li>
