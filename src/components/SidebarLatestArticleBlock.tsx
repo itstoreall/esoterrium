@@ -60,7 +60,7 @@ const SidebarLatestArticleBlock = () => {
                 fill
                 priority={true}
                 alt={latestArticle.title}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
             {loadingArticleId !== latestArticle._id ? (
@@ -91,7 +91,7 @@ const SidebarLatestArticleBlock = () => {
                     fill
                     priority={true}
                     alt={'Сообщество Esoterrium в Facebook'}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 <h3 className="article-list-item-title">

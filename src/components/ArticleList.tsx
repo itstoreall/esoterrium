@@ -38,7 +38,7 @@ const ArticleList = ({ articles, className }: Props) => {
                   fill
                   priority={true}
                   alt={article.title}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               {loadingArticleId !== article._id ? (
