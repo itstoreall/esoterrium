@@ -159,7 +159,7 @@ const AllUsersInfo = () => {
                   onClick={() => copyValue(`${user.id}_name`, user.name!)}
                 >
                   {/* {sliceLimitString('eqweqweqeqeqweqeqeqw', 11)} */}
-                  {sliceLimitString(user.name!, 11)}
+                  {sliceLimitString(user.name!, 20)}
                 </span>
               </div>
 
