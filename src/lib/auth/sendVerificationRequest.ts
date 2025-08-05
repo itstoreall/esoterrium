@@ -16,9 +16,9 @@ export const sendVerificationRequest: (params: {
   const customHtmlMessage = `
           <html>
             <body>
-              <h1 style="text-align: center; color: #4CAF50;">Welcome to Our Service</h1>
+              <h1 style="text-align: center; color: #225695;">Welcome to Esoterrium</h1>
               <p style="font-size: 16px; text-align: center;">
-                Чтобы подтвердить свой адрес электронной почты, перейдите по ссылке ниже:
+                Follow the link below to confirm your email address:
               </p>
               <div style="text-align: center; margin: 20px 0;">
                 <a
@@ -33,22 +33,22 @@ export const sendVerificationRequest: (params: {
                     border-radius: 5px;
                   "
                 >
-                  Подтвердить Email
+                  Confirm Email
                 </a>
               </div>
               <p style="font-size: 14px; text-align: center; color: #888;">
-                Если вы не запрашивали это письмо, можете просто его игнорировать.
+                If you did not request this email, you can just ignore it.
               </p>
             </body>
           </html>
         `;
 
-  const plainTextMessage = `11 Welcome to Our Service! Please confirm your email address by clicking the following link: ${url}.`;
+  const plainTextMessage = `Welcome to Esoterrium! Please confirm your email address by clicking the following link: ${url}`;
 
   await transporter.sendMail({
     to: identifier,
     from: provider.from,
-    subject: 'Confirm your email address',
+    subject: 'Confirm Email',
     text: plainTextMessage,
     html: customHtmlMessage,
   });
